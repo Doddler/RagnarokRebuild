@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraFollower: {fileID: 963194229}
-  ServerConfig: {fileID: 4900000, guid: 9195dc28044aee3459b732b7e5e806e5, type: 3}
+  ServerConfig: {fileID: 4900000, guid: ca879a18cd995604a9dca5b73a0e9498, type: 3}
   PlayerId: 0
 --- !u!4 &2086025549
 Transform:
