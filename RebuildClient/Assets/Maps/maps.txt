@@ -1,0 +1,1 @@
+Import map data from the ragnarok menu

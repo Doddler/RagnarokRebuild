@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ENet-CSharp" Version="2.3.5" />
+    <PackageReference Include="System.Buffers" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Lidgren.Network.MultiTarget">
+      <HintPath>..\Libraries\lidgren\Lidgren.Network.MultiTarget.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,251 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc77607c2a62ef48b8f7dec55cc6d91, type: 3}
+  m_Name: AnalyzeRuleData
+  m_EditorClassIdentifier: 
+  m_RuleToResults:
+  - RuleName: Check Duplicate Bundle Dependencies
+    Results:
+    - m_ResultName: No issues found
+      m_Severity: 0
+  - RuleName: Check Resources to Addressable Duplicate Dependencies
+    Results: []
+  - RuleName: Check Scene to Addressable Duplicate Dependencies
+    Results: []
+  - RuleName: Build Bundle Layout
+    Results:
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uC0C1\uC778_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uC131\uC9C1\uC790_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/4_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Data/monsterclass.json
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uC0C1\uC778_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uB9C8\uBC95\uC0AC_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/7_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/18_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Monsters/poring.spr
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/29_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uB3C4\uB451_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/27_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/9_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/11_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/13_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Monsters/lunatic.spr
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/23_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uAD81\uC218_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uAD81\uC218_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/21_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/4_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/13_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/15_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/14_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/6_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/29_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/22_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/12_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/16_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uCD08\uBCF4\uC790_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Textures/shadow.png
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/1_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Monsters/fabre.spr
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uAC80\uC0AC_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/28_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Data/playerclass.json
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/28_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/8_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/22_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/10_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Monsters/ice_titan.spr
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/26_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uC131\uC9C1\uC790_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/11_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uB9C8\uBC95\uC0AC_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uAC80\uC0AC_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyMale/\uB3C4\uB451_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/9_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/10_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/17_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/BodyFemale/\uCD08\uBCF4\uC790_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Monsters/knight_of_abyss.spr
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/27_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/15_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/26_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/24_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/25_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/3_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/14_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/20_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/7_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/5_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/17_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/2_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/8_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/1_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/12_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/23_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/2_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/18_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/19_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/24_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/20_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/19_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/21_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/3_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/6_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadFemale/5_\uC5EC.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/16_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: "defaultlocalgroup_assets_all.bundle:Explicit:Assets/Sprites/Characters/HeadMale/25_\uB0A8.spr"
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_axe.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/player_clothes.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_short_sword.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_mace.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_rod.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/poring_die.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/poring_damage.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/poring_move.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/poring_attack.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_bow.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/lunatic_attack.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/lunatic_die.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/kocot_foot2.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/bigfoot_step1.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/kocot_foot1.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/bigfoot_step2.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_sword.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/fabre_damage.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/fabre_attack.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/monster_insect.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/fabre_die.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/attack_spear.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/ice_titan_die.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/ice_titan_stand.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/ice_titan_damage.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/ice_titan_move.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/ice_titan_attack.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/knight_of_abyss_die.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/knight_of_abyss_attack1.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/knight_of_abyss_stand.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/monster_clothes.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/knight_of_abyss_attack2.wav
+      m_Severity: 0
+    - m_ResultName: defaultlocalgroup_assets_all.bundle:Implicit:Assets/Sounds/knight_of_abyss_move.wav
+      m_Severity: 0
