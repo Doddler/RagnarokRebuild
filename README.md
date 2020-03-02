@@ -12,7 +12,7 @@ Server and client for a Ragnarok Online-like game. Some assembly required.
 - .NET Core 3.1
 - Lack of sanity
 
-## Setting up client files
+## Setting things up
 
 - In the unity editor, using the ragnarok menu, select the "Set Ragnarok Data Directory". Specify the folder that contains files extracted from data.grf.
 - Before you do anything, copy everything from the wav folder into the Assets/Sound directory. Other importing may break if these aren't present.
