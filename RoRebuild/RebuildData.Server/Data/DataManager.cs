@@ -14,6 +14,8 @@ namespace RebuildZoneServer.Data.Management
 		private static Dictionary<string, MonsterDatabaseInfo> monsterCodeLookup;
 		private static Dictionary<string, List<MapConnector>> mapConnectorLookup;
 
+		private static Dictionary<string, string> configValues;
+
 		private static MapSpawnDatabaseInfo mapSpawnInfo;
 
 		private static List<MapEntry> mapList;
@@ -22,6 +24,27 @@ namespace RebuildZoneServer.Data.Management
 		public static bool HasMonsterWithId(int id)
 		{
 			return monsterIdLookup.ContainsKey(id);
+		}
+
+		public static bool TryGetConfigValue(string key, out string value)
+		{
+			if (configValues.TryGetValue(key, out value))
+				return true;
+
+			value = null;
+			return false;
+		}
+
+		public static bool TryGetConfigInt(string key, out int value)
+		{
+			if (configValues.TryGetValue(key, out var val))
+			{
+				if (int.TryParse(val, out value))
+					return true;
+			}
+
+			value = 0;
+			return false;
 		}
 
 		public static List<MapConnector> GetMapConnectors(string mapName)
@@ -72,10 +95,11 @@ namespace RebuildZoneServer.Data.Management
 			return null;
 		}
 
-		public static void Initialize(string dataPath)
+		public static void Initialize()
 		{
 			var loader = new DataLoader();
 
+			configValues = loader.LoadServerConfig();
 			mapList = loader.LoadMaps();
 			mapConnectorLookup = loader.LoadConnectors(mapList);
 			monsterStats = loader.LoadMonsterStats();

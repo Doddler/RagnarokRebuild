@@ -98,6 +98,23 @@ namespace RebuildData.Server.Data
 			return obj;
 		}
 
+		public Dictionary<string, string> LoadServerConfig()
+		{
+			var config = new Dictionary<string, string>();
+
+			using var tr = new StreamReader(@"Data\ServerSettings.csv") as TextReader;
+			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+
+			var entries = csv.GetRecords<CsvServerConfig>().ToList();
+
+			foreach (var entry in entries)
+			{
+				config.Add(entry.Key, entry.Value);
+			}
+
+			return config;
+		}
+
 		public MapSpawnDatabaseInfo LoadSpawnInfo()
 		{
 			var mapSpawns = new MapSpawnDatabaseInfo();

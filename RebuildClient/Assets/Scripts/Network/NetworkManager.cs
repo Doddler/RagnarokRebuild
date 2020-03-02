@@ -4,6 +4,7 @@ using Assets.Scripts.MapEditor;
 using Assets.Scripts.Sprites;
 using Assets.Scripts.Utility;
 using Lidgren.Network;
+using RebuildData.Shared.ClientTypes;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
@@ -17,13 +18,12 @@ namespace Assets.Scripts.Network
 		public static NetworkManager Instance;
 
 		public CameraFollower CameraFollower;
+		public TextAsset ServerConfig;
 		public Dictionary<int, ServerControllable> entityList = new Dictionary<int, ServerControllable>();
 		public int PlayerId;
 
-		private RoWalkDataProvider walkProvider;
 		private static NetClient client;
-		private NetIncomingMessage inc;
-		
+
 		private float lastPing = 0;
 		private bool isConnected = false;
 		private bool isLoggedIn = false;
@@ -33,6 +33,7 @@ namespace Assets.Scripts.Network
 		private List<Vector2Int> pathData = new List<Vector2Int>(20);
 
 		private Scene currentScene;
+		
 
 #if DEBUG
 		public static string SpawnMap = "";
@@ -52,22 +53,19 @@ namespace Assets.Scripts.Network
 			config.SimulatedMinimumLatency = 0.1f;
 			//config.SimulatedLoss = 0.1f;
 #endif
-
-
-			client = new NetClient(config);
 			
-			NetOutgoingMessage outMsg = client.CreateMessage();
-
-
+			client = new NetClient(config);
 			client.Start();
 
+			NetOutgoingMessage outMsg = client.CreateMessage();
 			outMsg.Write("A Client");
 
-			client.Connect("70.65.94.184", 14248, outMsg);
+			var target = ServerConfig.text;
+			var s = target.Split(':');
 
-			Debug.Log("Waiting for connection to server...");
+			client.Connect(s[0], int.Parse(s[1]), outMsg);
 
-			//SendPing();
+			Debug.Log($"Connecting to server at target {target}...");
 
 			lastPing = Time.time;
 		}

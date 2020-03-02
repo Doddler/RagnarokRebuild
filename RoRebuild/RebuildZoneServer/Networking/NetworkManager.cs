@@ -8,6 +8,7 @@ using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using RebuildZoneServer.Config;
+using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.EntityComponents;
 using RebuildZoneServer.Networking.Enum;
 using RebuildZoneServer.Sim;
@@ -28,10 +29,36 @@ namespace RebuildZoneServer.Networking
 
 		private static World world;
 
+
+
 		public static void Init(World gameWorld)
 		{
 			world = gameWorld;
 
+			//policy server is required for web build, but since webGL doesn't support lidgren, it's disabled
+			//StartPolicyServer();
+
+			if(!DataManager.TryGetConfigInt("Port", out var port))
+				throw new Exception("Configuration does not have value for port!");
+			if(!DataManager.TryGetConfigInt("MaxConnections", out var maxConnections))
+				throw new Exception("Configuration does not have value for max connections!");
+
+			ServerLogger.Log($"Starting server listening on port {port}, with a maximum of {maxConnections} connections.");
+
+			//Alright, now onto the regular server.
+			config = new NetPeerConfiguration("RebuildZoneServer");
+			config.Port = port;
+			config.MaximumConnections = maxConnections;
+			config.EnableMessageType(NetIncomingMessageType.ConnectionApproval);
+
+			server = new NetServer(config);
+			server.Start();
+
+			ServerLogger.Log("Server started.");
+		}
+		public static void StartPolicyServer()
+		{
+			//policy server is required for web build to connect
 			const string allPolicy =
 				@"<?xml version='1.0'?>
 <cross-domain-policy>
@@ -44,17 +71,6 @@ namespace RebuildZoneServer.Networking
 				ServerLogger.Log("Failed to start policy server.");
 			else
 				ServerLogger.Log("Policy service started.");
-
-			//Alright, now onto the regular server.
-			config = new NetPeerConfiguration("RebuildZoneServer");
-			config.Port = 14248;
-			config.MaximumConnections = 100;
-			config.EnableMessageType(NetIncomingMessageType.ConnectionApproval);
-
-			server = new NetServer(config);
-			server.Start();
-
-			ServerLogger.Log("Server started.");
 		}
 
 		public static void ScanAndDisconnect()

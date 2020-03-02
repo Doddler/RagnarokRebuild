@@ -15,7 +15,7 @@ namespace RebuildZoneServer
 		{
 			ServerLogger.Log("Ragnarok Rebuild Zone Server, starting up!");
 
-			DataManager.Initialize(ServerConfig.DataPath);
+			DataManager.Initialize();
 			var world = new World();
 			NetworkManager.Init(world);
 			
