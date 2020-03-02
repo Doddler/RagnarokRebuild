@@ -24,8 +24,8 @@ Server and client for a Ragnarok Online-like game. Some assembly required.
 - Monster sprites need to be placed in the Assets/Sprites/Monsters/ folder. This path is hardcoded somewhere.
 - Monster sprite names are specified in the server config that gets copied over to the client using the update utility.
 - For maps and sprites to load when you start the game, you will need to mark their imported scenes and spr assets as Addressables. You can do this using the 'Ragnarok\Update Addressables' menu option.
-- Server config files are in the RoRebuild\RebuildZoneServer\Data\GameData.xlsx file.
+- Server config files are csv files in the RoRebuild\RebuildZoneServer\Data\ folder.
 - The server config specifies all maps the server attempts to load, monsters, their spawns, and map connectors. A map needs to be imported first on the unity side, or the pathfinding data won't exist for the server to use.
-- If you change GameData.xlsx, run the updateclient.bat to copy settings over to the client.
-- The server will load changes to GameData.xlsx on startup, but you should have the server stopped when making changes as visual studio may not recognize the file has changed.
+- If you change monsters in the server data csv, run the updateclient.bat to copy settings over to the client.
+- The server will copy configuration files on startup, but you should have the server stopped when making changes as visual studio may not recognize the file has changed.
 - It will probably not work first time, and I probably missed important things on this list. Good luck!
