@@ -1,12 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using RebuildData.Server.Config;
 using RebuildData.Server.Logging;
-using RebuildData.Shared.Data;
-using RebuildData.Shared.Enum;
-using RebuildZoneServer.Data;
 using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.Networking;
 using RebuildZoneServer.Sim;
@@ -24,22 +19,7 @@ namespace RebuildZoneServer
 			var world = new World();
 			NetworkManager.Init(world);
 			
-
 			Time.Start();
-
-			var dir = new Position(0, 5);
-			var dir2 = new Position(0, -5);
-
-			dir.GetDirection();
-			dir2.GetDirection();
-
-			dir = new Position(5, 0);
-			dir = new Position(-5, 0);
-
-
-			dir.GetDirection();
-			dir2.GetDirection();
-
 
 			var stopwatch = new Stopwatch();
 			stopwatch.Start();
@@ -57,13 +37,7 @@ namespace RebuildZoneServer
 				NetworkManager.ProcessIncomingMessages();
 
 				world.Update();
-
-
-				//while (Time.MsSinceLastUpdate() < 5)
-				//	Thread.Sleep(1);
-
-				//Thread.Sleep(50);
-
+				
 				samples[spos] = Time.GetExactTime() - Time.ElapsedTime;
 				spos++;
 				if (spos == frameCount)

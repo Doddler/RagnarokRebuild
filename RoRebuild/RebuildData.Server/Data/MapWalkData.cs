@@ -42,7 +42,7 @@ namespace RebuildData.Shared.Data
 
 				cellData = br.ReadBytes(Width * Height);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				ServerLogger.LogError($"Failed to load map data for file {name}");
 				throw;

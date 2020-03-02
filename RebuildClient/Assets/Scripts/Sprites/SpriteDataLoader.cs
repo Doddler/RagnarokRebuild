@@ -198,8 +198,8 @@ namespace Assets.Scripts.Sprites
 
 			control.ConfigureEntity(param.ServerId, param.Position, param.Facing);
 			
-			AddressableUtility.LoadRoSpriteData(go, mData.SpriteName, control.SpriteAnimator.OnSpriteDataLoad);
-			if(mData.ShadowSize > 0)
+			AddressableUtility.LoadRoSpriteData(go, "Assets/Sprites/Monsters/" + mData.SpriteName, control.SpriteAnimator.OnSpriteDataLoad);
+			if (mData.ShadowSize > 0)
 				AddressableUtility.LoadSprite(go, "shadow", control.AttachShadow);
 
 			return control;

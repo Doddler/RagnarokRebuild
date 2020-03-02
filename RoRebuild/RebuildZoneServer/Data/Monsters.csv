@@ -1,0 +1,133 @@
+﻿Id,Code,Name,MoveSpeed,ClientSprite,ClientOffset,ClientShadow,ClientSize
+1000,WARP,Warp,-1,PortalPlaceholder.prefab,0,-1,1
+4000,PORING,Poring,400,poring.spr,0,0.5,1
+4001,FABRE,Fabre,400,fabre.spr,0,0.5,1
+4002,LUNATIC,Lunatic,200,lunatic.spr,0,0.5,1
+4003,PUPA,Pupa,-1,pupa.spr,0,-1,1
+4004,CREAMY,Creamy,150,creamy.spr,0,0.5,1
+4005,ROCKER,Rocker,200,rocker.spr,0,0.5,1
+4006,POPORING,Poporing,300,poporing.spr,0,0.5,1
+4007,THIEF_BUG,Thief Bug,150,thief_bug.spr,0,0.5,1
+4008,THIEF_BUG_EGG,Thief Bug Egg,-1,thief_bug_egg.spr,0,-1,1
+4009,HORNET,Hornet,150,hornet.spr,0,0.5,1
+4010,GREEN_PLANT,Green Plant,-1,green_plant.spr,0,-1,1
+4011,BLACK_MUSHROOM,Black Mushroom,-1,black_mushroom.spr,0,-1,1
+4012,DROPS,Drops,400,drops.spr,0,0.5,1
+4013,BLUE_PLANT,Blue Plant,-1,blue_plant.spr,0,-1,1
+4014,FARMILIAR,Familiar,150,farmiliar.spr,0,0.5,1
+4015,TAROU,Tarou,150,tarou.spr,0,0.5,1
+4016,VOCAL,Vocal,200,rocker.spr,0,0.5,1.5
+4017,SHINING_PLANT,Shining Plant,-1,shining_plant.spr,0,-1,1
+4018,MANDRAGORA,Mandragora,-1,mandragora.spr,0,-1,1
+4019,ECLIPSE,Eclipse,200,eclipse.spr,0,0.5,1
+4020,YOYO,Yoyo,200,yoyo.spr,0,0.5,1
+4021,SMOKIE,Smokie,200,smokie.spr,0,0.5,1
+4022,CHOCO,Choco,200,choco.spr,0,0.5,1
+4023,SAVAGE_BABE,Savage Babe,400,savage_babe.spr,0,0.25,1
+4024,DESERT_WOLF_B,Baby Desert Wolf,300,desert_wolf_b.spr,0,0.35,1
+4025,PECOPECO_EGG,Peco Peco Egg,-1,peco_egg.spr,0,-1,1
+4026,PECOPECO,Peco Peco,200,pecopeco.spr,0,0.5,1
+4027,CONDOR,Condor,150,condor.spr,0,0.5,1
+4028,PICKY,Picky,200,picky.spr,0,0.25,1
+4029,PICKY_,Eggshell Picky,200,picky_.spr,0,0.25,1
+4030,RED_MUSHROOM,Red Mushroom,-1,red_mushroom.spr,0,-1,1
+4031,GOBLIN_1,Dagger Goblin,100,goblin_1.spr,0,0.5,1
+4032,GOBLIN_2,Flail Goblin,150,goblin_2.spr,0,0.5,1
+4033,GOBLIN_3,Axe Goblin,250,goblin_3.spr,0,0.5,1
+4034,GOBLIN_4,Hammer Goblin,200,goblin_4.spr,0,0.5,1
+4035,GOBLIN_5,Mace Goblin,300,goblin_5.spr,0,0.5,1
+4036,GOBLIN_ARCHER,Goblin Archer,200,goblin_archer.spr,0,0.5,1
+4037,PANZER_GOBLIN,Panzer Goblin,200,panzer_goblin.spr,0,0.5,1
+4038,STEAM_GOBLIN,Steamrider Goblin,200,steam_goblin.spr,0,0.5,1
+4039,GOBLIN_LEADER,Goblin Leader,120,goblin_leader.spr,0,0.5,1
+4040,YELLOW_PLANT,Yellow Plant,-1,yellow_plant.spr,0,-1,1
+4041,SAVAGE,Savage,150,savage.spr,0,0.5,1
+4042,WILOW,Willow,200,wilow.spr,0,0.5,1
+4043,SPORE,Spore,200,spore.spr,0,0.5,1
+4044,SNAKE,Snake,200,snake.spr,0,-1,1
+4045,WOLF,Wolf,200,wolf.spr,0,0.5,1
+4046,MARIN,Marin,400,marin.spr,0,0.5,1
+4047,GHOSTRING,Ghostring,300,ghostring.spr,0,0.5,1
+4048,MASTERING,Mastering,300,mastering.spr,0,0.75,1
+4049,ANGELING,Angeling,200,angeling.spr,0,0.5,1
+4050,DEVILING,Deviling,200,deviling.spr,0,0.5,1
+4051,DRAGON_TAIL,Dragon Tail,175,dragon_tail.spr,0,0.5,1
+4052,POISON_SPORE,Poison Spore,200,poison_spore.spr,0,0.5,1
+4053,WORM_TAIL,Worm Tail,200,worm_tail.spr,0,0.5,1
+4054,ELDER_WILOW,Elder Willow,200,elder_wilow.spr,0,0.5,1
+4055,EGGYRA,Eggyra,200,eggyra.spr,0,0.5,1
+4056,BIGFOOT,Bigfoot,300,bigfoot.spr,0,0.5,1
+4057,SOHEE,Sohee,250,sohee.spr,0,0.5,1
+4058,WANDER_MAN,Wanderer,100,wander_man.spr,0,0.5,1
+4059,GREATEST_GENERAL,Greatest General,-1,greatest_general.spr,0,-1,1
+4060,HORONG,Horong,400,horong.spr,0,0.5,1
+4061,NINE_TAIL,Nine Tail,150,nine_tail.spr,0,0.5,1
+4062,EDDGA,Eddga,300,eddga.spr,0,0.5,1
+4063,THIEF_BUG_,Female Thief Bug,200,thief_bug_female.spr,0,0.5,1
+4064,THIEF_BUG__,Male Thief Bug,300,thief_bug_male.spr,0,0.5,1
+4065,VAGABOND_WOLF,Vagabond Wolf,150,vagabond_wolf.spr,0,0.5,1
+4066,SCORPION,Scorpion,200,scorpion.spr,0,0.5,1
+4067,METALLER,Metaller,200,metaller.spr,0,0.5,1
+4068,MAGNOLIA,Magnolia,250,magnolia.spr,0,0.5,1
+4069,ANDRE,Andre,300,andre.spr,0,0.5,1
+4070,DENIRO,Deniro,150,deniro.spr,0,0.5,1
+4071,PIERE,Piere,200,piere.spr,0,0.5,1
+4072,GOLEM,Golem,300,golem.spr,0,1,1
+4073,MUKA,Muka,300,muka.spr,0,0.5,1
+4074,ANT_EGG,Ant Egg,-1,ant_egg.spr,0,-1,1
+4075,ANACONDAQ,Anacondaq,200,anacondaq.spr,0,-1,1
+4076,FRILLDORA,Frilldora,300,frilldora.spr,0,0.5,1
+4077,DESERT_WOLF,Desert Wolf,200,desert_wolf.spr,0,0.5,1
+4078,SIDE_WINDER,Sidewinder,200,side_winder.spr,0,-1,1
+4079,HODE,Hode,200,hode.spr,0,-1,1
+4080,PHREEONI,Phreeoni,200,phreeoni.spr,0,0.5,1
+4081,SAND_MAN,Sandman,250,sand_man.spr,0,-1,1
+4082,STEEL_CHONCHON,Steel Chonchon,150,steel_chocho.spr,0,0.25,1
+4083,DRAGON_FLY,Dragon Fly,100,dragon_fly.spr,0,0.25,1
+4084,HUNTER_FLY,Hunter Fly,150,hunter_fly.spr,0,0.25,1
+4085,CHONCHON,Chonchon,200,chocho.spr,0,0.25,1
+4086,CARAMEL,Caramel,200,caramel.spr,0,0.5,1
+4087,HORN,Horn,200,horn.spr,0,0.5,1
+4088,STAINER,Stainer,200,stainer.spr,0,0.5,1
+4089,PETIT,Earth Petit,200,petit.spr,0,0.5,1
+4090,PETIT_,Sky Petit,150,petit_.spr,0,0.5,1
+4091,FLORA,Flora,-1,flora.spr,0,-1,1
+4092,MANTIS,Mantis,200,mantis.spr,0,0.5,1
+4093,ARGOS,Argos,300,argos.spr,0,0.5,1
+4094,ARGIOPE,Argiope,300,argiope.spr,0,0.5,1
+4095,MISTRESS,Mistress,100,mistress.spr,0,0.5,1
+4096,AMBERNITE,Ambernite,400,ambernite.spr,0,0.5,1
+4097,STEM_WORM,Stem Worm,200,stem_worm.spr,0,0.5,1
+4098,DUSTINESS,Dustiness,150,dustiness.spr,0,0.5,1
+4099,COCO,Coco,150,coco.spr,0,0.5,1
+4100,RED_PLANT,Red Plant,-1,red_plant.spr,0,-1,1
+4101,RODA_FROG,Roda Frog,200,roda_frog.spr,0,0.5,1
+4102,THARA_FROG,Thara Frog,200,thara_frog.spr,0,0.5,1
+4103,TOAD,Toad,200,toad.spr,0,0.5,1
+4104,WILD_ROSE,Wild Rose,100,wild_rose.spr,0,0.5,1
+4105,KOBOLD_ARCHER,Kobold Archer,200,kobold_archer.spr,0,0.5,1
+4106,KOBOLD_1,Axe Kobold,150,kobold_1.spr,0,0.5,1
+4107,KOBOLD_2,Hammer Kobold,200,kobold_2.spr,0,0.5,1
+4108,KOBOLD_3,Mace Kobold,300,kobold_3.spr,0,0.5,1
+4109,KOBOLD_LEADER,Kobold Leader,150,kobolt_leader.spr,0,0.5,1
+4110,ORK_WARRIOR,Orc Warrior,200,ork_warrior.spr,0,0.5,1
+4111,ORC_LORD,Orc Lord,100,orc_lord.spr,0,0.5,1
+4112,ORC_LADY,Orc Lady,200,orc_lady.spr,0,0.5,1
+4113,ORC_BABY,Orc Baby,200,orc_baby.spr,0,0.5,1
+4114,ORK_HERO,Orc Hero,150,ork_hero.spr,0,0.5,1
+4115,ORC_ARCHER,Orc Archer,300,orc_archer.spr,0,0.5,1
+4116,HIGH_ORC,High Orc,150,high_orc.spr,0,0.5,1
+4117,ROTAR_ZAIRO,Rotor Gyro,155,rotar_zairo.spr,0,0.5,1
+4118,DRAINLIAR,Drainliar,250,drainliar.spr,0,0.5,1
+4119,MUMMY,Mummy,300,mummy.spr,0,0.5,1
+4120,ISIS,Isis,200,isis.spr,0,0.5,1
+4121,SOLDIER_SKELETON,Soldier Skeleton,200,skel_soldier.spr,0,0.5,1
+4122,ARCHER_SKELETON,Archer Skeleton,300,skel_archer.spr,0,0.5,1
+4123,MIMIC,Mimic,100,mimic.spr,0,0.5,1
+4124,MATYR,Matyr,150,matyr.spr,0,0.5,1
+4125,VERIT,Verit,250,verit.spr,0,0.5,1
+4126,ANCIENT_MUMMY,Ancient Mummy,175,ancient_mummy.spr,0,0.5,1
+4127,OSIRIS,Osiris,100,osiris.spr,0,0.5,1
+4128,MINOROUS,Minorous,200,minorous.spr,0,0.5,1
+4129,ARCLOUSE,Arclouse,100,arclouse.spr,0,0.5,1
+4130,AMON_RA,Amon Ra,-1,amon_ra.spr,0,-1,1

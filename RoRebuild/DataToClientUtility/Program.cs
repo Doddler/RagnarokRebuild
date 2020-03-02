@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CsvHelper;
 using Dahomey.Json;
-using OfficeOpenXml;
+using RebuildData.Server.Data.CsvDataTypes;
 using RebuildData.Shared.ClientTypes;
 
 namespace DataToClientUtility
@@ -14,40 +16,25 @@ namespace DataToClientUtility
 	{
 		static void Main(string[] args)
 		{
-			var path = @"..\..\..\..\RebuildZoneServer\Data\GameData.xlsx";
+			var path = @"..\..\..\..\RebuildZoneServer\Data\";
 			var outPath = @"..\..\..\..\..\RebuildClient\Assets\Data\";
 
+			using var tr = new StreamReader(Path.Combine(path, "Monsters.csv")) as TextReader;
+			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
-			File.Copy(path, ".\\GameData.xlsx", true);
-
-			var xls = new ExcelPackage(new FileInfo("GameData.xlsx"));
-
-			var sheet = xls.Workbook.Worksheets["Monsters"];
-
-			int lastRow = sheet.Cells.Last(cell => !string.IsNullOrWhiteSpace(cell?.Value?.ToString())).End.Row;
-
-			var mData = new List<MonsterClassData>();
-
-			var table = sheet.Tables.First();
-
-			var idColumn = table.Columns.First(c => c.Name == "Id").Position + 1;
-			var nameColumn = table.Columns.First(c => c.Name == "Name").Position + 1;
-			var spriteColumn = table.Columns.First(c => c.Name == "ClientSprite").Position + 1;
-			var offsetColumn = table.Columns.First(c => c.Name == "ClientOffset").Position + 1;
-			var offsetShadow = table.Columns.First(c => c.Name == "ClientShadow").Position + 1;
-			var clientSize = table.Columns.First(c => c.Name == "ClientSize").Position + 1;
-
-
-			for (var row = 2; row <= lastRow; row++)
+			var monsters = csv.GetRecords<CsvMonsterData>().ToList();
+			var mData = new List<MonsterClassData>(monsters.Count);
+			
+			foreach(var monster in monsters)
 			{
 				var mc = new MonsterClassData()
 				{
-					Id = Convert.ToInt32((double) sheet.Cells[row, idColumn].Value),
-					Name = sheet.Cells[row, nameColumn].Value as string,
-					SpriteName = "Assets/Sprites/Monsters/" + (string)sheet.Cells[row, spriteColumn].Value,
-					Offset = (float)(double)sheet.Cells[row, offsetColumn].Value,
-					ShadowSize = (float)(double)sheet.Cells[row, offsetShadow].Value,
-					Size = (float)(double)sheet.Cells[row, clientSize].Value
+					Id = monster.Id,
+					Name = monster.Name,
+					SpriteName = monster.ClientSprite,
+					Offset = monster.ClientOffset,
+					ShadowSize = monster.ClientShadow,
+					Size = monster.ClientSize
 				};
 
 				mData.Add(mc);
@@ -64,10 +51,6 @@ namespace DataToClientUtility
 			var monsterDir = Path.Combine(outPath, "monsterclass.json");
 
 			File.WriteAllText(monsterDir, json);
-
-			xls.Dispose();
-
-			File.Delete("GameData.xlsx");
 		}
 	}
 }

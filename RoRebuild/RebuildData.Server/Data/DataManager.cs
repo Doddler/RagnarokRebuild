@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
 using RebuildData.Server.Data;
 using RebuildData.Server.Data.Types;
-using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildZoneServer.Data.Management.Types;
 
@@ -77,7 +74,7 @@ namespace RebuildZoneServer.Data.Management
 
 		public static void Initialize(string dataPath)
 		{
-			using var loader = new DataLoader(dataPath);
+			var loader = new DataLoader();
 
 			mapList = loader.LoadMaps();
 			mapConnectorLookup = loader.LoadConnectors(mapList);

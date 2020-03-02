@@ -6,12 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="15.0.0" />
     <PackageReference Include="Dahomey.Json" Version="1.6.0" />
-    <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RebuildData.Server\RebuildData.Server.csproj" />
     <ProjectReference Include="..\RebuildData.Shared\RebuildData.Shared.csproj" />
   </ItemGroup>
 
