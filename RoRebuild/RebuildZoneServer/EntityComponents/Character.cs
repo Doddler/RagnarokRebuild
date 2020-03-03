@@ -116,12 +116,17 @@ namespace RebuildZoneServer.EntityComponents
 			if (MoveStep + 1 < TotalMoveSteps && State == CharacterState.Moving)
 			{
 				oldNext = WalkPath[MoveStep + 1];
-				//if(Type == CharacterType.Player)
-				//	ServerLogger.Log($"Old move: {MoveStep} Pos: {oldNext} Cooldown: {MoveCooldown}");
 				hasOld = true;
 			}
 			
-			var len = Pathfinder.GetPath(Map.WalkData, Position, target, WalkPath);
+			int len;
+
+			//we won't interrupt the next step we are currently taking, so append it to the start of our new path.
+			if (hasOld)
+				len = Pathfinder.GetPathWithInitialStep(Map.WalkData, Position, oldNext, target, WalkPath);
+			else
+				len = Pathfinder.GetPath(Map.WalkData, Position, target, WalkPath);
+
 			if (len == 0)
 				return false;
 
@@ -132,15 +137,10 @@ namespace RebuildZoneServer.EntityComponents
 			FacingDirection = (WalkPath[1] - WalkPath[0]).GetDirectionForOffset();
 			
 			State = CharacterState.Moving;
-
-			//ServerLogger.Log($"Doing move action: {MoveStep} {TotalMoveSteps}");
-
-			if (hasOld && WalkPath[MoveStep+1] == oldNext)
+			
+			if (hasOld)
 				MoveCooldown = oldCooldown;
 
-			if (hasOld && WalkPath[MoveStep + 1].SquareDistance(oldNext) == 1)
-				MoveCooldown = MoveSpeed - ((MoveSpeed - oldCooldown) * 0.4f);
-			
 			Map.StartMove(ref entity, this);
 			ChangeToActionState();
 
@@ -210,16 +210,10 @@ namespace RebuildZoneServer.EntityComponents
 						Map.MoveEntity(ref e, this, nextPos, true);
 
 						if (nextPos == TargetPosition)
-						{
 							State = CharacterState.Idle;
-							//if(Type == CharacterType.Player)
-							//	ServerLogger.Log($"Entity {Id} reached {TargetPosition}");
-						}
 						else
 						{
 							FacingDirection = (WalkPath[MoveStep + 1] - WalkPath[MoveStep]).GetDirectionForOffset();
-							//if(Type == CharacterType.Player)
-							//	ServerLogger.Log("Set facing direction to: " + FacingDirection);
 							MoveCooldown += MoveSpeed;
 						}
 					}

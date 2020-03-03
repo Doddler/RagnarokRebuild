@@ -36,7 +36,8 @@ namespace RebuildData.Server.Pathfinding
 	{
 		private static PathNode[] nodeCache;
 		private static int cachePos;
-		private const int MaxCacheSize = 1000;
+		private const int MaxDistance = 15;
+		private const int MaxCacheSize = ((MaxDistance + 1) * 2) * ((MaxDistance + 1) * 2);
 
 		private static List<PathNode> openList = new List<PathNode>(MaxCacheSize);
 
@@ -46,7 +47,6 @@ namespace RebuildData.Server.Pathfinding
 		private static void BuildCache()
 		{
 			ServerLogger.Log("Build path cache");
-
 
 			nodeCache = new PathNode[MaxCacheSize];
 			for (var i = 0; i < MaxCacheSize; i++)
@@ -83,7 +83,7 @@ namespace RebuildData.Server.Pathfinding
 			return false;
 		}
 
-		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target)
+		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target, int maxLength)
 		{
 			if (nodeCache == null)
 				BuildCache();
@@ -107,7 +107,7 @@ namespace RebuildData.Server.Pathfinding
 				openListPos.Remove(current.Position);
 				closedListPos.Add(current.Position);
 				
-				if (current.Steps > 15 || current.Steps + current.Distance / 2 > 15)
+				if (current.Steps > 15 || current.Steps + current.Distance / 2 > maxLength)
 					continue;
 
 				for (var x = -1; x <= 1; x++)
@@ -168,12 +168,12 @@ namespace RebuildData.Server.Pathfinding
 			return null;
 		}
 
-		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut)
+		private static PathNode MakePath(MapWalkData walkData, Position start, Position target, int maxDistance)
 		{
 			if (!walkData.IsCellWalkable(target))
-				return 0;
+				return null;
 
-			var path = BuildPath(walkData, start, target);
+			var path = BuildPath(walkData, start, target, maxDistance);
 
 			openList.Clear();
 			openListPos.Clear();
@@ -181,8 +181,39 @@ namespace RebuildData.Server.Pathfinding
 
 			if (path == null)
 			{
-				return 0;
+				return null;
 			}
+
+			return path;
+		}
+
+		public static int GetPathWithInitialStep(MapWalkData walkData, Position start, Position initial, Position target, Position[] pathOut)
+		{
+			var path = MakePath(walkData, initial, target, MaxDistance - 1);
+			if (path == null)
+				return 0;
+
+			var steps = path.Steps + 1;
+
+			if (path.Steps >= pathOut.Length)
+				ServerLogger.LogWarning($"Whoa! This isn't good. Steps is {path.Steps} but the array is {pathOut.Length}");
+
+			while (path != null)
+			{
+				pathOut[path.Steps + 1] = path.Position;
+				path = path.Parent;
+			}
+
+			pathOut[0] = start;
+
+			return steps + 1; //add initial first step
+		}
+
+		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut)
+		{
+			var path = MakePath(walkData, start, target, MaxDistance);
+			if (path == null)
+				return 0;
 
 			var steps = path.Steps + 1;
 
