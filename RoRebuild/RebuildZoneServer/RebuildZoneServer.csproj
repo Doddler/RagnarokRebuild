@@ -6,13 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Data\GameData.xlsx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Data\GameData.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Remove="Data\~%24GameData.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
