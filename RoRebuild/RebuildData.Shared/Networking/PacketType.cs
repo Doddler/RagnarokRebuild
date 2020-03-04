@@ -18,5 +18,6 @@
 		ChangeMaps,
 		StopAction,
 		RandomTeleport,
+		UnhandledPacket
 	}
 }

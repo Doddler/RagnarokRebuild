@@ -35,5 +35,10 @@
 		"Name": "Merchant",
 		"SpriteFemale": "Assets/Sprites/Characters/BodyFemale/상인_여.spr",
 		"SpriteMale": "Assets/Sprites/Characters/BodyMale/상인_남.spr"
+	},{
+		"Id": 200,
+		"Name": "Gamemaster",
+		"SpriteFemale": "Assets/Sprites/Characters/BodyFemale/운영자_여.spr",
+		"SpriteMale": "Assets/Sprites/Characters/BodyMale/운영자_남.spr"
 	}]
 }

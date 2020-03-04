@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Lidgren.Network;
+using RebuildData.Server.Logging;
+using RebuildData.Shared.Data;
+using RebuildData.Shared.Networking;
+using RebuildZoneServer.EntityComponents;
+using RebuildZoneServer.Util;
+
+namespace RebuildZoneServer.Networking.PacketHandlers
+{
+	class PacketEnterServerSpecificMap : ClientPacketHandler
+	{
+		public override PacketType PacketType => PacketType.EnterServerSpecificMap;
+		public override void HandlePacket(NetIncomingMessage msg)
+		{
+#if DEBUG
+			if (!State.ConnectionLookup.TryGetValue(msg.SenderConnection, out var connection))
+				return;
+
+			if (connection.Character != null)
+				return;
+
+			var mapName = msg.ReadString();
+			var hasPosition = msg.ReadBoolean();
+			var area = Area.Zero;
+
+			if (hasPosition)
+			{
+				var x = msg.ReadInt16();
+				var y = msg.ReadInt16();
+
+				var target = new Position(x, y);
+				ServerLogger.Debug($"Player chose to spawn at specific point: {x},{y}");
+
+				area = Area.CreateAroundPoint(target, 0);
+			}
+
+			var playerEntity = State.World.CreatePlayer(connection, mapName, area);
+			connection.Entity = playerEntity;
+			connection.LastKeepAlive = Time.ElapsedTime;
+			connection.Character = playerEntity.Get<Character>();
+			connection.Character.ClassId = 200; //Gamemaster
+			connection.Character.MoveSpeed = 0.08f;
+			connection.Character.IsActive = false;
+			var networkPlayer = playerEntity.Get<Player>();
+			networkPlayer.Connection = connection;
+
+			ServerLogger.Debug($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
+
+			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);
+#else
+			state.PacketHandlers[(int)PacketType.Disconnect](state, msg); //yeah no
+#endif
+		}
+	}
+}
