@@ -103,6 +103,23 @@ namespace RebuildData.Shared.Data
 			return Direction.South;
 		}
 
+		public Position AddDirectionToPosition(Direction d)
+		{
+			switch (d)
+			{
+				case Direction.SouthWest: return new Position(X - 1, Y - 1);
+				case Direction.West: return new Position(X - 1, Y);
+				case Direction.NorthWest: return new Position(X - 1, Y + 1);
+				case Direction.North: return new Position(X, Y + 1);
+				case Direction.NorthEast: return new Position(X + 1, Y + 1);
+				case Direction.East: return new Position(X + 1, Y);
+				case Direction.SouthEast: return new Position(X + 1, Y - 1);
+				case Direction.South: return new Position(X, Y - 1);
+			}
+
+			return this;
+		}
+
 		public static bool operator ==(Position src, Position dest)
 		{
 			return src.X == dest.X && src.Y == dest.Y;

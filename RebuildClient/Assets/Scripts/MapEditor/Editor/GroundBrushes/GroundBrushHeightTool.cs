@@ -1,4 +1,5 @@
 ﻿using System;
+using RebuildData.Shared.Enum;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
@@ -91,7 +92,7 @@ namespace Assets.Scripts.MapEditor.Editor.GroundBrushes
 
             //center point
             {
-                var (tile, realDir) = Editor.GetTileAndDirForDirection(Direction.Center);
+                var (tile, realDir) = Editor.GetTileAndDirForDirection(Direction.None);
                 dragHandleStart[8] = Editor.GetPositionForTileEdgeOrCorner(tile.x, tile.y, realDir);
                 dragHandlePosition[8] = dragHandleStart[8];
             }

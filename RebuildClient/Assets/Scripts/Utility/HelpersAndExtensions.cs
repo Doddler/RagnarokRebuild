@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts.MapEditor;
+using RebuildData.Shared.Enum;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -22,26 +23,8 @@ namespace Assets.Scripts
                 case Direction.South: return Direction.North;
             }
 
-            return Direction.Center;
+            return Direction.None;
         }
-
-
-        //public static Vector2Int GetVectorValue(this Direction dir)
-        //{
-        //    switch (dir)
-        //    {
-        //        case Direction.SouthWest: return new Vector2Int(0, 0);
-        //        case Direction.West: return new Vector2Int(0, 0);
-        //        case Direction.NorthWest: return new Vector2Int(0, 0);
-        //        case Direction.North: return new Vector2Int(0, 0);
-        //        case Direction.NorthEast: return new Vector2Int(0, 0);
-        //        case Direction.East: return new Vector2Int(0, 0);
-        //        case Direction.SouthEast: return new Vector2Int(0, 0);
-        //        case Direction.South: return new Vector2Int(0, 0);
-        //    }
-
-        //    return Vector2Int.zero;
-        //}
     }
 
     public static class AssetHelper

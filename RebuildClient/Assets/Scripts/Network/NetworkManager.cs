@@ -100,8 +100,24 @@ namespace Assets.Scripts.Network
 			var curStep = (int) msg.ReadByte();
 
 			pathData.Clear();
-			for (var i = 0; i < totalSteps; i++)
+			if (totalSteps > 0) //should always be true but whatever
+			{
 				pathData.Add(ReadPosition(msg));
+				var i = 1;
+				while (i < totalSteps)
+				{
+					var b = msg.ReadByte();
+					pathData.Add(pathData[i - 1].AddDirection((Direction)(b >> 4)));
+					i++;
+					if (i < totalSteps)
+					{
+						pathData.Add(pathData[i - 1].AddDirection((Direction) (b & 0xF)));
+						i++;
+					}
+				}
+			}
+			//for (var i = 0; i < totalSteps; i++)
+			//	pathData.Add(ReadPosition(msg));
 
 			//if(ctrl.Id == PlayerId)
 			//	Debug.Log("Doing move for player!");

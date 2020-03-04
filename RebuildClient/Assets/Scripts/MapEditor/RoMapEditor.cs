@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.Network;
+using RebuildData.Shared.Enum;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -494,7 +495,7 @@ namespace Assets.Scripts.MapEditor
                 return (new Vector2Int(x, y), Direction.East);
 
             if (xOdd && yOdd)
-                return (new Vector2Int(x, y), Direction.Center);
+                return (new Vector2Int(x, y), Direction.None);
             
             return (new Vector2Int(x, y), Direction.NorthEast);
 
@@ -504,7 +505,7 @@ namespace Assets.Scripts.MapEditor
         {
             var tile = MapData.Cell(x, y);
 
-            if (dir == Direction.Center)
+            if (dir == Direction.None)
             {
                 var pos = new Vector3((x + 0) * TileSize, tile.Heights[0] * RoMapData.YScale, (y + 0) * TileSize);
                 pos += new Vector3((x + 1) * TileSize, tile.Heights[1] * RoMapData.YScale, (y + 0) * TileSize);

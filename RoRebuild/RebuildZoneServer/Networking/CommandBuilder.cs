@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Leopotam.Ecs;
 using Lidgren.Network;
-using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using RebuildZoneServer.EntityComponents;
-using RebuildZoneServer.Networking.Enum;
 
 namespace RebuildZoneServer.Networking
 {
 	static class CommandBuilder
 	{
 		private static List<NetConnection> recipients = new List<NetConnection>(10);
-		
+
 		public static void AddRecipient(EcsEntity e)
 		{
 			if (!e.IsAlive())
@@ -40,8 +36,24 @@ namespace RebuildZoneServer.Networking
 			packet.Write(c.MoveCooldown);
 			packet.Write((byte)c.TotalMoveSteps);
 			packet.Write((byte)c.MoveStep);
-			for (var i = 0; i < c.TotalMoveSteps; i++)
-				packet.Write(c.WalkPath[i]);
+			if (c.TotalMoveSteps > 0)
+			{
+				packet.Write(c.WalkPath[0]);
+
+				var i = 1;
+
+				//pack directions into 2 steps per byte
+				while (i < c.TotalMoveSteps)
+				{
+					var b = (byte)((byte)(c.WalkPath[i] - c.WalkPath[i - 1]).GetDirectionForOffset() << 4);
+					i++;
+					if (i < c.TotalMoveSteps)
+						b |= (byte)(c.WalkPath[i] - c.WalkPath[i - 1]).GetDirectionForOffset();
+					i++;
+					packet.Write(b);
+				}
+			}
+
 		}
 
 		private static NetOutgoingMessage BuildCreateEntity(Character c, bool isSelf = false)
@@ -59,7 +71,7 @@ namespace RebuildZoneServer.Networking
 			{
 				var player = c.Entity.Get<Player>();
 				packet.Write((byte)player.HeadFacing);
-				packet.Write((byte)player.HeadId);
+				packet.Write(player.HeadId);
 				packet.Write(player.IsMale);
 			}
 			if (c.State == CharacterState.Moving)
@@ -95,7 +107,7 @@ namespace RebuildZoneServer.Networking
 			if (c.Type == CharacterType.Player)
 			{
 				var player = c.Entity.Get<Player>();
-				packet.Write((byte) player.HeadFacing);
+				packet.Write((byte)player.HeadFacing);
 			}
 
 			NetworkManager.SendMessageMulti(packet, recipients);
@@ -110,7 +122,7 @@ namespace RebuildZoneServer.Networking
 			var packet = NetworkManager.StartPacket(PacketType.StopAction, 32);
 
 			packet.Write(c.Id);
-			
+
 			NetworkManager.SendMessageMulti(packet, recipients);
 		}
 
@@ -160,7 +172,7 @@ namespace RebuildZoneServer.Networking
 
 			NetworkManager.SendMessage(packet, player.Connection.ClientConnection);
 		}
-		
+
 		public static void SendRemoveEntityMulti(Character c)
 		{
 			if (recipients.Count <= 0)
@@ -171,7 +183,7 @@ namespace RebuildZoneServer.Networking
 
 			NetworkManager.SendMessageMulti(packet, recipients);
 		}
-		
+
 		public static void SendRemoveEntity(Character c, Player player)
 		{
 			var packet = NetworkManager.StartPacket(PacketType.RemoveEntity, 32);

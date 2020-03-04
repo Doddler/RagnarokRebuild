@@ -9,19 +9,6 @@ using UnityEngine.Profiling;
 
 namespace Assets.Scripts.MapEditor
 {
-    public enum Direction
-    {
-        South,
-        SouthWest,
-        West,
-        NorthWest,
-        North,
-        NorthEast,
-        East,
-        SouthEast,
-        Center
-    }
-    
     [Serializable]
     public class Cell
     {
