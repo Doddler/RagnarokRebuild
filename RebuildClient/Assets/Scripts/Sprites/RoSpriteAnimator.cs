@@ -43,6 +43,7 @@ namespace Assets.Scripts.Sprites
         public bool Dead;
 
         private Dictionary<int, Mesh> meshCache;
+        private Dictionary<int, Mesh> colliderCache;
 
         public ServerControllable Controllable;
         public MeshFilter MeshFilter;
@@ -187,6 +188,7 @@ namespace Assets.Scripts.Sprites
             }
 
             meshCache = SpriteMeshCache.GetMeshCacheForSprite(SpriteData.Name);
+            colliderCache = SpriteMeshCache.GetColliderCacheForSprite(SpriteData.Name);
             spriteName = SpriteData.Name;
 
 
@@ -203,18 +205,34 @@ namespace Assets.Scripts.Sprites
             isDirty = true;
         }
         
-        private Mesh GetMeshForFrame()
+        private Mesh GetColliderForFrame()
         {
 	        var id = ((currentActionIndex + currentAngleIndex) << 8) + currentFrame;
 
-            if (meshCache.TryGetValue(id, out var mesh))
+            if (colliderCache.TryGetValue(id, out var mesh))
 	            return mesh;
 
             //Debug.Log("Building new mesh for " + name);
 
-            var newMesh = SpriteMeshBuilder.BuildSpriteMesh(SpriteData, currentActionIndex, currentAngleIndex, currentFrame);
+            var newMesh = SpriteMeshBuilder.BuildColliderMesh(SpriteData, currentActionIndex, currentAngleIndex, currentFrame);
 
-            meshCache.Add(id, newMesh);
+            colliderCache.Add(id, newMesh);
+
+	        return newMesh;
+        }
+
+        private Mesh GetMeshForFrame()
+        {
+	        var id = ((currentActionIndex + currentAngleIndex) << 8) + currentFrame;
+
+	        if (meshCache.TryGetValue(id, out var mesh))
+		        return mesh;
+
+	        //Debug.Log("Building new mesh for " + name);
+
+	        var newMesh = SpriteMeshBuilder.BuildSpriteMesh(SpriteData, currentActionIndex, currentAngleIndex, currentFrame);
+
+	        meshCache.Add(id, newMesh);
 
 	        return newMesh;
         }
@@ -246,11 +264,12 @@ namespace Assets.Scripts.Sprites
             }
 
             var mesh = GetMeshForFrame();
+            var cMesh = GetColliderForFrame();
 
             MeshFilter.sharedMesh = null;
             MeshFilter.sharedMesh = mesh;
             MeshCollider.sharedMesh = null;
-            MeshCollider.sharedMesh = mesh;
+            MeshCollider.sharedMesh = cMesh;
 
             //Debug.Log("Updating sprite frame!");
         }
