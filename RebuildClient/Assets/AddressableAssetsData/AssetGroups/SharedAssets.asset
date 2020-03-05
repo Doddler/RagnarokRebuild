@@ -1422,10 +1422,6 @@ MonoBehaviour:
     m_Address: "Assets/models/materials/\uD504\uB860\uD14C\uB77C/\uD6C4\uBB38\uAE30\uB465.mat"
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 6aa287f20573ea94c90503b32f796d36
-    m_Address: Assets/Textures/WaterTemp.mat
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 6aa4c941e81cbfa4e8e14bf065b578dc
     m_Address: "Assets/models/mesh/\uD504\uB860\uD14C\uB77C/\uD504\uB860\uD14C\uB77C\uC131\uAE30\uB465/Object01.asset"
     m_ReadOnly: 0

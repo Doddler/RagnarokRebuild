@@ -54,8 +54,8 @@ MonoBehaviour:
   _reflectionBounces: 1
   _reflectionIntensity: 1
   _enableAmbientOcclusion: 1
-  _aoExponentDirect: 0
-  _aoExponentIndirect: 1
+  _aoExponentDirect: 2
+  _aoExponentIndirect: 4
   _aoMaxDistance: 8
   _bakedGI: 1
   _directSamples: 32

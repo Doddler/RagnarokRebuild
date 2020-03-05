@@ -94,7 +94,7 @@
 4091,FLORA,Flora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,flora.spr,0,-1,1
 4092,MANTIS,Mantis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,mantis.spr,0,0.5,1
 4093,ARGOS,Argos,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,argos.spr,0,0.5,1
-4094,ARGIOPE,Argiope,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,argiope.spr,0,0.5,1
+4094,ARGIOPE,Argiope,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,argiope.spr,0,-1,1
 4095,MISTRESS,Mistress,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,mistress.spr,0,0.5,1
 4096,AMBERNITE,Ambernite,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,ambernite.spr,0,0.5,1
 4097,STEM_WORM,Stem Worm,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,stem_worm.spr,0,0.5,1

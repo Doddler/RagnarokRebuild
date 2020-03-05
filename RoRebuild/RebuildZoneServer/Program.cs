@@ -2,6 +2,7 @@
 using System.Linq;
 using RebuildData.Server.Config;
 using RebuildData.Server.Logging;
+using RebuildData.Server.Pathfinding;
 using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.Networking;
 using RebuildZoneServer.Sim;
@@ -15,6 +16,7 @@ namespace RebuildZoneServer
 		{
 			ServerLogger.Log("Ragnarok Rebuild Zone Server, starting up!");
 
+			DistanceCache.Init();
 			DataManager.Initialize();
 			var world = new World();
 			NetworkManager.Init(world);

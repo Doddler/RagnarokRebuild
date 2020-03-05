@@ -26,54 +26,67 @@ namespace DataToClientUtility
 
 		private static void WriteServerConfig()
 		{
-			using var tr = new StreamReader(Path.Combine(path, @"ServerSettings.csv")) as TextReader;
-			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+			var inPath = Path.Combine(path, "ServerSettings.csv");
+			var tempPath = Path.Combine(Path.GetTempPath(), @"ServerSettings.csv"); //copy in case file is locked
+			File.Copy(inPath, tempPath);
 
-			var entries = csv.GetRecords<CsvServerConfig>().ToList();
+			using (var tr = new StreamReader(tempPath) as TextReader)
+			using (var csv = new CsvReader(tr, CultureInfo.CurrentCulture))
+			{
 
-			var ip = entries.FirstOrDefault(e => e.Key == "IP").Value;
-			var port = entries.FirstOrDefault(e => e.Key == "Port").Value;
+				var entries = csv.GetRecords<CsvServerConfig>().ToList();
 
-			var configPath = Path.Combine(outPath, "serverconfig.txt");
+				var ip = entries.FirstOrDefault(e => e.Key == "IP").Value;
+				var port = entries.FirstOrDefault(e => e.Key == "Port").Value;
 
-			File.WriteAllText(configPath, $"{ip}:{port}");
+				var configPath = Path.Combine(outPath, "serverconfig.txt");
+
+				File.WriteAllText(configPath, $"{ip}:{port}");
+			}
+
+			File.Delete(tempPath);
 		}
 
 
 		private static void WriteMonsterData()
 		{
-			using var tr = new StreamReader(Path.Combine(path, "Monsters.csv")) as TextReader;
-			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+			var inPath = Path.Combine(path, "Monsters.csv");
+			var tempPath = Path.Combine(Path.GetTempPath(), "Monsters.csv"); //copy in case file is locked
+			File.Copy(inPath, tempPath);
 
-			var monsters = csv.GetRecords<CsvMonsterData>().ToList();
-			var mData = new List<MonsterClassData>(monsters.Count);
-
-			foreach (var monster in monsters)
+			using (var tr = new StreamReader(tempPath) as TextReader)
+			using (var csv = new CsvReader(tr, CultureInfo.CurrentCulture))
 			{
-				var mc = new MonsterClassData()
+				var monsters = csv.GetRecords<CsvMonsterData>().ToList();
+				var mData = new List<MonsterClassData>(monsters.Count);
+
+				foreach (var monster in monsters)
 				{
-					Id = monster.Id,
-					Name = monster.Name,
-					SpriteName = monster.ClientSprite,
-					Offset = monster.ClientOffset,
-					ShadowSize = monster.ClientShadow,
-					Size = monster.ClientSize
-				};
+					var mc = new MonsterClassData()
+					{
+						Id = monster.Id,
+						Name = monster.Name,
+						SpriteName = monster.ClientSprite,
+						Offset = monster.ClientOffset,
+						ShadowSize = monster.ClientShadow,
+						Size = monster.ClientSize
+					};
 
-				mData.Add(mc);
+					mData.Add(mc);
+				}
+
+				var dbTable = new DatabaseMonsterClassData();
+				dbTable.MonsterClassData = mData;
+
+				JsonSerializerOptions options = new JsonSerializerOptions();
+				options.SetupExtensions();
+
+				var json = JsonSerializer.Serialize(dbTable, options);
+
+				var monsterDir = Path.Combine(outPath, "monsterclass.json");
+
+				File.WriteAllText(monsterDir, json);
 			}
-
-			var dbTable = new DatabaseMonsterClassData();
-			dbTable.MonsterClassData = mData;
-
-			JsonSerializerOptions options = new JsonSerializerOptions();
-			options.SetupExtensions();
-
-			var json = JsonSerializer.Serialize(dbTable, options);
-
-			var monsterDir = Path.Combine(outPath, "monsterclass.json");
-
-			File.WriteAllText(monsterDir, json);
 		}
 	}
 }

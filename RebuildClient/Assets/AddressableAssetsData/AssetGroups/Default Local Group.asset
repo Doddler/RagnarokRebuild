@@ -577,6 +577,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 6aa287f20573ea94c90503b32f796d36
+    m_Address: Assets/Textures/WaterTemp.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 6c4295b4b53c4f94dbf74a0bb83f232f
     m_Address: Assets/Sprites/Monsters/freezer.spr
     m_ReadOnly: 0
@@ -1258,6 +1262,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: e2324b78df4f51d4a9501b6142b02a60
+    m_Address: "Assets/Sprites/Characters/BodyMale/\uC6B4\uC601\uC790_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: e29f6f2d0cdd91646bdbb7ecbc71c0f0
     m_Address: "Assets/Sprites/Characters/HeadFemale/2_\uC5EC.spr"
     m_ReadOnly: 0
@@ -1368,6 +1376,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: f2b672c7e4475324aad380dab1d77060
+    m_Address: "Assets/Sprites/Characters/BodyFemale/\uC6B4\uC601\uC790_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: f32888d5b869ae54ebc9fcb4f1ea14be
     m_Address: Assets/Sprites/Monsters/dracula.spr
     m_ReadOnly: 0

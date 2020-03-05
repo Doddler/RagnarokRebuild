@@ -11,10 +11,10 @@ namespace RebuildData.Server.Pathfinding
 		public PathNode Parent;
 		public Position Position;
 		public int Steps;
-		public int Distance;
-		public int F;
+		public float Distance;
+		public float F;
 
-		public void Set(PathNode parent, Position position, int distance)
+		public void Set(PathNode parent, Position position, float distance)
 		{
 			Parent = parent;
 			Position = position;
@@ -26,7 +26,7 @@ namespace RebuildData.Server.Pathfinding
 			F = Steps + Distance;
 		}
 
-		public PathNode(PathNode parent, Position position, int distance)
+		public PathNode(PathNode parent, Position position, float distance)
 		{
 			Set(parent, position, distance);
 		}
@@ -36,7 +36,7 @@ namespace RebuildData.Server.Pathfinding
 	{
 		private static PathNode[] nodeCache;
 		private static int cachePos;
-		private const int MaxDistance = 15;
+		private const int MaxDistance = 16;
 		private const int MaxCacheSize = ((MaxDistance + 1) * 2) * ((MaxDistance + 1) * 2);
 
 		private static List<PathNode> openList = new List<PathNode>(MaxCacheSize);
@@ -59,7 +59,7 @@ namespace RebuildData.Server.Pathfinding
 
 		}
 
-		private static PathNode NextPathNode(PathNode parent, Position position, int distance)
+		private static PathNode NextPathNode(PathNode parent, Position position, float distance)
 		{
 			var n = nodeCache[cachePos - 1];
 			n.Set(parent, position, distance);
@@ -67,9 +67,10 @@ namespace RebuildData.Server.Pathfinding
 			return n;
 		}
 
-		private static int CalcDistance(Position pos, Position dest)
+		private static float CalcDistance(Position pos, Position dest)
 		{
-			return Math.Abs(pos.X - dest.X) + Math.Abs(pos.Y - dest.Y);
+			return DistanceCache.Distance(pos, dest);
+			//return Math.Abs(pos.X - dest.X) + Math.Abs(pos.Y - dest.Y);
 		}
 
 		private static bool HasPosition(List<PathNode> node, Position pos)
@@ -107,7 +108,7 @@ namespace RebuildData.Server.Pathfinding
 				openListPos.Remove(current.Position);
 				closedListPos.Add(current.Position);
 				
-				if (current.Steps > 15 || current.Steps + current.Distance / 2 > maxLength)
+				if (current.Steps > maxLength || current.Steps + current.Distance / 2 > maxLength)
 					continue;
 
 				for (var x = -1; x <= 1; x++)
