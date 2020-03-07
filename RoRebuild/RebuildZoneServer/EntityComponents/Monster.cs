@@ -16,8 +16,8 @@ namespace RebuildZoneServer.EntityComponents
 		private bool isMoving;
 		private float moveDelay;
 		
-		private const float minIdleWaitTime = 1f;
-		private const float maxIdleWaitTime = 5f;
+		private const float minIdleWaitTime = 3f;
+		private const float maxIdleWaitTime = 6f;
 
 		public void Reset()
 		{
@@ -44,7 +44,7 @@ namespace RebuildZoneServer.EntityComponents
 			{
 				if (isMoving)
 				{
-					moveDelay = GameRandom.NextFloat(3f, 8f);
+					moveDelay = GameRandom.NextFloat(minIdleWaitTime, maxIdleWaitTime);
 					isMoving = false;
 					return;
 				}

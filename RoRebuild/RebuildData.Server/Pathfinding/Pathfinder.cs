@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
+using RebuildData.Shared.Enum;
 
 namespace RebuildData.Server.Pathfinding
 {
@@ -13,17 +14,32 @@ namespace RebuildData.Server.Pathfinding
 		public int Steps;
 		public float Distance;
 		public float F;
+		public float Score;
+		public Direction Direction;
 
 		public void Set(PathNode parent, Position position, float distance)
 		{
 			Parent = parent;
 			Position = position;
 			if (Parent == null)
+			{
 				Steps = 0;
+				Score = 0;
+				Direction = Direction.None;
+			}
 			else
+			{
+				Direction = (position - Parent.Position).GetDirectionForOffset();
+				
 				Steps = Parent.Steps + 1;
+				Score = Parent.Score + 1;
+
+				if (Direction.IsDiagonal())
+					Score += 0.4f;
+			}
+
 			Distance = distance;
-			F = Steps + Distance;
+			F = Score + Distance;
 		}
 
 		public PathNode(PathNode parent, Position position, float distance)
@@ -43,6 +59,10 @@ namespace RebuildData.Server.Pathfinding
 
 		private static HashSet<Position> openListPos = new HashSet<Position>();
 		private static HashSet<Position> closedListPos = new HashSet<Position>();
+
+		private static Dictionary<int, PathNode> nodeLookup = new Dictionary<int, PathNode>(MaxCacheSize);
+
+		private static Position[] tempPath = new Position[MaxDistance + 1];
 
 		private static void BuildCache()
 		{
@@ -69,8 +89,8 @@ namespace RebuildData.Server.Pathfinding
 
 		private static float CalcDistance(Position pos, Position dest)
 		{
-			return DistanceCache.Distance(pos, dest);
-			//return Math.Abs(pos.X - dest.X) + Math.Abs(pos.Y - dest.Y);
+			//return DistanceCache.Distance(pos, dest);
+			return Math.Abs(pos.X - dest.X) + Math.Abs(pos.Y - dest.Y);
 		}
 
 		private static bool HasPosition(List<PathNode> node, Position pos)
@@ -84,6 +104,16 @@ namespace RebuildData.Server.Pathfinding
 			return false;
 		}
 
+		private static void AddLookup(Position pos, PathNode node)
+		{
+			nodeLookup.Add((pos.X << 12) + pos.Y, node);
+		}
+
+		private static PathNode GetNode(Position pos)
+		{
+			return nodeLookup[(pos.X << 12) + pos.Y];
+		}
+		
 		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target, int maxLength)
 		{
 			if (nodeCache == null)
@@ -94,13 +124,13 @@ namespace RebuildData.Server.Pathfinding
 			openList.Clear();
 			openListPos.Clear();
 			closedListPos.Clear();
-
+			nodeLookup.Clear();
 
 			var current = NextPathNode(null, start, CalcDistance(start, target));
 
 			openList.Add(current);
-
-
+			AddLookup(start, current);
+			
 			while (openList.Count > 0 && !closedListPos.Contains(target))
 			{
 				current = openList[0];
@@ -124,9 +154,25 @@ namespace RebuildData.Server.Pathfinding
 
 						if (np.X < 0 || np.Y < 0 || np.X >= walkData.Width || np.Y >= walkData.Height)
 							continue;
-						
-						if (closedListPos.Contains(np) || openListPos.Contains(np))
+
+						if (openListPos.Contains(np))
+						{
+							//the open list contains the neighboring cell. Check if the path from this node is better or not
+							var oldNode = GetNode(np);
+							var dir = (np - current.Position).GetDirectionForOffset();
+							var distance = CalcDistance(np, target);
+							var newF = current.Score + 1 + distance + (dir.IsDiagonal() ? 0.4f : 0f);
+							if (newF < oldNode.F)
+							{
+								oldNode.Set(current, np, CalcDistance(np, target)); //swap the old parent to us if we're better
+							}
+
 							continue;
+						}
+
+						if (closedListPos.Contains(np))
+							continue;
+
 
 						if (!walkData.IsCellWalkable(np))
 							continue;
@@ -156,8 +202,10 @@ namespace RebuildData.Server.Pathfinding
 							return NextPathNode(current, np, 0);
 						}
 
-						openList.Add(NextPathNode(current, np, CalcDistance(np, target)));
+						var newNode = NextPathNode(current, np, CalcDistance(np, target));
+						openList.Add(newNode);
 						openListPos.Add(np);
+						AddLookup(np, newNode);
 						closedListPos.Add(np);
 
 						openList.Sort((a, b) => a.F.CompareTo(b.F));
@@ -169,27 +217,87 @@ namespace RebuildData.Server.Pathfinding
 			return null;
 		}
 
+		private static int CheckDirectPath(MapWalkData walkData, Position start, Position target, int maxDistance, int startPos = 0)
+		{
+			var pos = start;
+			tempPath[startPos] = pos;
+			var i = startPos + 1;
+
+			while (i < maxDistance)
+			{
+				if (pos.X > target.X)
+					pos.X--;
+				if (pos.X < target.X)
+					pos.X++;
+				if (pos.Y > target.Y)
+					pos.Y--;
+				if (pos.Y < target.Y)
+					pos.Y++;
+
+				if (!walkData.IsCellWalkable(pos))
+					return 0;
+
+				tempPath[i] = pos;
+				i++;
+
+				if (pos == target)
+					return i;
+			}
+
+			return 0;
+		}
+
+		public static void CopyTempPath(Position[] path, int length)
+		{
+			Array.Copy(tempPath, path, length);
+		}
+
 		private static PathNode MakePath(MapWalkData walkData, Position start, Position target, int maxDistance)
 		{
 			if (!walkData.IsCellWalkable(target))
 				return null;
-
+			
 			var path = BuildPath(walkData, start, target, maxDistance);
 
 			openList.Clear();
 			openListPos.Clear();
 			closedListPos.Clear();
 
-			if (path == null)
-			{
-				return null;
-			}
-
 			return path;
+		}
+
+		public static void SanityCheck(Position[] pathOut, Position start, Position target, int length)
+		{
+			//this will break if the tiles are more than one apart
+			for (var i = 0; i < length - 1; i++)
+				(pathOut[i] - pathOut[i + 1]).GetDirectionForOffset(); 
+			
+			if(pathOut[0] != start)
+				throw new Exception("First entry in path should be our starting position!");
+
+			if(pathOut[length-1] != target)
+				throw new Exception("Last entry in path should be our target position!");
 		}
 
 		public static int GetPathWithInitialStep(MapWalkData walkData, Position start, Position initial, Position target, Position[] pathOut)
 		{
+			if (initial == target)
+				return 0;
+			
+			if (Math.Abs(start.X - target.X) > MaxDistance || Math.Abs(start.Y - target.Y) > MaxDistance)
+				return 0;
+			
+			var direct = CheckDirectPath(walkData, initial, target, MaxDistance - 1, 1);
+			if (direct > 0)
+			{
+				tempPath[0] = start;
+				CopyTempPath(pathOut, direct);
+#if DEBUG
+				SanityCheck(pathOut, start, target, direct);
+#endif
+				return direct;
+			}
+
 			var path = MakePath(walkData, initial, target, MaxDistance - 1);
 			if (path == null)
 				return 0;
@@ -207,11 +315,31 @@ namespace RebuildData.Server.Pathfinding
 
 			pathOut[0] = start;
 
+#if DEBUG
+			SanityCheck(pathOut, start, target, steps + 1);
+#endif
+
 			return steps + 1; //add initial first step
 		}
 
 		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut)
 		{
+			if (start == target)
+				return 0;
+
+			if (Math.Abs(start.X - target.X) > MaxDistance || Math.Abs(start.Y - target.Y) > MaxDistance)
+				return 0;
+
+			var direct = CheckDirectPath(walkData, start, target, MaxDistance);
+			if (direct > 0)
+			{
+				CopyTempPath(pathOut, direct);
+#if DEBUG
+				SanityCheck(pathOut, start, target, direct);
+#endif
+				return direct;
+			}
+
 			var path = MakePath(walkData, start, target, MaxDistance);
 			if (path == null)
 				return 0;
@@ -226,6 +354,10 @@ namespace RebuildData.Server.Pathfinding
 				pathOut[path.Steps] = path.Position;
 				path = path.Parent;
 			}
+
+#if DEBUG
+			SanityCheck(pathOut, start, target, steps);
+#endif
 
 			return steps;
 		}

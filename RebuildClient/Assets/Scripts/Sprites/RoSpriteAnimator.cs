@@ -167,7 +167,7 @@ namespace Assets.Scripts.Sprites
             if (Parent != null)
                 mat.SetFloat("_Offset", Parent.SpriteData.Size / 125f);
 
-            if (AudioSource == null)
+            if (AudioSource == null && Parent == null)
             {
                 AudioSource = gameObject.AddComponent<AudioSource>();
                 AudioSource.spatialBlend = 1f;
@@ -238,10 +238,12 @@ namespace Assets.Scripts.Sprites
         }
 
 
-        public void OnDrawGizmosSelected()
+        public void OnDrawGizmos()
         {
-            var pos = RoAnimationHelper.FacingDirectionToVector(Direction);
-            Gizmos.DrawLine(transform.position, transform.position + new Vector3(pos.x, 0, pos.y));
+	        //if (Parent != null)
+		       // return; //don't draw gizmo if we're parented to someone else.
+         //   var pos = RoAnimationHelper.FacingDirectionToVector(Direction);
+         //   Gizmos.DrawLine(transform.position, transform.position + new Vector3(pos.x, 0, pos.y));
         }
 
         public void UpdateSpriteFrame()
@@ -256,7 +258,7 @@ namespace Assets.Scripts.Sprites
             if (frame.Sound > -1 && frame.Sound < SpriteData.Sounds.Length)
             {
                 var sound = SpriteData.Sounds[frame.Sound];
-                if (sound != null)
+                if (sound != null && AudioSource != null)
                 {
                     AudioSource.clip = sound;
                     AudioSource.Play();

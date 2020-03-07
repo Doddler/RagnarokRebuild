@@ -136,65 +136,6 @@ namespace Assets.Scripts
 	        //lastHeight = Screen.height;
         }
 
-        private void SpawnMonster(string prefabName, int x, int y, int width, int height, int count)
-        {
-            var xMin = x;
-            var xMax = x + width + 1;
-            var yMin = y;
-            var yMax = y + height + 1;
-            if (x == 0)
-                xMax = WalkProvider.WalkData.Width;
-            if (y == 0)
-                yMax = WalkProvider.WalkData.Height;
-
-            var prefab = Resources.Load<GameObject>(prefabName);
-            if (prefab == null)
-            {
-                Debug.Log("Could not find prefab " + prefabName);
-                return;
-            }
-
-            for (var i = 0; i < count; i++)
-            {
-                var isValid = false;
-                var spawnPos = Vector2Int.zero;
-                for (var j = 0; j < 60; j++)
-                {
-                    spawnPos = new Vector2Int(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
-                    //var spawnY = Random.Range(yMin, yMax);
-                    if (!WalkProvider.IsCellWalkable(spawnPos))
-                        continue;
-
-                    isValid = true;
-                    break;
-                }
-
-                if (!isValid)
-                {
-                    Debug.Log("Could not find spawn point for " + prefabName);
-                    continue;
-                }
-
-                var instance = GameObject.Instantiate(prefab, WalkProvider.GetWorldPositionForTile(spawnPos), Quaternion.identity);
-            }
-        }
-
-        public void DoMapSpawn()
-        {
-            SpawnMonster("Dokebi", 0, 0, 0, 0, 40);
-            SpawnMonster("Horong", 0, 0, 0, 0, 30);
-            SpawnMonster("Moonlight", 120, 115, 0, 0, 1);
-            SpawnMonster("Greatest General", 0, 0, 0, 0, 15);
-            SpawnMonster("Skeleton Archer", 0, 0, 0, 0, 15);
-            SpawnMonster("Ninetail", 0, 0, 0, 0, 30);
-            SpawnMonster("Skeleton General", 0, 0, 0, 0, 1);
-            SpawnMonster("Am Mut", 0, 0, 0, 0, 1);
-        }
-
-        public void LocalControllable()
-        {
-
-        }
 
         private FacingDirection GetFacingForAngle(float angle)
         {
@@ -332,6 +273,8 @@ namespace Assets.Scripts
             Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
             currentCursor = cursorTexture;
         }
+
+
 
         public void Update()
         {
@@ -515,51 +458,40 @@ namespace Assets.Scripts
             {
                 if (hasHitMap)
                 {
-                    if (WalkProvider.GetPositionForClick(groundHit.point, out var dest))
-                    {
-	                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || controllable.SpriteAnimator.State == SpriteState.Sit)
-	                    {
-		                    if (Input.GetMouseButtonDown(0)) //only do this when mouse is down the first time. Yeah the second check is dumb...
-		                    {
-			                    ClickDelay = 0.1f;
-			                    ChangeFacing(dest);
-		                    }
-	                    }
-	                    else
-                        {
-	                        var target = WalkProvider.GetTilePositionForPoint(dest);
-                            NetworkManager.Instance.MovePlayer(target);
-	                        ClickDelay = 0.5f;
-	                        isHolding = true;
+	                var srcPos = controllable.Position;
+	                var hasDest = WalkProvider.GetClosestTileTopToPoint(groundHit.point, out var destPos);
+
+	                if (hasDest)
+	                {
+		                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ||
+		                    controllable.SpriteAnimator.State == SpriteState.Sit)
+		                {
+			                if (Input.GetMouseButtonDown(0)) //only do this when mouse is down the first time. Yeah the second check is dumb...
+			                {
+				                ClickDelay = 0.1f;
+                                ChangeFacing(WalkProvider.GetWorldPositionForTile(destPos));
+			                }
                         }
-                        //if (targetWalkable.BeginMove(dest))
-                        //{
-                        //    ClickDelay = 0.25f;
-                        //}
-
-                    }
-                    else
-                    {
-	                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || controllable.SpriteAnimator.State == SpriteState.Sit)
-	                    {
-		                    if (Input.GetMouseButtonDown(0)) //only do this when mouse is down the first time. Yeah the second check is dumb...
-		                    {
-			                    ClickDelay = 0.1f;
-			                    ChangeFacing(dest);
-		                    }
-	                    }
-	                    else
-	                    {
-		                    if (WalkProvider.GetNextWalkableTileForClick(Target.transform.position, groundHit.point, out var dest2))
-		                    {
-			                    var target = WalkProvider.GetTilePositionForPoint(dest2);
-			                    NetworkManager.Instance.MovePlayer(target);
-			                    ClickDelay = 0.5f;
-			                    isHolding = true;
+		                else
+		                {
+			                var dist = (srcPos - destPos).SquareDistance();
+			                if (WalkProvider.IsCellWalkable(destPos) && dist < SharedConfig.MaxPathLength)
+			                {
+				                NetworkManager.Instance.MovePlayer(destPos);
+				                ClickDelay = 0.5f;
+				                isHolding = true;
                             }
-	                    }
+			                else
+			                {
+				                if (WalkProvider.GetNextWalkableTileForClick(srcPos, destPos, out var dest2))
+				                {
+					                NetworkManager.Instance.MovePlayer(dest2);
+					                ClickDelay = 0.5f;
+					                isHolding = true;
+				                }
+                            }
+                        }
                     }
-
                 }
             }
 
@@ -569,7 +501,6 @@ namespace Assets.Scripts
                 TargetRotation -= 360;
             if (TargetRotation < 0)
                 TargetRotation += 360;
-
 
             if (Rotation > 360)
                 Rotation -= 360;

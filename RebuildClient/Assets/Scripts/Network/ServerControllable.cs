@@ -3,6 +3,7 @@ using Assets.Scripts.MapEditor;
 using Assets.Scripts.Sprites;
 using RebuildData.Shared.Enum;
 using UnityEngine;
+using UnityEditor;
 
 namespace Assets.Scripts.Network
 {
@@ -36,6 +37,8 @@ namespace Assets.Scripts.Network
 				walkProvider = RoWalkDataProvider.Instance;
 
 			Id = id;
+
+			Position = worldPos;
 			
 			var start = new Vector3(worldPos.x + 0.5f, 0f, worldPos.y + 0.5f);
 			var position = new Vector3(start.x, walkProvider.GetHeightForPosition(start), start.z);
@@ -127,6 +130,7 @@ namespace Assets.Scripts.Network
 			{
 				movePath.RemoveAt(0);
 				StartPos = new Vector3(movePath[0].x, walkProvider.GetHeightForPosition(transform.position), movePath[0].y);
+				Position = movePath[0];
 				moveProgress += 1f;
 			}
 
@@ -135,8 +139,8 @@ namespace Assets.Scripts.Network
 
 			if (movePath.Count == 1)
 			{
-				var last = movePath[0];
-				transform.position = new Vector3(last.x + 0.5f, walkProvider.GetHeightForPosition(transform.position), last.y + 0.5f);
+				Position = movePath[0];
+				transform.position = new Vector3(Position.x + 0.5f, walkProvider.GetHeightForPosition(transform.position), Position.y + 0.5f);
 				movePath.Clear();
 				isMoving = false;
 			}
@@ -190,6 +194,29 @@ namespace Assets.Scripts.Network
 			if(SpriteAnimator.State == SpriteState.Sit)
 				go.SetActive(false);
         }
+
+        private void OnDrawGizmos()
+        {
+	        if (!isMoving)
+		        return;
+
+	        for (var i = 0; i < movePath.Count - 1; i++)
+	        {
+				var p1 = new Vector3(movePath[i].x + 0.5f, 0f, movePath[i].y + 0.5f);
+				p1.y = walkProvider.GetHeightForPosition(p1);
+
+				var p2 = new Vector3(movePath[i+1].x + 0.5f, 0f, movePath[i+1].y + 0.5f);
+				p2.y = walkProvider.GetHeightForPosition(p2);
+
+#if UNITY_EDITOR
+				Handles.DrawBezier(p1, p2, p1, p2, Color.red, null, 10f);
+#endif
+
+
+				//Gizmos.DrawLine(p1, p2);
+			}
+	        
+		}
 
 		private void Update()
 		{

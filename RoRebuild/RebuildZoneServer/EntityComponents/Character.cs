@@ -120,7 +120,7 @@ namespace RebuildZoneServer.EntityComponents
 			}
 			
 			int len;
-
+			
 			//we won't interrupt the next step we are currently taking, so append it to the start of our new path.
 			if (hasOld)
 				len = Pathfinder.GetPathWithInitialStep(Map.WalkData, Position, oldNext, target, WalkPath);
@@ -129,6 +129,10 @@ namespace RebuildZoneServer.EntityComponents
 
 			if (len == 0)
 				return false;
+
+#if DEBUG
+			Pathfinder.SanityCheck(WalkPath, Position, target, len);
+#endif
 
 			TargetPosition = target;
 			MoveCooldown = MoveSpeed;

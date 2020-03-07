@@ -86,7 +86,7 @@ namespace Assets.Scripts.MapEditor
 				mat.mainTexture = gridIcon;
 			else
 				mat.mainTexture = gridIconYellow;
-			
+
 			if (target == cursorTarget)
 			{
 				//Debug.Log("Position not changed");
@@ -200,38 +200,78 @@ namespace Assets.Scripts.MapEditor
 			return true;
 		}
 
-		public bool GetNextWalkableTileForClick(Vector3 curPosition, Vector3 position, out Vector3 modifiedPosition)
+		private Vector2Int GetClosestInRangePoint(Vector2Int position, Vector2Int player, int maxDistance)
 		{
-			modifiedPosition = position;
-			var hasStart = GetClosestTileTopToPoint(position, out var start);
-			var hasDest = GetClosestTileTopToPoint(curPosition, out var dest);
+			var diff = (position - player);
+			if (diff.x > maxDistance && diff.y > maxDistance)
+				return player + new Vector2Int(maxDistance, maxDistance);
+			if (diff.x < -maxDistance && diff.y > maxDistance)
+				return player + new Vector2Int(-maxDistance, maxDistance);
+			if (diff.x > maxDistance && diff.y < -maxDistance)
+				return player + new Vector2Int(maxDistance, -maxDistance);
+			if (diff.x < -maxDistance && diff.y < -maxDistance)
+				return player + new Vector2Int(-maxDistance, -maxDistance);
+			if (diff.x > maxDistance)
+				return new Vector2Int(player.x + maxDistance, position.y);
+			if (diff.x < -maxDistance)
+				return new Vector2Int(player.x - maxDistance, position.y);
+			if (diff.y > maxDistance)
+				return new Vector2Int(position.x, player.y + maxDistance);
+			if (diff.y < -maxDistance)
+				return new Vector2Int(position.x, player.y - maxDistance);
+
+			//shouldn't happen
+			return player;
+		}
+
+		public bool GetNextWalkableTileForClick(Vector2Int start, Vector2Int dest, out Vector2Int modifiedPosition)
+		{
+			modifiedPosition = start;
 
 			//we'll assume we can't walk on start, since this will only get called if the normal check fails
 
-			if (hasStart && hasDest)
+			Debug.Log($"Finding walkable {start} to {dest}");
+
+			var next = dest;
+
+			if ((start - dest).SquareDistance() >= SharedConfig.MaxPathLength)
 			{
-				//Debug.Log(start + " " + dest);
-				while (start != dest)
+				Debug.Log("HUH");
+				next = GetClosestInRangePoint(dest, start, SharedConfig.MaxPathLength - 1);
+
+				if ((WalkData.Cell(next).Type & CellType.Walkable) != 0)
 				{
-					var next = start;
-					if (dest.x < next.x)
-						next.x--;
-					if (dest.x > next.x)
-						next.x++;
-					if (dest.y < next.y)
-						next.y--;
-					if (dest.y > next.y)
-						next.y++;
-
-					if ((WalkData.Cell(next).Type & CellType.Walkable) != 0)
-					{
-						//Debug.Log("Found!");
-						modifiedPosition = new Vector3(next.x + 0.5f, position.y, next.y + 0.5f);
-						return true;
-					}
-
-					start = next;
+					//Debug.Log("Found closer path!?");
+					modifiedPosition = next;
+					return true;
 				}
+			}
+
+			//Debug.Log(start + " " + dest);
+			while (next != start)
+			{
+
+				if (start.x < next.x)
+					next.x--;
+				if (start.x > next.x)
+					next.x++;
+				if (start.y < next.y)
+					next.y--;
+				if (start.y > next.y)
+					next.y++;
+
+				Debug.Log(next);
+
+				if ((WalkData.Cell(next).Type & CellType.Walkable) != 0)
+				{
+					Debug.Log($"Found! {next}");
+					modifiedPosition = next;
+					return true;
+				}
+				else
+					Debug.Log($"Tile {next} {WalkData.Cell(next).Type}");
+
+				//start = next;
 			}
 
 			Debug.Log("Failed :(");
@@ -244,13 +284,13 @@ namespace Assets.Scripts.MapEditor
 			outPosition = Vector2Int.zero;
 
 			if (GetClosestTileTopToPoint(position, out outPosition))
-			{	
+			{
 				return true;
 			}
 
 			return false;
 		}
-		
+
 		public bool GetPositionForClick(Vector3 position, out Vector3 modifiedPosition)
 		{
 			modifiedPosition = position;

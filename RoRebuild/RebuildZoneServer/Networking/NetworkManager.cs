@@ -169,11 +169,14 @@ namespace RebuildZoneServer.Networking
 							break;
 					}
 				}
+#if !DEBUG
 				catch (Exception e)
 				{
 					ServerLogger.LogWarning("Received invalid packet which generated an exception. Error: " +
 					                        e.Message);
+
 				}
+#endif
 				finally
 				{
 					State.Server.Recycle(msg);
@@ -210,7 +213,11 @@ namespace RebuildZoneServer.Networking
 				ServerLogger.Debug($"Received message of type: {System.Enum.GetName(typeof(PacketType), type)} from entity {connection.Entity}.");
 			else
 				ServerLogger.Debug($"Received message of type: {System.Enum.GetName(typeof(PacketType), type)} from entity-less connection.");
+
+			State.LastPacketType = type;
+			State.PacketHandlers[(int)type](msg);
 #endif
+#if !DEBUG
 			try
 			{
 				State.LastPacketType = type;
@@ -221,6 +228,7 @@ namespace RebuildZoneServer.Networking
 				ServerLogger.LogError($"Error executing packet handler for packet type {type}");
 				throw;
 			}
+#endif
 		}
 
 		public static void SendMessage(NetOutgoingMessage message, NetConnection connection,

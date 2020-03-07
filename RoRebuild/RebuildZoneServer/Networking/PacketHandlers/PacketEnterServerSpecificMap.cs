@@ -51,7 +51,8 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 
 			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);
 #else
-			state.PacketHandlers[(int)PacketType.Disconnect](state, msg); //yeah no
+			ServerLogger.LogWarning("Player connected with debug packet EnterServerSpecificMap, disconnecting player.");
+			State.PacketHandlers[(int)PacketType.Disconnect](msg); //yeah no
 #endif
 		}
 	}

@@ -83,6 +83,19 @@ namespace RebuildData.Shared.Data
 			//return Direction.South;
 		}
 
+		public bool IsOffsetDiagonal()
+		{
+#if DEBUG
+			//sanity check
+			if (X < -1 || X > 1 || Y < -1 || Y > 1)
+				throw new Exception("IsOffsetDiagonal provided invalid inputs!");
+#endif
+			if (Math.Abs(X) != 0 && Math.Abs(Y) != 0)
+				return true;
+
+			return false;
+		}
+
 		public Direction GetDirectionForOffset()
 		{
 #if DEBUG

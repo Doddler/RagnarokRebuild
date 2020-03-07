@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Lidgren.Network;
 using RebuildData.Server.Logging;
+using RebuildData.Shared.Data;
 using RebuildData.Shared.Networking;
+using RebuildZoneServer.EntityComponents;
+using RebuildZoneServer.Sim;
+using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.Networking.PacketHandlers
 {
@@ -16,15 +20,20 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			if (!State.ConnectionLookup.TryGetValue(msg.SenderConnection, out var connection))
 				return;
 
-			if (connection.Character == null)
+			if (connection.Character != null)
 				return;
 
-			connection.Character.IsActive = true;
-			connection.Character.Map.SendAllEntitiesToPlayer(ref connection.Entity);
+			var playerEntity = State.World.CreatePlayer(connection, "prontera", Area.CreateAroundPoint(new Position(155, 57), 5));
+			connection.Entity = playerEntity;
+			connection.LastKeepAlive = Time.ElapsedTime;
+			connection.Character = playerEntity.Get<Character>();
+			connection.Character.IsActive = false;
+			var networkPlayer = playerEntity.Get<Player>();
+			networkPlayer.Connection = connection;
 
-			connection.Character.Map.SendAddEntityAroundCharacter(ref connection.Entity, connection.Character);
+			ServerLogger.Log($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 
-			ServerLogger.Debug($"Player {connection.Entity} finished loading, spawning him on {connection.Character.Map.Name} at position {connection.Character.Position}.");
+			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);
 		}
 	}
 }
