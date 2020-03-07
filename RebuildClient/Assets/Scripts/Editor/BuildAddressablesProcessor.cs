@@ -41,8 +41,8 @@ namespace Assets.Scripts.Editor
 				RagnarokMapImporterWindow.UpdateAddressables();
 				PreExport();
 			}
-			else
-				AddressableAssetSettings.BuildPlayerContent();
+			//else
+			//	AddressableAssetSettings.BuildPlayerContent();
 			BuildPlayerWindow.DefaultBuildMethods.BuildPlayer(options);
 		}
 

@@ -187,22 +187,13 @@ namespace Assets.Scripts
 
         public void ChangeFacing(Vector3 dest)
         {
-	        var src = new Vector2(Target.transform.position.x, Target.transform.position.z);
-	        var dest2 = new Vector2(dest.x, dest.z);
-            //var angle = Vector2.SignedAngle(Vector2.up, (dest2 - src).normalized);
-
             var srcPoint = WalkProvider.GetTilePositionForPoint(Target.transform.position);
             var destPoint = WalkProvider.GetTilePositionForPoint(dest);
 
             var curFacing = controllable.SpriteAnimator.Direction;
-            //var newFacing = GetFacingForAngle(angle);
             var newFacing = GetFacingForPoint(destPoint - srcPoint);
             var newHead = HeadFacing.Center;
-            //Debug.Log(destPoint - srcPoint);
-
-            //NetworkManager.Instance.ChangePlayerFacing(newFacing);
-            //return;
-
+            
             if (curFacing == newFacing)
             {
                 if(controllable.SpriteAnimator.HeadFacing != HeadFacing.Center)
@@ -514,8 +505,8 @@ namespace Assets.Scripts
             Distance += Input.GetAxis("Mouse ScrollWheel") * 20 * ctrlKey;
 
 #if !DEBUG
-            if (Distance > 90)
-	            Distance = 90;
+            if (Distance > 80)
+	            Distance = 80;
             if (Distance < 30)
 	            Distance = 30;
 #endif

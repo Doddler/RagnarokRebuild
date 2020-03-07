@@ -230,13 +230,12 @@ namespace Assets.Scripts.MapEditor
 
 			//we'll assume we can't walk on start, since this will only get called if the normal check fails
 
-			Debug.Log($"Finding walkable {start} to {dest}");
+			//Debug.Log($"Finding walkable {start} to {dest}");
 
 			var next = dest;
 
 			if ((start - dest).SquareDistance() >= SharedConfig.MaxPathLength)
 			{
-				Debug.Log("HUH");
 				next = GetClosestInRangePoint(dest, start, SharedConfig.MaxPathLength - 1);
 
 				if ((WalkData.Cell(next).Type & CellType.Walkable) != 0)
@@ -260,16 +259,16 @@ namespace Assets.Scripts.MapEditor
 				if (start.y > next.y)
 					next.y++;
 
-				Debug.Log(next);
+				//Debug.Log(next);
 
 				if ((WalkData.Cell(next).Type & CellType.Walkable) != 0)
 				{
-					Debug.Log($"Found! {next}");
+					//Debug.Log($"Found! {next}");
 					modifiedPosition = next;
 					return true;
 				}
-				else
-					Debug.Log($"Tile {next} {WalkData.Cell(next).Type}");
+				//else
+				//	Debug.Log($"Tile {next} {WalkData.Cell(next).Type}");
 
 				//start = next;
 			}

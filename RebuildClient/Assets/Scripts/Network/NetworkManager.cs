@@ -499,7 +499,7 @@ namespace Assets.Scripts.Network
 					var prefx = PlayerPrefs.GetInt("DebugStartX", -1);
 					var prefy = PlayerPrefs.GetInt("DebugStartY", -1);
 
-					Debug.Log(prefx + " : " + prefy);
+					//Debug.Log(prefx + " : " + prefy);
 
 					if (prefx > 0 && prefy > 0)
 					{
@@ -548,6 +548,8 @@ namespace Assets.Scripts.Network
 		
 		public void OnApplicationQuit()
 		{
+			if (client == null)
+				return;
 			NetOutgoingMessage outmsg = client.CreateMessage();
 			outmsg.Write((byte)PacketType.Disconnect);
 			client.SendMessage(outmsg, NetDeliveryMethod.ReliableOrdered);
