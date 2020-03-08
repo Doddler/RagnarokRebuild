@@ -15,6 +15,8 @@ namespace RebuildZoneServer.Util
 
 		public int Count => count;
 
+		public EntityList() : this(32) { }
+
 		public EntityList(int initialCapacity)
 		{
 			capacity = initialCapacity;
@@ -50,7 +52,18 @@ namespace RebuildZoneServer.Util
 			ResizeIfNeeded();
 
 			entities[count] = entity;
-			//entityLookup.Add(entity, count);
+			count++;
+		}
+
+
+		public void Add(EcsEntity entity)
+		{
+			if (!entity.IsAlive())
+				throw new Exception("Can't add entity to EntityList as it's not active.");
+
+			ResizeIfNeeded();
+
+			entities[count] = entity;
 			count++;
 		}
 

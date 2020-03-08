@@ -52,7 +52,7 @@ namespace DataToClientUtility
 		{
 			var inPath = Path.Combine(path, "Monsters.csv");
 			var tempPath = Path.Combine(Path.GetTempPath(), "Monsters.csv"); //copy in case file is locked
-			File.Copy(inPath, tempPath);
+			File.Copy(inPath, tempPath, true);
 
 			using (var tr = new StreamReader(tempPath) as TextReader)
 			using (var csv = new CsvReader(tr, CultureInfo.CurrentCulture))
@@ -87,6 +87,8 @@ namespace DataToClientUtility
 
 				File.WriteAllText(monsterDir, json);
 			}
+
+			File.Delete(tempPath);
 		}
 	}
 }

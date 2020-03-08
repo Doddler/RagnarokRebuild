@@ -8,10 +8,4 @@
     <Folder Include="LeoECS\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Lidgren.Network.MultiTarget">
-      <HintPath>lidgren\Lidgren.Network.MultiTarget.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

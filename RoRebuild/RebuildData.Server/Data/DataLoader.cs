@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
 using RebuildData.Server.Data.CsvDataTypes;
+using RebuildData.Server.Data.Monster;
 using RebuildData.Server.Data.Types;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
@@ -89,6 +91,7 @@ namespace RebuildData.Server.Data
 					Id = monster.Id,
 					Code = monster.Code,
 					MoveSpeed = monster.MoveSpeed/1000f,
+					AiType = (MonsterAiType)Enum.Parse(typeof(MonsterAiType),monster.MonsterAiType),
 					Name = monster.Name
 				});
 			}
@@ -113,6 +116,42 @@ namespace RebuildData.Server.Data
 			}
 
 			return config;
+		}
+
+		public List<List<MonsterAiEntry>> LoadAiStateMachines()
+		{
+			var aiTypeCount = Enum.GetNames(typeof(MonsterAiType)).Length;
+			var entryList = new List<List<MonsterAiEntry>>(aiTypeCount);
+			for(var i = 0; i < aiTypeCount; i++)
+				entryList.Add(new List<MonsterAiEntry>());
+
+			using var tr = new StreamReader(@"Data\MonsterAI.csv") as TextReader;
+			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+
+			var states = csv.GetRecords<CsvMonsterAI>().ToList();
+
+			foreach (var entry in states)
+			{
+				var hasError = false;
+				hasError |= !Enum.TryParse(entry.AiType, out MonsterAiType aiType);
+				hasError |= !Enum.TryParse(entry.State, out MonsterAiState inState);
+				hasError |= !Enum.TryParse(entry.InputCheck, out MonsterInputCheck inCheck);
+				hasError |= !Enum.TryParse(entry.OutputCheck, out MonsterOutputCheck outCheck);
+				hasError |= !Enum.TryParse(entry.EndState, out MonsterAiState outState);
+
+				if(hasError)
+					throw new Exception($"Could not parse Ai States: {entry.AiType},{entry.State},{entry.InputCheck},{entry.OutputCheck},{entry.EndState}");
+
+				entryList[(int)aiType].Add(new MonsterAiEntry()
+				{
+					InputState = inState,
+					InputCheck = inCheck,
+					OutputCheck = outCheck,
+					OutputState = outState
+				});
+			}
+
+			return entryList;
 		}
 
 		public MapSpawnDatabaseInfo LoadSpawnInfo()

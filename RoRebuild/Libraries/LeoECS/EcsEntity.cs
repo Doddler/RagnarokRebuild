@@ -90,6 +90,35 @@ namespace Leopotam.Ecs {
         }
 
         /// <summary>
+        /// Gets component attached to entity or null. Returns null if entity is not alive.
+        /// </summary>
+        /// <typeparam name="T">Type of component.</typeparam>
+#if ENABLE_IL2CPP
+        [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.NullChecks, false)]
+        [Unity.IL2CPP.CompilerServices.Il2CppSetOption (Unity.IL2CPP.CompilerServices.Option.ArrayBoundsChecks, false)]
+#endif
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public T GetIfAlive<T>() where T : class
+        {
+	        if (!IsAlive())
+		        return null;
+
+	        ref var entityData = ref Owner.GetEntityData(this);
+#if DEBUG
+	        if (entityData.Gen != Gen) { throw new Exception("Cant check component on destroyed entity."); }
+#endif
+	        var typeIdx = EcsComponentType<T>.TypeIndex;
+	        for (int i = 0, iMax = entityData.ComponentsCountX2; i < iMax; i += 2)
+	        {
+		        if (entityData.Components[i] == typeIdx)
+		        {
+			        return (T)Owner.ComponentPools[typeIdx].Items[entityData.Components[i + 1]];
+		        }
+	        }
+	        return null;
+        }
+
+        /// <summary>
         /// Removes component from entity.
         /// </summary>
         /// <typeparam name="T">Type of component.</typeparam>

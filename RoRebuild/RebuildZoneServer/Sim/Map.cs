@@ -325,6 +325,23 @@ namespace RebuildZoneServer.Sim
 			}
 		}
 
+
+		public void GatherPlayersInRange(Character character, int distance, EntityList list)
+		{
+			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))
+			{
+				foreach (var p in c.Players)
+				{
+					var ch = p.Get<Character>();
+					if (!ch.IsActive)
+						return;
+
+					if(character.Position.SquareDistance(ch.Position) <= distance)
+						list.Add(p);
+				}
+			}
+		}
+
 		private void ClearInactive(int i)
 		{
 			Chunks[i].Players.ClearInactive();

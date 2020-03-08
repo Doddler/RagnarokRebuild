@@ -43,9 +43,7 @@ namespace RebuildData.Shared.Data
 
 		public int SquareDistance(Position dest)
 		{
-			var xdist = Math.Abs(X - dest.X);
-			var ydist = Math.Abs(Y - dest.Y);
-			return Math.Max(xdist, ydist);
+			return Math.Max(Math.Abs(X - dest.X), Math.Abs(Y - dest.Y));
 		}
 
 		public bool InRange(Position target, int distance)

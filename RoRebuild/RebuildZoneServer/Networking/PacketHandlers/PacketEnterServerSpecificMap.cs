@@ -5,6 +5,7 @@ using Lidgren.Network;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Networking;
+using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.EntityComponents;
 using RebuildZoneServer.Util;
 
@@ -15,7 +16,13 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 		public override PacketType PacketType => PacketType.EnterServerSpecificMap;
 		public override void HandlePacket(NetIncomingMessage msg)
 		{
-#if DEBUG
+			if (!State.DebugMode)
+			{
+				ServerLogger.LogWarning("Player connected with debug packet EnterServerSpecificMap, disconnecting player.");
+				State.PacketHandlers[(int)PacketType.Disconnect](msg); //yeah no
+				return;
+			}
+
 			if (!State.ConnectionLookup.TryGetValue(msg.SenderConnection, out var connection))
 				return;
 
@@ -50,10 +57,6 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			ServerLogger.Debug($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 
 			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);
-#else
-			ServerLogger.LogWarning("Player connected with debug packet EnterServerSpecificMap, disconnecting player.");
-			State.PacketHandlers[(int)PacketType.Disconnect](msg); //yeah no
-#endif
 		}
 	}
 }

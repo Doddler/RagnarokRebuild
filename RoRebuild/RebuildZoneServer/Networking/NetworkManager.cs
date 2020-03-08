@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using Leopotam.Ecs;
 using Lidgren.Network;
 using RebuildData.Server.Logging;
-using RebuildData.Shared.Data;
-using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
-using RebuildZoneServer.Config;
 using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.EntityComponents;
-using RebuildZoneServer.Networking.Enum;
 using RebuildZoneServer.Sim;
 using RebuildZoneServer.Util;
 
@@ -35,6 +29,15 @@ namespace RebuildZoneServer.Networking
 			if(!DataManager.TryGetConfigInt("MaxConnections", out var maxConnections))
 				throw new Exception("Configuration does not have value for max connections!");
 
+			if (DataManager.TryGetConfigInt("Debug", out var debug))
+				State.DebugMode = debug == 1;
+
+#if DEBUG
+			State.DebugMode = true;
+#else
+			ServerLogger.LogWarning("Server is started using debug mode config flag! Be sure this is what you want.");
+#endif
+
 			ServerLogger.Log($"Starting server listening on port {port}, with a maximum of {maxConnections} connections.");
 
 			//Alright, now onto the regular server.
@@ -42,7 +45,7 @@ namespace RebuildZoneServer.Networking
 			State.Config.Port = port;
 			State.Config.MaximumConnections = maxConnections;
 			State.Config.EnableMessageType(NetIncomingMessageType.ConnectionApproval);
-
+			
 			State.Server = new NetServer(State.Config);
 			State.Server.Start();
 			

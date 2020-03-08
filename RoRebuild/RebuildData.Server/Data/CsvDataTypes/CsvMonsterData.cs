@@ -34,6 +34,7 @@ namespace RebuildData.Server.Data.CsvDataTypes
 		public int HitTime { get; set; }
 		public int MoveSpeed { get; set; }
 		public CharacterSpecialType Special { get; set; }
+		public string MonsterAiType { get; set; }
 		public string ClientSprite { get; set; }
 		public float ClientOffset { get; set; }
 		public float ClientShadow { get; set; }

@@ -24,5 +24,7 @@ namespace RebuildZoneServer.Networking
 		public World World;
 
 		public PacketType LastPacketType;
+
+		public bool DebugMode;
 	}
 }

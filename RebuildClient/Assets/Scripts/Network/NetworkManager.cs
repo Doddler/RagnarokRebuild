@@ -50,10 +50,10 @@ namespace Assets.Scripts.Network
 #if DEBUG
 			UnloadOldScenes();
 
-			config.SimulatedMinimumLatency = 0.1f;
-			//config.SimulatedLoss = 0.1f;
+			//config.SimulatedMinimumLatency = 0.1f;
+			//config.SimulatedLoss = 0.05f;
 #endif
-			
+
 			client = new NetClient(config);
 			client.Start();
 

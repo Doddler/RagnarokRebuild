@@ -195,10 +195,13 @@ namespace Assets.Scripts.Network
 				go.SetActive(false);
         }
 
-        private void OnDrawGizmos()
+#if UNITY_EDITOR
+		private void OnDrawGizmos()
         {
-	        if (!isMoving)
+	        if (!isMoving || SpriteAnimator == null)
 		        return;
+
+	        var color = SpriteAnimator.Type == SpriteType.Player ? Color.blue : Color.red;
 
 	        for (var i = 0; i < movePath.Count - 1; i++)
 	        {
@@ -208,15 +211,13 @@ namespace Assets.Scripts.Network
 				var p2 = new Vector3(movePath[i+1].x + 0.5f, 0f, movePath[i+1].y + 0.5f);
 				p2.y = walkProvider.GetHeightForPosition(p2);
 
-#if UNITY_EDITOR
-				Handles.DrawBezier(p1, p2, p1, p2, Color.red, null, 10f);
-#endif
-
+				Handles.DrawBezier(p1, p2, p1, p2, color, null, 10f);
 
 				//Gizmos.DrawLine(p1, p2);
 			}
 	        
 		}
+#endif
 
 		private void Update()
 		{

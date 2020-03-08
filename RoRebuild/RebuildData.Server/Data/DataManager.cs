@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using RebuildData.Server.Data;
+using RebuildData.Server.Data.Monster;
 using RebuildData.Server.Data.Types;
+using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildZoneServer.Data.Management.Types;
 
@@ -14,6 +16,8 @@ namespace RebuildZoneServer.Data.Management
 		private static Dictionary<string, MonsterDatabaseInfo> monsterCodeLookup;
 		private static Dictionary<string, List<MapConnector>> mapConnectorLookup;
 
+		private static List<List<MonsterAiEntry>> monsterAiList;
+
 		private static Dictionary<string, string> configValues;
 
 		private static MapSpawnDatabaseInfo mapSpawnInfo;
@@ -24,6 +28,11 @@ namespace RebuildZoneServer.Data.Management
 		public static bool HasMonsterWithId(int id)
 		{
 			return monsterIdLookup.ContainsKey(id);
+		}
+
+		public static List<MonsterAiEntry> GetAiStateMachine(MonsterAiType monsterType)
+		{
+			return monsterAiList[(int)monsterType];
 		}
 
 		public static bool TryGetConfigValue(string key, out string value)
@@ -104,6 +113,7 @@ namespace RebuildZoneServer.Data.Management
 			mapConnectorLookup = loader.LoadConnectors(mapList);
 			monsterStats = loader.LoadMonsterStats();
 			mapSpawnInfo = loader.LoadSpawnInfo();
+			monsterAiList = loader.LoadAiStateMachines();
 			
 			monsterIdLookup = new Dictionary<int, MonsterDatabaseInfo>(monsterStats.Count);
 			monsterCodeLookup = new Dictionary<string, MonsterDatabaseInfo>(monsterStats.Count);

@@ -64,6 +64,8 @@ namespace RebuildData.Server.Pathfinding
 
 		private static Position[] tempPath = new Position[MaxDistance + 1];
 
+		private static int range = 0;
+
 		private static void BuildCache()
 		{
 			ServerLogger.Log("Build path cache");
@@ -89,8 +91,7 @@ namespace RebuildData.Server.Pathfinding
 
 		private static float CalcDistance(Position pos, Position dest)
 		{
-			//return DistanceCache.Distance(pos, dest);
-			return Math.Abs(pos.X - dest.X) + Math.Abs(pos.Y - dest.Y);
+			return Math.Max(0, Math.Abs(pos.X - dest.X)-range) + Math.Max(0, Math.Abs(pos.Y - dest.Y)-range);
 		}
 
 		private static bool HasPosition(List<PathNode> node, Position pos)
@@ -114,12 +115,13 @@ namespace RebuildData.Server.Pathfinding
 			return nodeLookup[(pos.X << 12) + pos.Y];
 		}
 		
-		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target, int maxLength)
+		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target, int maxLength, int range)
 		{
 			if (nodeCache == null)
 				BuildCache();
 
 			cachePos = MaxCacheSize;
+			Pathfinder.range = range;
 
 			openList.Clear();
 			openListPos.Clear();
@@ -197,7 +199,7 @@ namespace RebuildData.Server.Pathfinding
 								!walkData.IsCellWalkable(current.Position.X, current.Position.Y + 1))
 								continue;
 						
-						if (np == target)
+						if (np.SquareDistance(target) <= range)
 						{
 							return NextPathNode(current, np, 0);
 						}
@@ -217,7 +219,7 @@ namespace RebuildData.Server.Pathfinding
 			return null;
 		}
 
-		private static int CheckDirectPath(MapWalkData walkData, Position start, Position target, int maxDistance, int startPos = 0)
+		private static int CheckDirectPath(MapWalkData walkData, Position start, Position target, int maxDistance, int range, int startPos)
 		{
 			var pos = start;
 			tempPath[startPos] = pos;
@@ -225,13 +227,13 @@ namespace RebuildData.Server.Pathfinding
 
 			while (i < maxDistance)
 			{
-				if (pos.X > target.X)
+				if (pos.X > target.X + range)
 					pos.X--;
-				if (pos.X < target.X)
+				if (pos.X < target.X - range)
 					pos.X++;
-				if (pos.Y > target.Y)
+				if (pos.Y > target.Y + range)
 					pos.Y--;
-				if (pos.Y < target.Y)
+				if (pos.Y < target.Y - range)
 					pos.Y++;
 
 				if (!walkData.IsCellWalkable(pos))
@@ -240,7 +242,7 @@ namespace RebuildData.Server.Pathfinding
 				tempPath[i] = pos;
 				i++;
 
-				if (pos == target)
+				if (pos.SquareDistance(target) <= range)
 					return i;
 			}
 
@@ -252,12 +254,12 @@ namespace RebuildData.Server.Pathfinding
 			Array.Copy(tempPath, path, length);
 		}
 
-		private static PathNode MakePath(MapWalkData walkData, Position start, Position target, int maxDistance)
+		private static PathNode MakePath(MapWalkData walkData, Position start, Position target, int maxDistance, int range)
 		{
 			if (!walkData.IsCellWalkable(target))
 				return null;
 			
-			var path = BuildPath(walkData, start, target, maxDistance);
+			var path = BuildPath(walkData, start, target, maxDistance, range);
 
 			openList.Clear();
 			openListPos.Clear();
@@ -266,7 +268,7 @@ namespace RebuildData.Server.Pathfinding
 			return path;
 		}
 
-		public static void SanityCheck(Position[] pathOut, Position start, Position target, int length)
+		public static void SanityCheck(Position[] pathOut, Position start, Position target, int length, int range)
 		{
 			//this will break if the tiles are more than one apart
 			for (var i = 0; i < length - 1; i++)
@@ -275,11 +277,11 @@ namespace RebuildData.Server.Pathfinding
 			if(pathOut[0] != start)
 				throw new Exception("First entry in path should be our starting position!");
 
-			if(pathOut[length-1] != target)
-				throw new Exception("Last entry in path should be our target position!");
+			if(pathOut[length-1].SquareDistance(target) > range)
+				throw new Exception("Last entry is not at the expected position!");
 		}
 
-		public static int GetPathWithInitialStep(MapWalkData walkData, Position start, Position initial, Position target, Position[] pathOut)
+		public static int GetPathWithInitialStep(MapWalkData walkData, Position start, Position initial, Position target, Position[] pathOut, int range)
 		{
 			if (initial == target)
 				return 0;
@@ -287,18 +289,18 @@ namespace RebuildData.Server.Pathfinding
 			if (Math.Abs(start.X - target.X) > MaxDistance || Math.Abs(start.Y - target.Y) > MaxDistance)
 				return 0;
 			
-			var direct = CheckDirectPath(walkData, initial, target, MaxDistance - 1, 1);
+			var direct = CheckDirectPath(walkData, initial, target, MaxDistance - 1, range, 1);
 			if (direct > 0)
 			{
 				tempPath[0] = start;
 				CopyTempPath(pathOut, direct);
 #if DEBUG
-				SanityCheck(pathOut, start, target, direct);
+				SanityCheck(pathOut, start, target, direct, range);
 #endif
 				return direct;
 			}
 
-			var path = MakePath(walkData, initial, target, MaxDistance - 1);
+			var path = MakePath(walkData, initial, target, MaxDistance - 1, range);
 			if (path == null)
 				return 0;
 
@@ -316,13 +318,13 @@ namespace RebuildData.Server.Pathfinding
 			pathOut[0] = start;
 
 #if DEBUG
-			SanityCheck(pathOut, start, target, steps + 1);
+			SanityCheck(pathOut, start, target, steps + 1, range);
 #endif
 
 			return steps + 1; //add initial first step
 		}
 
-		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut)
+		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut, int range)
 		{
 			if (start == target)
 				return 0;
@@ -330,24 +332,26 @@ namespace RebuildData.Server.Pathfinding
 			if (Math.Abs(start.X - target.X) > MaxDistance || Math.Abs(start.Y - target.Y) > MaxDistance)
 				return 0;
 
-			var direct = CheckDirectPath(walkData, start, target, MaxDistance);
+			var direct = CheckDirectPath(walkData, start, target, MaxDistance, range, 0);
 			if (direct > 0)
 			{
 				CopyTempPath(pathOut, direct);
 #if DEBUG
-				SanityCheck(pathOut, start, target, direct);
+				SanityCheck(pathOut, start, target, direct, range);
 #endif
 				return direct;
 			}
 
-			var path = MakePath(walkData, start, target, MaxDistance);
+			var path = MakePath(walkData, start, target, MaxDistance, range);
 			if (path == null)
 				return 0;
 
 			var steps = path.Steps + 1;
 
+#if DEBUG
 			if (path.Steps >= pathOut.Length)
 				ServerLogger.LogWarning($"Whoa! This isn't good. Steps is {path.Steps} but the array is {pathOut.Length}");
+#endif
 
 			while (path != null)
 			{
@@ -356,7 +360,7 @@ namespace RebuildData.Server.Pathfinding
 			}
 
 #if DEBUG
-			SanityCheck(pathOut, start, target, steps);
+			SanityCheck(pathOut, start, target, steps, range);
 #endif
 
 			return steps;

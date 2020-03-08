@@ -44,12 +44,20 @@ namespace RebuildZoneServer
 				spos++;
 				if (spos == frameCount)
 				{
-					var avg = samples.Sum() / frameCount;
+					var avg = (samples.Sum() / frameCount);
 					var max = samples.Max() * 1000;
 					var fps = 1 / avg;
 					if (lastLog + 10 < Time.ElapsedTime)
 					{
-						ServerLogger.Log($"[Program] Average frame time: {avg:F3}ms ({fps:N0}fps)  Peak frame time: {max:N0}ms");
+#if DEBUG
+						var server = NetworkManager.State.Server;
+						ServerLogger.Log(
+							$"[Program] Average frame time: {avg:F3}ms ({fps:N0}fps), Peak frame time: {max:F3}ms, " +
+							$"Sent {server.Statistics.SentBytes} bytes, {server.Statistics.SentMessages} messages, {server.Statistics.SentPackets} packets");
+#else
+						ServerLogger.Log(
+							$"[Program] Average frame time: {avg*1000:F3}ms ({fps:N0}fps), Peak frame time: {max:F3}ms");
+#endif
 						lastLog = Time.ElapsedTime;
 					}
 

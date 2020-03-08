@@ -98,9 +98,12 @@ namespace RebuildZoneServer.EntityComponents
 			player.HeadFacing = HeadFacing.Center; //don't need to send this to client, they will assume it resets
 		}
 
-		public bool TryMove(ref EcsEntity entity, Position target)
+		public bool TryMove(ref EcsEntity entity, Position target, int range)
 		{
 			if (State == CharacterState.Sitting || State == CharacterState.Dead)
+				return false;
+
+			if (MoveSpeed <= 0)
 				return false;
 
 			if (!Map.WalkData.IsCellWalkable(target))
@@ -123,18 +126,14 @@ namespace RebuildZoneServer.EntityComponents
 			
 			//we won't interrupt the next step we are currently taking, so append it to the start of our new path.
 			if (hasOld)
-				len = Pathfinder.GetPathWithInitialStep(Map.WalkData, Position, oldNext, target, WalkPath);
+				len = Pathfinder.GetPathWithInitialStep(Map.WalkData, Position, oldNext, target, WalkPath, range);
 			else
-				len = Pathfinder.GetPath(Map.WalkData, Position, target, WalkPath);
+				len = Pathfinder.GetPath(Map.WalkData, Position, target, WalkPath, range);
 
 			if (len == 0)
 				return false;
 
-#if DEBUG
-			Pathfinder.SanityCheck(WalkPath, Position, target, len);
-#endif
-
-			TargetPosition = target;
+			TargetPosition = WalkPath[len-1]; //reset to last point in walkpath
 			MoveCooldown = MoveSpeed;
 			MoveStep = 0;
 			TotalMoveSteps = len;
