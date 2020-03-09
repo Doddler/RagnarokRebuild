@@ -329,6 +329,22 @@ namespace Assets.Scripts.Network
 			entityList.Clear();
 		}
 
+
+		private void OnMessageStopImmediate(NetIncomingMessage msg)
+		{
+			var id = msg.ReadInt32();
+
+			if (!entityList.TryGetValue(id, out var controllable))
+			{
+				Debug.LogWarning("Trying to stop entity " + id + ", but it does not exist in scene!");
+				return;
+			}
+
+			var pos = ReadPosition(msg);
+
+			controllable.StopImmediate(pos);
+		}
+
 		private void OnMessageStopPlayer(NetIncomingMessage msg)
 		{
 			var id = msg.ReadInt32();
@@ -376,6 +392,9 @@ namespace Assets.Scripts.Network
 					break;
 				case PacketType.StopAction:
 					OnMessageStopPlayer(msg);
+					break;
+				case PacketType.StopImmediate:
+					OnMessageStopImmediate(msg);
 					break;
 				case PacketType.Move:
 					OnMessageMove(msg);

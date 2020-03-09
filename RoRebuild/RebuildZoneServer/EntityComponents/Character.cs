@@ -89,6 +89,17 @@ namespace RebuildZoneServer.EntityComponents
 			CommandBuilder.ClearRecipients();
 		}
 
+		public void StopMovingImmediately()
+		{
+			if (State == CharacterState.Moving)
+			{
+				Map.GatherPlayersForMultiCast(ref Entity, this);
+				CommandBuilder.CharacterStopImmediateMulti(this);
+				CommandBuilder.ClearRecipients();
+				State = CharacterState.Idle;
+			}
+		}
+
 		private void ChangeToActionState()
 		{
 			if (Type != CharacterType.Player)

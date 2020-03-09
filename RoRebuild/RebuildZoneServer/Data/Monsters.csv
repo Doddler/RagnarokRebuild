@@ -1,133 +1,133 @@
 ﻿Id,Code,Name,Level,HP,Str,Int,Vit,Dex,Agi,Luk,AtkMin,AtkMax,Range,Def,MDef,Exp,JExp,ScanDist,ChaseDist,Size,Race,Element,RechargeTime,AttackTime,HitTime,MoveSpeed,Special,MonsterAiType,ClientSprite,ClientOffset,ClientShadow,ClientSize
-1000,WARP,Warp,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Npc,AiEmpty,PortalPlaceholder.prefab,0,-1,1
-4000,PORING,Poring,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,poring.spr,0,0.5,1
-4001,FABRE,Fabre,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,fabre.spr,0,0.5,1
-4002,LUNATIC,Lunatic,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,lunatic.spr,0,0.5,1
-4003,PUPA,Pupa,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,pupa.spr,0,-1,1
-4004,CREAMY,Creamy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,creamy.spr,0,0.5,1
-4005,ROCKER,Rocker,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,rocker.spr,0,0.5,1
-4006,POPORING,Poporing,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,poporing.spr,0,0.5,1
-4007,THIEF_BUG,Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,thief_bug.spr,0,0.5,1
-4008,THIEF_BUG_EGG,Thief Bug Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,thief_bug_egg.spr,0,-1,1
-4009,HORNET,Hornet,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,hornet.spr,0,0.5,1
-4010,GREEN_PLANT,Green Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,green_plant.spr,0,-1,1
-4011,BLACK_MUSHROOM,Black Mushroom,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,black_mushroom.spr,0,-1,1
-4012,DROPS,Drops,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,drops.spr,0,0.5,1
-4013,BLUE_PLANT,Blue Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,blue_plant.spr,0,-1,1
-4014,FARMILIAR,Familiar,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,farmiliar.spr,0,0.5,1
-4015,TAROU,Tarou,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,tarou.spr,0,0.5,1
-4016,VOCAL,Vocal,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,rocker.spr,0,0.5,1.5
-4017,SHINING_PLANT,Shining Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,shining_plant.spr,0,-1,1
-4018,MANDRAGORA,Mandragora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,mandragora.spr,0,-1,1
-4019,ECLIPSE,Eclipse,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,eclipse.spr,0,0.5,1
-4020,YOYO,Yoyo,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,yoyo.spr,0,0.5,1
-4021,SMOKIE,Smokie,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,smokie.spr,0,0.5,1
-4022,CHOCO,Choco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,choco.spr,0,0.5,1
-4023,SAVAGE_BABE,Savage Babe,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,savage_babe.spr,0,0.25,1
-4024,DESERT_WOLF_B,Baby Desert Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,desert_wolf_b.spr,0,0.35,1
-4025,PECOPECO_EGG,Peco Peco Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,peco_egg.spr,0,-1,1
-4026,PECOPECO,Peco Peco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,pecopeco.spr,0,0.5,1
-4027,CONDOR,Condor,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,condor.spr,0,0.5,1
-4028,PICKY,Picky,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,picky.spr,0,0.25,1
-4029,PICKY_,Eggshell Picky,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,picky_.spr,0,0.25,1
-4030,RED_MUSHROOM,Red Mushroom,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,red_mushroom.spr,0,-1,1
-4031,GOBLIN_1,Dagger Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,goblin_1.spr,0,0.5,1
-4032,GOBLIN_2,Flail Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,goblin_2.spr,0,0.5,1
-4033,GOBLIN_3,Axe Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,goblin_3.spr,0,0.5,1
-4034,GOBLIN_4,Hammer Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,goblin_4.spr,0,0.5,1
-4035,GOBLIN_5,Mace Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,goblin_5.spr,0,0.5,1
-4036,GOBLIN_ARCHER,Goblin Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,goblin_archer.spr,0,0.5,1
-4037,PANZER_GOBLIN,Panzer Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,panzer_goblin.spr,0,0.5,1
-4038,STEAM_GOBLIN,Steamrider Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,steam_goblin.spr,0,0.5,1
-4039,GOBLIN_LEADER,Goblin Leader,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,120,Normal,AiAggressive,goblin_leader.spr,0,0.5,1
-4040,YELLOW_PLANT,Yellow Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,yellow_plant.spr,0,-1,1
-4041,SAVAGE,Savage,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,savage.spr,0,0.5,1
-4042,WILOW,Willow,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,wilow.spr,0,0.5,1
-4043,SPORE,Spore,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,spore.spr,0,0.5,1
-4044,SNAKE,Snake,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,snake.spr,0,-1,1
-4045,WOLF,Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,wolf.spr,0,0.5,1
-4046,MARIN,Marin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,marin.spr,0,0.5,1
-4047,GHOSTRING,Ghostring,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,ghostring.spr,0,0.5,1
-4048,MASTERING,Mastering,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,mastering.spr,0,0.75,1
-4049,ANGELING,Angeling,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,angeling.spr,0,0.5,1
-4050,DEVILING,Deviling,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,deviling.spr,0,0.5,1
-4051,DRAGON_TAIL,Dragon Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,175,Normal,AiAggressive,dragon_tail.spr,0,0.5,1
-4052,POISON_SPORE,Poison Spore,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,poison_spore.spr,0,0.5,1
-4053,WORM_TAIL,Worm Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,worm_tail.spr,0,0.5,1
-4054,ELDER_WILOW,Elder Willow,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,elder_wilow.spr,0,0.5,1
-4055,EGGYRA,Eggyra,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,eggyra.spr,0,0.5,1
-4056,BIGFOOT,Bigfoot,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,bigfoot.spr,0,0.5,1
-4057,SOHEE,Sohee,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,sohee.spr,0,0.5,1
-4058,WANDER_MAN,Wanderer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,wander_man.spr,0,0.5,1
-4059,GREATEST_GENERAL,Greatest General,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,greatest_general.spr,0,-1,1
-4060,HORONG,Horong,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,horong.spr,0,0.5,1
-4061,NINE_TAIL,Nine Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,nine_tail.spr,0,0.5,1
-4062,EDDGA,Eddga,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,eddga.spr,0,0.5,1
-4063,THIEF_BUG_,Female Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,thief_bug_female.spr,0,0.5,1
-4064,THIEF_BUG__,Male Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,thief_bug_male.spr,0,0.5,1
-4065,VAGABOND_WOLF,Vagabond Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,vagabond_wolf.spr,0,0.5,1
-4066,SCORPION,Scorpion,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,scorpion.spr,0,0.5,1
-4067,METALLER,Metaller,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,metaller.spr,0,0.5,1
-4068,MAGNOLIA,Magnolia,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,magnolia.spr,0,0.5,1
-4069,ANDRE,Andre,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,andre.spr,0,0.5,1
-4070,DENIRO,Deniro,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,deniro.spr,0,0.5,1
-4071,PIERE,Piere,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,piere.spr,0,0.5,1
-4072,GOLEM,Golem,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,golem.spr,0,1,1
-4073,MUKA,Muka,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,muka.spr,0,0.5,1
-4074,ANT_EGG,Ant Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,ant_egg.spr,0,-1,1
-4075,ANACONDAQ,Anacondaq,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,anacondaq.spr,0,-1,1
-4076,FRILLDORA,Frilldora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,frilldora.spr,0,0.5,1
-4077,DESERT_WOLF,Desert Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,desert_wolf.spr,0,0.5,1
-4078,SIDE_WINDER,Sidewinder,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,side_winder.spr,0,-1,1
-4079,HODE,Hode,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,hode.spr,0,-1,1
-4080,PHREEONI,Phreeoni,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,phreeoni.spr,0,0.5,1
-4081,SAND_MAN,Sandman,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,sand_man.spr,0,-1,1
-4082,STEEL_CHONCHON,Steel Chonchon,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,steel_chocho.spr,0,0.25,1
-4083,DRAGON_FLY,Dragon Fly,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,dragon_fly.spr,0,0.25,1
-4084,HUNTER_FLY,Hunter Fly,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,hunter_fly.spr,0,0.25,1
-4085,CHONCHON,Chonchon,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,chocho.spr,0,0.25,1
-4086,CARAMEL,Caramel,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,caramel.spr,0,0.5,1
-4087,HORN,Horn,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,horn.spr,0,0.5,1
-4088,STAINER,Stainer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,stainer.spr,0,0.5,1
-4089,PETIT,Earth Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,petit.spr,0,0.5,1
-4090,PETIT_,Sky Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,petit_.spr,0,0.5,1
-4091,FLORA,Flora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,flora.spr,0,-1,1
-4092,MANTIS,Mantis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,mantis.spr,0,0.5,1
-4093,ARGOS,Argos,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argos.spr,0,0.5,1
-4094,ARGIOPE,Argiope,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argiope.spr,0,-1,1
-4095,MISTRESS,Mistress,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,mistress.spr,0,0.5,1
-4096,AMBERNITE,Ambernite,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,ambernite.spr,0,0.5,1
-4097,STEM_WORM,Stem Worm,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,stem_worm.spr,0,0.5,1
-4098,DUSTINESS,Dustiness,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,dustiness.spr,0,0.5,1
-4099,COCO,Coco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,coco.spr,0,0.5,1
-4100,RED_PLANT,Red Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,red_plant.spr,0,-1,1
-4101,RODA_FROG,Roda Frog,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,roda_frog.spr,0,0.5,1
-4102,THARA_FROG,Thara Frog,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,thara_frog.spr,0,0.5,1
-4103,TOAD,Toad,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,toad.spr,0,0.5,1
-4104,WILD_ROSE,Wild Rose,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,wild_rose.spr,0,0.5,1
-4105,KOBOLD_ARCHER,Kobold Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,kobold_archer.spr,0,0.5,1
-4106,KOBOLD_1,Axe Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,kobold_1.spr,0,0.5,1
-4107,KOBOLD_2,Hammer Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,kobold_2.spr,0,0.5,1
-4108,KOBOLD_3,Mace Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,kobold_3.spr,0,0.5,1
-4109,KOBOLD_LEADER,Kobold Leader,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,kobolt_leader.spr,0,0.5,1
-4110,ORK_WARRIOR,Orc Warrior,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,ork_warrior.spr,0,0.5,1
-4111,ORC_LORD,Orc Lord,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,orc_lord.spr,0,0.5,1
-4112,ORC_LADY,Orc Lady,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,orc_lady.spr,0,0.5,1
-4113,ORC_BABY,Orc Baby,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,orc_baby.spr,0,0.5,1
-4114,ORK_HERO,Orc Hero,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,ork_hero.spr,0,0.5,1
-4115,ORC_ARCHER,Orc Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,orc_archer.spr,0,0.5,1
-4116,HIGH_ORC,High Orc,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,high_orc.spr,0,0.5,1
-4117,ROTAR_ZAIRO,Rotor Gyro,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,155,Normal,AiAggressive,rotar_zairo.spr,0,0.5,1
-4118,DRAINLIAR,Drainliar,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,drainliar.spr,0,0.5,1
-4119,MUMMY,Mummy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,mummy.spr,0,0.5,1
-4120,ISIS,Isis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,isis.spr,0,0.5,1
-4121,SOLDIER_SKELETON,Soldier Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,skel_soldier.spr,0,0.5,1
-4122,ARCHER_SKELETON,Archer Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,skel_archer.spr,0,0.5,1
-4123,MIMIC,Mimic,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,mimic.spr,0,0.5,1
-4124,MATYR,Matyr,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,matyr.spr,0,0.5,1
-4125,VERIT,Verit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,verit.spr,0,0.5,1
-4126,ANCIENT_MUMMY,Ancient Mummy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,175,Normal,AiAggressive,ancient_mummy.spr,0,0.5,1
-4127,OSIRIS,Osiris,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,osiris.spr,0,0.5,1
-4128,MINOROUS,Minorous,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,minorous.spr,0,0.5,1
-4129,ARCLOUSE,Arclouse,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,arclouse.spr,0,0.5,1
-4130,AMON_RA,Amon Ra,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,10,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,amon_ra.spr,0,-1,1
+1000,WARP,Warp,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Npc,AiEmpty,PortalPlaceholder.prefab,0,-1,1
+4000,PORING,Poring,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,poring.spr,0,0.5,1
+4001,FABRE,Fabre,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,fabre.spr,0,0.5,1
+4002,LUNATIC,Lunatic,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,lunatic.spr,0,0.5,1
+4003,PUPA,Pupa,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,pupa.spr,0,-1,1
+4004,CREAMY,Creamy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,creamy.spr,0,0.5,1
+4005,ROCKER,Rocker,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,rocker.spr,0,0.5,1
+4006,POPORING,Poporing,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,poporing.spr,0,0.5,1
+4007,THIEF_BUG,Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,thief_bug.spr,0,0.5,1
+4008,THIEF_BUG_EGG,Thief Bug Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,thief_bug_egg.spr,0,-1,1
+4009,HORNET,Hornet,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,hornet.spr,0,0.5,1
+4010,GREEN_PLANT,Green Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,green_plant.spr,0,-1,1
+4011,BLACK_MUSHROOM,Black Mushroom,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,black_mushroom.spr,0,-1,1
+4012,DROPS,Drops,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,drops.spr,0,0.5,1
+4013,BLUE_PLANT,Blue Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,blue_plant.spr,0,-1,1
+4014,FARMILIAR,Familiar,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,farmiliar.spr,0,0.5,1
+4015,TAROU,Tarou,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,tarou.spr,0,0.5,1
+4016,VOCAL,Vocal,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,rocker.spr,0,0.5,1.5
+4017,SHINING_PLANT,Shining Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,shining_plant.spr,0,-1,1
+4018,MANDRAGORA,Mandragora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,mandragora.spr,0,-1,1
+4019,ECLIPSE,Eclipse,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,eclipse.spr,0,0.5,1
+4020,YOYO,Yoyo,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,yoyo.spr,0,0.5,1
+4021,SMOKIE,Smokie,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,smokie.spr,0,0.5,1
+4022,CHOCO,Choco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,choco.spr,0,0.5,1
+4023,SAVAGE_BABE,Savage Babe,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,savage_babe.spr,0,0.25,1
+4024,DESERT_WOLF_B,Baby Desert Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,desert_wolf_b.spr,0,0.35,1
+4025,PECOPECO_EGG,Peco Peco Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,peco_egg.spr,0,-1,1
+4026,PECOPECO,Peco Peco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,pecopeco.spr,0,0.5,1
+4027,CONDOR,Condor,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,condor.spr,0,0.5,1
+4028,PICKY,Picky,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,picky.spr,0,0.25,1
+4029,PICKY_,Eggshell Picky,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,picky_.spr,0,0.25,1
+4030,RED_MUSHROOM,Red Mushroom,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,red_mushroom.spr,0,-1,1
+4031,GOBLIN_1,Dagger Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,goblin_1.spr,0,0.5,1
+4032,GOBLIN_2,Flail Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,goblin_2.spr,0,0.5,1
+4033,GOBLIN_3,Axe Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,goblin_3.spr,0,0.5,1
+4034,GOBLIN_4,Hammer Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,goblin_4.spr,0,0.5,1
+4035,GOBLIN_5,Mace Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,goblin_5.spr,0,0.5,1
+4036,GOBLIN_ARCHER,Goblin Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,goblin_archer.spr,0,0.5,1
+4037,PANZER_GOBLIN,Panzer Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,panzer_goblin.spr,0,0.5,1
+4038,STEAM_GOBLIN,Steamrider Goblin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,steam_goblin.spr,0,0.5,1
+4039,GOBLIN_LEADER,Goblin Leader,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,120,Normal,AiAggressive,goblin_leader.spr,0,0.5,1
+4040,YELLOW_PLANT,Yellow Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,yellow_plant.spr,0,-1,1
+4041,SAVAGE,Savage,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,savage.spr,0,0.5,1
+4042,WILOW,Willow,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,wilow.spr,0,0.5,1
+4043,SPORE,Spore,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,spore.spr,0,0.5,1
+4044,SNAKE,Snake,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,snake.spr,0,-1,1
+4045,WOLF,Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,wolf.spr,0,0.5,1
+4046,MARIN,Marin,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,marin.spr,0,0.5,1
+4047,GHOSTRING,Ghostring,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,ghostring.spr,0,0.5,1
+4048,MASTERING,Mastering,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,mastering.spr,0,0.75,1
+4049,ANGELING,Angeling,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,angeling.spr,0,0.5,1
+4050,DEVILING,Deviling,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,deviling.spr,0,0.5,1
+4051,DRAGON_TAIL,Dragon Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,175,Normal,AiAggressive,dragon_tail.spr,0,0.5,1
+4052,POISON_SPORE,Poison Spore,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,poison_spore.spr,0,0.5,1
+4053,WORM_TAIL,Worm Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,worm_tail.spr,0,0.5,1
+4054,ELDER_WILOW,Elder Willow,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,elder_wilow.spr,0,0.5,1
+4055,EGGYRA,Eggyra,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,eggyra.spr,0,0.5,1
+4056,BIGFOOT,Bigfoot,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,bigfoot.spr,0,0.5,1
+4057,SOHEE,Sohee,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiPassive,sohee.spr,0,0.5,1
+4058,WANDER_MAN,Wanderer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,wander_man.spr,0,0.5,1
+4059,GREATEST_GENERAL,Greatest General,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,greatest_general.spr,0,-1,1
+4060,HORONG,Horong,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiAggressive,horong.spr,0,0.5,1
+4061,NINE_TAIL,Nine Tail,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,nine_tail.spr,0,0.5,1
+4062,EDDGA,Eddga,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,eddga.spr,0,0.5,1
+4063,THIEF_BUG_,Female Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,thief_bug_female.spr,0,0.5,1
+4064,THIEF_BUG__,Male Thief Bug,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,thief_bug_male.spr,0,0.5,1
+4065,VAGABOND_WOLF,Vagabond Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,vagabond_wolf.spr,0,0.5,1
+4066,SCORPION,Scorpion,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,scorpion.spr,0,0.5,1
+4067,METALLER,Metaller,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,metaller.spr,0,0.5,1
+4068,MAGNOLIA,Magnolia,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiPassive,magnolia.spr,0,0.5,1
+4069,ANDRE,Andre,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,andre.spr,0,0.5,1
+4070,DENIRO,Deniro,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,deniro.spr,0,0.5,1
+4071,PIERE,Piere,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,piere.spr,0,0.5,1
+4072,GOLEM,Golem,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,golem.spr,0,1,1
+4073,MUKA,Muka,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiPassive,muka.spr,0,0.5,1
+4074,ANT_EGG,Ant Egg,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,ant_egg.spr,0,-1,1
+4075,ANACONDAQ,Anacondaq,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,anacondaq.spr,0,-1,1
+4076,FRILLDORA,Frilldora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,frilldora.spr,0,0.5,1
+4077,DESERT_WOLF,Desert Wolf,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,desert_wolf.spr,0,0.5,1
+4078,SIDE_WINDER,Sidewinder,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,side_winder.spr,0,-1,1
+4079,HODE,Hode,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,hode.spr,0,-1,1
+4080,PHREEONI,Phreeoni,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,phreeoni.spr,0,0.5,1
+4081,SAND_MAN,Sandman,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,sand_man.spr,0,-1,1
+4082,STEEL_CHONCHON,Steel Chonchon,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,steel_chocho.spr,0,0.25,1
+4083,DRAGON_FLY,Dragon Fly,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,dragon_fly.spr,0,0.25,1
+4084,HUNTER_FLY,Hunter Fly,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,hunter_fly.spr,0,0.25,1
+4085,CHONCHON,Chonchon,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,chocho.spr,0,0.25,1
+4086,CARAMEL,Caramel,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,caramel.spr,0,0.5,1
+4087,HORN,Horn,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,horn.spr,0,0.5,1
+4088,STAINER,Stainer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,stainer.spr,0,0.5,1
+4089,PETIT,Earth Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,petit.spr,0,0.5,1
+4090,PETIT_,Sky Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,petit_.spr,0,0.5,1
+4091,FLORA,Flora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,flora.spr,0,-1,1
+4092,MANTIS,Mantis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,mantis.spr,0,0.5,1
+4093,ARGOS,Argos,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argos.spr,0,0.5,1
+4094,ARGIOPE,Argiope,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argiope.spr,0,-1,1
+4095,MISTRESS,Mistress,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,mistress.spr,0,0.5,1
+4096,AMBERNITE,Ambernite,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,400,Normal,AiPassive,ambernite.spr,0,0.5,1
+4097,STEM_WORM,Stem Worm,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,stem_worm.spr,0,0.5,1
+4098,DUSTINESS,Dustiness,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,dustiness.spr,0,0.5,1
+4099,COCO,Coco,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiPassive,coco.spr,0,0.5,1
+4100,RED_PLANT,Red Plant,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiPassive,red_plant.spr,0,-1,1
+4101,RODA_FROG,Roda Frog,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,roda_frog.spr,0,0.5,1
+4102,THARA_FROG,Thara Frog,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,thara_frog.spr,0,0.5,1
+4103,TOAD,Toad,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,toad.spr,0,0.5,1
+4104,WILD_ROSE,Wild Rose,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiPassive,wild_rose.spr,0,0.5,1
+4105,KOBOLD_ARCHER,Kobold Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,kobold_archer.spr,0,0.5,1
+4106,KOBOLD_1,Axe Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,kobold_1.spr,0,0.5,1
+4107,KOBOLD_2,Hammer Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,kobold_2.spr,0,0.5,1
+4108,KOBOLD_3,Mace Kobold,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,kobold_3.spr,0,0.5,1
+4109,KOBOLD_LEADER,Kobold Leader,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,kobolt_leader.spr,0,0.5,1
+4110,ORK_WARRIOR,Orc Warrior,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,ork_warrior.spr,0,0.5,1
+4111,ORC_LORD,Orc Lord,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,orc_lord.spr,0,0.5,1
+4112,ORC_LADY,Orc Lady,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,orc_lady.spr,0,0.5,1
+4113,ORC_BABY,Orc Baby,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,orc_baby.spr,0,0.5,1
+4114,ORK_HERO,Orc Hero,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,ork_hero.spr,0,0.5,1
+4115,ORC_ARCHER,Orc Archer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,orc_archer.spr,0,0.5,1
+4116,HIGH_ORC,High Orc,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,high_orc.spr,0,0.5,1
+4117,ROTAR_ZAIRO,Rotor Gyro,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,155,Normal,AiPassive,rotar_zairo.spr,0,0.5,1
+4118,DRAINLIAR,Drainliar,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,drainliar.spr,0,0.5,1
+4119,MUMMY,Mummy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,mummy.spr,0,0.5,1
+4120,ISIS,Isis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,isis.spr,0,0.5,1
+4121,SOLDIER_SKELETON,Soldier Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,skel_soldier.spr,0,0.5,1
+4122,ARCHER_SKELETON,Archer Skeleton,1,1,0,0,0,0,0,0,1,1,9,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,skel_archer.spr,0,0.5,1
+4123,MIMIC,Mimic,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,mimic.spr,0,0.5,1
+4124,MATYR,Matyr,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,matyr.spr,0,0.5,1
+4125,VERIT,Verit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiPassive,verit.spr,0,0.5,1
+4126,ANCIENT_MUMMY,Ancient Mummy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,175,Normal,AiAggressive,ancient_mummy.spr,0,0.5,1
+4127,OSIRIS,Osiris,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,osiris.spr,0,0.5,1
+4128,MINOROUS,Minorous,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,minorous.spr,0,0.5,1
+4129,ARCLOUSE,Arclouse,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,arclouse.spr,0,0.5,1
+4130,AMON_RA,Amon Ra,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,amon_ra.spr,0,-1,1

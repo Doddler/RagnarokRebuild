@@ -114,6 +114,19 @@ namespace RebuildZoneServer.Networking
 		}
 
 
+		public static void CharacterStopImmediateMulti(Character c)
+		{
+			if (recipients.Count <= 0)
+				return;
+
+			var packet = NetworkManager.StartPacket(PacketType.StopImmediate, 32);
+
+			packet.Write(c.Id);
+			packet.Write(c.Position);
+
+			NetworkManager.SendMessageMulti(packet, recipients);
+		}
+
 		public static void CharacterStopMulti(Character c)
 		{
 			if (recipients.Count <= 0)

@@ -17,6 +17,7 @@
 		Disconnect,
 		ChangeMaps,
 		StopAction,
+		StopImmediate,
 		RandomTeleport,
 		UnhandledPacket
 	}

@@ -90,6 +90,9 @@ namespace RebuildData.Server.Data
 				{
 					Id = monster.Id,
 					Code = monster.Code,
+					Range = monster.Range,
+					ScanDist = monster.ScanDist,
+					ChaseDist = monster.ChaseDist,
 					MoveSpeed = monster.MoveSpeed/1000f,
 					AiType = (MonsterAiType)Enum.Parse(typeof(MonsterAiType),monster.MonsterAiType),
 					Name = monster.Name

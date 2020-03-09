@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Leopotam.Ecs;
+using RebuildData.Server.Data.Types;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
@@ -72,7 +73,7 @@ namespace RebuildZoneServer.Sim
 
 							for (var k = 0; k < s.Count; k++)
 							{
-								var m = CreateMonster(map, mobId, s.X, s.Y, s.Width, s.Height);
+								var m = CreateMonster(map, mobId, s.X, s.Y, s.Width, s.Height, s);
 								if (!m.IsNull())
 								{
 									map.AddEntity(ref m);
@@ -91,7 +92,7 @@ namespace RebuildZoneServer.Sim
 							var c = connectors[i];
 							var mobId = 1000;
 
-							var m = CreateMonster(map, mobId, c.SrcArea.MidX, c.SrcArea.MidY, 0, 0);
+							var m = CreateMonster(map, mobId, c.SrcArea.MidX, c.SrcArea.MidY, 0, 0, null);
 							if (!m.IsNull())
 								map.AddEntity(ref m);
 						}
@@ -119,7 +120,7 @@ namespace RebuildZoneServer.Sim
 				ServerLogger.LogWarning("Command builder has recipients after completing server update loop!");
 		}
 
-		public EcsEntity CreateMonster(Map map, int classId, int x, int y, int width, int height)
+		public EcsEntity CreateMonster(Map map, int classId, int x, int y, int width, int height, MapSpawnEntry spawnEntry)
 		{
 			var e = ecsWorld.AddAndReset<Character, CombatEntity, Monster>(
 				out var ch, out var ce, out var m);
@@ -152,6 +153,8 @@ namespace RebuildZoneServer.Sim
 			ch.MoveSpeed = mon.MoveSpeed;
 			ch.Type = CharacterType.Monster;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
+
+			m.Initialize(ref e, ch, ce, mon, mon.AiType, spawnEntry);
 
 			//ServerLogger.Log("Entity spawned at position: " + ch.Position);
 

@@ -20,13 +20,17 @@ namespace Assets.Scripts
 	            return;
             listener = CameraFollower.Instance.ListenerProbe;
 
+            if (Mathf.Approximately(LoopTime, 0))
+	            LoopTime = source.clip.length;
+
             if(CalcDistance() > source.maxDistance)
                 source.Stop();
         }
 
         private float CalcDistance()
         {
-            return Mathf.Abs(transform.position.x - listener.transform.position.x) + Mathf.Abs(transform.position.y - listener.transform.position.y);
+	        return Mathf.Max(Mathf.Abs(transform.position.x - listener.transform.position.x),
+		        Mathf.Abs(transform.position.y - listener.transform.position.y));
         }
 
         public void Update()
@@ -36,10 +40,10 @@ namespace Assets.Scripts
 
             if (Mathf.Approximately(LoopTime, 0f))
                 return;
-            if(!source.isPlaying && CalcDistance() < source.maxDistance)
+            if(!source.isPlaying && CalcDistance() < source.maxDistance * 2)
                 source.Play();
 
-            if(source.isPlaying && CalcDistance() > source.maxDistance)
+            if(source.isPlaying && CalcDistance() > source.maxDistance * 2)
                 source.Stop();
 
             if (!source.isPlaying)

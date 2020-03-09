@@ -38,7 +38,7 @@ namespace RebuildData.Server.Data.Monster
 		InChangeNormal,
 		InTargetSearch,
 		InEnemyOutOfSight,
-		InEnemyOutOfRange,
+		InEnemyOutOfAttackRange,
 		InAttackDelayEnd,
 		InDeadTimeoutEnd
 	}

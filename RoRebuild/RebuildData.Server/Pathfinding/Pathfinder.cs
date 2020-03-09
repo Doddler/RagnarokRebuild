@@ -293,6 +293,8 @@ namespace RebuildData.Server.Pathfinding
 			if (direct > 0)
 			{
 				tempPath[0] = start;
+				if (pathOut == null)
+					return direct;
 				CopyTempPath(pathOut, direct);
 #if DEBUG
 				SanityCheck(pathOut, start, target, direct, range);
@@ -305,6 +307,9 @@ namespace RebuildData.Server.Pathfinding
 				return 0;
 
 			var steps = path.Steps + 1;
+
+			if (pathOut == null)
+				return steps;
 
 			if (path.Steps >= pathOut.Length)
 				ServerLogger.LogWarning($"Whoa! This isn't good. Steps is {path.Steps} but the array is {pathOut.Length}");
@@ -335,6 +340,9 @@ namespace RebuildData.Server.Pathfinding
 			var direct = CheckDirectPath(walkData, start, target, MaxDistance, range, 0);
 			if (direct > 0)
 			{
+				if (pathOut == null)
+					return direct;
+
 				CopyTempPath(pathOut, direct);
 #if DEBUG
 				SanityCheck(pathOut, start, target, direct, range);
@@ -347,6 +355,9 @@ namespace RebuildData.Server.Pathfinding
 				return 0;
 
 			var steps = path.Steps + 1;
+
+			if (pathOut == null)
+				return steps;
 
 #if DEBUG
 			if (path.Steps >= pathOut.Length)

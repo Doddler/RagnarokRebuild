@@ -166,6 +166,13 @@ namespace Assets.Scripts.Network
 				movePath.RemoveRange(2, movePath.Count - 2);
 		}
 
+        public void StopImmediate(Vector2Int position)
+        {
+	        isMoving = false;
+	        movePath = null;
+			SpriteAnimator.ChangeMotion(SpriteMotion.Idle);
+        }
+
         public void AttachShadow(Sprite spriteObj)
         {
 	        if (gameObject == null)
