@@ -13,6 +13,16 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void Reset()
 		{
+			BaseStats = null;
+			Stats = null;
+		}
+
+		public void Init()
+		{
+			BaseStats = new BaseStats();
+			Stats = new CombatStats();
+
+			Stats.Range = 2;
 		}
 	}
 }

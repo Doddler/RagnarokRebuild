@@ -7,7 +7,7 @@ using RebuildZoneServer.EntityComponents;
 
 namespace RebuildZoneServer.Networking
 {
-	static class CommandBuilder
+	public static class CommandBuilder
 	{
 		private static List<NetConnection> recipients = new List<NetConnection>(10);
 
@@ -53,9 +53,8 @@ namespace RebuildZoneServer.Networking
 					packet.Write(b);
 				}
 			}
-
 		}
-
+		
 		private static NetOutgoingMessage BuildCreateEntity(Character c, bool isSelf = false)
 		{
 			var type = isSelf ? PacketType.EnterServer : PacketType.CreateEntity;
@@ -80,6 +79,20 @@ namespace RebuildZoneServer.Networking
 			}
 
 			return packet;
+		}
+
+		public static void AttackMulti(Character attacker, Character target)
+		{
+			if (recipients.Count <= 0)
+				return;
+
+			var packet = NetworkManager.StartPacket(PacketType.Attack, 48);
+
+			packet.Write(attacker.Id);
+			packet.Write(target.Id);
+			packet.Write((byte)attacker.FacingDirection);
+
+			NetworkManager.SendMessageMulti(packet, recipients);
 		}
 
 		public static void ChangeSittingMulti(Character c)

@@ -12,5 +12,6 @@ namespace RebuildData.Server.Data.Character
 
 		public float MoveSpeed;
 		public float AttackMotionTime, AttackDelayTime;
+		public int Range;
 	}
 }

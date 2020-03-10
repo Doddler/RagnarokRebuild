@@ -140,7 +140,10 @@ namespace RebuildZoneServer.EntityComponents
 				currentState = entry.OutputState;
 			}
 
-			aiCooldown += 0.1f;
+			character.LastAttacked = EcsEntity.Null;
+
+			if(aiCooldown < 0)
+				aiCooldown += 0.1f;
 		}
 
 		public void Update(ref EcsEntity e, Character ch, CombatEntity ce)
@@ -148,7 +151,7 @@ namespace RebuildZoneServer.EntityComponents
 			aiCooldown -= Time.DeltaTimeFloat;
 			
 			randomMoveCooldown -= Time.DeltaTimeFloat;
-			if (aiCooldown > 0 && !hasTarget)
+			if (aiCooldown > 0)
 				return;
 
 			if (aiCooldown <= 0)
@@ -161,62 +164,6 @@ namespace RebuildZoneServer.EntityComponents
 				ce = combatEntity;
 
 			AiStateMachineUpdate();
-
-
-			//if (ch.State == CharacterState.Moving && !isMoving)
-			//{
-			//	isMoving = true;
-			//}
-
-			//if (ch.State == CharacterState.Idle)
-			//{
-			//	if (isMoving)
-			//	{
-			//		moveDelay = GameRandom.NextFloat(minIdleWaitTime, maxIdleWaitTime);
-			//		isMoving = false;
-			//	}
-
-			//	if (!hasTarget)
-			//	{
-			//		if (ScanForTarget(ref e))
-			//			return;
-			//	}
-
-			//	if (hasTarget)
-			//	{
-			//		if (ChaseTargetIfPossible(ref e))
-			//		{
-			//			return;
-			//		}
-			//		else
-			//		{
-			//			target = EcsEntity.Null;
-			//			hasTarget = false;
-			//			aiCooldown += aiTickRate;
-			//			return;
-			//		}
-			//	}
-
-			//	if (moveDelay > 0 || ch.MoveSpeed <= 0)
-			//	{
-			//		return;
-			//	}
-
-			//	var moveArea = Area.CreateAroundPoint(ch.Position, 9).ClipArea(ch.Map.MapBounds);
-			//	var newPos = Position.RandomPosition(moveArea);
-
-			//	ch.TryMove(ref e, newPos, 0);
-
-
-			//ch.Map.MoveEntity(ref e, ch, newPos);
-
-			//if (Time.ElapsedTime > idleEnd)
-			//{
-			//	var moveArea = Area.CreateAroundPoint(ch.Position, 16).ClipArea(ch.Map.MapBounds);
-			//	var targetPos = Position.RandomPosition(moveArea);
-
-
-			//}
 		}
 	}
 }

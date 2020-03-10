@@ -77,10 +77,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: 0ef459ea6e3bf3f4581850d47c5a5e74
-    m_Address: Assets/Scenes/Maps/2009rwc_02.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 0f18e4744deff184b94ff5b390b5780d
     m_Address: Assets/Sprites/Monsters/mistress.spr
     m_ReadOnly: 0
@@ -1031,10 +1027,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: b818d35a97a84aa43bdd974226a9998a
-    m_Address: Assets/Scenes/Maps/2009rwc_03.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: b8eab5deb1a90f94db9e10ea4546c2ad
     m_Address: "Assets/Sprites/Characters/HeadFemale/26_\uC5EC.spr"
     m_ReadOnly: 0
@@ -1273,7 +1265,8 @@ MonoBehaviour:
   - m_GUID: e2324b78df4f51d4a9501b6142b02a60
     m_Address: "Assets/Sprites/Characters/BodyMale/\uC6B4\uC601\uC790_\uB0A8.spr"
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: e29f6f2d0cdd91646bdbb7ecbc71c0f0
     m_Address: "Assets/Sprites/Characters/HeadFemale/2_\uC5EC.spr"
     m_ReadOnly: 0
@@ -1387,7 +1380,8 @@ MonoBehaviour:
   - m_GUID: f2b672c7e4475324aad380dab1d77060
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uC6B4\uC601\uC790_\uC5EC.spr"
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: f32888d5b869ae54ebc9fcb4f1ea14be
     m_Address: Assets/Sprites/Monsters/dracula.spr
     m_ReadOnly: 0

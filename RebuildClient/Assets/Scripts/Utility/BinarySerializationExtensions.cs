@@ -164,7 +164,11 @@ namespace Assets.Scripts
 
         public static Color ReadByteColor(this BinaryReader br)
         {
-            return new Color(br.ReadByte()/255f, br.ReadByte()/255f, br.ReadByte()/255f, br.ReadByte()/255f);
+	        var b = br.ReadByte() / 255f;
+            var g = br.ReadByte() / 255f;
+	        var r = br.ReadByte() / 255f; 
+	        var a = br.ReadByte() / 255f;
+            return new Color(r, g, b, a);
         }
     }
 }

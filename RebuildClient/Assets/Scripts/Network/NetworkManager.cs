@@ -358,6 +358,32 @@ namespace Assets.Scripts.Network
 			controllable.StopWalking();
 		}
 
+		private void OnMessageAttack(NetIncomingMessage msg)
+		{
+			var id1 = msg.ReadInt32();
+			var id2 = msg.ReadInt32();
+
+			if (!entityList.TryGetValue(id1, out var controllable))
+			{
+				Debug.LogWarning("Trying to attack entity " + id1 + ", but it does not exist in scene!");
+				return;
+			}
+			
+			if (!entityList.TryGetValue(id2, out var controllable2))
+			{
+				Debug.LogWarning("Trying to attack entity " + id2 + ", but it does not exist in scene!");
+				return;
+			}
+
+			var dir = (FacingDirection)msg.ReadByte();
+
+			controllable.SpriteAnimator.Direction = dir;
+			controllable.SpriteAnimator.State = SpriteState.Idle;
+			controllable.SpriteAnimator.AnimSpeed = 1f;
+			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1);
+			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
+		}
+
 		void HandleDataPacket(NetIncomingMessage msg)
 		{
 			var type = (PacketType)msg.ReadByte();
@@ -398,6 +424,9 @@ namespace Assets.Scripts.Network
 					break;
 				case PacketType.Move:
 					OnMessageMove(msg);
+					break;
+				case PacketType.Attack:
+					OnMessageAttack(msg);
 					break;
 				default:
 					Debug.LogWarning($"Failed to handle packet type: {type}");
@@ -488,6 +517,16 @@ namespace Assets.Scripts.Network
 			var msg = client.CreateMessage();
 
 			msg.Write((byte)PacketType.StopAction);
+
+			client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
+		}
+
+		public void SendAttack(int target)
+		{
+			var msg = client.CreateMessage();
+
+			msg.Write((byte)PacketType.Attack);
+			msg.Write(target);
 
 			client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
 		}

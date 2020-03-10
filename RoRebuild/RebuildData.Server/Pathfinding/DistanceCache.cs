@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using RebuildData.Server.Config;
 using RebuildData.Shared.Data;
+using RebuildData.Shared.Enum;
 
 namespace RebuildData.Server.Pathfinding
 {
 	public static class DistanceCache
 	{
+		private static Direction[] directions;
 		private static float[] angles;
 		private static float[] distances;
 

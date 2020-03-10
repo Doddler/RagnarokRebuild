@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Leopotam.Ecs;
 using RebuildData.Server.Data.Monster;
+using RebuildData.Server.Logging;
 using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
+using RebuildZoneServer.Networking;
 using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.EntityComponents
@@ -24,6 +26,8 @@ namespace RebuildZoneServer.EntityComponents
 				case MonsterInputCheck.InReachedTarget: return InReachedTarget();
 				case MonsterInputCheck.InTargetSearch: return InTargetSearch();
 				case MonsterInputCheck.InAttackRange: return InAttackRange();
+				case MonsterInputCheck.InAttackDelayEnd: return InAttackDelayEnd();
+				case MonsterInputCheck.InAttacked: return InAttacked();
 			}
 
 			return false;
@@ -50,7 +54,10 @@ namespace RebuildZoneServer.EntityComponents
 			if (!ValidateTarget())
 				return true;
 
-			if (targetCharacter.Position.SquareDistance(character.Position) >= monsterBase.ChaseDist)
+			if (targetCharacter.Position == character.Position)
+				return false;
+
+			if (targetCharacter.Position.SquareDistance(character.Position) > monsterBase.ChaseDist)
 				return true;
 
 			if (Pathfinder.GetPath(character.Map.WalkData, character.Position, targetCharacter.Position, null, 1) == 0)
@@ -68,6 +75,29 @@ namespace RebuildZoneServer.EntityComponents
 				return true;
 
 			return false;
+		}
+
+		private bool InAttackDelayEnd()
+		{
+			if (!ValidateTarget())
+				return false;
+
+			if (character.AttackCooldown > 0)
+				return false;
+
+			return true;
+		}
+
+		private bool InAttacked()
+		{
+			if (character.LastAttacked.IsNull())
+				return false;
+			if (!character.LastAttacked.IsAlive())
+				return false;
+
+			target = character.LastAttacked;
+
+			return true;
 		}
 
 		private bool InEnemyOutOfAttackRange()
@@ -119,6 +149,7 @@ namespace RebuildZoneServer.EntityComponents
 				case MonsterOutputCheck.OutSearch: return OutSearch();
 				case MonsterOutputCheck.OutStartChase: return OutStartChase();
 				case MonsterOutputCheck.OutStartAttacking: return OutStartAttacking();
+				case MonsterOutputCheck.OutPerformAttack: return OutPerformAttack();
 			}
 
 			return false;
@@ -176,9 +207,31 @@ namespace RebuildZoneServer.EntityComponents
 			return false;
 		}
 
+		private bool OutPerformAttack()
+		{
+			aiCooldown += monsterBase.AttackTime;
+			character.AttackCooldown += monsterBase.RechargeTime;
+
+			var angle = character.Position.Angle(targetCharacter.Position);
+			var dir = Directions.GetFacingForAngle(angle);
+
+			character.FacingDirection = dir;
+
+			//ServerLogger.Log($"{aiCooldown} {character.AttackCooldown} {angle} {dir}");
+
+			character.Map.GatherPlayersForMultiCast(ref entity, character);
+			CommandBuilder.AttackMulti(character, targetCharacter);
+			CommandBuilder.ClearRecipients();
+
+			return true;
+		}
+
 		private bool OutStartAttacking()
 		{
 			character.StopMovingImmediately();
+			if(character.AttackCooldown < 0)
+				character.AttackCooldown = 0;
+			aiCooldown = 0.001f;
 			return true;
 		}
 

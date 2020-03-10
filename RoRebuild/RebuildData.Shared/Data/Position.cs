@@ -40,10 +40,21 @@ namespace RebuildData.Shared.Data
 
 			return pos;
 		}
-
+		
 		public int SquareDistance(Position dest)
 		{
 			return Math.Max(Math.Abs(X - dest.X), Math.Abs(Y - dest.Y));
+		}
+
+		public float Angle(Position b)
+		{
+			float xDiff = b.X - X;
+			float yDiff = b.Y - Y;
+			var angle = (float) ((float) Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI) - 90;
+			if (angle < -180)
+				angle += 360;
+			
+			return angle;
 		}
 
 		public bool InRange(Position target, int distance)

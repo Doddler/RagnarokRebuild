@@ -93,6 +93,9 @@ namespace RebuildData.Server.Data
 					Range = monster.Range,
 					ScanDist = monster.ScanDist,
 					ChaseDist = monster.ChaseDist,
+					AttackTime = monster.AttackTime / 1000f,
+					HitTime = monster.HitTime / 1000f,
+					RechargeTime = monster.RechargeTime / 1000f,
 					MoveSpeed = monster.MoveSpeed/1000f,
 					AiType = (MonsterAiType)Enum.Parse(typeof(MonsterAiType),monster.MonsterAiType),
 					Name = monster.Name

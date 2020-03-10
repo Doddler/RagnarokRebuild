@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Leopotam.Ecs;
 using Lidgren.Network;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
@@ -30,6 +31,8 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			}
 
 			player.AddActionDelay(CooldownActionType.Click);
+
+			player.Target = EcsEntity.Null;
 
 			var x = msg.ReadInt16();
 			var y = msg.ReadInt16();

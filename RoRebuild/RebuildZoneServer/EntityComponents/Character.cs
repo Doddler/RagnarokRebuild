@@ -1,11 +1,7 @@
-﻿using System;
-using Leopotam.Ecs;
-using RebuildData.Server.Logging;
+﻿using Leopotam.Ecs;
 using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
-using RebuildZoneServer.Data.Management;
-using RebuildZoneServer.Data.Management.Types;
 using RebuildZoneServer.Networking;
 using RebuildZoneServer.Sim;
 using RebuildZoneServer.Util;
@@ -26,6 +22,9 @@ namespace RebuildZoneServer.EntityComponents
 
 		public Position[] WalkPath;
 
+		public EcsEntity LastAttacked;
+
+		public float AttackCooldown;
 		public float MoveSpeed;
 		public float MoveCooldown;
 		public int MoveStep;
@@ -37,6 +36,7 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			Id = -1;
 			Entity = EcsEntity.Null;
+			LastAttacked = EcsEntity.Null;
 			IsActive = true;
 			Map = null;
 			State = CharacterState.Idle;
@@ -180,17 +180,11 @@ namespace RebuildZoneServer.EntityComponents
 
 			Map.StartMove(ref Entity, this);
 		}
-
-		private MapConnector GetConnectorForPosition(Position nextPos)
-		{
-			if (Type != CharacterType.Player)
-				return null;
-
-			return DataManager.GetConnector(Map.Name, nextPos);;
-		}
 		
 		public void Update(ref EcsEntity e)
 		{
+			AttackCooldown -= Time.DeltaTimeFloat;
+
 			if (State == CharacterState.Idle)
 				return;
 
@@ -208,28 +202,20 @@ namespace RebuildZoneServer.EntityComponents
 					MoveStep++;
 					var nextPos = WalkPath[MoveStep];
 
-					var connector = GetConnectorForPosition(nextPos);
-					
-					if (connector != null)
-					{
-						State = CharacterState.Idle;
+					Map.MoveEntity(ref Entity, this, nextPos, true);
 
-						if(connector.Map == connector.Target)
-							Map.MoveEntity(ref e, this, connector.DstArea.RandomInArea());
-						else
-							Map.World.MovePlayerMap(ref e, this, connector.Target, connector.DstArea.RandomInArea());
-					}
+					if (nextPos == TargetPosition)
+						State = CharacterState.Idle;
 					else
 					{
-						Map.MoveEntity(ref e, this, nextPos, true);
+						FacingDirection = (WalkPath[MoveStep + 1] - WalkPath[MoveStep]).GetDirectionForOffset();
+						MoveCooldown += MoveSpeed;
+					}
 
-						if (nextPos == TargetPosition)
-							State = CharacterState.Idle;
-						else
-						{
-							FacingDirection = (WalkPath[MoveStep + 1] - WalkPath[MoveStep]).GetDirectionForOffset();
-							MoveCooldown += MoveSpeed;
-						}
+					if (Type == CharacterType.Player)
+					{
+						var player = Entity.Get<Player>();
+						player.UpdatePosition(this, nextPos);
 					}
 				}
 			}

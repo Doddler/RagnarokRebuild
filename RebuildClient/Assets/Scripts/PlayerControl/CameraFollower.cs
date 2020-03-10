@@ -383,6 +383,14 @@ namespace Assets.Scripts
                 
                 TargetUi.rectTransform.anchoredPosition = new Vector2(screenPos.x * reverseScale, ((screenPos.y - UiCanvas.pixelRect.height)-30) * reverseScale);
 	            TargetUi.text = color + anim.Controllable.gameObject.name;
+
+	            if (anim.Controllable.CharacterType == CharacterType.Monster)
+	            {
+		            if (Input.GetMouseButtonDown(0))
+		            {
+                        NetworkManager.Instance.SendAttack(anim.Controllable.Id);
+		            }
+	            }
             }
             else
 	            ChangeCursor(NormalCursorTexture);

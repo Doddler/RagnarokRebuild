@@ -30,6 +30,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			connection.Character.IsActive = false;
 			var networkPlayer = playerEntity.Get<Player>();
 			networkPlayer.Connection = connection;
+			connection.Player = networkPlayer;
 
 			ServerLogger.Log($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 

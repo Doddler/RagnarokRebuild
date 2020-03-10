@@ -154,6 +154,8 @@ namespace RebuildZoneServer.Sim
 			ch.Type = CharacterType.Monster;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
 
+			entityList.Add(ch.Id, e);
+
 			m.Initialize(ref e, ch, ce, mon, mon.AiType, spawnEntry);
 
 			//ServerLogger.Log("Entity spawned at position: " + ch.Position);
@@ -207,10 +209,17 @@ namespace RebuildZoneServer.Sim
 			ch.Type = CharacterType.Player;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
 
+			ce.Init();
+
 			player.Connection = connection;
 			player.Entity = e;
 			player.IsMale = GameRandom.Next(0, 1) == 0;
 			player.HeadId = (byte)GameRandom.Next(0, 28);
+
+			connection.Player = player;
+
+
+			entityList.Add(ch.Id, e);
 			//player.IsMale = false;
 
 			//player.IsMale = true;
@@ -222,6 +231,14 @@ namespace RebuildZoneServer.Sim
 
 
 			return e;
+		}
+
+		public EcsEntity GetEntityById(int id)
+		{
+			if (entityList.TryGetValue(id, out var entity))
+				return entity;
+
+			return EcsEntity.Null;
 		}
 		
 		public void RemoveEntity(ref EcsEntity entity)

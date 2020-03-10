@@ -48,7 +48,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			connection.Entity = playerEntity;
 			connection.LastKeepAlive = Time.ElapsedTime;
 			connection.Character = playerEntity.Get<Character>();
-			connection.Character.ClassId = 200; //Gamemaster
+			//connection.Character.ClassId = 200; //Gamemaster
 			connection.Character.MoveSpeed = 0.08f;
 			connection.Character.IsActive = false;
 			var networkPlayer = playerEntity.Get<Player>();

@@ -14,6 +14,7 @@ namespace RebuildZoneServer.Networking
 		public ConnectionStatus Status;
 		public EcsEntity Entity;
 		public Character Character;
+		public Player Player;
 		public double LastKeepAlive;
 		
 		public NetworkConnection(NetConnection connection)

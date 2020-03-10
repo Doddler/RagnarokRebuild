@@ -61,7 +61,7 @@ MonoBehaviour:
   _directSamples: 32
   _indirectSamples: 256
   _environmentSamples: 256
-  _bakeResolution: 4
+  _bakeResolution: 5
   _padding: 2
   _maxAtlasSize: 1024
   _realtimeGI: 0

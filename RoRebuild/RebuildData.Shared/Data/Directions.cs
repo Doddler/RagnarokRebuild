@@ -19,6 +19,19 @@ namespace RebuildData.Shared.Data
 			return Direction.None;
 		}
 
+		public static Direction GetFacingForAngle(float angle)
+		{
+			if (angle > 157.5f) return Direction.South;
+			if (angle > 112.5f) return Direction.SouthWest;
+			if (angle > 67.5f) return Direction.West;
+			if (angle > 22.5f) return Direction.NorthWest;
+			if (angle > -22.5f) return Direction.North;
+			if (angle > -67.5f) return Direction.NorthEast;
+			if (angle > -112.5f) return Direction.East;
+			if (angle > -157.5f) return Direction.SouthEast;
+			return Direction.South;
+		}
+
 		public static Direction GetReverseDirection(Direction d)
 		{
 			switch (d)
