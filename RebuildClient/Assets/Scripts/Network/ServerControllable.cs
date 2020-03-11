@@ -4,6 +4,7 @@ using Assets.Scripts.Sprites;
 using RebuildData.Shared.Enum;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.Network
 {
@@ -198,6 +199,7 @@ namespace Assets.Scripts.Network
 			sprite.sortingOrder = -1;
 
 			SpriteAnimator.Shadow = go;
+			SpriteAnimator.ShadowSortingGroup = go.AddComponent<SortingGroup>();
 			if(SpriteAnimator.State == SpriteState.Sit)
 				go.SetActive(false);
         }

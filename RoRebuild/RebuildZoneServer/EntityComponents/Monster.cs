@@ -68,52 +68,30 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			if (target.IsNull() || !target.IsAlive())
 				return false;
+			var ch = targetCharacter;
+			if (ch == null)
+				return false;
+			if (ch.Map != character.Map)
+				return false;
+			if (ch.SpawnImmunity > 0)
+				return false;
 			return true;
 		}
 
-		public bool ChaseTargetIfPossible(ref EcsEntity e)
-		{
-			var target = targetCharacter;
-			if (target == null)
-				return false;
-
-			var distance = character.Position.SquareDistance(target.Position);
-
-			if (distance <= 1)
-				return false;
-
-			if (distance > 14)
-				return false;
-
-			var targetChar = targetCharacter;
-			if (targetChar == null)
-				return false;
-
-			if (character.TryMove(ref e, targetChar.Position, 1))
-			{
-				randomMoveCooldown = 0;
-				return true;
-			}
-
-			return false;
-		}
-
-		public bool ScanForTarget(ref EcsEntity e)
+		private bool FindRandomTargetInRange(int distance, out EcsEntity newTarget)
 		{
 			var list = EntityListPool.Get();
-
-			target = EcsEntity.Null;
-
-			character.Map.GatherPlayersInRange(character, 9, list);
+			
+			character.Map.GatherPlayersInRange(character, distance, list, true);
 
 			if (list.Count == 0)
 			{
 				EntityListPool.Return(list);
+				newTarget = EcsEntity.Null;
 				return false;
 			}
 
-			target = list[0];
-			hasTarget = true;
+			newTarget = list.Count == 1 ? list[0] : list[GameRandom.Next(0, list.Count - 1)];
 
 			EntityListPool.Return(list);
 			
@@ -144,6 +122,9 @@ namespace RebuildZoneServer.EntityComponents
 
 			if(aiCooldown < 0)
 				aiCooldown += 0.1f;
+
+			if (character.Map.PlayerCount == 0)
+				aiCooldown += 2f;
 		}
 
 		public void Update(ref EcsEntity e, Character ch, CombatEntity ce)

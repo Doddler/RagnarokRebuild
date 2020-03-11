@@ -48,6 +48,7 @@ namespace RebuildData.Server.Data.Monster
 		OutRandomMoveStart,
 		OutWaitStart,
 		OutStartChase,
+		OutTryAttacking,
 		OutStartAttacking,
 		OutSearch,
 		OutChangeNormal,

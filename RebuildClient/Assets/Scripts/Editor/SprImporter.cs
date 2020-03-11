@@ -64,6 +64,8 @@ public class SprImporter : ScriptedImporter
             for(var i = 0; i < asset.Sounds.Length; i++)
             {
                 var s = actLoader.Sounds[i];
+                if (s == "atk")
+	                continue;
                 var sPath = $"Assets/sounds/{s}";
                 var sound = AssetDatabase.LoadAssetAtPath<AudioClip>(sPath);
                 if(sound == null)
@@ -72,8 +74,7 @@ public class SprImporter : ScriptedImporter
             }
             //asset.Sounds = asset.Sounds.ToArray();
             
-
-            Debug.Log(asset.Sprites.Length);
+            //Debug.Log(asset.Sprites.Length);
 
             switch (asset.Actions.Length)
             {
@@ -105,8 +106,14 @@ public class SprImporter : ScriptedImporter
 
             foreach (var a in asset.Actions)
             {
+	            var frameId = 0;
                 foreach (var f in a.Frames)
                 {
+	                if (f.IsAttackFrame)
+		                asset.AttackFrameTime = a.Delay * frameId;
+
+	                frameId++;
+
                     foreach (var l in f.Layers)
                     {
                         if (l.Index == -1)
@@ -117,7 +124,6 @@ public class SprImporter : ScriptedImporter
                             y = Mathf.Abs(l.Position.y - sprite.y / 2f);
                         if (y > maxExtent)
                             maxExtent = y;
-
                     }
                 }
             }

@@ -120,12 +120,15 @@ namespace RebuildZoneServer.Util
 			return false;
 		}
 
-		public void ClearInactive()
+		public int ClearInactive()
 		{
+			var clearCount = 0;
 			for (var i = 0; i < count; i++)
 			{
 				if (!entities[i].IsAlive())
 				{
+					clearCount++;
+
 					if (i == count - 1)
 					{
 						//entities[i] = default;
@@ -138,6 +141,8 @@ namespace RebuildZoneServer.Util
 					}
 				}
 			}
+
+			return clearCount;
 		}
 
 		public Enumerator GetEnumerator()

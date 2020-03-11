@@ -32,6 +32,7 @@ namespace Assets.Scripts
         public RoLayer[] Layers;
         public RoPos[] Pos;
         public int Sound;
+        public bool IsAttackFrame;
     }
 
     [Serializable]
@@ -280,5 +281,6 @@ namespace Assets.Scripts
         public Texture2D Atlas;
         public int Size;
         public AudioClip[] Sounds;
+        public int AttackFrameTime;
     }
 }

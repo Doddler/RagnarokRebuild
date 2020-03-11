@@ -1,6 +1,7 @@
 ﻿using System;
 using Leopotam.Ecs;
 using RebuildData.Server.Logging;
+using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildZoneServer.Data.Management;
@@ -50,11 +51,9 @@ namespace RebuildZoneServer.EntityComponents
 		public void PerformAttack(Character chara, Character targetCharacter)
 		{
 			chara.StopMovingImmediately();
+			chara.SpawnImmunity = -1;
 
-			var angle = chara.Position.Angle(targetCharacter.Position);
-			var dir = Directions.GetFacingForAngle(angle);
-
-			chara.FacingDirection = dir;
+			chara.FacingDirection = DistanceCache.Direction(chara.Position, targetCharacter.Position);
 
 			chara.Map.GatherPlayersForMultiCast(ref Entity, chara);
 			CommandBuilder.AttackMulti(chara, targetCharacter);

@@ -60,6 +60,9 @@ namespace RebuildZoneServer.EntityComponents
 			if (targetCharacter.Position.SquareDistance(character.Position) > monsterBase.ChaseDist)
 				return true;
 
+			if (character.MoveSpeed < 0 && InEnemyOutOfAttackRange())
+				return true;
+
 			if (Pathfinder.GetPath(character.Map.WalkData, character.Position, targetCharacter.Position, null, 1) == 0)
 				return true;
 
@@ -68,8 +71,19 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool InAttackRange()
 		{
-			if (!ValidateTarget())
+			if (character.Map.PlayerCount == 0)
 				return false;
+
+			if (!ValidateTarget())
+				target = EcsEntity.Null;
+
+			if (target == EcsEntity.Null)
+			{
+				if (!FindRandomTargetInRange(monsterBase.Range, out var newTarget))
+					return false;
+
+				target = newTarget;
+			}
 
 			if (targetCharacter.Position.SquareDistance(character.Position) <= monsterBase.Range)
 				return true;
@@ -109,30 +123,21 @@ namespace RebuildZoneServer.EntityComponents
 			if (targetCharacter == null)
 				return false;
 
-			if (targetCharacter.Position.SquareDistance(character.Position) <= monsterBase.Range)
-				return false;
+			if (targetCharacter.Position.SquareDistance(character.Position) > monsterBase.Range)
+				return true;
 
-			return true;
+			return false;
 		}
 
 		private bool InTargetSearch()
 		{
-			var list = EntityListPool.Get();
-
-			target = EcsEntity.Null;
-
-			character.Map.GatherPlayersInRange(character, monsterBase.ScanDist, list);
-
-			if (list.Count == 0)
-			{
-				EntityListPool.Return(list);
+			if (character.Map.PlayerCount == 0)
 				return false;
-			}
 
-			target = list.Count == 1 ? list[0] : list[GameRandom.Next(0, list.Count - 1)];
+			if (!FindRandomTargetInRange(monsterBase.ScanDist, out var newTarget))
+				return false;
 
-			EntityListPool.Return(list);
-
+			target = newTarget;
 			return true;
 		}
 
@@ -148,6 +153,7 @@ namespace RebuildZoneServer.EntityComponents
 				case MonsterOutputCheck.OutWaitStart: return OutWaitStart();
 				case MonsterOutputCheck.OutSearch: return OutSearch();
 				case MonsterOutputCheck.OutStartChase: return OutStartChase();
+				case MonsterOutputCheck.OutTryAttacking: return OutTryAttacking();
 				case MonsterOutputCheck.OutStartAttacking: return OutStartAttacking();
 				case MonsterOutputCheck.OutPerformAttack: return OutPerformAttack();
 			}
@@ -211,11 +217,8 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			aiCooldown += monsterBase.AttackTime;
 			character.AttackCooldown += monsterBase.RechargeTime;
-
-			var angle = character.Position.Angle(targetCharacter.Position);
-			var dir = Directions.GetFacingForAngle(angle);
-
-			character.FacingDirection = dir;
+			
+			character.FacingDirection = DistanceCache.Direction(character.Position, targetCharacter.Position);
 
 			//ServerLogger.Log($"{aiCooldown} {character.AttackCooldown} {angle} {dir}");
 
@@ -224,6 +227,14 @@ namespace RebuildZoneServer.EntityComponents
 			CommandBuilder.ClearRecipients();
 
 			return true;
+		}
+
+		private bool OutTryAttacking()
+		{
+			if (!InAttackRange())
+				return false;
+
+			return OutStartAttacking();
 		}
 
 		private bool OutStartAttacking()

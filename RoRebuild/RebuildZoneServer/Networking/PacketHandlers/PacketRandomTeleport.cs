@@ -44,7 +44,8 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			
 			player.AddActionDelay(1.1f); //add 1s to the player's cooldown times. Should lock out immediate re-use.
 			ch.ResetState();
-			map.MoveEntity(ref connection.Entity, ch, p);
+			ch.SpawnImmunity = 5f;
+			map.TeleportEntity(ref connection.Entity, ch, p);
 		}
 	}
 }

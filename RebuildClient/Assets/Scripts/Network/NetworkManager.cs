@@ -380,7 +380,7 @@ namespace Assets.Scripts.Network
 			controllable.SpriteAnimator.Direction = dir;
 			controllable.SpriteAnimator.State = SpriteState.Idle;
 			controllable.SpriteAnimator.AnimSpeed = 1f;
-			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1);
+			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
 			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 		}
 

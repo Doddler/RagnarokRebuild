@@ -24,6 +24,7 @@ namespace RebuildZoneServer.EntityComponents
 
 		public EcsEntity LastAttacked;
 
+		public float SpawnImmunity;
 		public float AttackCooldown;
 		public float MoveSpeed;
 		public float MoveCooldown;
@@ -102,9 +103,11 @@ namespace RebuildZoneServer.EntityComponents
 
 		private void ChangeToActionState()
 		{
+			SpawnImmunity = -1f;
+
 			if (Type != CharacterType.Player)
 				return;
-
+			
 			var player = Entity.Get<Player>();
 			player.HeadFacing = HeadFacing.Center; //don't need to send this to client, they will assume it resets
 		}
@@ -184,6 +187,7 @@ namespace RebuildZoneServer.EntityComponents
 		public void Update(ref EcsEntity e)
 		{
 			AttackCooldown -= Time.DeltaTimeFloat;
+			SpawnImmunity -= Time.DeltaTimeFloat;
 
 			if (State == CharacterState.Idle)
 				return;

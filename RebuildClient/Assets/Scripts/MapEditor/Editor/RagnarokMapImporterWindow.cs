@@ -14,259 +14,299 @@ using Debug = UnityEngine.Debug;
 namespace Assets.Scripts.MapEditor.Editor
 {
 
-    class RagnarokMapImporterWindow : EditorWindow
-    {
-        //[MenuItem("Ragnarok/Test Import Effect")]
-        //static void TestImportEffect()
-        //{
+	class RagnarokMapImporterWindow : EditorWindow
+	{
+		//[MenuItem("Ragnarok/Test Import Effect")]
+		//static void TestImportEffect()
+		//{
 
-        //}
+		//}
 
-        [MenuItem("Ragnarok/Update Addressables")]
-        public static void UpdateAddressables()
-        {
-	        var settings = AddressableAssetSettingsDefaultObject.Settings;
-	        var defGroup = settings.DefaultGroup;
-            var mapGroup = settings.FindGroup("Scenes");
-            var entriesAdded = new List<AddressableAssetEntry>();
-            
-            //update sprites
-            var guids = AssetDatabase.FindAssets("t:RoSpriteData", new[] { "Assets/Sprites" });
+		[MenuItem("Ragnarok/Build Sprite Attack Timing")]
+		public static void BuildSpriteAttackTiming()
+		{
+			var guids = AssetDatabase.FindAssets("t:RoSpriteData", new[] { "Assets/Sprites" });
 
-            for (int i = 0; i < guids.Length; i++)
-            {
-	            var entry = settings.CreateOrMoveEntry(guids[i], defGroup, readOnly: false, postEvent: false);
-                //Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
-	            entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
-	            entry.labels.Add("Sprite");
+			var output = new List<string>();
 
-	            entriesAdded.Add(entry);
-            }
+			for (var i = 0; i < guids.Length; i++)
+			{
+				var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+				var asset = AssetDatabase.LoadAssetAtPath<RoSpriteData>(path);
+				if (asset.Type != SpriteType.Monster && asset.Type != SpriteType.Monster2)
+					continue;
 
-            //update scenes
-            guids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets/Scenes/Maps" });
+				var actionId = RoAnimationHelper.GetMotionIdForSprite(asset.Type, SpriteMotion.Attack1);
+				if (actionId == -1)
+					actionId = RoAnimationHelper.GetMotionIdForSprite(asset.Type, SpriteMotion.Attack2);
+				if (actionId == -1)
+					continue;
 
-            for (int i = 0; i < guids.Length; i++)
-            {
-	            var entry = settings.CreateOrMoveEntry(guids[i], mapGroup, readOnly: false, postEvent: false);
-	            //Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
-	            entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
-	            entry.labels.Add("Maps");
+				var frames = asset.Actions[actionId].Frames;
+				var found = false;
+				for (var j = 0; j < frames.Length; j++)
+				{
+					if (frames[j].IsAttackFrame)
+					{
+						var time = j * asset.Actions[actionId].Delay;
+						output.Add($"{asset.Name}:{time}");
+						found = true;
+						break;
+					}
+				}
 
-	            entriesAdded.Add(entry);
-            }
+				if (found)
+					continue;
+			}
 
-            settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entriesAdded, true);
-        }
+			File.WriteAllLines(@"Assets/Sprites/AttackTiming.txt", output);
+		}
 
-        //[MenuItem("Ragnarok/Test Import Model")]
-        static void TestImportModel()
-        {
-            RagnarokModelLoader.LoadModelTest();
-        }
+		[MenuItem("Ragnarok/Update Addressables")]
+		public static void UpdateAddressables()
+		{
+			var settings = AddressableAssetSettingsDefaultObject.Settings;
+			var defGroup = settings.DefaultGroup;
+			var mapGroup = settings.FindGroup("Scenes");
+			var entriesAdded = new List<AddressableAssetEntry>();
 
-        //[MenuItem("Ragnarok/Import Test Walk Data")]
-        static RoMapData LoadWalkData(string importPath)
-        {
+			//update sprites
+			var guids = AssetDatabase.FindAssets("t:RoSpriteData", new[] { "Assets/Sprites" });
 
-            var altitude = new RagnarokWalkableDataImporter();
+			for (int i = 0; i < guids.Length; i++)
+			{
+				var entry = settings.CreateOrMoveEntry(guids[i], defGroup, readOnly: false, postEvent: false);
+				//Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
+				entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
+				entry.labels.Add("Sprite");
 
-            //var importPath = @"G:\Projects2\Ragnarok\Resources\data\6@tower.gat";
+				entriesAdded.Add(entry);
+			}
 
+			//update scenes
+			guids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets/Scenes/Maps" });
 
-            var walkData = altitude.LoadWalkData(importPath);
-            walkData.name = Path.GetFileNameWithoutExtension(importPath) + "_walk";
+			for (int i = 0; i < guids.Length; i++)
+			{
+				var entry = settings.CreateOrMoveEntry(guids[i], mapGroup, readOnly: false, postEvent: false);
+				//Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
+				entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
+				entry.labels.Add("Maps");
 
-            var saveDir = "Assets/maps/altitude";
+				entriesAdded.Add(entry);
+			}
 
-            if (!Directory.Exists(saveDir))
-                Directory.CreateDirectory(saveDir);
-            
-            var dataPath = Path.Combine(saveDir, walkData.name + ".asset").Replace("\\", "/");
+			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entriesAdded, true);
+		}
 
-            AssetDatabase.CreateAsset(walkData, dataPath);
+		//[MenuItem("Ragnarok/Test Import Model")]
+		static void TestImportModel()
+		{
+			RagnarokModelLoader.LoadModelTest();
+		}
 
-            walkData.RefreshTextureLookup();
-            walkData.RebuildAtlas();
+		//[MenuItem("Ragnarok/Import Test Walk Data")]
+		static RoMapData LoadWalkData(string importPath)
+		{
 
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
+			var altitude = new RagnarokWalkableDataImporter();
 
-            walkData = AssetDatabase.LoadAssetAtPath<RoMapData>(dataPath);
-
-            return walkData;
-        }
-
-
-        [MenuItem("Ragnarok/Import Maps")]
-        static void ImportFiles()
-        {
-            var files = StandaloneFileBrowser.OpenFilePanel("Open File", RagnarokDirectory.GetRagnarokDataDirectory, "gnd", true);
-            
-            if (files.Length <= 0)
-                return;
-
-            //var saveDir = EditorUtility.SaveFolderPanel("Save Folder", Application.dataPath, "");
-            var saveDir = Path.Combine(Application.dataPath, "maps").Replace("\\","/");
-            //Debug.Log(saveDir);
-
-            foreach (var f in files)
-            {
-                var lastDirectory = Path.GetDirectoryName(f);
-                var baseName = Path.GetFileNameWithoutExtension(f);
-                Debug.Log(f);
-
-                var relativeDir = saveDir.Substring(saveDir.IndexOf("Assets/"));
-
-                var loader = new RagnarokMapLoader();
-                var data = loader.ImportMap(f, relativeDir);
-                var dataPath = Path.Combine(relativeDir, data.name + ".asset").Replace("\\", "/");
-                
-                AssetDatabase.CreateAsset(data, dataPath);
-
-                data = AssetDatabase.LoadAssetAtPath<RoMapData>(dataPath);
-                
-                data.RefreshTextureLookup();
-                data.RebuildAtlas();
-
-                var gatPath = Path.Combine(lastDirectory, baseName + ".gat");
-                data.WalkData = LoadWalkData(gatPath);
+			//var importPath = @"G:\Projects2\Ragnarok\Resources\data\6@tower.gat";
 
 
-                var resourcePath = Path.Combine(lastDirectory, baseName + ".rsw");
-                if (File.Exists(resourcePath))
-                {
-                    var world = RagnarokResourceLoader.LoadResourceFile(resourcePath);
-                    world.name = baseName + " world data";
+			var walkData = altitude.LoadWalkData(importPath);
+			walkData.name = Path.GetFileNameWithoutExtension(importPath) + "_walk";
 
-                    var worldFolder = Path.Combine(relativeDir, "world");
-                    if (!Directory.Exists(worldFolder))
-                        Directory.CreateDirectory(worldFolder);
+			var saveDir = "Assets/maps/altitude";
 
-                    var worldAssetPath = Path.Combine(worldFolder, baseName + "_world.asset").Replace("\\", "/");
+			if (!Directory.Exists(saveDir))
+				Directory.CreateDirectory(saveDir);
 
-                    AssetDatabase.CreateAsset(world, worldAssetPath);
+			var dataPath = Path.Combine(saveDir, walkData.name + ".asset").Replace("\\", "/");
 
-                    foreach (var model in world.Models)
-                    {
-                        var baseFolder = Path.Combine(RagnarokDirectory.GetRagnarokDataDirectory, "model");
+			AssetDatabase.CreateAsset(walkData, dataPath);
 
-                        var modelPath = Path.Combine(baseFolder, model.FileName);
-                        var relative = DirectoryHelper.GetRelativeDirectory(baseFolder, Path.GetDirectoryName(modelPath));
-                        var mBaseName = Path.GetFileNameWithoutExtension(model.FileName);
+			walkData.RefreshTextureLookup();
+			walkData.RebuildAtlas();
 
-                        var prefabFolder = Path.Combine("Assets/models/prefabs/", relative).Replace("\\", "/");
-                        var prefabPath = Path.Combine(prefabFolder, mBaseName + ".prefab").Replace("\\", "/");
+			AssetDatabase.SaveAssets();
+			AssetDatabase.Refresh();
 
-                        if (!Directory.Exists(prefabFolder))
-                            Directory.CreateDirectory(prefabFolder);
+			walkData = AssetDatabase.LoadAssetAtPath<RoMapData>(dataPath);
+
+			return walkData;
+		}
 
 
-                        if (!File.Exists(prefabPath))
-                        {
-                            var modelLoader = new RagnarokModelLoader();
+		[MenuItem("Ragnarok/Import Maps")]
+		static void ImportFiles()
+		{
+			var files = StandaloneFileBrowser.OpenFilePanel("Open File", RagnarokDirectory.GetRagnarokDataDirectory, "gnd", true);
 
-                            modelLoader.LoadModel(modelPath, relative);
-                            var obj = modelLoader.Compile();
+			if (files.Length <= 0)
+				return;
 
-                            PrefabUtility.SaveAsPrefabAssetAndConnect(obj, prefabPath, InteractionMode.AutomatedAction);
+			//var saveDir = EditorUtility.SaveFolderPanel("Save Folder", Application.dataPath, "");
+			var saveDir = Path.Combine(Application.dataPath, "maps").Replace("\\", "/");
+			//Debug.Log(saveDir);
 
-                            var prefabRef = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
-                            DestroyImmediate(obj);
+			foreach (var f in files)
+			{
+				var lastDirectory = Path.GetDirectoryName(f);
+				var baseName = Path.GetFileNameWithoutExtension(f);
+				Debug.Log(f);
 
-                        }
-                    
-                    }
-                    
-                    //var builder = new RagnarokWorldSceneBuilder();
-                    //builder.Load(data, world);
+				var relativeDir = saveDir.Substring(saveDir.IndexOf("Assets/"));
 
-                }
+				var loader = new RagnarokMapLoader();
+				var data = loader.ImportMap(f, relativeDir);
+				var dataPath = Path.Combine(relativeDir, data.name + ".asset").Replace("\\", "/");
 
-                AssetDatabase.SaveAssets();
+				AssetDatabase.CreateAsset(data, dataPath);
 
-                EditorUtility.UnloadUnusedAssetsImmediate();
-                
-                var importer = new RagnarokMapDataImporter(dataPath, baseName);
-                importer.Import(true, true, true, true, true);
+				data = AssetDatabase.LoadAssetAtPath<RoMapData>(dataPath);
 
-                AssetDatabase.SaveAssets();
-            }
-        }
+				data.RefreshTextureLookup();
+				data.RebuildAtlas();
 
-        //[MenuItem("Ragnarok/Test Import Texture")]
-        //static void TestImportTexture()
-        //{
-        //    //var file = EditorUtility.OpenFilePanel("Load Image", )
-        //    var tex = LoadTexture(@"G:\Projects2\Ragnarok\Resources\data\texture\기타마을\sage_bar01.bmp");
-        //    var png = tex.EncodeToPNG();
-        //    File.WriteAllBytes(@"G:\Projects2\test.png", png);
-        //}
+				var gatPath = Path.Combine(lastDirectory, baseName + ".gat");
+				data.WalkData = LoadWalkData(gatPath);
 
-        private static Texture2D LoadTexture(string path)
-        {
-            var bmp = new BMPLoader();
-            bmp.ForceAlphaReadWhenPossible = false;
-            var img = bmp.LoadBMP(path);
 
-            var colors = (Color32[])img.imageData.Clone();
+				var resourcePath = Path.Combine(lastDirectory, baseName + ".rsw");
+				if (File.Exists(resourcePath))
+				{
+					var world = RagnarokResourceLoader.LoadResourceFile(resourcePath);
+					world.name = baseName + " world data";
 
-            var width = img.info.width;
-            var height = img.info.height;
+					var worldFolder = Path.Combine(relativeDir, "world");
+					if (!Directory.Exists(worldFolder))
+						Directory.CreateDirectory(worldFolder);
 
-            //magic pink conversion and transparent color expansion
-            for (var y = 0; y < width; y++)
-            {
-                for (var x = 0; x < height; x++)
-                {
-                    var count = 0;
-                    var r = 0;
-                    var g = 0;
-                    var b = 0;
+					var worldAssetPath = Path.Combine(worldFolder, baseName + "_world.asset").Replace("\\", "/");
 
-                    var color = colors[x + y * width];
-                    if (color.r != 255 || color.g != 0 || color.b != 255)
-                        continue;
+					AssetDatabase.CreateAsset(world, worldAssetPath);
 
-                    //Debug.Log("OHWOW: " + color);
+					foreach (var model in world.Models)
+					{
+						var baseFolder = Path.Combine(RagnarokDirectory.GetRagnarokDataDirectory, "model");
 
-                    for (var y2 = -1; y2 <= 1; y2++)
-                    {
-                        for (var x2 = -1; x2 <= 1; x2++)
-                        {
-                            if (y + y2 < 0 || y + y2 >= width)
-                                continue;
-                            if (x + x2 < 0 || x + x2 >= height)
-                                continue;
-                            var color2 = colors[x + x2 + (y + y2) * width];
+						var modelPath = Path.Combine(baseFolder, model.FileName);
+						var relative = DirectoryHelper.GetRelativeDirectory(baseFolder, Path.GetDirectoryName(modelPath));
+						var mBaseName = Path.GetFileNameWithoutExtension(model.FileName);
 
-                            if (color2.r == 255 && color2.g == 0 && color2.b == 255)
-                                continue;
+						var prefabFolder = Path.Combine("Assets/models/prefabs/", relative).Replace("\\", "/");
+						var prefabPath = Path.Combine(prefabFolder, mBaseName + ".prefab").Replace("\\", "/");
 
-                            count++;
+						if (!Directory.Exists(prefabFolder))
+							Directory.CreateDirectory(prefabFolder);
 
-                            r += color2.r;
-                            g += color2.g;
-                            b += color2.b;
-                        }
-                    }
-                    
-                    if (count > 0)
-                    {
-                        var r2 = (byte)Mathf.Clamp(r / count, 0, 255);
-                        var g2 = (byte)Mathf.Clamp(g / count, 0, 255);
-                        var b2 = (byte)Mathf.Clamp(b / count, 0, 255);
 
-                        //Debug.Log($"{x},{y} - change {color} to {r2},{g2},{b2}");
+						if (!File.Exists(prefabPath))
+						{
+							var modelLoader = new RagnarokModelLoader();
 
-                        img.imageData[x + y * width] = new Color32(r2, g2, b2, 0);
-                    }
-                    else
-                        img.imageData[x + y * width] = new Color32(0, 0, 0, 0);
-                }
-            }
+							modelLoader.LoadModel(modelPath, relative);
+							var obj = modelLoader.Compile();
 
-            return img.ToTexture2D();
-        }
-    }
+							PrefabUtility.SaveAsPrefabAssetAndConnect(obj, prefabPath, InteractionMode.AutomatedAction);
+
+							var prefabRef = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+							DestroyImmediate(obj);
+
+						}
+
+					}
+
+					//var builder = new RagnarokWorldSceneBuilder();
+					//builder.Load(data, world);
+
+				}
+
+				AssetDatabase.SaveAssets();
+
+				EditorUtility.UnloadUnusedAssetsImmediate();
+
+				var importer = new RagnarokMapDataImporter(dataPath, baseName);
+				importer.Import(true, true, true, true, true);
+
+				AssetDatabase.SaveAssets();
+			}
+		}
+
+		//[MenuItem("Ragnarok/Test Import Texture")]
+		//static void TestImportTexture()
+		//{
+		//    //var file = EditorUtility.OpenFilePanel("Load Image", )
+		//    var tex = LoadTexture(@"G:\Projects2\Ragnarok\Resources\data\texture\기타마을\sage_bar01.bmp");
+		//    var png = tex.EncodeToPNG();
+		//    File.WriteAllBytes(@"G:\Projects2\test.png", png);
+		//}
+
+		private static Texture2D LoadTexture(string path)
+		{
+			var bmp = new BMPLoader();
+			bmp.ForceAlphaReadWhenPossible = false;
+			var img = bmp.LoadBMP(path);
+
+			var colors = (Color32[])img.imageData.Clone();
+
+			var width = img.info.width;
+			var height = img.info.height;
+
+			//magic pink conversion and transparent color expansion
+			for (var y = 0; y < width; y++)
+			{
+				for (var x = 0; x < height; x++)
+				{
+					var count = 0;
+					var r = 0;
+					var g = 0;
+					var b = 0;
+
+					var color = colors[x + y * width];
+					if (color.r != 255 || color.g != 0 || color.b != 255)
+						continue;
+
+					//Debug.Log("OHWOW: " + color);
+
+					for (var y2 = -1; y2 <= 1; y2++)
+					{
+						for (var x2 = -1; x2 <= 1; x2++)
+						{
+							if (y + y2 < 0 || y + y2 >= width)
+								continue;
+							if (x + x2 < 0 || x + x2 >= height)
+								continue;
+							var color2 = colors[x + x2 + (y + y2) * width];
+
+							if (color2.r == 255 && color2.g == 0 && color2.b == 255)
+								continue;
+
+							count++;
+
+							r += color2.r;
+							g += color2.g;
+							b += color2.b;
+						}
+					}
+
+					if (count > 0)
+					{
+						var r2 = (byte)Mathf.Clamp(r / count, 0, 255);
+						var g2 = (byte)Mathf.Clamp(g / count, 0, 255);
+						var b2 = (byte)Mathf.Clamp(b / count, 0, 255);
+
+						//Debug.Log($"{x},{y} - change {color} to {r2},{g2},{b2}");
+
+						img.imageData[x + y * width] = new Color32(r2, g2, b2, 0);
+					}
+					else
+						img.imageData[x + y * width] = new Color32(0, 0, 0, 0);
+				}
+			}
+
+			return img.ToTexture2D();
+		}
+	}
 }

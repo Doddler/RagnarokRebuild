@@ -91,7 +91,7 @@
 4088,STAINER,Stainer,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiPassive,stainer.spr,0,0.5,1
 4089,PETIT,Earth Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,petit.spr,0,0.5,1
 4090,PETIT_,Sky Petit,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,150,Normal,AiAggressive,petit_.spr,0,0.5,1
-4091,FLORA,Flora,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,flora.spr,0,-1,1
+4091,FLORA,Flora,1,1,0,0,0,0,0,0,1,1,3,0,0,0,0,10,12,Medium,Formless,Neutral1,1432,576,432,-1,Normal,AiAggressiveImmobile,flora.spr,0,-1,1
 4092,MANTIS,Mantis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,mantis.spr,0,0.5,1
 4093,ARGOS,Argos,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argos.spr,0,0.5,1
 4094,ARGIOPE,Argiope,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,300,Normal,AiAggressive,argiope.spr,0,-1,1
@@ -120,7 +120,7 @@
 4117,ROTAR_ZAIRO,Rotor Gyro,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,155,Normal,AiPassive,rotar_zairo.spr,0,0.5,1
 4118,DRAINLIAR,Drainliar,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,250,Normal,AiAggressive,drainliar.spr,0,0.5,1
 4119,MUMMY,Mummy,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,1772,384,72,300,Normal,AiAggressive,mummy.spr,0,0.5,1
-4120,ISIS,Isis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,1384,336,768,200,Normal,AiAggressive,isis.spr,0,0.5,1
+4120,ISIS,Isis,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,1384,336,768,200,Normal,AiAggressive,isis.spr,0.4,0.5,1
 4121,SOLDIER_SKELETON,Soldier Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,skel_soldier.spr,0,0.5,1
 4122,ARCHER_SKELETON,Archer Skeleton,1,1,0,0,0,0,0,0,1,1,9,0,0,0,0,10,12,Medium,Formless,Neutral1,2864,576,864,300,Normal,AiAggressive,skel_archer.spr,0,0.5,1
 4123,MIMIC,Mimic,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,972,288,500,100,Normal,AiAggressive,mimic.spr,0,0.5,1
@@ -130,6 +130,7 @@
 4127,OSIRIS,Osiris,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,1072,384,672,100,Normal,AiAggressive,osiris.spr,0,0.5,1
 4128,MINOROUS,Minorous,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,200,Normal,AiAggressive,minorous.spr,0,0.5,1
 4129,ARCLOUSE,Arclouse,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,100,Normal,AiAggressive,arclouse.spr,0,0.5,1
-4130,AMON_RA,Amon Ra,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,100,100,100,-1,Normal,AiAggressive,amon_ra.spr,0,-1,1
-4131,ZOMBIE,Zombie,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral2,2612,288,912,400,Normal,AiAggressive,zombie.spr,0,0.5,1
-4132,SKELETON,Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral3,2228,576,528,200,Normal,AiPassive,skeleton.spr,0,0.5,1
+4130,AMON_RA,Amon Ra,1,1,0,0,0,0,0,0,1,1,3,0,0,0,0,10,12,Medium,Formless,Neutral1,854,480,2016,-1,Normal,AiAggressiveImmobile,amon_ra.spr,0,-1,1
+4131,ZOMBIE,Zombie,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,2612,288,912,400,Normal,AiAggressive,zombie.spr,0,0.5,1
+4132,SKELETON,Skeleton,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,2228,576,528,200,Normal,AiPassive,skeleton.spr,0,0.5,1
+4133,ICE_TITAN,Ice Titan,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,10,12,Medium,Formless,Neutral1,861,144,660,250,Normal,AiAggressive,ice_titan.spr,0.5,0.75,1

@@ -262,7 +262,7 @@ namespace Assets.Editor
             if (version > 11)
                 rgbaCount = br.ReadUInt16();
 
-            Debug.Log($"RGBA count: {rgbaCount}");
+            //Debug.Log($"RGBA count: {rgbaCount}");
 
             var frameCount = indexCount + rgbaCount;
             var rgbaIndex = indexCount;

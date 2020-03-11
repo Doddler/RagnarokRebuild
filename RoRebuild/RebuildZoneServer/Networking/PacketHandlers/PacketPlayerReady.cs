@@ -24,6 +24,8 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 
 			connection.Character.Map.SendAddEntityAroundCharacter(ref connection.Entity, connection.Character);
 
+			connection.Character.SpawnImmunity = 5f;
+
 			ServerLogger.Debug($"Player {connection.Entity} finished loading, spawning him on {connection.Character.Map.Name} at position {connection.Character.Position}.");
 		}
 	}

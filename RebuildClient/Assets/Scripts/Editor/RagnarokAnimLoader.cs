@@ -9,169 +9,183 @@ using UnityEngine;
 namespace Assets.Editor
 {
 
-    class RagnarokActLoader
-    {
-        private static Stream fs;
-        private static BinaryReader br;
+	class RagnarokActLoader
+	{
+		private static Stream fs;
+		private static BinaryReader br;
 
-        private static RagnarokSpriteLoader sprite;
+		private static RagnarokSpriteLoader sprite;
 
-        private static int version;
+		private static int version;
 
-        public string[] Sounds;
+		public string[] Sounds;
 
-        private RoFrame ReadLayers()
-        {
-            var count = br.ReadUInt32();
-            var layers = new RoLayer[count];
+		private RoFrame ReadLayers()
+		{
+			var count = br.ReadUInt32();
+			var layers = new RoLayer[count];
 
-            var anim = new RoFrame();
+			var anim = new RoFrame();
 
-            for (var i = 0; i < count; i++)
-            {
-                var layer = new RoLayer()
-                {
-                    Position = new Vector2(br.ReadInt32(), br.ReadInt32()),
-                    Index = br.ReadInt32(),
-                    IsMirror = br.ReadInt32() != 0,
-                    Scale = new Vector2(1, 1),
-                    Color = Color.white,
-                };
-                
-                if (version > 20)
-                {
-                    var r = br.ReadByte();
-                    var g = br.ReadByte();
-                    var b = br.ReadByte();
-                    var a = br.ReadByte();
+			for (var i = 0; i < count; i++)
+			{
+				var layer = new RoLayer()
+				{
+					Position = new Vector2(br.ReadInt32(), br.ReadInt32()),
+					Index = br.ReadInt32(),
+					IsMirror = br.ReadInt32() != 0,
+					Scale = new Vector2(1, 1),
+					Color = Color.white,
+				};
 
-                    layer.Color = new Color(r/255f, g/255f, b/255f, a/255f);
-                    
-                    var scalex = br.ReadSingle();
-                    var scaley = scalex;
-                    if (version > 23)
-                        scaley = br.ReadSingle();
+				if (version > 20)
+				{
+					var r = br.ReadByte();
+					var g = br.ReadByte();
+					var b = br.ReadByte();
+					var a = br.ReadByte();
 
-                    layer.Scale = new Vector2(scalex, scaley);
-                    
-                    layer.Angle = br.ReadInt32();
-                    layer.Type = br.ReadInt32();
+					layer.Color = new Color(r / 255f, g / 255f, b / 255f, a / 255f);
 
-                    if (layer.Type == 1)
-	                    layer.Index += sprite.IndexCount;
+					var scalex = br.ReadSingle();
+					var scaley = scalex;
+					if (version > 23)
+						scaley = br.ReadSingle();
 
-                    if (version >= 25)
-                    {
-                        layer.Width = br.ReadInt32();
-                        layer.Height = br.ReadInt32();
-                    }
-                }
+					layer.Scale = new Vector2(scalex, scaley);
 
-                layers[i] = layer;
-            }
+					layer.Angle = br.ReadInt32();
+					layer.Type = br.ReadInt32();
 
-            anim.Layers = layers;
+					if (layer.Type == 1)
+						layer.Index += sprite.IndexCount;
 
-            if (version >= 20)
-                anim.Sound = br.ReadInt32();
-            else
-                anim.Sound = -1;
+					if (version >= 25)
+					{
+						layer.Width = br.ReadInt32();
+						layer.Height = br.ReadInt32();
+					}
+				}
 
-            if (version >= 23)
-            {
-                var pcount = br.ReadInt32();
-                var posList = new RoPos[pcount];
+				layers[i] = layer;
+			}
 
-                for (var i = 0; i < pcount; i++)
-                {
-                    var pos = new RoPos();
+			anim.Layers = layers;
 
-                    pos.Unknown1 = br.ReadInt32();
-                    pos.Position = new Vector2(br.ReadInt32(), br.ReadInt32());
-                    pos.Unknown2 = br.ReadInt32();
+			if (version >= 20)
+				anim.Sound = br.ReadInt32();
+			else
+				anim.Sound = -1;
 
-                    posList[i] = pos;
-                }
+			if (version >= 23)
+			{
+				var pcount = br.ReadInt32();
+				var posList = new RoPos[pcount];
 
-                anim.Pos = posList;
-            }
+				for (var i = 0; i < pcount; i++)
+				{
+					var pos = new RoPos();
 
-            return anim;
-        }
+					pos.Unknown1 = br.ReadInt32();
+					pos.Position = new Vector2(br.ReadInt32(), br.ReadInt32());
+					pos.Unknown2 = br.ReadInt32();
 
-        private RoFrame[] ReadAnimations()
-        {
-            var count = br.ReadUInt32();
-            var anims = new RoFrame[count];
+					posList[i] = pos;
+				}
 
-            for (var i = 0; i < count; i++)
-            {
-                fs.Seek(32, SeekOrigin.Current);
-                anims[i] = ReadLayers();
-            }
+				anim.Pos = posList;
+			}
 
-            return anims;
-        }
+			return anim;
+		}
 
-        private RoAction[] ReadActions()
-        {
-            var count = br.ReadUInt16();
-            fs.Seek(10, SeekOrigin.Current);
+		private RoFrame[] ReadAnimations()
+		{
+			var count = br.ReadUInt32();
+			var anims = new RoFrame[count];
 
-            var actions = new RoAction[count];
+			for (var i = 0; i < count; i++)
+			{
+				fs.Seek(32, SeekOrigin.Current);
+				anims[i] = ReadLayers();
+			}
 
-            for (var i = 0; i < count; i++)
-            {
-                var action = new RoAction();
-                action.Delay = 150;
-                action.Frames = ReadAnimations();
+			return anims;
+		}
 
-                actions[i] = action;
-            }
+		private RoAction[] ReadActions()
+		{
+			var count = br.ReadUInt16();
+			fs.Seek(10, SeekOrigin.Current);
 
-            return actions;
-        }
+			var actions = new RoAction[count];
 
-        public List<RoAction> Load(AssetImportContext ctx, RagnarokSpriteLoader spriteLoader, string actfile)
-        {
-	        sprite = spriteLoader;
+			for (var i = 0; i < count; i++)
+			{
+				var action = new RoAction();
+				action.Delay = 150;
+				action.Frames = ReadAnimations();
 
-            var basename = Path.GetFileNameWithoutExtension(actfile);
+				actions[i] = action;
+			}
 
-            fs = new FileStream(actfile, FileMode.Open);
-            br = new BinaryReader(fs);
+			return actions;
+		}
 
-            var header = new string(br.ReadChars(2));
-            if (header != "AC")
-                throw new Exception("Not action");
+		public List<RoAction> Load(AssetImportContext ctx, RagnarokSpriteLoader spriteLoader, string actfile)
+		{
+			sprite = spriteLoader;
 
-            var minorVersion = br.ReadByte();
-            var majorVersion = br.ReadByte();
-            version = majorVersion * 10 + minorVersion;
+			var basename = Path.GetFileNameWithoutExtension(actfile);
 
-            var actions = ReadActions();
+			fs = new FileStream(actfile, FileMode.Open);
+			br = new BinaryReader(fs);
 
-            //string[] sounds;
+			var header = new string(br.ReadChars(2));
+			if (header != "AC")
+				throw new Exception("Not action");
 
-            if (version >= 21)
-            {
-                var count = br.ReadInt32();
-                Sounds = new string[count];
-                for (var i = 0; i < count; i++)
-                {
-                    Sounds[i] = new string(br.ReadChars(40)).TrimEnd('\0');
-                }
-            }
+			var minorVersion = br.ReadByte();
+			var majorVersion = br.ReadByte();
+			version = majorVersion * 10 + minorVersion;
 
-            if (version >= 22)
-            {
-                for (var i = 0; i < actions.Length; i++)
-                    actions[i].Delay = (int)(br.ReadSingle() * 25);
-            }
+			var actions = ReadActions();
 
-            fs.Close();
+			//string[] sounds;
 
-            return new List<RoAction>(actions);
-        }
-    }
+			if (version >= 21)
+			{
+				var count = br.ReadInt32();
+				Sounds = new string[count];
+				for (var i = 0; i < count; i++)
+				{
+					Sounds[i] = new string(br.ReadChars(40)).TrimEnd('\0');
+				}
+
+				for (var i = 0; i < actions.Length; i++)
+				{
+					for (var j = 0; j < actions[i].Frames.Length; j++)
+					{
+						var frame = actions[i].Frames[j];
+						if (frame.Sound >= 0)
+						{
+							var sName = Sounds[frame.Sound];
+							if (sName == "atk")
+								frame.IsAttackFrame = true;
+						}
+					}
+				}
+			}
+
+			if (version >= 22)
+			{
+				for (var i = 0; i < actions.Length; i++)
+					actions[i].Delay = (int)(br.ReadSingle() * 25);
+			}
+			
+			fs.Close();
+
+			return new List<RoAction>(actions);
+		}
+	}
 }

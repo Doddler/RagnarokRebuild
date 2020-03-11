@@ -156,6 +156,11 @@ namespace Assets.Scripts.MapEditor.Editor
 
             var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/Textures/WaterTemp.mat");
             mr.material = material;
+
+            mr.shadowCastingMode = ShadowCastingMode.Off;
+            mr.receiveShadows = false;
+            mr.reflectionProbeUsage = ReflectionProbeUsage.Off;
+            mr.lightProbeUsage = LightProbeUsage.Off;
             
             mf.sharedMesh = mesh;
         }

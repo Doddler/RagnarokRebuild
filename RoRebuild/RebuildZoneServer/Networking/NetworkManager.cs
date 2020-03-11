@@ -161,10 +161,11 @@ namespace RebuildZoneServer.Networking
 						case NetIncomingMessageType.StatusChanged:
 							ServerLogger.Log("Client status changed: " + System.Enum.GetName(typeof(NetConnectionStatus), msg.SenderConnection.Status));
 							break;
+						case NetIncomingMessageType.DebugMessage:
+							ServerLogger.Log($"[Network] DebugMessage: {msg.ReadString()}");
+							break;
 						case NetIncomingMessageType.WarningMessage:
-						{
-							Console.WriteLine($"[Network] Warning: {msg.ReadString()}");
-						}
+							ServerLogger.LogWarning($"[Network] Warning: {msg.ReadString()}");
 							break;
 						default:
 							Console.WriteLine(

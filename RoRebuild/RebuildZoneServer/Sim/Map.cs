@@ -26,11 +26,24 @@ namespace RebuildZoneServer.Sim
 		public string Name;
 
 		public MapWalkData WalkData;
-		
+
 		private int chunkWidth;
 		private int chunkHeight;
 
 		private int chunkCheckId;
+
+
+		private int _playerCount;
+		public int PlayerCount
+		{
+			get => _playerCount;
+			set
+			{
+				if(value != _playerCount)
+					ServerLogger.Log($"Map {Name} changed player count to {value}.");
+				_playerCount = value;
+			}
+		}
 
 		private int entityCount = 0;
 
@@ -52,7 +65,7 @@ namespace RebuildZoneServer.Sim
 				SendAllEntitiesToPlayer(ref movingEntity);
 				return;
 			}
-
+			
 			//optimization idea: exclude chunks that are fully in both the old and new view, as they never need updating
 
 			foreach (var chunk in GetChunkEnumeratorAroundPosition(midPoint, dist2))
@@ -63,12 +76,12 @@ namespace RebuildZoneServer.Sim
 
 					//if the player couldn't see the entity before, and can now, have that player add the entity
 					if (!targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-					    targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+						targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 						CommandBuilder.SendCreateEntity(targetCharacter, movingPlayer);
 
 					//if the player could see the entity before, but can't now, have them remove the entity
 					if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-					    !targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+						!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer);
 				}
 
@@ -78,17 +91,44 @@ namespace RebuildZoneServer.Sim
 
 					//if the player couldn't see the entity before, and can now, have that player add the entity
 					if (!targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-					    targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+						targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 						CommandBuilder.SendCreateEntity(targetCharacter, movingPlayer);
 
 					//if the player could see the entity before, but can't now, have them remove the entity
 					if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-					    !targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+						!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer);
 				}
 			}
 		}
-		
+
+		public void TeleportEntity(ref EcsEntity entity, Character ch, Position newPosition, bool isWalkUpdate = false)
+		{
+			var oldPosition = ch.Position;
+
+			SendRemoveEntityAroundCharacter(ref entity, ch);
+			ch.Position = newPosition;
+			SendAddEntityAroundCharacter(ref entity, ch);
+
+			//check if the move puts them over to a new chunk, and if so, move them to the new one
+			var cOld = GetChunkForPosition(oldPosition);
+			var cNew = GetChunkForPosition(newPosition);
+
+			if (cOld != cNew)
+			{
+				cOld.RemoveEntity(ref entity, ch.Type);
+				cNew.AddEntity(ref entity, ch.Type);
+			}
+
+			//if the moving entity is a player, he needs to know of the new/removed entities from his sight
+			if (ch.Type == CharacterType.Player)
+			{
+				var movingPlayer = entity.Get<Player>();
+				CommandBuilder.SendRemoveAllEntities(movingPlayer);
+				SendAllEntitiesToPlayer(ref entity);
+			}
+		}
+
 		public void MoveEntity(ref EcsEntity entity, Character ch, Position newPosition, bool isWalkUpdate = false)
 		{
 			//if(ch.Type == CharacterType.Player)
@@ -127,7 +167,7 @@ namespace RebuildZoneServer.Sim
 						if (!isWalkUpdate) //if you can see the start and end point, and it's just a walk update, the client can do the update themselves
 						{
 							if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-							    targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+								targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 							{
 								CommandBuilder.AddRecipient(player);
 								continue;
@@ -136,19 +176,19 @@ namespace RebuildZoneServer.Sim
 
 						//if the player couldn't see the entity before, and can now, have that player add the entity
 						if (!targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-						    targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+							targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 							CommandBuilder.SendCreateEntity(ch, playerObj);
 
 						//if the player could see the entity before, but can't now, have them remove the entity
 						if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
-						    !targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
+							!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
 							CommandBuilder.SendRemoveEntity(ch, playerObj);
 					}
 				}
 
 				ch.Position = newPosition;
 			}
-
+			
 			//if anyone has been batched as part of the move, send it to everyone
 			if (CommandBuilder.HasRecipients())
 			{
@@ -179,20 +219,23 @@ namespace RebuildZoneServer.Sim
 		{
 			var ch = entity.Get<Character>();
 #if DEBUG
-			if(ch == null)
+			if (ch == null)
 				throw new Exception("Entity was added to map without Character object!");
 #endif
 
 			ch.Map = this;
-			if(ch.IsActive)
+			if (ch.IsActive)
 				SendAddEntityAroundCharacter(ref entity, ch);
 
 			var c = GetChunkForPosition(ch.Position);
 			c.AddEntity(ref entity, ch.Type);
 
+			if (ch.Type == CharacterType.Player)
+				PlayerCount++;
+
 			entityCount++;
 		}
-		
+
 		public void SendAddEntityAroundCharacter(ref EcsEntity entity, Character ch)
 		{
 			foreach (Chunk chunk in GetChunkEnumeratorAroundPosition(ch.Position, ServerConfig.MaxViewDistance))
@@ -200,7 +243,7 @@ namespace RebuildZoneServer.Sim
 				foreach (var player in chunk.Players)
 				{
 					var targetCharacter = player.Get<Character>();
-					if(!targetCharacter.IsActive)
+					if (!targetCharacter.IsActive)
 						continue;
 					if (targetCharacter.Position.InRange(ch.Position, ServerConfig.MaxViewDistance) && targetCharacter != ch)
 						CommandBuilder.AddRecipient(player);
@@ -246,7 +289,16 @@ namespace RebuildZoneServer.Sim
 			SendRemoveEntityAroundCharacter(ref entity, ch);
 
 			var charChunk = GetChunkForPosition(ch.Position);
-			charChunk.Players.Remove(ref entity);
+			if (ch.Type == CharacterType.Player)
+			{
+				charChunk.Players.Remove(ref entity);
+				PlayerCount--;
+			}
+			else
+			{
+				charChunk.Monsters.Remove(ref entity);
+			}
+
 
 			ch.Map = null;
 
@@ -290,12 +342,12 @@ namespace RebuildZoneServer.Sim
 					var ch = m.Get<Character>();
 					var distance = ch.Position.SquareDistance(playerChar.Position);
 #if DEBUG
-					if(distance > ServerConfig.MaxViewDistance + ChunkSize)
+					if (distance > ServerConfig.MaxViewDistance + ChunkSize)
 						throw new Exception("Unexpected chunk check distance!");
 #endif
-					if(ch.Position.InRange(playerChar.Position, ServerConfig.MaxViewDistance))
+					if (ch.Position.InRange(playerChar.Position, ServerConfig.MaxViewDistance))
 						CommandBuilder.SendCreateEntity(ch, playerObj);
-					
+
 				}
 
 				foreach (var p in c.Players)
@@ -319,14 +371,14 @@ namespace RebuildZoneServer.Sim
 				foreach (var p in c.Players)
 				{
 					var ch = p.Get<Character>();
-					if(ch.IsActive)
+					if (ch.IsActive)
 						CommandBuilder.AddRecipient(p);
 				}
 			}
 		}
 
 
-		public void GatherPlayersInRange(Character character, int distance, EntityList list)
+		public void GatherPlayersInRange(Character character, int distance, EntityList list, bool checkImmunity = false)
 		{
 			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))
 			{
@@ -334,9 +386,12 @@ namespace RebuildZoneServer.Sim
 				{
 					var ch = p.Get<Character>();
 					if (!ch.IsActive)
-						return;
+						continue;
 
-					if(character.Position.SquareDistance(ch.Position) <= distance)
+					if (checkImmunity && ch.SpawnImmunity > 0)
+						continue;
+					
+					if (character.Position.SquareDistance(ch.Position) <= distance)
 						list.Add(p);
 				}
 			}
@@ -344,7 +399,7 @@ namespace RebuildZoneServer.Sim
 
 		private void ClearInactive(int i)
 		{
-			Chunks[i].Players.ClearInactive();
+			PlayerCount -= Chunks[i].Players.ClearInactive();
 			Chunks[i].Monsters.ClearInactive();
 		}
 
@@ -356,6 +411,9 @@ namespace RebuildZoneServer.Sim
 
 			ClearInactive(chunkCheckId);
 #if DEBUG
+			if (PlayerCount < 0)
+				throw new Exception("Player count has become an impossible value!");
+
 			if (chunkCheckId == 0) //don't do it all the time
 			{
 				//sanitycheck
@@ -390,12 +448,6 @@ namespace RebuildZoneServer.Sim
 				if (entityCount != this.entityCount)
 					ServerLogger.LogError(
 						$"Entity count does not match expected value! Has {entityCount}, expected {this.entityCount}");
-
-				foreach (Chunk c in GetChunkEnumerator(ChunkBounds))
-				{
-					c.Players.ClearInactive();
-					c.Monsters.ClearInactive();
-				}
 			}
 #endif
 		}
@@ -406,12 +458,12 @@ namespace RebuildZoneServer.Sim
 			var area2 = GetChunksForArea(area);
 			return new ChunkAreaEnumerator(Chunks, chunkWidth, area2);
 		}
-		
+
 		public ChunkAreaEnumerator GetChunkEnumerator(Area area)
 		{
 			return new ChunkAreaEnumerator(Chunks, chunkWidth, area);
 		}
-		
+
 		private int AlignValue(int value, int alignment)
 		{
 			var remainder = value % alignment;
@@ -419,7 +471,7 @@ namespace RebuildZoneServer.Sim
 				return value;
 			return value - remainder + alignment;
 		}
-		
+
 		public Chunk GetChunkForPosition(Position pos)
 		{
 			return Chunks[(pos.X / 8) + (pos.Y / 8) * chunkWidth];
@@ -465,14 +517,16 @@ namespace RebuildZoneServer.Sim
 
 			Width = WalkData.Width;
 			Height = WalkData.Height;
-			
+
 			chunkWidth = AlignValue(Width, 8) / 8;
 			chunkHeight = AlignValue(Height, 8) / 8;
 
 			MapBounds = new Area(0, 0, Width - 1, Height - 1);
-			ChunkBounds = new Area(0, 0, chunkWidth-1, chunkHeight-1);
+			ChunkBounds = new Area(0, 0, chunkWidth - 1, chunkHeight - 1);
 
 			Chunks = new Chunk[chunkWidth * chunkHeight];
+
+			PlayerCount = 0;
 
 			var id = 0;
 			var fullUnwalkable = 0;
