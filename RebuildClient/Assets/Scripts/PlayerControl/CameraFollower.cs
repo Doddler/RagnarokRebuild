@@ -151,36 +151,36 @@ namespace Assets.Scripts
         }
 
 
-        private FacingDirection GetFacingForPoint(Vector2Int point)
+        private Direction GetFacingForPoint(Vector2Int point)
         {
 	        if (point.y == 0)
 	        {
 		        if (point.x < 0)
-			        return FacingDirection.West;
+			        return Direction.West;
 		        else
-			        return FacingDirection.East;
+			        return Direction.East;
 	        }
 
 	        if (point.x == 0)
 	        {
 		        if (point.y < 0)
-			        return FacingDirection.South;
+			        return Direction.South;
 		        else
-			        return FacingDirection.North;
+			        return Direction.North;
 	        }
 
 	        if (point.x < 0)
 	        {
 		        if (point.y < 0)
-			        return FacingDirection.SouthWest;
+			        return Direction.SouthWest;
 		        else
-			        return FacingDirection.NorthWest;
+			        return Direction.NorthWest;
 	        }
 
 	        if (point.y < 0)
-		        return FacingDirection.SouthEast;
+		        return Direction.SouthEast;
 
-	        return FacingDirection.NorthEast;
+	        return Direction.NorthEast;
 
 	        //return FacingDirection.South;
         }
@@ -241,7 +241,7 @@ namespace Assets.Scripts
 			            newHead = HeadFacing.Right;
 		            }
 
-		            newFacing = (FacingDirection) facing;
+		            newFacing = (Direction) facing;
 	            }
             }
 

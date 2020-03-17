@@ -11,16 +11,18 @@ namespace RebuildZoneServer.EntitySystems
 	class MonsterSystem : IEcsRunSystem
 	{
 		private EcsWorld world = null;
-		private EcsFilter<Monster, Character, CombatEntity> monsterFilter = null;
+		private EcsFilter<Monster> monsterFilter = null;
 		public void Run()
 		{
 			foreach (var mId in monsterFilter)
 			{
 				var m = monsterFilter.Get1[mId];
-				var ch = monsterFilter.Get2[mId];
-				var ce = monsterFilter.Get3[mId];
 
-				m.Update(ref monsterFilter.Entities[mId], ch, ce);
+				if (!m.Character.IsActive)
+					continue;
+
+				m.Update();
+				m.CombatEntity.Update();
 
 				//m.UpdateTime -= Time.DeltaTimeFloat;
 				//if (m.UpdateTime < 0f)

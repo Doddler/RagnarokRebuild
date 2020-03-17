@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.MapEditor;
 using Assets.Scripts.Sprites;
@@ -10,6 +11,7 @@ using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Network
 {
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Network
 
 		public CameraFollower CameraFollower;
 		public TextAsset ServerConfig;
+		public GameObject DamagePrefab;
 		public Dictionary<int, ServerControllable> entityList = new Dictionary<int, ServerControllable>();
 		public int PlayerId;
 
@@ -131,7 +134,7 @@ namespace Assets.Scripts.Network
 			var type = (CharacterType)msg.ReadByte();
 			var classId = msg.ReadInt16();
 			var pos = ReadPosition(msg);
-			var facing = (FacingDirection)msg.ReadByte();
+			var facing = (Direction)msg.ReadByte();
 			var state = (CharacterState)msg.ReadByte();
 			
 			ServerControllable controllable;
@@ -222,7 +225,7 @@ namespace Assets.Scripts.Network
 		private void OnMessageChangeFacing(NetIncomingMessage msg)
 		{
 			var id = msg.ReadInt32();
-			var facing = (FacingDirection)msg.ReadByte();
+			var facing = (Direction)msg.ReadByte();
 
 			if (!entityList.TryGetValue(id, out var controllable))
 			{
@@ -375,13 +378,50 @@ namespace Assets.Scripts.Network
 				return;
 			}
 
-			var dir = (FacingDirection)msg.ReadByte();
+			var dir = (Direction)msg.ReadByte();
+			var dmg = msg.ReadInt16();
 
 			controllable.SpriteAnimator.Direction = dir;
 			controllable.SpriteAnimator.State = SpriteState.Idle;
 			controllable.SpriteAnimator.AnimSpeed = 1f;
 			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
 			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
+
+			var damageTiming = controllable.SpriteAnimator.SpriteData.AttackFrameTime / 1000f;
+			StartCoroutine(DamageEvent(dmg, damageTiming, controllable2));
+		}
+
+		private IEnumerator DamageEvent(int damage, float delay, ServerControllable target)
+		{
+			yield return new WaitForSeconds(delay);
+			if (target != null)
+			{
+				var go = GameObject.Instantiate(DamagePrefab, target.transform.localPosition, Quaternion.identity);
+				var di = go.GetComponent<DamageIndicator>();
+				var red = target.SpriteAnimator.Type == SpriteType.Player;
+				var height = target.SpriteAnimator.SpriteData.Size / 50f;
+				di.DoDamage(damage, target.gameObject.transform.localPosition, height, target.SpriteAnimator.Direction, red, false);
+			}
+		}
+
+		private void OnMessageHit(NetIncomingMessage msg)
+		{
+			var id1 = msg.ReadInt32();
+			var delay = msg.ReadFloat();
+
+			if (!entityList.TryGetValue(id1, out var controllable))
+			{
+				Debug.LogWarning("Trying to do hit entity " + id1 + ", but it does not exist in scene!");
+				return;
+			}
+
+			Debug.Log("Move delay is " + delay);
+			controllable.SetHitDelay(delay);
+
+			if (controllable.SpriteAnimator.Type == SpriteType.Player)
+				controllable.SpriteAnimator.State = SpriteState.Standby;
+
+			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 		}
 
 		void HandleDataPacket(NetIncomingMessage msg)
@@ -427,6 +467,9 @@ namespace Assets.Scripts.Network
 					break;
 				case PacketType.Attack:
 					OnMessageAttack(msg);
+					break;
+				case PacketType.HitTarget:
+					OnMessageHit(msg);
 					break;
 				default:
 					Debug.LogWarning($"Failed to handle packet type: {type}");
@@ -481,7 +524,7 @@ namespace Assets.Scripts.Network
 			client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
 		}
 
-		public void ChangePlayerFacing(FacingDirection direction, HeadFacing headFacing)
+		public void ChangePlayerFacing(Direction direction, HeadFacing headFacing)
 		{
 			var msg = client.CreateMessage();
 

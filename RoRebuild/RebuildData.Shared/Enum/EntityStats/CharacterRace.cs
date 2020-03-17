@@ -12,7 +12,7 @@ namespace RebuildData.Shared.Enum.EntityStats
 		Insect,
 		Angel,
 		Dragon,
-		Fish,
+		Aquatic,
 		Plant,
 		Demon,
 		Undead

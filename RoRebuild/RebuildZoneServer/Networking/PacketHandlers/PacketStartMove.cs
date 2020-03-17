@@ -39,7 +39,8 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 
 			var target = new Position(x, y);
 
-			connection.Character.TryMove(ref connection.Entity, target, 0);
+			if (connection.Character.TryMove(ref connection.Entity, target, 0))
+				player.ClearTarget();
 		}
 	}
 }

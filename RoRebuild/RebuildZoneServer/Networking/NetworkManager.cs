@@ -16,6 +16,8 @@ namespace RebuildZoneServer.Networking
 	{
 		public static ServerState State;
 
+		public static int PlayerCount => State.ConnectionLookup.Count;
+
 		public static void Init(World gameWorld)
 		{
 			State = new ServerState();
@@ -142,7 +144,7 @@ namespace RebuildZoneServer.Networking
 					{
 						case NetIncomingMessageType.ConnectionApproval:
 						{
-							ServerLogger.Log("[Network] Incoming connection request: " + msg.SenderConnection);
+							ServerLogger.Debug("[Network] Incoming connection request: " + msg.SenderConnection);
 							var playerConnection = new NetworkConnection(msg.SenderConnection);
 							playerConnection.LastKeepAlive = Time.ElapsedTime + 20; //you get an extra 20 seconds on first load before we kick you
 
@@ -159,10 +161,10 @@ namespace RebuildZoneServer.Networking
 							HandleMessage(msg);
 							break;
 						case NetIncomingMessageType.StatusChanged:
-							ServerLogger.Log("Client status changed: " + System.Enum.GetName(typeof(NetConnectionStatus), msg.SenderConnection.Status));
+							ServerLogger.Debug("Client status changed: " + System.Enum.GetName(typeof(NetConnectionStatus), msg.SenderConnection.Status));
 							break;
 						case NetIncomingMessageType.DebugMessage:
-							ServerLogger.Log($"[Network] DebugMessage: {msg.ReadString()}");
+							ServerLogger.Debug($"[Network] DebugMessage: {msg.ReadString()}");
 							break;
 						case NetIncomingMessageType.WarningMessage:
 							ServerLogger.LogWarning($"[Network] Warning: {msg.ReadString()}");

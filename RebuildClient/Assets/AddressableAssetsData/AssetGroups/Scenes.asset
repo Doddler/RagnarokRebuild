@@ -67,6 +67,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 1539f16d6b6effd4080934fcc0dd7d65
+    m_Address: Assets/Scenes/Maps/pay_dun03.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 160e8aa463527184cae06b8b4c07b061
+    m_Address: Assets/Scenes/Maps/gef_dun03.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 1dcdb12c79657914bb08373595581a19
     m_Address: Assets/Scenes/Maps/mjolnir_07.unity
     m_ReadOnly: 0
@@ -74,6 +84,11 @@ MonoBehaviour:
     - Maps
   - m_GUID: 21a7b38d982b02240a5b0be2a4ba60c6
     m_Address: Assets/Scenes/Maps/pay_fild07.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 21b764b9aff165542950d67c15827a94
+    m_Address: Assets/Scenes/Maps/alberta_in.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -112,6 +127,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 3a0b58da0ec05cc41819b9630b84b667
+    m_Address: Assets/Scenes/Maps/pay_dun02.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 3c0c6146a34fe9b429eb91280bf8e6eb
     m_Address: Assets/Scenes/Maps/prt_fild08.unity
     m_ReadOnly: 0
@@ -119,6 +139,16 @@ MonoBehaviour:
     - Maps
   - m_GUID: 3ca15eec51ca9874584e1ac9216a187a
     m_Address: Assets/Scenes/Maps/1@eom.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 3ed3ce95fb6eb4341be54acb2d4c3a01
+    m_Address: Assets/Scenes/Maps/pay_dun04.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 3f6aa9f02b42d734f9b6e2b57c0bb43c
+    m_Address: Assets/Scenes/Maps/in_sphinx3.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -132,8 +162,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 4552eda009a0fd94b90b490829bd3d20
+    m_Address: Assets/Scenes/Maps/pay_dun01.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 47c671763005c164685d95b31916056a
     m_Address: Assets/Scenes/Maps/gef_fild12.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 4bbae9f767fdac64885df39a89e8941e
+    m_Address: Assets/Scenes/Maps/in_sphinx5.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -222,13 +262,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 73478d6082944a440b574f8d3f33a880
+    m_Address: Assets/Scenes/Maps/in_sphinx1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 75dd873c0f0cfb340ab220c84b429b61
+    m_Address: Assets/Scenes/Maps/in_sphinx2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 78af82c38c2aa624dafd52fc9f0025fd
     m_Address: Assets/Scenes/Maps/pay_fild02.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 7ca5ee0c5a25b4f49b58a330f022c9c9
+    m_Address: Assets/Scenes/Maps/geffen_in.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 7de10df7c4907184ca04d87e91cca191
     m_Address: Assets/Scenes/Maps/pay_fild04.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 7e97fc060145b694abfe3a4783c330aa
+    m_Address: Assets/Scenes/Maps/prt_gld.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -247,8 +307,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: 81ee1b03de3d2e7458c90b04cf92d455
+    m_Address: Assets/Scenes/Maps/gef_dun01.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: 821364bd669afc74d91cbf312c4bed98
     m_Address: Assets/Scenes/Maps/gef_fild14.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: 8acc382c00372554c9714156256cc2af
+    m_Address: Assets/Scenes/Maps/pay_arche.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -412,6 +482,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: ca9b12d91edd4f34f9e4d2959d56c0bd
+    m_Address: Assets/Scenes/Maps/in_sphinx4.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: cc2dacfb4078d1b4f82d51bfb4b6950c
     m_Address: Assets/Scenes/Maps/mjolnir_12.unity
     m_ReadOnly: 0
@@ -432,8 +507,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
+  - m_GUID: d2a4d5c56e035a5408a00c390427ba6d
+    m_Address: Assets/Scenes/Maps/gef_dun02.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
   - m_GUID: d7bf7f155f014c1419b0f5a0693dd46f
     m_Address: Assets/Scenes/Maps/moc_fild08.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: e51334f07b9648c429a3e43bfa198a0f
+    m_Address: Assets/Scenes/Maps/gef_dun00.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
@@ -444,6 +529,11 @@ MonoBehaviour:
     - Maps
   - m_GUID: e7f88ae0ba14bcd4481c3659dc8b3790
     m_Address: Assets/Scenes/Maps/moc_fild22.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Maps
+  - m_GUID: e87b5212ec88b104d8fd96c6b8bfb26f
+    m_Address: Assets/Scenes/Maps/gef_tower.unity
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps

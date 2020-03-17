@@ -49,7 +49,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			connection.LastKeepAlive = Time.ElapsedTime;
 			connection.Character = playerEntity.Get<Character>();
 			//connection.Character.ClassId = 200; //Gamemaster
-			connection.Character.MoveSpeed = 0.08f;
+			connection.Character.MoveSpeed = 0.12f;
 			connection.Character.IsActive = false;
 			var networkPlayer = playerEntity.Get<Player>();
 			networkPlayer.Connection = connection;

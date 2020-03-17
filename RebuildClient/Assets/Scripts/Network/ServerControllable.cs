@@ -30,9 +30,11 @@ namespace Assets.Scripts.Network
 
 		private Material shadowMaterial;
 
+		private float hitDelay = 0f;
+
 		public bool IsWalking => movePath != null && movePath.Count > 1;
 
-		public void ConfigureEntity(int id, Vector2Int worldPos, FacingDirection direction)
+		public void ConfigureEntity(int id, Vector2Int worldPos, Direction direction)
 		{
 			if(walkProvider == null)
 				walkProvider = RoWalkDataProvider.Instance;
@@ -60,25 +62,25 @@ namespace Assets.Scripts.Network
 			return false;
 		}
 
-		private FacingDirection GetDirectionForOffset(Vector2Int offset)
+		private Direction GetDirectionForOffset(Vector2Int offset)
 		{
 
-			if (offset.x == -1 && offset.y == -1) return FacingDirection.SouthWest;
-			if (offset.x == -1 && offset.y == 0) return FacingDirection.West;
-			if (offset.x == -1 && offset.y == 1) return FacingDirection.NorthWest;
-			if (offset.x == 0 && offset.y == 1) return FacingDirection.North;
-			if (offset.x == 1 && offset.y == 1) return FacingDirection.NorthEast;
-			if (offset.x == 1 && offset.y == 0) return FacingDirection.East;
-			if (offset.x == 1 && offset.y == -1) return FacingDirection.SouthEast;
-			if (offset.x == 0 && offset.y == -1) return FacingDirection.South;
+			if (offset.x == -1 && offset.y == -1) return Direction.SouthWest;
+			if (offset.x == -1 && offset.y == 0) return Direction.West;
+			if (offset.x == -1 && offset.y == 1) return Direction.NorthWest;
+			if (offset.x == 0 && offset.y == 1) return Direction.North;
+			if (offset.x == 1 && offset.y == 1) return Direction.NorthEast;
+			if (offset.x == 1 && offset.y == 0) return Direction.East;
+			if (offset.x == 1 && offset.y == -1) return Direction.SouthEast;
+			if (offset.x == 0 && offset.y == -1) return Direction.South;
 
-			return FacingDirection.South;
+			return Direction.South;
 		}
 
-		private bool IsDiagonal(FacingDirection dir)
+		private bool IsDiagonal(Direction dir)
 		{
-			if (dir == FacingDirection.NorthEast || dir == FacingDirection.NorthWest ||
-			    dir == FacingDirection.SouthEast || dir == FacingDirection.SouthWest)
+			if (dir == Direction.NorthEast || dir == Direction.NorthWest ||
+			    dir == Direction.SouthEast || dir == Direction.SouthWest)
 				return true;
 			return false;
 		}
@@ -200,6 +202,7 @@ namespace Assets.Scripts.Network
 
 			SpriteAnimator.Shadow = go;
 			SpriteAnimator.ShadowSortingGroup = go.AddComponent<SortingGroup>();
+			SpriteAnimator.ShadowSortingGroup.sortingOrder = -20001;
 			if(SpriteAnimator.State == SpriteState.Sit)
 				go.SetActive(false);
         }
@@ -228,6 +231,13 @@ namespace Assets.Scripts.Network
 		}
 #endif
 
+		public void SetHitDelay(float time)
+		{
+			if (hitDelay > 0)
+				return;
+			hitDelay = time;
+		}
+
 		private void Update()
 		{
 			if (SpriteMode == ClientSpriteType.Prefab)
@@ -235,6 +245,10 @@ namespace Assets.Scripts.Network
 
 			if (isMoving)
 			{
+				hitDelay -= Time.deltaTime;
+				if (hitDelay >= 0f)
+					return;
+
 				UpdateMove();
 
 				if (SpriteAnimator.State != SpriteState.Walking)

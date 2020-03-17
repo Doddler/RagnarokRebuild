@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Leopotam.Ecs;
+using RebuildData.Shared.Enum;
 using RebuildZoneServer.EntityComponents;
 
 namespace RebuildZoneServer.EntitySystems
@@ -16,8 +17,8 @@ namespace RebuildZoneServer.EntitySystems
 			{
 				var c = characterFilter.Get1[cId];
 
-				if(c.IsActive)
-					c.Update(ref characterFilter.Entities[cId]);
+				if (c.IsActive)
+					c.Update();
 			}
 		}
 	}

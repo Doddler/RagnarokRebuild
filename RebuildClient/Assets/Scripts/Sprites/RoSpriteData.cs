@@ -1,4 +1,5 @@
 ﻿using System;
+using RebuildData.Shared.Enum;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -124,7 +125,7 @@ namespace Assets.Scripts
             return Vector2.zero;
         }
 
-        public static int GetSpriteIndexForAngle(FacingDirection facing, float cameraRotation)
+        public static int GetSpriteIndexForAngle(Direction facing, float cameraRotation)
         {
             cameraRotation += 45f * (int)facing + (45f / 2f);
             if (cameraRotation > 360)

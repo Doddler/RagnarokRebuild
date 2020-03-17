@@ -19,9 +19,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 				return;
 
 			var id = msg.ReadInt32();
-
-			ServerLogger.Log($"Received attack packet to attack target {id}");
-
+			
 			var target = State.World.GetEntityById(id);
 
 			if (target.IsNull() || !target.IsAlive())

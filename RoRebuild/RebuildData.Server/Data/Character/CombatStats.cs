@@ -11,7 +11,7 @@ namespace RebuildData.Server.Data.Character
 		public short Atk, Atk2;
 
 		public float MoveSpeed;
-		public float AttackMotionTime, AttackDelayTime;
+		public float AttackMotionTime, AttackDelayTime, HitDelayTime, SpriteAttackTiming;
 		public int Range;
 	}
 }

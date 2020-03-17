@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts.MapEditor.Editor.ObjectEditors;
 using B83.Image.BMP;
@@ -33,9 +34,9 @@ namespace Assets.Scripts.MapEditor.Editor
 			{
 				var path = AssetDatabase.GUIDToAssetPath(guids[i]);
 				var asset = AssetDatabase.LoadAssetAtPath<RoSpriteData>(path);
-				if (asset.Type != SpriteType.Monster && asset.Type != SpriteType.Monster2)
+				if (asset.Type != SpriteType.Monster && asset.Type != SpriteType.Monster2 && asset.Type != SpriteType.Pet)
 					continue;
-
+				
 				var actionId = RoAnimationHelper.GetMotionIdForSprite(asset.Type, SpriteMotion.Attack1);
 				if (actionId == -1)
 					actionId = RoAnimationHelper.GetMotionIdForSprite(asset.Type, SpriteMotion.Attack2);

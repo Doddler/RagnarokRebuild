@@ -17,8 +17,33 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 5f474784577dcf644a3c480fd3b9e282
   m_SerializeEntries:
+  - m_GUID: 003e77fa509abc24da766c729f51eafa
+    m_Address: Assets/Sprites/Monsters/hill_wind.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 00ac477d804155141ba01266c29ec7fe
+    m_Address: Assets/Sprites/Monsters/wood_goblin.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 012c1f5ec728deb4eb4c305f9ddcf500
+    m_Address: Assets/Sprites/Monsters/kasa.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 013f99d427ee2df43b9a77044ccd9ede
     m_Address: Assets/Sprites/Monsters/amon_ra.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 03db211479c1ee6468acf9c482f51e54
+    m_Address: Assets/Sprites/Monsters/imp.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0400ece11e8fd2042a31794a121ace04
+    m_Address: Assets/Sprites/Monsters/clock.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -42,8 +67,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 06460a090d22c6c4899d540ad486ca10
+    m_Address: Assets/Sprites/Monsters/miyabi_ningyo.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 064b2b6e19a40bc41b378962ddc83620
+    m_Address: Assets/Sprites/Monsters/hill_wind_1.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 070707860ca8c71449b712adb4be56e8
     m_Address: Assets/Sprites/Monsters/picky_.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 07207b28f0537224c90d250debd5ed1a
+    m_Address: Assets/Sprites/Monsters/galapago.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -52,8 +92,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 075f8e02c81afa047a2d2f7f569d4041
+    m_Address: Assets/Sprites/Monsters/brilight.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 090ae650ec670464cb87cecfa277ea2f
+    m_Address: Assets/Sprites/Monsters/tri_joint.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 0915409ae1403d54da1a6069ae0c778f
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uC131\uC9C1\uC790_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 09ffc5b9d3e748b48b27b8cd5189012e
+    m_Address: Assets/Sprites/Monsters/rsx_0806.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -62,13 +117,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 0ab732d66aae8b3448dd9eb8f12efe69
+    m_Address: Assets/Sprites/Monsters/sasquatch.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 0af8a5abecd2e23449df59218f62617e
     m_Address: Assets/Sprites/Monsters/wolf.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 0b25bc90c8e982e41bb55916c6de0681
+    m_Address: Assets/Sprites/Monsters/sedora.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0bad18a9d97788d4d99640233c41a733
+    m_Address: Assets/Sprites/Monsters/am_mut.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0bd84fa949ae8d54284ad644cb668b71
+    m_Address: Assets/Sprites/Monsters/tengu.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 0c07465723628e04d9065259ddb97c05
     m_Address: "Assets/Sprites/Characters/HeadFemale/4_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0d4997dac754a3a43b43a87d0887d495
+    m_Address: Assets/Sprites/Monsters/hydro.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0e5dce6bb2c247e4781b94bbfabeb092
+    m_Address: Assets/Sprites/Monsters/crab.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 0ea288bc7c1ee85459de941a7e1a585b
+    m_Address: Assets/Sprites/Monsters/hydra_atk.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -82,6 +172,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 1088a3896dca0684dbd4360bc98eba03
+    m_Address: Assets/Sprites/Monsters/tha_maero.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 10a623328f6dd4a488c7ca20e935b2d4
+    m_Address: Assets/Sprites/Monsters/obeaune.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1136fd2b764edc24d9bbb7cd665a0a35
+    m_Address: Assets/Sprites/Monsters/harpy.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 117386d8969497149833c0bbbaa4e949
     m_Address: Assets/Sprites/Monsters/caramel.spr
     m_ReadOnly: 0
@@ -89,6 +194,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 11b9299f6408f874d885274282c6414e
     m_Address: Assets/Sprites/Monsters/thief_bug_male.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 11c4df34cd95f4640ac2d65bbeda32c6
+    m_Address: Assets/Sprites/Monsters/siroma.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -102,8 +212,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 13da828c70cdbb34aadc8a66cb53d184
+    m_Address: Assets/Sprites/Monsters/ginseng_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 148208e6b2063514ca14ce7d37ac6ac9
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uB9C8\uBC95\uC0AC_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 15442c3cd647291439d079d3b2a259d7
+    m_Address: Assets/Sprites/Monsters/dark_illusion.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -112,13 +232,68 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 16fdae69309269443b06657fbbfce59b
+    m_Address: Assets/Sprites/Monsters/hell_poodle.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 170dc6a105834d84d8c550129675302c
+    m_Address: Assets/Sprites/Monsters/lune.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 1777ae685267c174588921c1b66a4207
     m_Address: Assets/Sprites/Monsters/phreeoni.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 180c0ac4a87e74a45896eb8a49989122
+    m_Address: Assets/Sprites/Monsters/sleeper.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 181ae1d0032d2d740879dfc05eec31a9
+    m_Address: Assets/Sprites/Monsters/leak.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1823065658ef3cf4883bcc31468c5b6a
+    m_Address: Assets/Sprites/Monsters/phen.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1856d8d25713d414a8b7a6e0db91a415
+    m_Address: Assets/Sprites/Monsters/centipede.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1878347aa1ef87247a43aecda5f78541
+    m_Address: Assets/Sprites/Monsters/hylozoist.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 18c8740eb0021a24e8f240ba6df66927
+    m_Address: Assets/Sprites/Monsters/rybio.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 1a585e45973f0f34c8661a11a3c0b6fb
     m_Address: Assets/Sprites/Monsters/bloody_murderer.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1ad72a3f906e6d94a8af2d023da4e0af
+    m_Address: Assets/Sprites/Monsters/demon_pungus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1b47e39166f812248a51b39170b484e9
+    m_Address: Assets/Sprites/Monsters/stalactic_golem.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1ba711db8cb081c4dac72d4529bddc68
+    m_Address: Assets/Sprites/Monsters/hyegun.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -129,6 +304,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 1c44842404a4b3545b8c6bef8e14da9b
     m_Address: Assets/Sprites/Monsters/wander_man.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1c532e76bb78707428233876dc962e33
+    m_Address: Assets/Sprites/Monsters/noxious.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -157,6 +337,41 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 1e3c9be48ee428a4aa82b6c3caf09ff6
+    m_Address: Assets/Sprites/Monsters/marduk.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 1eb634e79f97a4341b6297600955267b
+    m_Address: Assets/Sprites/Monsters/dimik_2.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 210aa90eb87874d40bbee2c8e72f042d
+    m_Address: Assets/Sprites/Monsters/penomena.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 2178e422b1c98da48b050281d14b084f
+    m_Address: Assets/Sprites/Monsters/mineral.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 21fefcb1f69d6eb4b9e4feaeaf0a3f53
+    m_Address: Assets/Sprites/Monsters/drosera.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 22d9b4568f0d4ec4ca98beadbd8752cf
+    m_Address: Assets/Sprites/Monsters/venatu_4.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 22e7bd89270eb8e4eb478fea1faec14a
+    m_Address: Assets/Sprites/Monsters/deleter_.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 238a1bbf3e9e0ef4f83f48e7063d0fb6
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uB3C4\uB451_\uC5EC.spr"
     m_ReadOnly: 0
@@ -172,13 +387,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 281c678388521b34ca82f28049e5d800
+    m_Address: Assets/Sprites/Monsters/wraith_dead.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 28abb0dec5957e24981fab261c2de447
     m_Address: Assets/Sprites/Monsters/cookie.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 29157fcf3681a3d4ba68dfda7f6a2789
+    m_Address: Assets/Sprites/Monsters/leaf_cat.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 293df452191638b4a9b6e973464042b5
     m_Address: Assets/Sprites/Monsters/thief_bug.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 294af21e962990943969330dffb2640a
+    m_Address: Assets/Sprites/Monsters/phendark.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -197,8 +427,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 2aa8fe324fc4a384c92f6073d825aafb
+    m_Address: Assets/Sprites/Monsters/lava_golem.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 2aff088c3e6de5b45aa66d386aee000d
+    m_Address: Assets/Sprites/Monsters/draco.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 2b1871b4d8d18f543a2c4c9ffd2ca745
     m_Address: Assets/Sprites/Monsters/spore.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 2b84663c8c807b3469d2d354f77a431a
+    m_Address: Assets/Sprites/Monsters/skogul.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -217,8 +462,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 2cd5170a1e5460c4bbf26effae96893e
+    m_Address: Assets/Sprites/Monsters/sword_fish.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 2cf92b824b92fb041a38e7ea84e29a90
     m_Address: "Assets/Sprites/Characters/HeadMale/27_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 2dff59a923150444f9a306f98c6c418b
+    m_Address: Assets/Sprites/Monsters/kraben.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 2e56132288fb41c4988ba73f78082fd8
+    m_Address: Assets/Sprites/Monsters/neo_punk.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -227,13 +487,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 2f2fcf44c96e81f44be6aa2e19dfd638
+    m_Address: Assets/Sprites/Monsters/kublin.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 319230d2287aaba4c9a3a6d0a6640d9a
+    m_Address: Assets/Sprites/Monsters/solace.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 31e8c3616f3418d4b9ef02db104e06cf
     m_Address: Assets/Sprites/Monsters/stainer.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 325d45ecc0b45ed41b80409f65d22ad0
+    m_Address: Assets/Sprites/Monsters/gajomart.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 329714ac8d37b604cb231f4d5cd089d8
     m_Address: Assets/Sprites/Monsters/greatest_general.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 32a0ac41cb3ed4445b4f952a7428467e
+    m_Address: Assets/Sprites/Monsters/morocc_1.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 32a983b042b0f624db2b84e909bc6958
+    m_Address: Assets/Sprites/Monsters/sageworm.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -247,13 +532,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 33f51485c0b5e834f8aa7745640ee411
+    m_Address: Assets/Sprites/Monsters/dark_lord.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 342c76b605d9a284d8b5527af0011e3a
     m_Address: "Assets/Sprites/Headgear/Female/\uC5EC_\uC120\uAE00\uB798\uC2A4.spr"
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 34fcd2b0ef447e145b18e449958220d2
+    m_Address: Assets/Sprites/Monsters/parasite_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 35caa91aabb62f64c9ded29c7079625a
+    m_Address: Assets/Sprites/Monsters/heater.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 364b83398a460634d8b42a220b1160ca
+    m_Address: Assets/Sprites/Monsters/knocker.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 36a7a27989817c54f8cead4cce99ebf7
     m_Address: Assets/Sprites/Monsters/desert_wolf_b.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 36ca30e6542e15b44907809cdb878de8
+    m_Address: Assets/Sprites/Monsters/giearth.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -287,6 +597,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 38ed89f7dd181d34f98a54a6949a9ace
+    m_Address: Assets/Sprites/Monsters/magmaring.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 395759da43cf79f409f82106499b94c6
+    m_Address: Assets/Sprites/Monsters/wraith.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3b3fd51c28824b34dae3043623eb2ff0
+    m_Address: Assets/Sprites/Monsters/elder.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 3c56b1906213cef4ba5192c229698c1d
     m_Address: Assets/Sprites/Monsters/goblin_archer.spr
     m_ReadOnly: 0
@@ -297,13 +622,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 3d1d0292054dff744b113cfc06b462ec
+    m_Address: Assets/Sprites/Monsters/gibbet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 3d65691cb21357942a53f231b3326302
     m_Address: Assets/Sprites/Monsters/savage_babe.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 3d9bb92ee7535924883f236f62c7efdf
+    m_Address: Assets/Sprites/Monsters/orc_zombie.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3e95c3088c8ba92478ac5d11ac24e00f
+    m_Address: Assets/Sprites/Monsters/marc.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3ef7f59937dccd341a6fd9949084e323
+    m_Address: Assets/Sprites/Monsters/venatu_1.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 3ef8003bdfe5d0a448b48d2f11e307ac
     m_Address: Assets/Sprites/Monsters/drake.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3f19fb8c1baf2754cbc3bd322138e5a7
+    m_Address: Assets/Sprites/Monsters/pasana.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3f32a26da4c9cae47b8b245f4dc4f65f
+    m_Address: Assets/Sprites/Monsters/parasite.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 3f53db95b8b2aaa4983da8ad7ef43342
+    m_Address: Assets/Sprites/Monsters/mysteltainn.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -332,6 +692,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 417e3506885d2604e8cec08425dc200e
+    m_Address: Assets/Sprites/Monsters/ifrit.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 41bffcf39daf93a44b987709cb1a0a24
     m_Address: Assets/Sprites/Monsters/yellow_plant.spr
     m_ReadOnly: 0
@@ -357,8 +722,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 461db3bd645ff8e4e8b3cb58c8aef294
+    m_Address: Assets/Sprites/Monsters/gryphon.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 462616a54d9391746ae3b4757dccf00f
+    m_Address: Assets/Sprites/Monsters/permeter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 463535e9beb3d1d43b43bec401931321
     m_Address: "Assets/Sprites/Characters/BodyMale/\uAD81\uC218_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 463ba0a8e6dd55740af9a445ee21a981
+    m_Address: Assets/Sprites/Monsters/dryad.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -372,6 +752,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 4763d060afceab34fa788d07ccefdf22
+    m_Address: Assets/Sprites/Monsters/raydric_archer.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 47b5c6a7d0428fe4793cf386d6c7bb50
     m_Address: "Assets/Sprites/Characters/HeadFemale/21_\uC5EC.spr"
     m_ReadOnly: 0
@@ -379,6 +764,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 47fcb79880b2a61469bb15b942dd1f6f
     m_Address: Assets/Sprites/Monsters/orc_lord.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 48ecb2bdb21bdd2469d7187595dd5c7d
+    m_Address: Assets/Sprites/Monsters/injustice.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -392,8 +782,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 4979ee581b1bc5b4c968ac03e4f566cf
+    m_Address: Assets/Sprites/Monsters/muscipular.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 4982b8efcbcba774fa0d969af10bbab2
     m_Address: Assets/Sprites/Monsters/nine_tail.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 4a21a09b384d06a4e991d16ab84e24a3
+    m_Address: Assets/Sprites/Monsters/observation.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -417,6 +817,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 4b6fcbbc7aec1e64790612912dba57bf
+    m_Address: Assets/Sprites/Monsters/vitata.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 4b7e0e91d1983fb42bcaf6109c352b7b
     m_Address: "Assets/Sprites/Characters/HeadFemale/13_\uC5EC.spr"
     m_ReadOnly: 0
@@ -437,8 +842,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 4d73d060d6782764984ce1ae628f0016
+    m_Address: Assets/Sprites/Monsters/obsidian.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 4d8aefdabf2b33744811a9ab66255cf0
     m_Address: "Assets/Sprites/Characters/HeadMale/14_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 4e8632736d5ceaa409b656e6e1b11ab8
+    m_Address: Assets/Sprites/Monsters/owl_baron.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 4e8953c65bd929b45a1ecd1441fb839b
+    m_Address: Assets/Sprites/Monsters/wild_ginseng.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -457,8 +877,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 5035dd4e207f5aa48893f26fc13c7af5
+    m_Address: Assets/Sprites/Monsters/frus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 508813928ba31774e8cf7be5b8d2722c
+    m_Address: Assets/Sprites/Monsters/pharaoh.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 50c36cf7d24679e4c8132e5cf0f4c922
+    m_Address: Assets/Sprites/Monsters/necromancer.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 50e1baf32089e63479bf5bc0c54e6412
+    m_Address: Assets/Sprites/Monsters/thanatos.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 512f92f6d2f8c3d4f8d0ebae2e1c2236
     m_Address: "Assets/Sprites/Weapons/SuperNovice/Female/\uC288\uD37C\uB178\uBE44\uC2A4_\uC5EC_1207.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 517c5923b81370a4fbd0f90ac2cf9fc9
+    m_Address: Assets/Sprites/Monsters/naght_sieger.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -472,8 +917,58 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 53d8e1a42581d984fa703f0b7389bece
+    m_Address: Assets/Sprites/Monsters/green_iguana.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 54967729d85664d498c6d3a37f17b4be
+    m_Address: Assets/Sprites/Monsters/hell_fly.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 553661c21b8888042a44375fe804b1b8
+    m_Address: Assets/Sprites/Monsters/chepet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 5598d9ccb9d2c6c49a94d5866eda18de
     m_Address: Assets/Sprites/Monsters/hode.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 560e982155dcc634bb770607b17c6f27
+    m_Address: Assets/Sprites/Monsters/kukre.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 562de9e6a5073524985f30446de6c659
+    m_Address: Assets/Sprites/Monsters/les.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 572b15a1acb41fb43bd168d49c2762d4
+    m_Address: Assets/Sprites/Monsters/morocc.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 57552dd5404f94c4faf383e28fff497e
+    m_Address: Assets/Sprites/Monsters/tamruan.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 5793cb36e6bdff0448f2438e5bb71491
+    m_Address: Assets/Sprites/Monsters/mini_demon.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 58ba09cadae283942b283ac821f0a596
+    m_Address: Assets/Sprites/Monsters/salamander.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 591dda4722b51a04da20bea01e4ee50d
+    m_Address: Assets/Sprites/Monsters/knight_of_windstorm.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -482,8 +977,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 59ca955f0f49295429fb1427a409fb43
+    m_Address: Assets/Sprites/Monsters/strouf.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 5c40fa90b02375b42a1b9f8ff89ab4b9
     m_Address: "Assets/Sprites/Characters/HeadMale/29_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 5cd2c21253c64ca45a1a3857446f3d96
+    m_Address: Assets/Sprites/Monsters/morocc_3.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 5cf0678d74236c7429f6684fdef08a88
+    m_Address: Assets/Sprites/Monsters/ragged_zombie_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 5cf63aee15400974dbe394e0e2609ec4
+    m_Address: Assets/Sprites/Monsters/gullinbursti.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -504,6 +1019,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 5eda30ee2e0ad0f4aa5c135f92c58c8a
     m_Address: Assets/Sprites/Monsters/drainliar.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 5eda70b21b5444b46b1b181ef230b9c1
+    m_Address: Assets/Sprites/Monsters/raggler.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -532,13 +1052,58 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 61057c6a1cd261d4b9a5da78976b55e6
+    m_Address: Assets/Sprites/Monsters/pitman.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 611d89b5d5693bc46be234e8588aeb28
+    m_Address: Assets/Sprites/Monsters/explosion.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6120f39c46c159e4da43353137e9a75b
+    m_Address: Assets/Sprites/Monsters/mutant_dragon.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 613835a2b778adf4a8f69325558c48ed
     m_Address: Assets/Sprites/Monsters/rocker.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 6152ba466efabe74a9337a6ee732f223
+    m_Address: Assets/Sprites/Monsters/bon_gun.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 61c583cbb961ff5459b13475d170dca4
+    m_Address: Assets/Sprites/Monsters/joker.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 62db4828c9efac549b805eecf1141561
+    m_Address: Assets/Sprites/Monsters/morocc_2.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 63f430b8edc464544a85c7da426d59a1
+    m_Address: Assets/Sprites/Monsters/wicked_nymph.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 6453c35c31634d24bbe53ba5e7ec7840
     m_Address: Assets/Sprites/Monsters/roda_frog.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6485a2be8bec3ce469cc9668dd22323f
+    m_Address: Assets/Sprites/Monsters/mobster.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 652b1014b29934a4295c9df929e72ae4
+    m_Address: Assets/Sprites/Monsters/punk.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -552,13 +1117,43 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 66ed7d88e69e89a4482bb5ee75885808
+    m_Address: Assets/Sprites/Monsters/novus_.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 66f1a3cbdeb87704a88e470c03015e61
+    m_Address: Assets/Sprites/Monsters/seeker.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 6851dc897d42df84da03110d8503e784
     m_Address: Assets/Sprites/Monsters/kobold_archer.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 68d8bf656c4cce147a6c0160b0e7b297
+    m_Address: Assets/Sprites/Monsters/morocc_4.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 68f4c9c0d60f8d2489c8adb7b1cf6a8d
     m_Address: Assets/Sprites/Monsters/andre.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 69024c46ba78f0341b960dcb1c3fba3a
+    m_Address: Assets/Sprites/Monsters/munak.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6912eba073f2122479e10b8a093539a2
+    m_Address: Assets/Sprites/Monsters/whisper_boss.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 69656ecd26af2114097c4619964f28a5
+    m_Address: Assets/Sprites/Monsters/poison_toad.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -581,8 +1176,28 @@ MonoBehaviour:
     m_Address: Assets/Textures/WaterTemp.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 6b6808af015d2ef4f8b302bd2140d31f
+    m_Address: Assets/Sprites/Monsters/draco_egg.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 6c4295b4b53c4f94dbf74a0bb83f232f
     m_Address: Assets/Sprites/Monsters/freezer.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6cdc0e27a5c867c429d4fe4735950d29
+    m_Address: Assets/Sprites/Monsters/requiem.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6d5854cd277f06b49b8650bb35f5711d
+    m_Address: Assets/Sprites/Monsters/dark_shadow.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6dc5a856b08a1c242af6ffc809c605e2
+    m_Address: Assets/Sprites/Monsters/diabolic.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -592,6 +1207,11 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 700578ae829ad6d4d8957508583ad3d9
     m_Address: Assets/Sprites/Monsters/desert_wolf.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7175465435f8ef345996aa8f865fb15a
+    m_Address: Assets/Sprites/Monsters/owl_viscount.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -610,8 +1230,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 7386ddbf57d06c34bbe3733944318c57
+    m_Address: Assets/Sprites/Monsters/solider.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 752ff7a591f6aee49850702fc259a1e7
+    m_Address: Assets/Sprites/Monsters/venatu_2.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 768e41e93f017b34abdda0630a7d3cf7
     m_Address: Assets/Sprites/Monsters/anacondaq.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 76e7d1632edfa574399f9e717172faf0
+    m_Address: Assets/Sprites/Monsters/cobalt_mineral.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -630,8 +1265,43 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 7898318296ccfb343a62f325f27bcde9
+    m_Address: Assets/Sprites/Monsters/incubus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 78bb201d7ca509e4981f8efc29c71e2b
+    m_Address: Assets/Sprites/Monsters/gloomundernight.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7950283f1ca22fc42bdbd1774ce05a6d
+    m_Address: Assets/Sprites/Monsters/loli_ruri.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7965b352fc3de6346964193d6646db5f
+    m_Address: Assets/Sprites/damagenumbers.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7969c8b2aaf4b1247bdc5729698ac7ab
+    m_Address: Assets/Sprites/Monsters/tha_odium.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 79795c8fe2bbfd24b83134d4820b0017
+    m_Address: Assets/Sprites/Monsters/centipede_larva.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 79c986b394188a2429a428089734f252
     m_Address: Assets/Sprites/Monsters/mantis.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7a34dd90d3746b944b09a11156cd0eea
+    m_Address: Assets/Sprites/Monsters/gemini.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -656,6 +1326,26 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 7b70df724e10d7e47ab902ffca952975
     m_Address: Assets/Sprites/Monsters/fabre.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7b7dc71704965354da8bb41acd29f882
+    m_Address: Assets/Sprites/Monsters/king_poring.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7d9d3f3412d55e547aac6943bb99e9a3
+    m_Address: Assets/Sprites/Monsters/grizzly.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7de3fd8f0f9ff0e48b9bf8cf6027ffeb
+    m_Address: Assets/Sprites/Monsters/ktullanux.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 7eac266d06da50345bb45f40ce737108
+    m_Address: Assets/Sprites/Monsters/fake_angel.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -723,6 +1413,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 85a37fe82895e0446a7576f704a00bdf
+    m_Address: Assets/Sprites/Monsters/zipper_bear.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 8606dba797efc47498f0e82bd1ca2dc6
     m_Address: Assets/Sprites/Monsters/petit.spr
     m_ReadOnly: 0
@@ -743,6 +1438,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 8818ddf2fbe40264db2d07b62b2ca9df
+    m_Address: Assets/Sprites/Monsters/galion.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8833965aa77f0e444a7d09a6609d08a3
+    m_Address: Assets/Sprites/Monsters/spring_rabbit.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 8a74d2072e51cec49a25566c66ec28bd
     m_Address: "Assets/Sprites/Characters/HeadFemale/8_\uC5EC.spr"
     m_ReadOnly: 0
@@ -755,6 +1460,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 8bf126e83c8eed24eb0e14faff814146
     m_Address: "Assets/Sprites/Characters/HeadFemale/10_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8c006013b07b8bf4396eb16b4e849242
+    m_Address: Assets/Sprites/Monsters/chimera.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -773,6 +1483,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 8d24c9e6c12db9948911568579ab41c9
+    m_Address: Assets/Sprites/Monsters/blue_plant 1.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 8d57c22da426ba545b0c1c04bd9b18e1
     m_Address: Assets/Sprites/Monsters/mastering.spr
     m_ReadOnly: 0
@@ -783,13 +1498,48 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 8d7ed28486c3c1b4e8baebd0b9520f36
+    m_Address: Assets/Sprites/Monsters/cremy_fear.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8dfdf684b3def824f8a5d6007a0c7b61
+    m_Address: Assets/Sprites/Monsters/roween.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 8e3b652c4162659498ffc8a76605398e
     m_Address: Assets/Sprites/Monsters/grand_peco.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 8ea9d9a07b90cb444836925cf14cf786
+    m_Address: Assets/Sprites/Monsters/megalodon.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8f6645da9756bd643a61ba7933c0dc33
+    m_Address: Assets/Sprites/Monsters/violy.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8fb45e3ec9347bf469ce0d1348e5469e
+    m_Address: Assets/Sprites/Monsters/skeggiold_.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 902293e6be6289d4eac71c9d26836366
+    m_Address: Assets/Sprites/Monsters/dimik_1.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 90cc54bcb314ac741a3000aaedca74f3
     m_Address: Assets/Sprites/Monsters/hornet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9168d498c9798304387934bbe8a057bf
+    m_Address: Assets/Sprites/Monsters/sea_otter.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -800,6 +1550,26 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 9259f73a4f695ac4a96a96cba2c8c385
     m_Address: "Assets/Sprites/Headgear/Female/\uC5EC_\uC655\uB9AC\uBCF8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9299531b5a0a4e8499196bc7690212e2
+    m_Address: Assets/Sprites/Monsters/giant_hornet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9362aa327213b994eb153d01d1ac6f60
+    m_Address: Assets/Sprites/Monsters/dark_snake_lord.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 93b517d1af858fb40815606c99f55d93
+    m_Address: Assets/Sprites/Monsters/kaho.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 93ea35a640fd7934097058609aafa7ea
+    m_Address: Assets/Sprites/Monsters/dragon_egg.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -818,8 +1588,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 9469fdb15f9fac54f9b1f13153295c60
+    m_Address: Assets/Sprites/Monsters/gopinich.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 956ed144411c00b419d822b30b9c30bc
+    m_Address: Assets/Sprites/Monsters/gremlin.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9620f8c978e3e984ea76b1fb19de6036
+    m_Address: Assets/Sprites/Monsters/dimik_4.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 96ce79ee5e749364d82d6bea6f1fb269
     m_Address: Assets/Sprites/Monsters/wilow.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 979095a7e8d898941b9a177105b9e056
+    m_Address: Assets/Sprites/Monsters/constant.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 991ce8518037eae43a97a38bb564820c
+    m_Address: Assets/Sprites/Monsters/the_paper.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -828,8 +1623,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 9a28b1cc08d53f14baa3c4036df6c59d
+    m_Address: Assets/Sprites/Monsters/pirate_skel.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9ac25f7ebd882b940bf46f5d16a0a9f3
+    m_Address: Assets/Sprites/Monsters/giant_spider.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9b6a2465d556bec45bdfbccd6e2c45f6
+    m_Address: Assets/Sprites/Monsters/pest.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: 9e0ac5d3a6b6d8b4fac73f48e5679ee2
     m_Address: "Assets/Sprites/Headgear/Female/\uC5EC_3d\uC548\uACBD.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 9e0f566bbe317fa4a8c22d0dd000ce6d
+    m_Address: Assets/Sprites/Monsters/venatu.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -857,6 +1672,21 @@ MonoBehaviour:
     m_Address: gridicon
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a086ef38e489c214c9b1d808007c24be
+    m_Address: Assets/Sprites/Monsters/detale.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: a17a971cf82915943a399bf54b1de0d7
+    m_Address: Assets/Sprites/Monsters/ferus_.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: a1fa25860bbfb4b4cb06a5d0e344682b
+    m_Address: Assets/Sprites/Monsters/drosera_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: a28208c8c1752084f806e7a777da178a
     m_Address: Assets/Sprites/Monsters/horn.spr
     m_ReadOnly: 0
@@ -882,6 +1712,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: a36404959d38d1341aee6555808fa141
+    m_Address: Assets/Sprites/Monsters/mole.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: a46fb516112bdc94488ef2185c4c1f4e
     m_Address: "Assets/Sprites/Characters/BodyMale/\uB9C8\uBC95\uC0AC_\uB0A8.spr"
     m_ReadOnly: 0
@@ -889,6 +1724,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: a4e8adae65ec2ab4792406575d74c56d
     m_Address: Assets/Sprites/Monsters/zenorc.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: a508e77fe69603346ad89eed66f436d8
+    m_Address: Assets/Sprites/Monsters/lady_tanee.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -917,6 +1757,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: a87b60e008605824a9a5b858bd8d262c
+    m_Address: Assets/Sprites/Monsters/li_me_mang_ryang.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: a90834bbd606eeb42b560c1a6d093007
     m_Address: "Assets/Sprites/Characters/HeadMale/10_\uB0A8.spr"
     m_ReadOnly: 0
@@ -927,8 +1772,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: a997c570cc0de29419e518a2b262e83e
+    m_Address: Assets/Sprites/Monsters/tristan_3rd.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: aa114475f9b9f744a82f2358fa7fde6d
+    m_Address: Assets/Sprites/Monsters/hodremlin.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: aa25cb017f6275c41b818986fea42136
     m_Address: Assets/Sprites/Monsters/green_plant.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: aa6190e705b96e64a958d591a029774d
+    m_Address: Assets/Sprites/Monsters/disguise.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -947,8 +1807,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: ac28158d1d42cc346bb00744447899fc
+    m_Address: Assets/Sprites/Monsters/owl_duke.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: ad96ee404ba35504abb7516cde853fa4
     m_Address: Assets/Sprites/Monsters/steam_goblin.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ad9b6670c72eb29469f7b0d8ecc67719
+    m_Address: Assets/Sprites/Monsters/shelter.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -967,8 +1837,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: af6b1c44cab763843a01cb8cf72faeb4
+    m_Address: Assets/Sprites/Monsters/shinobi.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: affa7fb35446987438cfcc8651e7c0b2
+    m_Address: Assets/Sprites/Monsters/ragged_zombie.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b00cc8c89fc8bfd419d644906c888c72
+    m_Address: Assets/Sprites/Monsters/lady_tanee_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b08871942e977804e95b6e7dea27a1a9
+    m_Address: Assets/Sprites/Monsters/tha_dolor.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: b09f4a6f2bd34f943b1339bf02c41cc3
     m_Address: Assets/Sprites/Monsters/wootan_shooter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b0a100bd5b675154c93310a89097ad2b
+    m_Address: Assets/Sprites/Monsters/retribution.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -992,6 +1887,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: b1fc45507358a3f40b2bfb7db86ffe34
+    m_Address: Assets/Sprites/Monsters/stone_shooter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b2497f0474da2d04999be2d07f76fc39
+    m_Address: Assets/Sprites/Monsters/flame_skull.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b345d101ca5ee98468d86efe5e66896b
+    m_Address: Assets/Sprites/Monsters/live_peach_tree.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b36a0c0b9e10ed444aba9310b339a93d
+    m_Address: Assets/Sprites/Monsters/megalith.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: b38a7e199200a7a4dac306e68cf6561b
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uC288\uD37C\uB178\uBE44\uC2A4_\uC5EC.spr"
     m_ReadOnly: 0
@@ -999,6 +1914,16 @@ MonoBehaviour:
     - Sprite
   - m_GUID: b39ce2b9db57a8148914642f3a2d5b4b
     m_Address: Assets/Sprites/Monsters/bloody_knight.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b3c78389c587582439f6d2a3ef660b4f
+    m_Address: Assets/Sprites/Monsters/lude.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b3f3d18d4c5c47d4d8860ec43fb9f9d9
+    m_Address: Assets/Sprites/Monsters/dimik.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1017,6 +1942,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: b7132557769ab894ba9770639066eb95
+    m_Address: Assets/Sprites/Monsters/zombie_slaughter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: b796df2c7adcd2340bf46a0e8b4516ba
     m_Address: "Assets/Sprites/Characters/HeadFemale/27_\uC5EC.spr"
     m_ReadOnly: 0
@@ -1024,6 +1954,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: b79a5557c65c7374fb55fa00168701e2
     m_Address: "Assets/Sprites/Characters/HeadMale/15_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: b7f9c64c7a651eb4389f206b21c7aca3
+    m_Address: Assets/Sprites/Monsters/shellfish.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1037,8 +1972,58 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: b9922e88dbfd30c4b8b5fa9bdb4e435f
+    m_Address: Assets/Sprites/Monsters/see_otter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ba33bea96b2a7d944802058a6d05deca
+    m_Address: Assets/Sprites/Monsters/rafflesia.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: ba6cbe91c7bf50f409ebb75d8620c2df
     m_Address: Assets/Sprites/Monsters/wind_ghost.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: baee17c529a0b984ba02d0dc2491a447
+    m_Address: Assets/Sprites/Monsters/kapha.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bb09bf13d10585f469b9eea89b2476cd
+    m_Address: Assets/Sprites/Monsters/sting.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bc692fe0e9eb8d54baed0b7cd0660475
+    m_Address: Assets/Sprites/Monsters/khalitzburg.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bd3491b61aca02945b97a45bba71fdea
+    m_Address: Assets/Sprites/Monsters/sropho.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bd4e12509254f1044abe3460cf938412
+    m_Address: Assets/Sprites/Monsters/venatu_3.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bd71ab60d1cdb9e40b6f5b39b2544dd4
+    m_Address: Assets/Sprites/Monsters/stapo.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bd990a0f38bacc249a445d55a94257b0
+    m_Address: Assets/Sprites/Monsters/plankton.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bda9e5f67e597c0428c8ae78c897db2a
+    m_Address: Assets/Sprites/Monsters/kraken.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1047,8 +2032,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: bdc78668d50bc5043b47fc5415aa4ef4
+    m_Address: Assets/Sprites/Monsters/dark_priest.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: be31741a526453a42851f3cd563a677b
     m_Address: "Assets/Sprites/Characters/HeadFemale/25_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: befc6b5cd95933044aa2a4fa745529b2
+    m_Address: Assets/Sprites/Monsters/bomb.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1057,8 +2052,58 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: bf6a073ce519aa243a55cb1abb4e80b9
+    m_Address: Assets/Sprites/Monsters/dark_frame.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bf816a1dcd6add84097246b1ae1b8ca1
+    m_Address: Assets/Sprites/Monsters/deathword.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: bfb470cfe6e3a044fba3883f284b1f38
+    m_Address: Assets/Sprites/Monsters/kiel.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c0221d715542a3a4985bc6fd22c2afa9
+    m_Address: Assets/Sprites/Monsters/ferus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c09647cefd0132743a7426d3738d8f5d
+    m_Address: Assets/Sprites/Monsters/increase_soil.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c210ce0eab982144a943168f213232f8
+    m_Address: Assets/Sprites/Monsters/rideword.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c28a771d244c6d742890b7d1461919f4
+    m_Address: Assets/Sprites/Monsters/deleter.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c343556ba7876454288e73ba4685affb
+    m_Address: Assets/Sprites/Monsters/gig.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c480dc091d081e14eaf384814047752a
+    m_Address: Assets/Sprites/Monsters/stone_shooter_bullet.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: c559ee07bb810e44f800efcc59c2fcac
     m_Address: "Assets/Sprites/Characters/BodyFemale/\uD558\uC774\uC704\uC800\uB4DC_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c5c0bc18a4ec88348ac8c117c827824c
+    m_Address: Assets/Sprites/Monsters/leib_olmai.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1077,6 +2122,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: c65cd73ac744c994cbc218883441e4de
+    m_Address: Assets/Sprites/Monsters/garden_watcher.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: c69b5f995b26ab2498e9327348de1508
     m_Address: Assets/Sprites/Monsters/drops.spr
     m_ReadOnly: 0
@@ -1087,8 +2137,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: c6e973bc6af869342a2d69cb9eb76724
+    m_Address: Assets/Sprites/Monsters/grim_reaper_ankou.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: c8920f86bdf572d448cc92f1312e2c9b
     m_Address: Assets/Sprites/Monsters/skel_archer_arrow.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c8c50de3bd2b9734fa43e66fd42ecb94
+    m_Address: Assets/Sprites/Monsters/dimik_3.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1097,8 +2157,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: c93d94504978dfa4399b0fe7edc9ff0a
+    m_Address: Assets/Sprites/Monsters/merman.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: c98bcab14dfd2834893bb78937aeee46
     m_Address: "Assets/Sprites/Characters/HeadMale/20_\uB0A8.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c9954b9dc4d53fd47884ed6d3f08edf9
+    m_Address: Assets/Sprites/Monsters/tirfing.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ca3da2b30c156a9448886c5a77b08384
+    m_Address: Assets/Sprites/Monsters/snowier.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1107,8 +2182,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: cafc3dcd6cfd5ac47bd3e185ef967b5d
+    m_Address: Assets/Sprites/Monsters/majoruros.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: cb54b87dc5d18e14babc02c2bfc6ffad
     m_Address: "Assets/Sprites/Characters/HeadFemale/7_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: cbf792aa4dcf1c74da1cd284d13a84de
+    m_Address: Assets/Sprites/Monsters/civil_servant.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1132,6 +2217,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: ce54439df34779b48afa36e2a1fa1a70
+    m_Address: Assets/Sprites/Monsters/killer_mantis.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: cee2cefc84812df42a2488cf3d4edf85
     m_Address: Assets/Sprites/Monsters/maya.spr
     m_ReadOnly: 0
@@ -1149,6 +2239,21 @@ MonoBehaviour:
     - Sprite
   - m_GUID: d136f9cfcba22854a9240998e8d2c464
     m_Address: Assets/Sprites/Monsters/argos.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d16edca969c2c90419850e4b421623d5
+    m_Address: Assets/Sprites/Monsters/cornus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d1ab695cb2913024aba52e0a6f278115
+    m_Address: Assets/Sprites/Monsters/tha_odium_ef.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d239bc6c8f56a69428be45c52ef8a479
+    m_Address: Assets/Sprites/Monsters/ungoliant.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1172,6 +2277,31 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: d340078250a0b5d48863a0e1edc0bafc
+    m_Address: Assets/Sprites/Monsters/caterpillar.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d36fe8e6defa1b74995a0693a4e8f19c
+    m_Address: Assets/Sprites/Monsters/garden_keeper.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d3e940949b0a5384b9803eba5ecfdc8d
+    m_Address: Assets/Sprites/Monsters/raydric.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d494135b918c5cd4eae51aaccbc20478
+    m_Address: Assets/Sprites/Monsters/quve.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d4b3933ad61cbef4f9b25de781d28e56
+    m_Address: Assets/Sprites/Monsters/tao_gunka.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: d4db7b381c2b0c6428440ea734a70f8c
     m_Address: Assets/Sprites/Monsters/geographer.spr
     m_ReadOnly: 0
@@ -1187,13 +2317,53 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: d5d206ab97a03ab42b64067afba96915
+    m_Address: Assets/Sprites/Monsters/jakk.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d602c1fbbc344a5458b9a829905a1ebf
+    m_Address: Assets/Sprites/Monsters/iceicle.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d6a4432b8189f43459cd3661bc1481d3
+    m_Address: Assets/Sprites/Monsters/kind_of_beetle.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: d6fed4c4e5f44984dbbade6495b49674
     m_Address: "Assets/Sprites/Characters/HeadMale/8_\uB0A8.spr"
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: d7af1958fcd4e8047b332ea39d97c8af
+    m_Address: Assets/Sprites/Monsters/skeggiold.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: d844eb068ca49e04089a9a8e740d65ba
     m_Address: "Assets/Sprites/Characters/HeadFemale/1_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d89ba3e7acffd11469e31cb70988627e
+    m_Address: Assets/Sprites/Monsters/porcellio.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d96f1f364532bf3428b8c32ee3ac07bb
+    m_Address: Assets/Sprites/Monsters/medusa.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d9aab9bfe3c1b7e44a287e9333efe730
+    m_Address: Assets/Sprites/Monsters/owl_marquees.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d9cff90a3aedf2c4cb321b6cd37d3b98
+    m_Address: Assets/Sprites/Monsters/vanberk.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1209,6 +2379,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: db65e2e08a28cdf42a844e8784ca7c0d
     m_Address: "Assets/Sprites/Headgear/Female/\uC5EC_\uC0C8\uB07C\uC545\uB9C8\uBAA8\uC790.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: dba4e6d96145f904d9b26413fc75c3ad
+    m_Address: Assets/Sprites/Monsters/byorgue.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1242,8 +2417,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: df05d860693c9c84fbd4b6416e8b5e07
+    m_Address: Assets/Sprites/Monsters/zherlthsh.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: df5b806d79a97d641a8a61632f8934f2
     m_Address: Assets/Sprites/Monsters/deviling.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: e015af9f03b0b0a4399dede73c5b5b71
+    m_Address: Assets/Sprites/Monsters/incantation_samurai.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: e072fd358d9ac814a8d040245a0b17d1
+    m_Address: Assets/Sprites/Monsters/randgris.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1267,8 +2457,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: e2879b05fb37cde4396925ae58488bf7
+    m_Address: Assets/Sprites/Monsters/sweets_drops.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: e29f6f2d0cdd91646bdbb7ecbc71c0f0
     m_Address: "Assets/Sprites/Characters/HeadFemale/2_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: e32874dedd0abdc4ca44dc0e7213ce7b
+    m_Address: Assets/Sprites/Monsters/libio.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: e3c39453d97cebe4f804ec9afee0cb6f
+    m_Address: Assets/Sprites/Monsters/metaling.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1282,8 +2487,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: e68c1408a0f94ac458d0b1b4090b1aac
+    m_Address: Assets/Sprites/Monsters/lord_of_death.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: e6ba6dac1bd174045af2cc5d8984257f
     m_Address: "Assets/Sprites/Characters/HeadFemale/24_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: e7427a11c20e33941a7ad8f3c4936b7b
+    m_Address: Assets/Sprites/Monsters/heavy_metaling.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1302,6 +2517,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: e9579e8c1cc22b54f9debd3f3875f391
+    m_Address: Assets/Sprites/Monsters/myst.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ea907dbe9fa757b449ea2b41bd6c164f
+    m_Address: Assets/Sprites/Monsters/orc_skeleton.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: eac7b2d3c5a44ab4188c8ce82893b61a
     m_Address: Assets/Sprites/Monsters/alice.spr
     m_ReadOnly: 0
@@ -1312,8 +2537,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: eb882e4d8f66877448e0bb7e58ab94f9
+    m_Address: Assets/Sprites/Monsters/soheon.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: ebd7933485500a348a3d7edf24638f16
     m_Address: Assets/Sprites/Monsters/skeleton.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ebec20afdab019344bcef68ac05c6f84
+    m_Address: Assets/Sprites/Monsters/cruiser.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1362,8 +2597,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: efad0190588b4f14a9c4fc50c23c39dc
+    m_Address: Assets/Sprites/Monsters/orc_load.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f00eee6af5dfb4d4f8c2f744c125f0ba
+    m_Address: Assets/Sprites/Monsters/dullahan.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f0510985654b83d4dbe0447720b947a9
+    m_Address: Assets/Sprites/Monsters/blue_flower.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f082f23bf77a6674eb8fbb9c24b520b7
+    m_Address: Assets/Sprites/Monsters/karakasa.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: f0aa0da9cacd0f54c9cf8e4ffb023b0f
     m_Address: Assets/Sprites/Monsters/mandragora.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f11e21dae71d05448922ea71937870db
+    m_Address: Assets/Sprites/Monsters/succubus.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1374,6 +2634,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: f21dd90a66e2ea9438c024cd757260fb
     m_Address: Assets/Sprites/Monsters/deniro.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f2b0146832c5c6b49bd84c163810dc81
+    m_Address: Assets/Sprites/Monsters/isilla.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1412,13 +2677,38 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: f5e7fec8f72776b4886792b821536436
+    m_Address: Assets/Sprites/Monsters/tha_despero.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: f642d0831c9eb024dadd3a9afff32838
     m_Address: Assets/Sprites/Monsters/poporing.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: f64f0a11c1cb8624fa26ddd06407dbaf
+    m_Address: Assets/Sprites/Monsters/gazeti.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f6be2e8a1b35bf94ead102fe04d3d285
+    m_Address: Assets/Sprites/Monsters/breeze.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: f6de46f8fd415d0449e16151284ea472
     m_Address: Assets/Sprites/Monsters/whisper.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f72c1529b57cc8747a9c2b2111353a99
+    m_Address: Assets/Sprites/Monsters/venomous.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f7a27934271e08d4b87309bb88e877cc
+    m_Address: Assets/Sprites/Monsters/executioner.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1432,8 +2722,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: f97907b6fe26a48458483f0391865e53
+    m_Address: Assets/Sprites/Monsters/orc_xmas.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: fa284dae59c50fe448eee635b4aa2516
     m_Address: Assets/Sprites/Monsters/cornutus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: fb7c2dab6c14c6a499cf805a7845c241
+    m_Address: Assets/Sprites/Monsters/fallingbishop.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: fc113e68e8e231e4082ce4ff19705949
+    m_Address: Assets/Sprites/Monsters/kraken_leg.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: fc18697e3a2581a44b955123a0d88742
+    m_Address: Assets/Sprites/Monsters/mystcase.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: fc4085e2c875a9a438650ce9eb72f707
+    m_Address: Assets/Sprites/Monsters/kiel_.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -1442,8 +2757,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: fd76ea57d915025458e99e145906ca6f
+    m_Address: Assets/Sprites/Monsters/novus.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   - m_GUID: fe27e56b7a9d1204f9fa42ca6aabae69
     m_Address: Assets/Sprites/Monsters/golden_bug.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ff0e37c992036cc40a4765d9cb5379bb
+    m_Address: Assets/Sprites/Monsters/wooden_golem.spr
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: ff59caa9af4fa5c4b8aab9392945b33f
+    m_Address: Assets/Sprites/Monsters/teddy_bear.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite

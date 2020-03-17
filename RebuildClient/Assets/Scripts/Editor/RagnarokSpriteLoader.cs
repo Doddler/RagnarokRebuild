@@ -175,7 +175,7 @@ namespace Assets.Editor
             
 	        var colors = new Color[frame.Width * frame.Height];
 
-            Debug.Log(frame.Width + " " + frame.Height);
+            //Debug.Log(frame.Width + " " + frame.Height);
 
             for (var y = 0; y < frame.Height; y++)
 	        {

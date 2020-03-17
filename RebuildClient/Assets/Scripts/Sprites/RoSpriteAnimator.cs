@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Network;
 using RebuildData.Shared.Data;
+using RebuildData.Shared.Enum;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
@@ -11,7 +12,7 @@ namespace Assets.Scripts.Sprites
 	public class RoSpriteAnimator : MonoBehaviour
 	{
 		public RoSpriteData SpriteData;
-		public FacingDirection Direction;
+		public Direction Direction;
 		public SpriteType Type;
 		public SpriteState State;
 		public float AnimSpeed = 1;
@@ -26,7 +27,7 @@ namespace Assets.Scripts.Sprites
 
 		public RoSpriteAnimator Parent;
 		public GameObject Shadow;
-		public SortingGroup ShadowSortingGroup;
+		public SortingGroup ShadowSortingGroup { get; set; }
 
 		public AudioSource AudioSource;
 
@@ -471,9 +472,9 @@ namespace Assets.Scripts.Sprites
 			var ratio = 1f / (Screen.width * Screen.height / 20000f);
 			var sortLayerNum = 10000 - Mathf.RoundToInt(sortGroup * ratio);
 
-			SortingGroup.sortingOrder = sortLayerNum;
-			if (ShadowSortingGroup != null)
-				ShadowSortingGroup.sortingOrder = sortLayerNum - 1;
+			//SortingGroup.sortingOrder = sortLayerNum;
+			//if (ShadowSortingGroup != null)
+			//	ShadowSortingGroup.sortingOrder = -20001;
 		}
 
 		public void Update()

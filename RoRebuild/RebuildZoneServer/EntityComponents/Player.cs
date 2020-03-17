@@ -15,6 +15,8 @@ namespace RebuildZoneServer.EntityComponents
 	public class Player : IStandardEntity
 	{
 		public EcsEntity Entity;
+		public Character Character;
+		public CombatEntity CombatEntity;
 		
 		public NetworkConnection Connection;
 		public float CurrentCooldown;
@@ -24,15 +26,37 @@ namespace RebuildZoneServer.EntityComponents
 
 		public EcsEntity Target;
 
+		public bool QueueAttack;
+
 		public void Reset()
 		{
 			Entity = EcsEntity.Null;
 			Target = EcsEntity.Null;
+			Character = null;
+			CombatEntity = null;
 			Connection = null;
 			CurrentCooldown = 0f;
 			HeadId = 0;
 			HeadFacing = HeadFacing.Center;
 			IsMale = true;
+			QueueAttack = false;
+		}
+
+		public void Init()
+		{
+			UpdateStats();
+		}
+
+		private void UpdateStats()
+		{
+			var s = CombatEntity.Stats;
+
+			s.AttackMotionTime = 0.5f;
+			s.HitDelayTime = 0.5f;
+			s.SpriteAttackTiming = 0.5f;
+			s.Range = 2;
+			s.Atk = 80;
+			s.Atk2 = 160;
 		}
 
 		private bool ValidateTarget()
@@ -48,17 +72,46 @@ namespace RebuildZoneServer.EntityComponents
 			return true;
 		}
 
-		public void PerformAttack(Character chara, Character targetCharacter)
+		public void ClearTarget()
 		{
-			chara.StopMovingImmediately();
-			chara.SpawnImmunity = -1;
+			QueueAttack = false;
+			Target = EcsEntity.Null;
+			
+		}
 
-			chara.FacingDirection = DistanceCache.Direction(chara.Position, targetCharacter.Position);
+		public void PerformQueuedAttack()
+		{
+			QueueAttack = false;
+			if (Target.IsNull() || !Target.IsAlive())
+				return;
+			var targetCharacter = Target.Get<Character>();
+			if (!targetCharacter.IsActive)
+				return;
+			if (targetCharacter.Map != Character.Map)
+				return;
+			if (Character.Position.SquareDistance(targetCharacter.Position) > CombatEntity.Stats.Range)
+				return;
 
-			chara.Map.GatherPlayersForMultiCast(ref Entity, chara);
-			CommandBuilder.AttackMulti(chara, targetCharacter);
-			CommandBuilder.ClearRecipients();
-			targetCharacter.LastAttacked = chara.Entity;
+			PerformAttack(targetCharacter);
+		}
+
+		public void PerformAttack(Character targetCharacter)
+		{
+			Character.StopMovingImmediately();
+
+			if (Character.AttackCooldown > Time.ElapsedTimeFloat)
+			{
+				QueueAttack = true;
+				Target = targetCharacter.Entity;
+				return;
+			}
+
+			Character.SpawnImmunity = -1;
+
+			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
+			CombatEntity.PerformMeleeAttack(targetEntity);
+
+			Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
 		}
 
 		public void UpdatePosition(Character chara, Position nextPos)
@@ -82,20 +135,20 @@ namespace RebuildZoneServer.EntityComponents
 
 			var targetCharacter = Target.Get<Character>();
 
-			if (chara.Position.SquareDistance(targetCharacter.Position) <= 2)
+			if (chara.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
 			{
-				PerformAttack(chara, targetCharacter);
+				PerformAttack(targetCharacter);
 			}
 		}
 
 		public void TargetForAttack(Character chara, Character enemy)
 		{
-			if (chara.Position.SquareDistance(enemy.Position) <= 2)
+			if (chara.Position.SquareDistance(enemy.Position) <= CombatEntity.Stats.Range)
 			{
 				Target = enemy.Entity;
 				var targetCharacter = Target.Get<Character>();
 
-				PerformAttack(chara, targetCharacter);
+				PerformAttack(targetCharacter);
 				return;
 			}
 
@@ -111,6 +164,12 @@ namespace RebuildZoneServer.EntityComponents
 		
 		public void Update()
 		{
+			if (QueueAttack)
+			{
+				if(Character.AttackCooldown < Time.ElapsedTimeFloat)
+					PerformQueuedAttack();
+			}
+
 			CurrentCooldown -= Time.DeltaTimeFloat;
 			if (CurrentCooldown < 0)
 				CurrentCooldown = 0;

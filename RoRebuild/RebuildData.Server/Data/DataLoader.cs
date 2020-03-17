@@ -90,14 +90,17 @@ namespace RebuildData.Server.Data
 				{
 					Id = monster.Id,
 					Code = monster.Code,
-					Range = monster.Range,
+					Range = monster.Range > 0 ? monster.Range : 1,
 					ScanDist = monster.ScanDist,
 					ChaseDist = monster.ChaseDist,
+					AtkMin = monster.AtkMin,
+					AtkMax = monster.AtkMax,
 					AttackTime = monster.AttackTime / 1000f,
 					HitTime = monster.HitTime / 1000f,
 					RechargeTime = monster.RechargeTime / 1000f,
-					MoveSpeed = monster.MoveSpeed/1000f,
-					AiType = (MonsterAiType)Enum.Parse(typeof(MonsterAiType),monster.MonsterAiType),
+					MoveSpeed = monster.MoveSpeed / 1000f,
+					SpriteAttackTiming = monster.SpriteAttackTiming / 1000f,
+					AiType = (MonsterAiType)Enum.Parse(typeof(MonsterAiType), monster.MonsterAiType),
 					Name = monster.Name
 				});
 			}
@@ -128,7 +131,7 @@ namespace RebuildData.Server.Data
 		{
 			var aiTypeCount = Enum.GetNames(typeof(MonsterAiType)).Length;
 			var entryList = new List<List<MonsterAiEntry>>(aiTypeCount);
-			for(var i = 0; i < aiTypeCount; i++)
+			for (var i = 0; i < aiTypeCount; i++)
 				entryList.Add(new List<MonsterAiEntry>());
 
 			using var tr = new StreamReader(@"Data\MonsterAI.csv") as TextReader;
@@ -145,7 +148,7 @@ namespace RebuildData.Server.Data
 				hasError |= !Enum.TryParse(entry.OutputCheck, out MonsterOutputCheck outCheck);
 				hasError |= !Enum.TryParse(entry.EndState, out MonsterAiState outState);
 
-				if(hasError)
+				if (hasError)
 					throw new Exception($"Could not parse Ai States: {entry.AiType},{entry.State},{entry.InputCheck},{entry.OutputCheck},{entry.EndState}");
 
 				entryList[(int)aiType].Add(new MonsterAiEntry()
@@ -169,7 +172,7 @@ namespace RebuildData.Server.Data
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var spawns = csv.GetRecords<CsvMapSpawnEntry>().ToList();
-			
+
 			var entryCount = 0;
 
 			foreach (var spawn in spawns)

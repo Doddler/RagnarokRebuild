@@ -15,7 +15,8 @@ namespace RebuildData.Server.Data.Monster
 		AiAssist,
 		AiAssistLooter,
 		AiAggressiveLooter,
-		AiAngry
+		AiAngry,
+		AiPlant
 	}
 
 	public enum MonsterAiState : byte
@@ -54,6 +55,7 @@ namespace RebuildData.Server.Data.Monster
 		OutChangeNormal,
 		OutPerformAttack,
 		OutChangeTargets,
-		OutTryRevival
+		OutTryRevival,
+		OutWaitForever
 	}
 }

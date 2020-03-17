@@ -110,9 +110,13 @@ namespace RebuildZoneServer.Sim
 			ServerLogger.Log($"World started with {entities} entities.");
 		}
 
-		public void Update()
+		public void RunEcs()
 		{
 			ecsSystems.Run();
+		}
+
+		public void Update()
+		{
 			for (var i = 0; i < mapCount; i++)
 				Maps[i].Update();
 
@@ -154,8 +158,11 @@ namespace RebuildZoneServer.Sim
 			ch.Type = CharacterType.Monster;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
 
+			ce.Entity = e;
+
 			entityList.Add(ch.Id, e);
 
+			ce.Init(ref e, ch);
 			m.Initialize(ref e, ch, ce, mon, mon.AiType, spawnEntry);
 
 			//ServerLogger.Log("Entity spawned at position: " + ch.Position);
@@ -209,12 +216,16 @@ namespace RebuildZoneServer.Sim
 			ch.Type = CharacterType.Player;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
 
-			ce.Init();
+			ce.Init(ref e, ch);
 
 			player.Connection = connection;
 			player.Entity = e;
+			player.CombatEntity = ce;
+			player.Character = ch;
 			player.IsMale = GameRandom.Next(0, 1) == 0;
 			player.HeadId = (byte)GameRandom.Next(0, 28);
+
+			player.Init();
 
 			connection.Player = player;
 
@@ -243,7 +254,7 @@ namespace RebuildZoneServer.Sim
 		
 		public void RemoveEntity(ref EcsEntity entity)
 		{
-			ServerLogger.Log($"Removing entity {entity} from world.");
+			ServerLogger.Debug($"Removing entity {entity} from world.");
 			var player = entity.Get<Player>();
 			var combatant = entity.Get<CombatEntity>();
 			var monster = entity.Get<Monster>();

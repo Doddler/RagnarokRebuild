@@ -69,7 +69,7 @@ public class SprImporter : ScriptedImporter
                 var sPath = $"Assets/sounds/{s}";
                 var sound = AssetDatabase.LoadAssetAtPath<AudioClip>(sPath);
                 if(sound == null)
-                    Debug.Log("Could not find sound " + sPath);
+                    Debug.Log("Could not find sound " + sPath + " for sprite " + name);
                 asset.Sounds[i] = sound;
             }
             //asset.Sounds = asset.Sounds.ToArray();

@@ -32,7 +32,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			networkPlayer.Connection = connection;
 			connection.Player = networkPlayer;
 
-			ServerLogger.Log($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
+			ServerLogger.Debug($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 
 			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);
 		}

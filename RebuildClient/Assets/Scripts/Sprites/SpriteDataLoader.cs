@@ -16,7 +16,7 @@ namespace Assets.Scripts.Sprites
 		public int ClassId;
 		public int HeadId;
 		public HeadFacing HeadFacing;
-		public FacingDirection Facing;
+		public Direction Facing;
 		public CharacterState State;
 		public Vector2Int Position;
 		public bool IsMale;
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Sprites
 	{
 		public int ServerId;
 		public int ClassId;
-		public FacingDirection Facing;
+		public Direction Facing;
 		public CharacterState State;
 		public Vector2Int Position;
 	}

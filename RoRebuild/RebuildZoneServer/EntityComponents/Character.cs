@@ -28,8 +28,10 @@ namespace RebuildZoneServer.EntityComponents
 		public float AttackCooldown;
 		public float MoveSpeed;
 		public float MoveCooldown;
+		public float HitDelay;
 		public int MoveStep;
 		public int TotalMoveSteps;
+
 
 		public Map Map;
 
@@ -99,6 +101,16 @@ namespace RebuildZoneServer.EntityComponents
 				CommandBuilder.ClearRecipients();
 				State = CharacterState.Idle;
 			}
+		}
+
+		public bool AddMoveDelay(float delay)
+		{
+			if (HitDelay > Time.ElapsedTimeFloat)
+				return false;
+
+			HitDelay = Time.ElapsedTimeFloat + delay;
+
+			return true;
 		}
 
 		private void ChangeToActionState()
@@ -184,9 +196,8 @@ namespace RebuildZoneServer.EntityComponents
 			Map.StartMove(ref Entity, this);
 		}
 		
-		public void Update(ref EcsEntity e)
+		public void Update()
 		{
-			AttackCooldown -= Time.DeltaTimeFloat;
 			SpawnImmunity -= Time.DeltaTimeFloat;
 
 			if (State == CharacterState.Idle)
@@ -194,6 +205,9 @@ namespace RebuildZoneServer.EntityComponents
 
 			if (State == CharacterState.Moving)
 			{
+				if (HitDelay > Time.ElapsedTimeFloat)
+					return;
+
 				if (FacingDirection.IsDiagonal())
 					MoveCooldown -= Time.DeltaTimeFloat * 0.8f;
 				else

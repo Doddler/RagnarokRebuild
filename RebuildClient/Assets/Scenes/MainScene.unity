@@ -893,6 +893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraFollower: {fileID: 963194229}
   ServerConfig: {fileID: 4900000, guid: ca879a18cd995604a9dca5b73a0e9498, type: 3}
+  DamagePrefab: {fileID: 5200160050705169387, guid: 4efa6d297ce63db44a6a4cb3cc2f5ed7,
+    type: 3}
   PlayerId: 0
 --- !u!4 &2086025549
 Transform:

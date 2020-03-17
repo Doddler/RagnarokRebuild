@@ -40,7 +40,7 @@ namespace RebuildZoneServer.Sim
 			set
 			{
 				if(value != _playerCount)
-					ServerLogger.Log($"Map {Name} changed player count to {value}.");
+					ServerLogger.Debug($"Map {Name} changed player count to {value}.");
 				_playerCount = value;
 			}
 		}
@@ -357,7 +357,7 @@ namespace RebuildZoneServer.Sim
 						continue;
 					if (ch.Position.InRange(playerChar.Position, ServerConfig.MaxViewDistance))
 					{
-						ServerLogger.Log($"Sending create player entity for {playerObj.Entity}");
+						ServerLogger.Debug($"Sending create player entity for {playerObj.Entity}");
 						CommandBuilder.SendCreateEntity(ch, playerObj);
 					}
 				}

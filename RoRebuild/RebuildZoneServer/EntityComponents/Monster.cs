@@ -13,14 +13,17 @@ namespace RebuildZoneServer.EntityComponents
 {
 	partial class Monster : IStandardEntity
 	{
-		private EcsEntity entity;
-		private Character character;
-		private CombatEntity combatEntity;
+		public EcsEntity Entity;
+		public Character Character;
+		public CombatEntity CombatEntity;
 
 		private float aiTickRate;
-		private float aiCooldown;
+		//private float aiCooldown;
 
-		private float randomMoveCooldown;
+		private float nextAiUpdate;
+		private float nextMoveUpdate;
+
+		//private float randomMoveCooldown;
 
 		private const float minIdleWaitTime = 3f;
 		private const float maxIdleWaitTime = 6f;
@@ -40,28 +43,44 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void Reset()
 		{
-			entity = EcsEntity.Null;
-			character = null;
+			Entity = EcsEntity.Null;
+			Character = null;
 			aiEntries = null;
 			spawnEntry = null;
-			combatEntity = null;
+			CombatEntity = null;
 			searchTarget = null;
 			aiTickRate = 0.1f;
-			aiCooldown = GameRandom.NextFloat(0, aiTickRate);
+			nextAiUpdate = Time.ElapsedTimeFloat + GameRandom.NextFloat(0, aiTickRate);
+			
 			target = EcsEntity.Null;
 		}
 
 		public void Initialize(ref EcsEntity e, Character character, CombatEntity combat, MonsterDatabaseInfo monData, MonsterAiType type, MapSpawnEntry spawnEntry)
 		{
-			entity = e;
-			this.character = character;
+			Entity = e;
+			Character = character;
 			this.spawnEntry = spawnEntry;
-			combatEntity = combat;
+			CombatEntity = combat;
 			monsterBase = monData;
 			aiType = type;
 			aiEntries = DataManager.GetAiStateMachine(aiType);
+			
+			UpdateStats();
 
 			currentState = MonsterAiState.StateIdle;
+		}
+
+		private void UpdateStats()
+		{
+			var s = CombatEntity.Stats;
+
+			s.Atk = (short)monsterBase.AtkMin;
+			s.Atk2 = (short)monsterBase.AtkMax;
+			s.MoveSpeed = monsterBase.MoveSpeed;
+			s.Range = monsterBase.Range;
+			s.SpriteAttackTiming = monsterBase.SpriteAttackTiming;
+			s.HitDelayTime = monsterBase.HitTime;
+			s.AttackMotionTime = monsterBase.RechargeTime;
 		}
 
 		private bool ValidateTarget()
@@ -71,7 +90,7 @@ namespace RebuildZoneServer.EntityComponents
 			var ch = targetCharacter;
 			if (ch == null)
 				return false;
-			if (ch.Map != character.Map)
+			if (ch.Map != Character.Map)
 				return false;
 			if (ch.SpawnImmunity > 0)
 				return false;
@@ -82,7 +101,7 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			var list = EntityListPool.Get();
 			
-			character.Map.GatherPlayersInRange(character, distance, list, true);
+			Character.Map.GatherPlayersInRange(Character, distance, list, true);
 
 			if (list.Count == 0)
 			{
@@ -118,31 +137,19 @@ namespace RebuildZoneServer.EntityComponents
 				currentState = entry.OutputState;
 			}
 
-			character.LastAttacked = EcsEntity.Null;
+			Character.LastAttacked = EcsEntity.Null;
 
-			if(aiCooldown < 0)
-				aiCooldown += 0.1f;
+			if(nextAiUpdate < Time.ElapsedTimeFloat)
+				nextAiUpdate += aiTickRate;
 
-			if (character.Map.PlayerCount == 0)
-				aiCooldown += 2f;
+			if (Character.Map.PlayerCount == 0)
+				nextAiUpdate += 2f + GameRandom.NextFloat(0f, 1f);
 		}
 
-		public void Update(ref EcsEntity e, Character ch, CombatEntity ce)
+		public void Update()
 		{
-			aiCooldown -= Time.DeltaTimeFloat;
-			
-			randomMoveCooldown -= Time.DeltaTimeFloat;
-			if (aiCooldown > 0)
+			if (nextAiUpdate > Time.ElapsedTimeFloat)
 				return;
-
-			if (aiCooldown <= 0)
-				aiCooldown += aiTickRate;
-
-			if (character == null)
-				character = ch;
-
-			if (combatEntity == null)
-				ce = combatEntity;
 
 			AiStateMachineUpdate();
 		}

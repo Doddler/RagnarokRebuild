@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Leopotam.Ecs;
 using Lidgren.Network;
+using RebuildData.Server.Data.Character;
 using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using RebuildZoneServer.EntityComponents;
+using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.Networking
 {
@@ -81,7 +83,7 @@ namespace RebuildZoneServer.Networking
 			return packet;
 		}
 
-		public static void AttackMulti(Character attacker, Character target)
+		public static void AttackMulti(Character attacker, Character target, DamageInfo di)
 		{
 			if (recipients.Count <= 0)
 				return;
@@ -91,6 +93,7 @@ namespace RebuildZoneServer.Networking
 			packet.Write(attacker.Id);
 			packet.Write(target.Id);
 			packet.Write((byte)attacker.FacingDirection);
+			packet.Write(di.Damage);
 
 			NetworkManager.SendMessageMulti(packet, recipients);
 		}
@@ -233,6 +236,18 @@ namespace RebuildZoneServer.Networking
 			//packet.Write(c.Position);
 
 			NetworkManager.SendMessage(packet, player.Connection.ClientConnection);
+		}
+
+		public static void SendHitMulti(Character c, float delayTime)
+		{
+			if (recipients.Count <= 0)
+				return;
+
+			var packet = NetworkManager.StartPacket(PacketType.HitTarget, 32);
+			packet.Write(c.Id);
+			packet.Write(delayTime);
+
+			NetworkManager.SendMessageMulti(packet, recipients);
 		}
 	}
 }

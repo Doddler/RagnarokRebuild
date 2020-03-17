@@ -19,6 +19,7 @@
 		StopAction,
 		StopImmediate,
 		RandomTeleport,
-		UnhandledPacket
+		UnhandledPacket,
+		HitTarget
 	}
 }

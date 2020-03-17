@@ -10,6 +10,7 @@ namespace RebuildZoneServer.Util
 	{
 		public static double DeltaTime;
 		public static double ElapsedTime;
+		public static float ElapsedTimeFloat;
 		public static float DeltaTimeFloat;
 
 		private static Stopwatch stopWatch;
@@ -35,6 +36,7 @@ namespace RebuildZoneServer.Util
 			DeltaTime = (newTime - ElapsedTime);
 			DeltaTimeFloat = (float)DeltaTime;
 			ElapsedTime = newTime;
+			ElapsedTimeFloat = (float)newTime;
 
 			previousFrameTimes[frameIndex] = DeltaTime;
 			frameIndex++;
