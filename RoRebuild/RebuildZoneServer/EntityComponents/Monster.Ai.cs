@@ -9,11 +9,12 @@ using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildZoneServer.Networking;
+using RebuildZoneServer.Sim;
 using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.EntityComponents
 {
-	partial class Monster
+	public partial class Monster
 	{
 		#region InputStateChecks
 
@@ -29,6 +30,7 @@ namespace RebuildZoneServer.EntityComponents
 				case MonsterInputCheck.InAttackRange: return InAttackRange();
 				case MonsterInputCheck.InAttackDelayEnd: return InAttackDelayEnd();
 				case MonsterInputCheck.InAttacked: return InAttacked();
+				case MonsterInputCheck.InDeadTimeoutEnd: return InDeadTimeoutEnd();
 			}
 
 			return false;
@@ -36,7 +38,7 @@ namespace RebuildZoneServer.EntityComponents
 		
 		private bool InWaitEnd()
 		{
-			if (nextMoveUpdate <= Time.ElapsedTimeFloat || monsterBase.MoveSpeed < 0)
+			if (nextMoveUpdate <= Time.ElapsedTimeFloat || MonsterBase.MoveSpeed < 0)
 				return true;
 
 			return false;
@@ -58,7 +60,7 @@ namespace RebuildZoneServer.EntityComponents
 			if (targetCharacter.Position == Character.Position)
 				return false;
 
-			if (targetCharacter.Position.SquareDistance(Character.Position) > monsterBase.ChaseDist)
+			if (targetCharacter.Position.SquareDistance(Character.Position) > MonsterBase.ChaseDist)
 				return true;
 
 			if (Character.MoveSpeed < 0 && InEnemyOutOfAttackRange())
@@ -80,13 +82,13 @@ namespace RebuildZoneServer.EntityComponents
 
 			if (target == EcsEntity.Null)
 			{
-				if (!FindRandomTargetInRange(monsterBase.Range, out var newTarget))
+				if (!FindRandomTargetInRange(MonsterBase.Range, out var newTarget))
 					return false;
 
 				target = newTarget;
 			}
 
-			if (targetCharacter.Position.SquareDistance(Character.Position) <= monsterBase.Range)
+			if (targetCharacter.Position.SquareDistance(Character.Position) <= MonsterBase.Range)
 				return true;
 
 			return false;
@@ -124,7 +126,7 @@ namespace RebuildZoneServer.EntityComponents
 			if (targetCharacter == null)
 				return false;
 
-			if (targetCharacter.Position.SquareDistance(Character.Position) > monsterBase.Range)
+			if (targetCharacter.Position.SquareDistance(Character.Position) > MonsterBase.Range)
 				return true;
 
 			return false;
@@ -135,11 +137,16 @@ namespace RebuildZoneServer.EntityComponents
 			if (Character.Map.PlayerCount == 0)
 				return false;
 
-			if (!FindRandomTargetInRange(monsterBase.ScanDist, out var newTarget))
+			if (!FindRandomTargetInRange(MonsterBase.ScanDist, out var newTarget))
 				return false;
 
 			target = newTarget;
 			return true;
+		}
+
+		private bool InDeadTimeoutEnd()
+		{
+			return deadTimeout < Time.ElapsedTimeFloat;
 		}
 
 		#endregion
@@ -154,9 +161,11 @@ namespace RebuildZoneServer.EntityComponents
 				case MonsterOutputCheck.OutWaitStart: return OutWaitStart();
 				case MonsterOutputCheck.OutSearch: return OutSearch();
 				case MonsterOutputCheck.OutStartChase: return OutStartChase();
+				case MonsterOutputCheck.OutChangeTargets: return OutChangeTargets();
 				case MonsterOutputCheck.OutTryAttacking: return OutTryAttacking();
 				case MonsterOutputCheck.OutStartAttacking: return OutStartAttacking();
 				case MonsterOutputCheck.OutPerformAttack: return OutPerformAttack();
+				case MonsterOutputCheck.OutTryRevival: return OutTryRevival();
 			}
 
 			return false;
@@ -177,7 +186,7 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool OutRandomMoveStart()
 		{
-			if (monsterBase.MoveSpeed < 0)
+			if (MonsterBase.MoveSpeed < 0)
 				return false;
 
 			var moveArea = Area.CreateAroundPoint(Character.Position, 9).ClipArea(Character.Map.MapBounds);
@@ -204,7 +213,7 @@ namespace RebuildZoneServer.EntityComponents
 				return false;
 
 			var distance = Character.Position.SquareDistance(targetChar.Position);
-			if (distance <= monsterBase.Range)
+			if (distance <= MonsterBase.Range)
 			{
 				hasTarget = true;
 				return true;
@@ -221,9 +230,38 @@ namespace RebuildZoneServer.EntityComponents
 			return false;
 		}
 
+		private bool OutChangeTargets()
+		{
+			if (Character.LastAttacked.IsNull() || !Character.LastAttacked.IsAlive())
+				return false;
+
+			var targetChar = Character.LastAttacked.Get<Character>();
+			if (!targetChar.IsActive)
+				return false;
+
+			var distance = Character.Position.SquareDistance(targetChar.Position);
+			if (distance <= MonsterBase.Range)
+			{
+				hasTarget = true;
+				target = Character.LastAttacked;
+				return true;
+			}
+
+			if (Character.TryMove(ref Entity, targetChar.Position, 1))
+			{
+
+				nextMoveUpdate = 0;
+				target = Character.LastAttacked;
+				hasTarget = true;
+				return true;
+			}
+
+			return false;
+		}
+
 		private bool OutPerformAttack()
 		{
-			nextAiUpdate += monsterBase.AttackTime;
+			nextAiUpdate += MonsterBase.AttackTime;
 			
 			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
 			CombatEntity.PerformMeleeAttack(targetEntity);
@@ -244,6 +282,11 @@ namespace RebuildZoneServer.EntityComponents
 			Character.StopMovingImmediately();
 			nextAiUpdate = Time.ElapsedTimeFloat;
 			return true;
+		}
+
+		private bool OutTryRevival()
+		{
+			return World.Instance.RespawnMonster(this);
 		}
 
 		#endregion

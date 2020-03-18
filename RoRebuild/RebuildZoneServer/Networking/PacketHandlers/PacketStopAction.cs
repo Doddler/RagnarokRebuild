@@ -28,8 +28,10 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 				return;
 			}
 			player.AddActionDelay(CooldownActionType.StopAction);
-
+			
 			connection.Character.StopAction();
+
+			connection.Player.ClearTarget();
 		}
 	}
 }

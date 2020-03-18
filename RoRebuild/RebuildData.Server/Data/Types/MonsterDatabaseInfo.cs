@@ -9,6 +9,7 @@ namespace RebuildData.Server.Data.Types
 		public string Code { get; set; }
 		public int ScanDist { get; set; }
 		public int ChaseDist { get; set; }
+		public int HP { get; set; }
 		public int AtkMin { get; set; }
 		public int AtkMax { get; set; }
 		public float RechargeTime { get; set; }

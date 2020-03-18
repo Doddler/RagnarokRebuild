@@ -143,6 +143,6 @@ Id,Code,Name,Level,HP,Str,Int,Vit,Dex,Agi,Luk,AtkMin,AtkMax,Range,Def,MDef,Exp,J
 4140,DOKEBI,Dokebi,33,2697,50,35,40,69,50,40,197,249,1,0,10,889,455,10,12,Small,Demon,Dark1,1156,384,456,250,Normal,AiPassive,300,dokebi.spr,0,0.5,1
 4141,AM_MUT,Am Mut,61,12099,50,35,40,83,65,45,1040,1121,1,50,10,7709,2690,10,12,Small,Demon,Dark1,1156,384,456,200,Normal,AiAggressive,300,am_mut.spr,0,0.5,1
 4142,CAT_O_NINE_TAIL,Cat 'o Nine Tails,76,64512,55,82,55,86,75,120,1112,1275,1,61,55,10869,4283,10,12,Medium,Demon,Fire3,1276,288,576,155,Boss,AiAggressive,125,cat_o_nine_tail.spr,0,0.5,1
-4143,MOONLIGHT,Moonlight,67,250000,55,82,55,95,99,120,1700,2420,1,31,61,107250,55770,10,12,Medium,Demon,Fire3,1276,288,576,150,Boss,AiAggressive,185,moonlight.spr,0,0.5,1
+4143,MOONLIGHT,Moonlight Flower,67,120000,55,82,55,95,99,120,1700,2420,1,31,61,107250,55770,10,12,Medium,Demon,Fire3,1276,288,576,150,Boss,AiAggressive,185,moonlight.spr,0,0.5,1
 4144,SKELETON_GENERAL,Skeleton General,73,17402,90,20,40,77,25,25,910,1089,1,25,25,8170,3370,10,12,Medium,Undead,Undead1,2276,432,576,150,Normal,AiAggressive,225,skeleton_general.spr,0,0.5,1
 4145,WHITE_PLANT,White Plant,1,10,0,0,0,0,0,0,1,2,1,100,99,0,0,7,12,Small,Plant,Earth1,1,1,1,2000,Normal,AiPlant,1,white_plant.spr,0,-1,1

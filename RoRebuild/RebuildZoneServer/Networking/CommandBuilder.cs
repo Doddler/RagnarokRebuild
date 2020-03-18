@@ -93,6 +93,7 @@ namespace RebuildZoneServer.Networking
 			packet.Write(attacker.Id);
 			packet.Write(target.Id);
 			packet.Write((byte)attacker.FacingDirection);
+			packet.Write(attacker.Position);
 			packet.Write(di.Damage);
 
 			NetworkManager.SendMessageMulti(packet, recipients);
@@ -202,21 +203,23 @@ namespace RebuildZoneServer.Networking
 			NetworkManager.SendMessage(packet, player.Connection.ClientConnection);
 		}
 
-		public static void SendRemoveEntityMulti(Character c)
+		public static void SendRemoveEntityMulti(Character c, CharacterRemovalReason reason)
 		{
 			if (recipients.Count <= 0)
 				return;
 
 			var packet = NetworkManager.StartPacket(PacketType.RemoveEntity, 32);
 			packet.Write(c.Id);
+			packet.Write((byte)reason);
 
 			NetworkManager.SendMessageMulti(packet, recipients);
 		}
 
-		public static void SendRemoveEntity(Character c, Player player)
+		public static void SendRemoveEntity(Character c, Player player, CharacterRemovalReason reason)
 		{
 			var packet = NetworkManager.StartPacket(PacketType.RemoveEntity, 32);
 			packet.Write(c.Id);
+			packet.Write((byte)reason);
 
 			NetworkManager.SendMessage(packet, player.Connection.ClientConnection);
 		}

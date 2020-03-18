@@ -18,6 +18,8 @@ namespace RebuildZoneServer.Sim
 {
 	public class World
 	{
+		public static World Instance;
+
 		private readonly List<Map> Maps = new List<Map>();
 
 		private Dictionary<int, EcsEntity> entityList = new Dictionary<int, EcsEntity>();
@@ -29,12 +31,14 @@ namespace RebuildZoneServer.Sim
 		private int nextEntityId = 0;
 		private int maxEntityId = 10_000_000;
 
-		const int mapCount = 2;
-		const int entityCount = 600;
+		private int mapCount = 0;
+		const int initialEntityCount = 10_000;
 
 		public World()
 		{
-			var initialMaxEntities = NextPowerOf2(mapCount * entityCount);
+			Instance = this;
+
+			var initialMaxEntities = NextPowerOf2(initialEntityCount);
 			if (initialMaxEntities < 1024)
 				initialMaxEntities = 1024;
 
@@ -47,11 +51,14 @@ namespace RebuildZoneServer.Sim
 				.Add(new PlayerSystem());
 
 			ecsSystems.Init();
+			
+			if (DataManager.TryGetConfigValue("SingleMobTest", out var mobName))
+				DataManager.DoSingleMobTest(mobName);
 
 			var maps = DataManager.Maps;
 
 			var entities = 0;
-
+			
 			for (var j = 0; j < maps.Count; j++)
 			{
 				var mapData = maps[j];
@@ -105,7 +112,8 @@ namespace RebuildZoneServer.Sim
 					ServerLogger.LogError($"Failed to load map {mapData.Name} ({mapData.Code}) due to error while loading: {e.Message}");
 				}
 			}
-				
+
+			mapCount = maps.Count;
 
 			ServerLogger.Log($"World started with {entities} entities.");
 		}
@@ -122,6 +130,53 @@ namespace RebuildZoneServer.Sim
 
 			if (CommandBuilder.HasRecipients())
 				ServerLogger.LogWarning("Command builder has recipients after completing server update loop!");
+		}
+
+		public bool RespawnMonster(Monster monster)
+		{
+			if (monster.Character.IsActive)
+				return false;
+
+			var spawnEntry = monster.SpawnEntry;
+			var x = spawnEntry.X;
+			var y = spawnEntry.Y;
+			var width = spawnEntry.Width;
+			var height = spawnEntry.Height;
+			var map = Maps[mapIdLookup[monster.SpawnMap]];
+
+			var area = Area.CreateAroundPoint(new Position(x, y), width, height);
+			area.ClipArea(map.MapBounds);
+
+			Position p;
+			if (width == 0 && height == 0 && x != 0 && y != 0)
+			{
+				p = new Position(x, y);
+			}
+			else
+			{
+				if (x == 0 && y == 0 && width == 0 && height == 0)
+					area = map.MapBounds;
+
+				if (!map.FindPositionInRange(area, out p))
+				{
+					return false;
+				}
+			}
+
+			var ch = monster.Character;
+			var ce = monster.CombatEntity;
+			var e = monster.Entity;
+
+			ch.IsActive = true;
+			ch.Position = p;
+			ch.AttackCooldown = 0f;
+
+			ce.Init(ref e, ch);
+			monster.Initialize(ref e, ch, ce, monster.MonsterBase, monster.MonsterBase.AiType, spawnEntry, map.Name);
+
+			map.AddEntity(ref e);
+
+			return true;
 		}
 
 		public EcsEntity CreateMonster(Map map, int classId, int x, int y, int width, int height, MapSpawnEntry spawnEntry)
@@ -163,7 +218,7 @@ namespace RebuildZoneServer.Sim
 			entityList.Add(ch.Id, e);
 
 			ce.Init(ref e, ch);
-			m.Initialize(ref e, ch, ce, mon, mon.AiType, spawnEntry);
+			m.Initialize(ref e, ch, ce, mon, mon.AiType, spawnEntry, map.Name);
 
 			//ServerLogger.Log("Entity spawned at position: " + ch.Position);
 
@@ -211,7 +266,7 @@ namespace RebuildZoneServer.Sim
 
 			ch.Entity = e;
 			ch.Position = p;
-			ch.ClassId = GameRandom.Next(0, 6);
+			ch.ClassId = 0; // GameRandom.Next(0, 6);
 			ch.MoveSpeed = 0.15f;
 			ch.Type = CharacterType.Player;
 			ch.FacingDirection = (Direction)GameRandom.Next(0, 7);
@@ -274,7 +329,7 @@ namespace RebuildZoneServer.Sim
 		public void MovePlayerMap(ref EcsEntity entity, Character character, string mapName, Position newPosition)
 		{
 			character.IsActive = false;
-			character.Map.RemoveEntity(ref entity);
+			character.Map.RemoveEntity(ref entity, CharacterRemovalReason.OutOfSight);
 
 			character.ResetState();
 			character.Position = newPosition;

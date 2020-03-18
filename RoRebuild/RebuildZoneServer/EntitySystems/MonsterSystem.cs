@@ -18,11 +18,9 @@ namespace RebuildZoneServer.EntitySystems
 			{
 				var m = monsterFilter.Get1[mId];
 
-				if (!m.Character.IsActive)
-					continue;
-
 				m.Update();
-				m.CombatEntity.Update();
+				if (m.Character.IsActive)
+					m.CombatEntity.Update();
 
 				//m.UpdateTime -= Time.DeltaTimeFloat;
 				//if (m.UpdateTime < 0f)

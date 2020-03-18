@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.MapEditor;
 using Assets.Scripts.Sprites;
 using RebuildData.Shared.Enum;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Rendering;
+using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.Network
 {
@@ -18,6 +21,7 @@ namespace Assets.Scripts.Network
 		public Vector2Int Position;
 		public Vector3 StartPos;
 		public float ShadowSize;
+		public bool IsAlly;
 
 		public ClientSpriteType SpriteMode;
 		public GameObject EntityObject;
@@ -28,6 +32,7 @@ namespace Assets.Scripts.Network
 		private float moveProgress;
 		private bool isMoving;
 
+		private SpriteRenderer shadowSprite;
 		private Material shadowMaterial;
 
 		private float hitDelay = 0f;
@@ -110,6 +115,8 @@ namespace Assets.Scripts.Network
 			
 			//Debug.Log(pathString);
 			//Debug.Log(movePath.Count);
+
+			LeanTween.cancel(gameObject);
 			
 			isMoving = true;
 		}
@@ -174,6 +181,14 @@ namespace Assets.Scripts.Network
 	        isMoving = false;
 	        movePath = null;
 			SpriteAnimator.ChangeMotion(SpriteMotion.Idle);
+
+			var targetPos = new Vector3(position.x + 0.5f, walkProvider.GetHeightForPosition(transform.position), position.y + 0.5f);
+			
+			LeanTween.cancel(gameObject);
+
+			if ((transform.localPosition - targetPos).magnitude > 1f)
+				LeanTween.move(gameObject, targetPos, 0.2f);
+
         }
 
         public void AttachShadow(Sprite spriteObj)
@@ -191,6 +206,7 @@ namespace Assets.Scripts.Network
 
 			var sprite = go.AddComponent<SpriteRenderer>();
 			sprite.sprite = spriteObj;
+			shadowSprite = sprite;
 
 			var shader = Shader.Find("Unlit/TestSpriteShader");
 			var mat = new Material(shader);
@@ -233,9 +249,60 @@ namespace Assets.Scripts.Network
 
 		public void SetHitDelay(float time)
 		{
-			if (hitDelay > 0)
-				return;
 			hitDelay = time;
+		}
+
+		private static Action<object> completeDestroy = (object go) =>
+		{
+			var go2 = go as GameObject;
+			if (go2 == null)
+				return;
+			GameObject.Destroy(go2);
+		};
+
+		public void UpdateFade(float f)
+		{
+			if(SpriteAnimator != null)
+				SpriteAnimator.Alpha = f;
+			if(shadowSprite != null)
+				shadowSprite.color = new Color(1f, 1f, 1f, f / 2f);
+		}
+
+		public void FadeOutAndVanish(float time)
+		{
+			var lt = LeanTween.value(gameObject, UpdateFade, 1, 0, time);
+			
+			lt.setOnComplete(completeDestroy, gameObject);
+		}
+
+		private IEnumerator MonsterDeathCoroutine(int hitCount)
+		{
+			if (hitCount > 1)
+			{
+				var hitTiming = SpriteAnimator.GetHitTiming();
+				for (var i = 0; i < hitCount; i++)
+				{
+					SpriteAnimator.ChangeMotion(SpriteMotion.Hit, true);
+					yield return new WaitForSeconds(hitTiming);
+				}
+			}
+
+			var deathTiming = SpriteAnimator.GetDeathTiming();
+			SpriteAnimator.State = SpriteState.Dead;
+			SpriteAnimator.ChangeMotion(SpriteMotion.Dead, true);
+
+			yield return new WaitForSeconds(deathTiming);
+			yield return new WaitForSeconds(2f);
+
+			FadeOutAndVanish(2f);
+		}
+
+		public void MonsterDie(int hitCount)
+		{
+			isMoving = false;
+			movePath = null;
+			
+			StartCoroutine(MonsterDeathCoroutine(hitCount));
 		}
 
 		private void Update()
@@ -243,12 +310,12 @@ namespace Assets.Scripts.Network
 			if (SpriteMode == ClientSpriteType.Prefab)
 				return;
 
+			hitDelay -= Time.deltaTime;
+			if (hitDelay >= 0f)
+				return;
+
 			if (isMoving)
 			{
-				hitDelay -= Time.deltaTime;
-				if (hitDelay >= 0f)
-					return;
-
 				UpdateMove();
 
 				if (SpriteAnimator.State != SpriteState.Walking)
@@ -273,6 +340,7 @@ namespace Assets.Scripts.Network
 		{
 			if(shadowMaterial != null)
 				Object.Destroy(shadowMaterial);
+			LeanTween.cancel(gameObject);
 		}
 	}
 }

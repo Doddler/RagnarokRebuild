@@ -36,8 +36,8 @@ namespace Assets.Scripts.Sprites
 
 			var tIndex = 0;
 
-			var min = Vector2.positiveInfinity;
-			var max = Vector2.negativeInfinity;
+			var min = new Vector2(-0.2f, -0.2f);
+			var max = new Vector2(0.2f, 0.2f);
 
 			for (var i = 0; i < frame.Layers.Length; i++)
 			{

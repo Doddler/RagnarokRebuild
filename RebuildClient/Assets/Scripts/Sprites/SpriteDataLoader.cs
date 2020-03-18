@@ -115,6 +115,7 @@ namespace Assets.Scripts.Sprites
 			control.SpriteAnimator = bodySprite;
 			control.CharacterType = CharacterType.Player;
 			control.SpriteMode = ClientSpriteType.Sprite;
+			control.IsAlly = true;
 
 			bodySprite.Controllable = control;
 			if(param.State == CharacterState.Moving)
@@ -195,6 +196,7 @@ namespace Assets.Scripts.Sprites
 			control.SpriteAnimator = sprite;
 			control.SpriteAnimator.SpriteOffset = mData.Offset;
 			control.ShadowSize = mData.ShadowSize;
+			control.IsAlly = false;
 
 			control.ConfigureEntity(param.ServerId, param.Position, param.Facing);
 			

@@ -51,12 +51,12 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			var s = CombatEntity.Stats;
 
-			s.AttackMotionTime = 0.5f;
-			s.HitDelayTime = 0.5f;
-			s.SpriteAttackTiming = 0.5f;
+			s.AttackMotionTime = 0.9f;
+			s.HitDelayTime = 0.4f;
+			s.SpriteAttackTiming = 0.6f;
 			s.Range = 2;
-			s.Atk = 80;
-			s.Atk2 = 160;
+			s.Atk = 10;
+			s.Atk2 = 12;
 		}
 
 		private bool ValidateTarget()
@@ -81,16 +81,31 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void PerformQueuedAttack()
 		{
-			QueueAttack = false;
+			//QueueAttack = false;
 			if (Target.IsNull() || !Target.IsAlive())
+			{
+				QueueAttack = false;
 				return;
+			}
+
 			var targetCharacter = Target.Get<Character>();
 			if (!targetCharacter.IsActive)
+			{
+				QueueAttack = false;
 				return;
+			}
+
 			if (targetCharacter.Map != Character.Map)
+			{
+				QueueAttack = false;
 				return;
+			}
+
 			if (Character.Position.SquareDistance(targetCharacter.Position) > CombatEntity.Stats.Range)
+			{
+				QueueAttack = false;
 				return;
+			}
 
 			PerformAttack(targetCharacter);
 		}
@@ -110,6 +125,8 @@ namespace RebuildZoneServer.EntityComponents
 
 			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
 			CombatEntity.PerformMeleeAttack(targetEntity);
+
+			QueueAttack = true;
 
 			Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
 		}

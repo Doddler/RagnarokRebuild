@@ -138,7 +138,23 @@ namespace Assets.Scripts
             //Debug.Log($"a: {angle} i: {index}");
 
 
-            return index;
+            return Mathf.Clamp(index, 0, 7); ;
+        }
+
+        public static int GetFourDirectionSpriteIndexForAngle(Direction facing, float cameraRotation)
+        {
+	        cameraRotation += 45f * (int) facing; // + (45f / 2f);
+	        if (cameraRotation > 360)
+		        cameraRotation -= 360;
+	        if (cameraRotation < 0)
+		        cameraRotation += 360;
+
+	        var index = Mathf.FloorToInt(cameraRotation / 45f);
+
+	        if (index > 7)
+		        index = 0;
+            
+	        return Mathf.Clamp(index, 0, 7); ;
         }
 
         public static int GetSpriteIndexForAngle(FacingDirection facing, Vector3 position, Vector3 cameraPosition)
@@ -158,6 +174,22 @@ namespace Assets.Scripts
             
 
             return index;
+        }
+        
+        public static bool IsFourDirectionAnimation(SpriteType type, SpriteMotion motion)
+        {
+	        if (type != SpriteType.Player)
+		        return true;
+
+	        switch (motion)
+	        {
+                case SpriteMotion.Idle:
+                case SpriteMotion.Sit:
+                case SpriteMotion.Walk:
+	                return false;
+	        }
+
+	        return true;
         }
 
         public static int GetMotionIdForSprite(SpriteType type, SpriteMotion motion)

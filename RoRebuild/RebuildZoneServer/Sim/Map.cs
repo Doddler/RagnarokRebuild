@@ -82,7 +82,7 @@ namespace RebuildZoneServer.Sim
 					//if the player could see the entity before, but can't now, have them remove the entity
 					if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
 						!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
-						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer);
+						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer, CharacterRemovalReason.OutOfSight);
 				}
 
 				foreach (var player in chunk.Players)
@@ -97,7 +97,7 @@ namespace RebuildZoneServer.Sim
 					//if the player could see the entity before, but can't now, have them remove the entity
 					if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
 						!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
-						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer);
+						CommandBuilder.SendRemoveEntity(targetCharacter, movingPlayer, CharacterRemovalReason.OutOfSight);
 				}
 			}
 		}
@@ -106,7 +106,7 @@ namespace RebuildZoneServer.Sim
 		{
 			var oldPosition = ch.Position;
 
-			SendRemoveEntityAroundCharacter(ref entity, ch);
+			SendRemoveEntityAroundCharacter(ref entity, ch, CharacterRemovalReason.Teleport);
 			ch.Position = newPosition;
 			SendAddEntityAroundCharacter(ref entity, ch);
 
@@ -144,7 +144,7 @@ namespace RebuildZoneServer.Sim
 			if (distance > ServerConfig.MaxViewDistance * 2 + 1)
 			{
 				//the character has moved more than one full screen, no entities that knew of the old position can see the new position
-				SendRemoveEntityAroundCharacter(ref entity, ch);
+				SendRemoveEntityAroundCharacter(ref entity, ch, CharacterRemovalReason.OutOfSight);
 				ch.Position = newPosition;
 				SendAddEntityAroundCharacter(ref entity, ch);
 			}
@@ -182,7 +182,7 @@ namespace RebuildZoneServer.Sim
 						//if the player could see the entity before, but can't now, have them remove the entity
 						if (targetCharacter.Position.InRange(oldPosition, ServerConfig.MaxViewDistance) &&
 							!targetCharacter.Position.InRange(newPosition, ServerConfig.MaxViewDistance))
-							CommandBuilder.SendRemoveEntity(ch, playerObj);
+							CommandBuilder.SendRemoveEntity(ch, playerObj, CharacterRemovalReason.OutOfSight);
 					}
 				}
 
@@ -257,7 +257,7 @@ namespace RebuildZoneServer.Sim
 			}
 		}
 
-		private void SendRemoveEntityAroundCharacter(ref EcsEntity entity, Character ch)
+		private void SendRemoveEntityAroundCharacter(ref EcsEntity entity, Character ch, CharacterRemovalReason reason)
 		{
 			foreach (Chunk chunk in GetChunkEnumeratorAroundPosition(ch.Position, ServerConfig.MaxViewDistance))
 			{
@@ -273,12 +273,12 @@ namespace RebuildZoneServer.Sim
 
 			if (CommandBuilder.HasRecipients())
 			{
-				CommandBuilder.SendRemoveEntityMulti(ch);
+				CommandBuilder.SendRemoveEntityMulti(ch, reason);
 				CommandBuilder.ClearRecipients();
 			}
 		}
 
-		public void RemoveEntity(ref EcsEntity entity)
+		public void RemoveEntity(ref EcsEntity entity, CharacterRemovalReason reason)
 		{
 			if (!entity.IsAlive())
 				return;
@@ -286,7 +286,7 @@ namespace RebuildZoneServer.Sim
 			var ch = entity.Get<Character>();
 
 			//if(ch.IsActive)
-			SendRemoveEntityAroundCharacter(ref entity, ch);
+			SendRemoveEntityAroundCharacter(ref entity, ch, reason);
 
 			var charChunk = GetChunkForPosition(ch.Position);
 			if (ch.Type == CharacterType.Player)

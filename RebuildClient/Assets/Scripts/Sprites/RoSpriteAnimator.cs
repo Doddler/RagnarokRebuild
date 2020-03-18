@@ -19,6 +19,9 @@ namespace Assets.Scripts.Sprites
 		public float SpriteOffset = 0;
 		public int SpriteOrder = 0;
 
+		public Color Color;
+		public float Alpha;
+
 		private static bool nextUseSmoothRender = true;
 		private static bool canUpdateRenderer = false;
 
@@ -82,7 +85,7 @@ namespace Assets.Scripts.Sprites
 
 		private Material mat;
 
-		private float deadResetTime = 0;
+		//private float deadResetTime = 0;
 
 		private float rotate = 0;
 		private bool doSpin = false;
@@ -153,6 +156,10 @@ namespace Assets.Scripts.Sprites
 
 			SortingGroup = gameObject.GetOrAddComponent<SortingGroup>();
 
+			MeshRenderer.receiveShadows = false;
+			MeshRenderer.lightProbeUsage = LightProbeUsage.Off;
+			MeshRenderer.shadowCastingMode = ShadowCastingMode.Off;
+
 			if (shader == null)
 				shader = Shader.Find("Unlit/TestSpriteShader");
 
@@ -198,6 +205,8 @@ namespace Assets.Scripts.Sprites
 			colliderCache = SpriteMeshCache.GetColliderCacheForSprite(SpriteData.Name);
 			spriteName = SpriteData.Name;
 
+			Color = Color.white;
+			Alpha = 1;
 
 			isInitialized = true;
 
@@ -253,6 +262,22 @@ namespace Assets.Scripts.Sprites
 			//   Gizmos.DrawLine(transform.position, transform.position + new Vector3(pos.x, 0, pos.y));
 		}
 
+		public float GetHitTiming()
+		{
+			var motionId = RoAnimationHelper.GetMotionIdForSprite(Type, SpriteMotion.Hit);
+			var time = SpriteData.Actions[motionId].Delay;
+			var frames = SpriteData.Actions[motionId].Frames.Length;
+			return (time * frames) / 1000f;
+		}
+
+		public float GetDeathTiming()
+		{
+			var motionId = RoAnimationHelper.GetMotionIdForSprite(Type, SpriteMotion.Dead);
+			var time = SpriteData.Actions[motionId].Delay;
+			var frames = SpriteData.Actions[motionId].Frames.Length;
+			return (time * frames) / 1000f;
+		}
+
 		public void UpdateSpriteFrame()
 		{
 			if (currentFrame >= currentAction.Frames.Length)
@@ -261,8 +286,8 @@ namespace Assets.Scripts.Sprites
 				return;
 			}
 			var frame = currentAction.Frames[currentFrame];
-
-			if (frame.Sound > -1 && frame.Sound < SpriteData.Sounds.Length)
+			
+			if (frame.Sound > -1 && frame.Sound < SpriteData.Sounds.Length && !isPaused)
 			{
 				var sound = SpriteData.Sounds[frame.Sound];
 				if (sound != null && AudioSource != null)
@@ -369,7 +394,10 @@ namespace Assets.Scripts.Sprites
 					if (State != SpriteState.Dead)
 						currentFrame = 0;
 					else
+					{
 						currentFrame = maxFrame;
+						isPaused = true;
+					}
 				}
 			}
 
@@ -427,7 +455,7 @@ namespace Assets.Scripts.Sprites
 			{
 				directionalLight = GameObject.Find("DirectionalLight").GetComponent<Light>();
 				var lightPower = (directionalLight.color.r + directionalLight.color.g + directionalLight.color.b) / 3f;
-				lightPower = (lightPower + 1) / 2f;
+				lightPower = (lightPower * directionalLight.intensity + 1) / 2f;
 				lightPower *= directionalLight.shadowStrength;
 				ShadeLevel = 1f - (0.5f * lightPower);
 
@@ -452,6 +480,20 @@ namespace Assets.Scripts.Sprites
 			}
 			else
 				TargetShade = 1f;
+		}
+
+		public void UpdateColor()
+		{
+			var c = new Color(Color.r * CurrentShade, Color.g * CurrentShade, Color.b * CurrentShade, Alpha);
+
+			mat.color = c;
+		}
+
+		public void UpdateChildColor()
+		{
+			var c = new Color(Parent.Color.r * Parent.CurrentShade, Parent.Color.g * Parent.CurrentShade, Parent.Color.b * Parent.CurrentShade, Parent.Alpha);
+
+			mat.color = c;
 		}
 
 		public void LateUpdate()
@@ -495,33 +537,40 @@ namespace Assets.Scripts.Sprites
 			}
 
 			if (Parent != null)
-			{
-				mat.color = new Color(Parent.CurrentShade, Parent.CurrentShade, Parent.CurrentShade, 1f);
 				return;
-			}
-
+		
 			UpdateShade();
 			CurrentShade = Mathf.Lerp(CurrentShade, TargetShade, Time.deltaTime * 10f);
 
-			mat.color = new Color(CurrentShade, CurrentShade, CurrentShade, 1f);
+			for (var i = 0; i < ChildrenSprites.Count; i++)
+				if(ChildrenSprites[i].IsInitialized)
+					ChildrenSprites[i].UpdateChildColor();
 
+			UpdateColor();
+		
 			if (currentAction == null)
 				ChangeAction(0);
 
-			var angleIndex = RoAnimationHelper.GetSpriteIndexForAngle(Direction, 360 - CameraFollower.Instance.Rotation);
+			var angleIndex = 0;
+			var is4dir = RoAnimationHelper.IsFourDirectionAnimation(Type, CurrentMotion);
 
-			if (CurrentMotion == SpriteMotion.Dead)
-			{
-				deadResetTime += Time.deltaTime;
-				if (deadResetTime > 5f)
-				{
-					State = SpriteState.Idle;
-					ChangeMotion(SpriteMotion.Idle);
-					deadResetTime = 0f;
-					return;
-				}
+			if(is4dir)
+				angleIndex = RoAnimationHelper.GetFourDirectionSpriteIndexForAngle(Direction, 360 - CameraFollower.Instance.Rotation);
+			else
+				angleIndex = RoAnimationHelper.GetSpriteIndexForAngle(Direction, 360 - CameraFollower.Instance.Rotation);
 
-			}
+			//if (CurrentMotion == SpriteMotion.Dead)
+			//{
+			//	deadResetTime += Time.deltaTime;
+			//	if (deadResetTime > 5f)
+			//	{
+			//		State = SpriteState.Idle;
+			//		ChangeMotion(SpriteMotion.Idle);
+			//		deadResetTime = 0f;
+			//		return;
+			//	}
+
+			//}
 
 			if (currentAngleIndex != angleIndex)
 				ChangeAngle(angleIndex);

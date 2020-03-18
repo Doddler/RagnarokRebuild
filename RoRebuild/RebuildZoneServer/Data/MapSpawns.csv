@@ -1,7 +1,7 @@
 ﻿Map,X,Y,Width,Height,Count,Class,SpawnTime,Variance,Recycle
 //2009rwc_03,0,0,0,0,10,FLORA,0,0,0
 //2009rwc_03,0,0,0,0,30,ICE_TITAN,0,0,0
-2009rwc_03,50,50,1,1,50,ARCHER_SKELETON,0,0,0
+2009rwc_03,50,50,1,1,10,ARCHER_SKELETON,0,0,0
 gef_fild00,0,0,0,0,80,PORING,0,0,0
 gef_fild00,0,0,0,0,80,FABRE,0,0,0
 gef_fild00,0,0,0,0,20,PUPA,0,0,0

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Lidgren.Network;
 using RebuildData.Server.Logging;
+using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using RebuildZoneServer.Data.Management;
 using RebuildZoneServer.EntityComponents;
@@ -198,7 +199,7 @@ namespace RebuildZoneServer.Networking
 				var player = connection.Entity.Get<Player>();
 				var combatEntity = connection.Entity.Get<CombatEntity>();
 
-				connection.Character.Map?.RemoveEntity(ref connection.Entity);
+				connection.Character.Map?.RemoveEntity(ref connection.Entity, CharacterRemovalReason.Disconnect);
 				connection.ClientConnection.Disconnect("Thanks for playing!");
 
 				State.World.RemoveEntity(ref connection.Entity);

@@ -104,6 +104,26 @@ namespace RebuildZoneServer.Data.Management
 			return null;
 		}
 
+		public static void DoSingleMobTest(string mobName)
+		{
+			mapList.RemoveAll(m => m.Code != "2009rwc_03");
+			mapSpawnInfo.MapSpawnEntries = new Dictionary<string, List<MapSpawnEntry>>();
+			mapSpawnInfo.MapSpawnEntries.Add("2009rwc_03", new List<MapSpawnEntry>()
+			{
+				new MapSpawnEntry()
+				{
+					Class = mobName,
+					Count = 1,
+					Height = 2,
+					Width = 2,
+					X = 50,
+					Y = 50,
+					SpawnTime = 0,
+					SpawnVariance = 0
+				}
+			});
+		}
+
 		public static void Initialize()
 		{
 			var loader = new DataLoader();

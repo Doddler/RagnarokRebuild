@@ -90,6 +90,7 @@ namespace RebuildData.Server.Data
 				{
 					Id = monster.Id,
 					Code = monster.Code,
+					HP = monster.HP,
 					Range = monster.Range > 0 ? monster.Range : 1,
 					ScanDist = monster.ScanDist,
 					ChaseDist = monster.ChaseDist,

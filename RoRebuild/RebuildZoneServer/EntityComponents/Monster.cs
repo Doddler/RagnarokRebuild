@@ -7,11 +7,13 @@ using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using RebuildZoneServer.Data.Management;
+using RebuildZoneServer.Networking;
+using RebuildZoneServer.Sim;
 using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.EntityComponents
 {
-	partial class Monster : IStandardEntity
+	public partial class Monster : IStandardEntity
 	{
 		public EcsEntity Entity;
 		public Character Character;
@@ -32,21 +34,24 @@ namespace RebuildZoneServer.EntityComponents
 		private EcsEntity target;
 		private Character targetCharacter => target.GetIfAlive<Character>();
 
+		public MonsterDatabaseInfo MonsterBase;
+		public MapSpawnEntry SpawnEntry;
+		public string SpawnMap;
 		private MonsterAiType aiType;
-		private MonsterDatabaseInfo monsterBase;
-		private MapSpawnEntry spawnEntry;
 		private List<MonsterAiEntry> aiEntries;
 
 		private MonsterAiState currentState;
 
 		private Character searchTarget;
 
+		private float deadTimeout;
+
 		public void Reset()
 		{
 			Entity = EcsEntity.Null;
 			Character = null;
 			aiEntries = null;
-			spawnEntry = null;
+			SpawnEntry = null;
 			CombatEntity = null;
 			searchTarget = null;
 			aiTickRate = 0.1f;
@@ -55,15 +60,17 @@ namespace RebuildZoneServer.EntityComponents
 			target = EcsEntity.Null;
 		}
 
-		public void Initialize(ref EcsEntity e, Character character, CombatEntity combat, MonsterDatabaseInfo monData, MonsterAiType type, MapSpawnEntry spawnEntry)
+		public void Initialize(ref EcsEntity e, Character character, CombatEntity combat, MonsterDatabaseInfo monData, MonsterAiType type, MapSpawnEntry spawnEntry, string mapName)
 		{
 			Entity = e;
 			Character = character;
-			this.spawnEntry = spawnEntry;
+			this.SpawnEntry = spawnEntry;
 			CombatEntity = combat;
-			monsterBase = monData;
+			MonsterBase = monData;
 			aiType = type;
+			SpawnMap = mapName;
 			aiEntries = DataManager.GetAiStateMachine(aiType);
+			nextAiUpdate = Time.ElapsedTimeFloat + 1f;
 			
 			UpdateStats();
 
@@ -74,13 +81,15 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			var s = CombatEntity.Stats;
 
-			s.Atk = (short)monsterBase.AtkMin;
-			s.Atk2 = (short)monsterBase.AtkMax;
-			s.MoveSpeed = monsterBase.MoveSpeed;
-			s.Range = monsterBase.Range;
-			s.SpriteAttackTiming = monsterBase.SpriteAttackTiming;
-			s.HitDelayTime = monsterBase.HitTime;
-			s.AttackMotionTime = monsterBase.RechargeTime;
+			s.Hp = MonsterBase.HP;
+			s.MaxHp = MonsterBase.HP;
+			s.Atk = (short)MonsterBase.AtkMin;
+			s.Atk2 = (short)MonsterBase.AtkMax;
+			s.MoveSpeed = MonsterBase.MoveSpeed;
+			s.Range = MonsterBase.Range;
+			s.SpriteAttackTiming = MonsterBase.SpriteAttackTiming;
+			s.HitDelayTime = MonsterBase.HitTime;
+			s.AttackMotionTime = MonsterBase.RechargeTime;
 		}
 
 		private bool ValidateTarget()
@@ -95,6 +104,32 @@ namespace RebuildZoneServer.EntityComponents
 			if (ch.SpawnImmunity > 0)
 				return false;
 			return true;
+		}
+
+		public void Die()
+		{
+			currentState = MonsterAiState.StateDead;
+
+			Character.IsActive = false;
+			Character.Map.RemoveEntity(ref Entity, CharacterRemovalReason.Dead);
+
+			if(SpawnEntry == null)
+				World.Instance.RemoveEntity(ref Entity);
+			else
+			{
+				var min = SpawnEntry.SpawnTime;
+				var max = SpawnEntry.SpawnTime + SpawnEntry.SpawnVariance;
+				deadTimeout = GameRandom.NextFloat(min / 1000f, max / 1000f);
+				if (deadTimeout < 0.4f)
+					deadTimeout = 0.4f; //minimum respawn time
+				nextAiUpdate = Time.ElapsedTimeFloat + deadTimeout + 0.1f;
+			}
+		}
+
+		public void AddDelay(float delay)
+		{
+			//usually to stop a monster from acting after taking fatal damage, but before the damage is applied
+			nextAiUpdate = Time.ElapsedTimeFloat + delay;
 		}
 
 		private bool FindRandomTargetInRange(int distance, out EcsEntity newTarget)

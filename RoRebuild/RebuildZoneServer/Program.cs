@@ -118,7 +118,7 @@ namespace RebuildZoneServer
 					ServerLogger.Log(
 						$"[Program] {players} players. Avg {avg:F2}ms / Peak {max * 1000:F2}ms "
 						+ $"(Net/ECS/World: {maxNetwork * 1000:F2}/{maxEcs * 1000:F2}/{maxWorld:F2}) "
-						+ $"Sent {server.Statistics.SentBytes}bytes/{server.Statistics.SentMessages}msg/{server.Statistics.SentPackets}pakcets");
+						+ $"Sent {server.Statistics.SentBytes}bytes/{server.Statistics.SentMessages}msg/{server.Statistics.SentPackets}packets");
 #else
 					ServerLogger.Log(
 						$"[Program] {players} players. Avg {avg:F2}ms / Peak {max * 1000:F2}ms "

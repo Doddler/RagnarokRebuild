@@ -377,3 +377,15 @@ TRUE,moc_prydb1,100,104,5,2,moc_prydb1,100,74,1,1
 TRUE,moc_prydb1,100,191,2,2,moc_pryd01,90,105,1,1
 TRUE,moc_prydb1,111,115,2,6,moc_prydb1,145,115,1,1
 TRUE,moc_prydb1,142,115,2,6,moc_prydb1,108,115,1,1
+TRUE,pay_dun00,21,186,2,2,pay_arche,39,131,1,1
+TRUE,pay_dun00,184,33,2,7,pay_dun01,19,33,1,1
+TRUE,pay_dun01,15,33,2,6,pay_dun00,181,33,1,1
+TRUE,pay_dun01,286,25,2,7,pay_dun02,19,63,1,1
+TRUE,pay_dun02,16,63,2,7,pay_dun01,283,28,1,1
+TRUE,pay_dun02,137,128,4,1,pay_dun03,155,159,1,1
+TRUE,pay_dun03,127,62,1,2,pay_dun04,43,40,1,1
+TRUE,pay_dun03,155,161,2,1,pay_dun02,137,126,1,1
+TRUE,pay_dun04,32,204,2,1,pay_dun03,125,62,1,1
+TRUE,pay_dun04,40,37,2,2,pay_dun03,125,62,1,1
+TRUE,pay_dun04,191,41,1,1,pay_dun03,125,62,1,1
+TRUE,pay_dun04,202,206,1,1,pay_dun03,125,62,1,1

@@ -304,6 +304,7 @@ namespace Assets.Scripts.Network
 		private void OnMessageRemoveEntity(NetIncomingMessage msg)
 		{
 			var id = msg.ReadInt32();
+			var reason = (CharacterRemovalReason) msg.ReadByte();
 
 			if (!entityList.TryGetValue(id, out var controllable))
 			{
@@ -319,7 +320,16 @@ namespace Assets.Scripts.Network
 				CameraFollower.Instance.Target = null;
 			}
 
-			GameObject.Destroy(controllable.gameObject);
+			if (reason == CharacterRemovalReason.Dead)
+			{
+				if(controllable.SpriteAnimator.Type != SpriteType.Player)
+					controllable.MonsterDie(1);
+				else
+					controllable.FadeOutAndVanish(0.1f);
+			}
+			else
+				controllable.FadeOutAndVanish(0.1f);
+			//GameObject.Destroy(controllable.gameObject);
 		}
 
 		private void OnMessageRemoveAllEntities(NetIncomingMessage msg)
@@ -379,15 +389,20 @@ namespace Assets.Scripts.Network
 			}
 
 			var dir = (Direction)msg.ReadByte();
+			var pos = ReadPosition(msg);
 			var dmg = msg.ReadInt16();
 
+			controllable.StopImmediate(pos);
 			controllable.SpriteAnimator.Direction = dir;
 			controllable.SpriteAnimator.State = SpriteState.Idle;
 			controllable.SpriteAnimator.AnimSpeed = 1f;
 			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
+			
 			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 
 			var damageTiming = controllable.SpriteAnimator.SpriteData.AttackFrameTime / 1000f;
+			if (controllable.SpriteAnimator.Type == SpriteType.Player)
+				damageTiming = 0.5f;
 			StartCoroutine(DamageEvent(dmg, damageTiming, controllable2));
 		}
 
@@ -415,7 +430,7 @@ namespace Assets.Scripts.Network
 				return;
 			}
 
-			Debug.Log("Move delay is " + delay);
+			//Debug.Log("Move delay is " + delay);
 			controllable.SetHitDelay(delay);
 
 			if (controllable.SpriteAnimator.Type == SpriteType.Player)

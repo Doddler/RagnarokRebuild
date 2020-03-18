@@ -1,0 +1,613 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e1dd7141fc2779c468bcb4231be11515
+  m_SerializeEntries:
+  - m_GUID: 00de46ef95716134bbbd1410cba4bdad
+    m_Address: "Assets/Models/mesh/\uD504\uB860\uD14C\uB77C/\uC131_\uC131\uBCBD/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0130aa8622ffdca43bb49bc9b4484b8a
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uBF08\uB2E4\uAD6C04.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0345a73d3a44e7c40ae902dd7591cdbd
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uBC84\uC12F\uBC14\uC704_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 06f0b798cf61913419c17a9dcadaa571
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0101_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0bb4ed2d8bc9f3e41b881033ec994983
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uB300\uAC00\uB9AC_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0daaacc2b4dd2b94da78f28f86185963
+    m_Address: Assets/Sounds/se_moc_wind_little.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10ebe24ed4fd9d64888ed225e55dc8ae
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE803.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 117929856628aad4bad321e32c426aea
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3401/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 118d16a05b69a0b4ca5d7242407a180b
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD480/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 14f5cdbf3bcafac49ac07d93ed2d7369
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0001.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 15f98499e99fb524eab4610f39deaaed
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uC5EC\uC7A5\uC2B9.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1b7488d90d43c0d459e63fa17addcf96
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8802/Box19.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1ffeb129aad269843821063978cf4578
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8806.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 218b33c84c032734194c9c22eb6ae02b
+    m_Address: "Assets/Models/atlas/\uD504\uB860\uD14C\uB77C/\uC131_\uC55E\uBB38_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 287e9118c20e743429376a29d3abd520
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uAD00.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2b8220e7e42f172449f2cf22233f3914
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uBF08\uB2E4\uAD6C04/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2fb64dabc17ced3428e0187b2549ee63
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uC5EC\uC7A5\uC2B9/polySurf03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 337e5055039aed3438ce54a224b9f6db
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0002.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3485117bf19439a429ba6782b21f7085
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uB300\uBB38/Object06.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3523cb7054faee84c98d98e365c12442
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F01.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 367589476b784214ea3038d215534995
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD558\uB8E8\uBC29/Mesh02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3699e61839e102b4eb7e3feb9e26a225
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8802.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 36b6edb7e6386664b978f41612795820
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uBF08\uB2E4\uAD6C04_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 38914a4440d94a14e8aed43def6e0d92
+    m_Address: Assets/Sounds/se_girl_wowo.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39f80ea449f8f864fb5a5e00819dc39d
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uBC84\uC12F\uBC14\uC704.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3aad48fc8b4f246409ab8883b5f5f90f
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uBCA4\uCE5801/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3b0af40331be83344a3a18fcbea3890f
+    m_Address: "Assets/Models/materials/\uD504\uB860\uD14C\uB77C/\uC131_\uC131\uBCBD.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3e936c12881661b499aedfc8685a8f93
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD3D0\uAC00\uB2F4/Object02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f27306539faf984f8f29a4e34d6dd0b
+    m_Address: "Assets/Models/atlas/\uD504\uB860\uD14C\uB77C/\uC131_\uAE30\uB465_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3f56eae8953d6ed478a46fa27cc5a004
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uC774\uC988\uB8E8\uB4DC\uB2E4\uB9AC\uC785\uAD6C.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3fb81362395e16242bee18f8af518127
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD56D\uC544\uB9AC/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3fd57977d26287b4a9860afcb48459a6
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uB3D9\uAD74\uB9AC\uC5BC\uAE30\uB465/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4348e65cc39d31a41bd37e466f68e749
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE801_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4525a9b6cf43d3e409d14a8c40e8d041
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3402_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47116d6e6ff07fb4aa1505435dd55033
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD480/Object04.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4828daac53f6dd2488693b0f51725fc3
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0102/Cylinder02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4920f867fd41a154f8912c6ac7d2513f
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uBC84\uC12F\uBC14\uC704/Cylinder03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 497d6a7c0fce2fd40bc4b4df89b71911
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD480/Object01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4a3f59103a9b3594aa66051346493069
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uAE30\uB46501/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4c20c84d83e77204e949678622759b37
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uB300\uAC00\uB9AC.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4f206b674f472794e95b5cd9890f10fe
+    m_Address: "Assets/Models/mesh/\uD504\uB860\uD14C\uB77C/\uD718\uC7A5/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4ffac0d54d973004a905a1c9780901cb
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uBD80\uC870_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 514dc22c1912d4747b153402a7c2d558
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD558\uB8E8\uBC29.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 52c5b8d33715c8a48ad1d221762b1702
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0002_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 53a052c5174815b4fb74cba84489e547
+    m_Address: "Assets/Models/mesh/\uD504\uB860\uD14C\uB77C/\uC785\uAD6C\uCD08\uC18C/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 53ec6521e0e91fe4d85721463bc2f575
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD3D0\uAC00\uB2F4.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 543f8c36f62e1724dbfead4fc5baded4
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uAD00/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 544767a44623ba1478f9c16e3212cfdf
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uC774\uC988\uB8E8\uB4DC\uB2E4\uB9AC\uC785\uAD6C/Object03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 55c4e41d6095a72488d9f47cc48c2e2a
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uBCA4\uCE5801.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 59aa39ff1bbeab742b18943f27f6e9ec
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8806/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 59f3ab26ddbfcca4faf78a8c98662677
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD3D0\uAC00\uC785\uAD6C.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a1d1fb94fa33604eaec729907241cdf
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uB3D9\uAD74\uB9AC\uC5BC\uAE30\uB465.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5a77360cff5f25d46be15b0ea5dcb8bf
+    m_Address: Assets/Sounds/se_wolf1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5bfea5ba20b733a4bb4469fceffba58c
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0001/Box04.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5c8ecd8df8dd44a4bb49c8f7ac18b330
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD480/Object05.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5d49dfa80a2ca434cb7aa28d117256b6
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uC774\uC988\uB8E8\uB4DC\uB2E4\uB9AC\uC785\uAD6C_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 61670c2129c2d524891bf2aecab6c51f
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8801.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 629a75d8447cd1949b09b1090a04fc8d
+    m_Address: "Assets/Models/materials/\uD504\uB860\uD14C\uB77C/\uC131_\uC55E\uBB38.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 62f3f29f84895e4418721c755be20fc1
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uBAB8/Box05.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 63b45b3a5ec85f84db2123538c7cc0d7
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0002/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 65c2f1cf67ab3de4693ba2679249542d
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uBAB8.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 690d3dd3d0e413549b713ce9618d6fa6
+    m_Address: "Assets/Models/materials/\uD504\uB860\uD14C\uB77C/\uD718\uC7A5.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 69f00a8c9b4a7b74eaf546829a525188
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F03_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6c10d1e973e7b6041bd39cfd3d442dd1
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F03/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6e7776136f885c649bd632078462f035
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uB300\uBB38_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6fdfe9cb9f353b145915cdc73bb4772e
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8805_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7107728c81a6bd444982f8353882e84d
+    m_Address: Assets/Shaders/TestShader.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 715ee00dde5bf12429dcc51ed1340c22
+    m_Address: Assets/Sounds/se_pay_grassbug05.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 72298a46b8270764ea4adc902db0014b
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uAE30\uB465.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7480865a78a42cf408f76bfa6678d5df
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uAD00\uB69C\uAED1/Box02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 75dfed39651b3624f922a08196b3e92a
+    m_Address: Assets/Shaders/WalkableShader.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 776a2d5669d0d434bb7c3146d5020ee7
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3401_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 78e74a0b625fe894fb3311897920c9a1
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F01/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 826d0504988dc4a4f8d831a49e271928
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE801.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82a9a12648a8948488d19d3bce687489
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB465\uADFC\uAF43\uBC2D.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 82d724b764ca357468d6397f560de619
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uBD80\uC870.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 83904a60524584d43a119b268a7d1277
+    m_Address: Assets/Sounds/se_subterranean_waterdrop_03.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 83af07096862be54eafd4f92bc8f14bc
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0102.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 83cbd46b2face9345a136cd3e95c8d1f
+    m_Address: Assets/Sounds/se_prtthewaterofabrook.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 849033a22cbd5944eb152cd050a80d0f
+    m_Address: "Assets/Models/atlas/\uD504\uB860\uD14C\uB77C/\uC131_\uC131\uBCBD_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 852b6531968fd4942870580f2bad73e3
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uAE30\uB46501.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 85bdf17a3eb7f4e4e8478942a759ef61
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0101.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87889941a4f71fb48b4bc52e203a6c06
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uAE30\uB46501_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88d3f408a9ac33d48bb89c432df7cba9
+    m_Address: "Assets/Models/atlas/\uD504\uB860\uD14C\uB77C/\uD718\uC7A5_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 88e1fe2ebec881f4b98c572b4685caa5
+    m_Address: "Assets/Models/atlas/\uD504\uB860\uD14C\uB77C/\uC785\uAD6C\uCD08\uC18C_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 890eadf1e8918e843abf33ee7a31c2dd
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uBCA4\uCE5801_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 892c648821b037d44aa6956e1512e20c
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uAE30\uB465_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b156484388fc3841a2c39022cc3e362
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3402_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b49cc5164561e7428f05504cce4567c
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD654\uB85C_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8b94dfa573b4ad44a944eca96271d0b5
+    m_Address: Assets/Shaders/UnlitTile.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8c3d7e9974ba8a24bbe8ff15875cae9b
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uAD00\uB69C\uAED1.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8e40a96f40d3a744b8381dfe2d617899
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8801_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ff223c3e27eb04458ade87293b09a24
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3402/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ff88959ed0acd4418809ec711fffc59
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD56D\uC544\uB9AC.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 937f8c7961dfc3d4e889e9fc5445b2e4
+    m_Address: Assets/Sounds/se_field_wind_04.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 980035e6b30c70b4b842af611f8189e0
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE803_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 998583b2851b39e4f911afef5b10d895
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8801/Box19.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9a88f3028ff46ef46ace5991c3d7ade2
+    m_Address: "Assets/Models/materials/\uB0B4\uBD80\uC18C\uD488/\uAC70\uBBF8\uC904.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a1bc82ad206abd5419c25e6853c682ff
+    m_Address: "Assets/Models/materials/\uD504\uB860\uD14C\uB77C/\uC785\uAD6C\uCD08\uC18C.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a252d24f3f6952b4995b272abcb1bdaf
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uAD00_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a54de92935a4e3f41bf4231ad070eca2
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uBD80\uC870/Object02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a82bc89c96ab9b846bf703a9bad84107
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD654\uB85C/Box07.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a9f6c96e362fb1d47a2505eefbd815d0
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD56D\uC544\uB9AC_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: af2e6be2beee4224e843aaa717166e7f
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB465\uADFC\uAF43\uBC2D/Object02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b08c172578c411c4b9aafb46f4a637ce
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3402/Box09.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b180cf10e568f6c40b25286e7fa037fa
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD3D0\uAC00\uB2F4_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b3c6d5fbdc23c824e81335f8735668dd
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uC5EC\uC7A5\uC2B9_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b5838828865240d4298b07947e556c4a
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0102_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b79a9735d495c894d8a55d446135ad42
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uAE30\uB465/Cylinder06.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc53882760d9b0a4ca76b7eb1cb519ca
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3401.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc5aa630ee4459a4da480925f7949150
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB465\uADFC\uAF43\uBC2D_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bcfd54a61443c9f4fb498c55e7c80a3c
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uB0A8\uC7A5\uC2B9/Mesh02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: be753555c25798e4bbf6d142243772bd
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F01_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c4e3c4ba5f99c8646a82c32604db8209
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3402.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5009761b85af414fab05400b0bb9b3e
+    m_Address: "Assets/Models/mesh/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uB300\uAC00\uB9AC/Object06.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c5ca48b6f3b101f419d5adfcc94bd9d9
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE803/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c7b16e0b38aa2f44cb729722b2e9ef5b
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uBC84\uC12F03.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c825dc6cc0706ca44b7364de136b9632
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8805.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c8452b33238aa2b48a5a94ccb57e6986
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD3D0\uAC00\uC785\uAD6C/Object03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c94d4bf473d21f045a9b3c6690d08bc0
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8806_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d5faf692a2f210c47bed184b4e638d8a
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD558\uB8E8\uBC29_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6eb727dc1789c34c915993c519e73ba
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD480.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: daa5403c16055ec48a96c14cbb5e6c1a
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uD398\uC774\uC698-\uD3D0\uAC0001_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: db856d40c07329d47b887ab2c200ae1f
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3401/Cylinder01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dc2e9b1912b8a2e4486a4fd3225290f9
+    m_Address: Assets/Sounds/se_prtbird_05.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dce4f662977b2e545920b8271407178d
+    m_Address: "Assets/Models/mesh/\uD504\uB860\uD14C\uB77C/\uC131_\uAE30\uB465/Cylinder03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dd6e23f1bdb3dcd429f84391d0765399
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uAD00\uB69C\uAED1_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ded231e154241454fbe4069d86592092
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uD654\uB85C.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e2b3044bfc3754b42b6cd1b2148c75ce
+    m_Address: "Assets/Models/materials/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3402.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e616812f8906ec146bbce234fecc3a9f
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB11D\uCFE801/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7de7c9dd55bd3447b457d0e5289c538
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uD574\uACE8_\uBAB8_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ec507cf6983aea940b9fbfa9ef623759
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uB3D9\uAD74\uB9AC\uC5BC\uAE30\uB465_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eed7ca39f3dcecd4590a9dfab789b56a
+    m_Address: "Assets/Models/mesh/\uD504\uB860\uD14C\uB77C/\uC131_\uC55E\uBB38/Box90.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ef2772920f0c73547a67e2ad9c27178d
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD480_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f1be8eb28c2ee2047a3f27e8194b56a0
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uD3D0\uAC00\uC785\uAD6C_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f3991aab4ccd8734f9659bbc52141a80
+    m_Address: "Assets/Models/mesh/\uD398\uC774\uC698/\uD480/Object03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f3bc2eaecf31299439ef300b4c940b12
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB34\uC870\uAC0101/Cylinder02.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f43e6bfe4d8e88646a1c6302ae972c45
+    m_Address: "Assets/Models/atlas/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8802_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f4b9b8be0d8ed1b41b3865edf2f142be
+    m_Address: "Assets/Models/atlas/\uB0B4\uBD80\uC18C\uD488/\uAC70\uBBF8\uC904_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f52972ca97df6d74195bbf22f777e808
+    m_Address: "Assets/Models/mesh/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB364\uBD8805/Box03.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f92a3806662cee34896491d6517568f0
+    m_Address: "Assets/Models/materials/\uB098\uBB34\uC7A1\uCD08\uAF43/\uB098\uBB3401.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f9b6809f77bc30248bc8d55e07a02f7f
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uB0A8\uC7A5\uC2B9.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fa50e4cd1c7b9674f96067463e56fc97
+    m_Address: "Assets/Models/atlas/\uD398\uC774\uC698/\uB0A8\uC7A5\uC2B9_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fc0b785f5a345e042af7751d2421db32
+    m_Address: "Assets/Models/atlas/\uC678\uBD80\uC18C\uD488/\uC218\uB3C4\uC6D0\uB098\uBB3401_atlas.png"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fd1c27aa413399640a9151938c1e9414
+    m_Address: "Assets/Models/materials/\uD504\uB860\uD14C\uB77C/\uC131_\uAE30\uB465.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fefb01c32b3ca284db09e3a583e76ecd
+    m_Address: "Assets/Models/mesh/\uB0B4\uBD80\uC18C\uD488/\uAC70\uBBF8\uC904/Box01.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ffc7b5bc51934674fb27c7379fc80713
+    m_Address: "Assets/Models/materials/\uD398\uC774\uC698/\uB300\uBB38.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 81b30608ceb7db7499a58465bab53915, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 48c32b1a002ebbc46aca8ef3e0b56977, type: 2}
+    - {fileID: 11400000, guid: b7e74fadb562cbb49bedab75f3a4d826, type: 2}

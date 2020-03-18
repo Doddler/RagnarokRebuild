@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Leopotam.Ecs;
 using RebuildData.Server.Data.Character;
 using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
+using RebuildData.Shared.Enum;
 using RebuildZoneServer.Networking;
 using RebuildZoneServer.Util;
 
@@ -61,7 +63,7 @@ namespace RebuildZoneServer.EntityComponents
 				KnockBack = 0,
 				Source = Entity,
 				Target = target.Entity,
-				Time = Time.ElapsedTimeFloat + target.Stats.SpriteAttackTiming
+				Time = Time.ElapsedTimeFloat + Stats.SpriteAttackTiming
 			};
 
 			//ServerLogger.Log($"{aiCooldown} {character.AttackCooldown} {angle} {dir}");
@@ -71,7 +73,31 @@ namespace RebuildZoneServer.EntityComponents
 			CommandBuilder.ClearRecipients();
 			
 			target.QueueDamage(di);
-			target.Character.LastAttacked = Character.Entity;
+			
+			if (target.Character.Type == CharacterType.Monster && di.Damage > target.Stats.Hp)
+			{
+				var mon = target.Entity.Get<Monster>();
+				mon.AddDelay(Stats.SpriteAttackTiming); //make sure it stops acting until it dies
+			}
+
+			if (Character.Type == CharacterType.Player && di.Damage > target.Stats.Hp)
+			{
+				var player = Entity.Get<Player>();
+				player.ClearTarget();
+				var bonus = (int)Math.Round(target.Stats.MaxHp * 0.02f);
+				if (bonus < 1)
+					bonus = 1;
+				if ((int) Stats.Atk2 + bonus > short.MaxValue)
+				{
+					Stats.Atk = (short)(short.MaxValue * 0.8f);
+					Stats.Atk2 = short.MaxValue;
+				}
+				else
+				{
+					Stats.Atk += (short)bonus;
+					Stats.Atk2 += (short)(bonus * 1.2f);
+				}
+			}
 		}
 
 		public void Init(ref EcsEntity e, Character ch)
@@ -103,6 +129,21 @@ namespace RebuildZoneServer.EntityComponents
 					Character.Map.GatherPlayersForMultiCast(ref Entity, Character);
 					CommandBuilder.SendHitMulti(Character, Stats.HitDelayTime);
 					CommandBuilder.ClearRecipients();
+				}
+
+				if(!di.Target.IsNull() && di.Source.IsAlive())
+					Character.LastAttacked = di.Source;
+
+				var ec = di.Target.Get<CombatEntity>();
+				ec.Stats.Hp -= di.Damage;
+				
+				if (Character.Type == CharacterType.Monster && ec.Stats.Hp <= 0)
+				{
+					Character.ResetState();
+					var monster = Entity.Get<Monster>();
+					monster.Die();
+					DamageQueue.Clear();
+					return;
 				}
 			}
 		}
