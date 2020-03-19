@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using RebuildData.Server.Config;
+using RebuildData.Server.Data;
 using RebuildData.Server.Logging;
+using RebuildZoneServer.Data.Management;
 
 namespace RebuildData.Shared.Data
 {
@@ -28,7 +30,10 @@ namespace RebuildData.Shared.Data
 
 		public MapWalkData(string name)
 		{
-			var path = Path.Combine(ServerConfig.MapPath, name);
+			if(!DataManager.TryGetConfigValue("WalkPathData", out var walkPath))
+				throw new Exception("Configuration did not have section for WalkPathData!");
+
+			var path = Path.Combine(walkPath, name);
 
 			//ServerLogger.Log("Loading path data from " + name);
 

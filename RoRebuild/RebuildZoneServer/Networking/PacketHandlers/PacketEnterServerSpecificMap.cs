@@ -54,6 +54,10 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			var networkPlayer = playerEntity.Get<Player>();
 			networkPlayer.Connection = connection;
 
+			var ce = connection.Entity.Get<CombatEntity>();
+			//ce.Stats.Atk = 9999;
+			//ce.Stats.Atk2 = 9999;
+
 			ServerLogger.Debug($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 
 			CommandBuilder.InformEnterServer(connection.Character, networkPlayer);

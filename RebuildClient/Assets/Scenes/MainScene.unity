@@ -227,7 +227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 115.08, y: 142.56}
+  m_AnchoredPosition: {x: 282, y: -52}
   m_SizeDelta: {x: 514.17, y: 90.56}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &739528562
@@ -248,8 +248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: And then he took <color=#FF0000><sprite=9 tint><sprite=9 tint><sprite=9
-    tint><sprite=9 tint></color> damage
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 442129beccd7e96408d173c08cd6d2e0, type: 2}
   m_sharedMaterial: {fileID: -2265737293311893676, guid: 442129beccd7e96408d173c08cd6d2e0,
@@ -319,14 +318,14 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -0.6717529, w: -0.6313019}
   m_textInfo:
     textComponent: {fileID: 739528562}
-    characterCount: 28
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 5
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 2
+    lineCount: 0
+    pageCount: 0
+    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -539,7 +538,7 @@ MonoBehaviour:
   TargetRotation: 0
   ClickDelay: 0
   Rotation: 0
-  Distance: 60
+  Distance: 70
   Height: 50
   TurnSpeed: 0
   MonSpawnCount: 1
@@ -663,6 +662,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1439684399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439684400}
+  - component: {fileID: 1439684401}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439684400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439684399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439684401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439684399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e819652715fda8741b42a61aa046504f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapInfo: {fileID: 4900000, guid: f7ed8fe56d82dc641835d31fa11b09d6, type: 3}
 --- !u!1 &1588122869
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraFollower: {fileID: 963194229}
-  ServerConfig: {fileID: 4900000, guid: ca879a18cd995604a9dca5b73a0e9498, type: 3}
   DamagePrefab: {fileID: 5200160050705169387, guid: 4efa6d297ce63db44a6a4cb3cc2f5ed7,
     type: 3}
   PlayerId: 0

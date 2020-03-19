@@ -123,7 +123,13 @@ namespace RebuildZoneServer.EntityComponents
 				if (deadTimeout < 0.4f)
 					deadTimeout = 0.4f; //minimum respawn time
 				nextAiUpdate = Time.ElapsedTimeFloat + deadTimeout + 0.1f;
+				deadTimeout += Time.ElapsedTimeFloat;
 			}
+		}
+
+		public void ResetDelay()
+		{
+			nextAiUpdate = 0f;
 		}
 
 		public void AddDelay(float delay)

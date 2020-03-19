@@ -54,6 +54,13 @@ namespace RebuildZoneServer.EntityComponents
 
 			Character.FacingDirection = DistanceCache.Direction(Character.Position, target.Character.Position);
 
+			var atk1 = Stats.Atk;
+			var atk2 = Stats.Atk2;
+			if (atk1 <= 0)
+				atk1 = 1;
+			if (atk2 < atk1)
+				atk2 = atk1;
+
 			var damage = (short)GameRandom.Next(Stats.Atk, Stats.Atk2);
 
 			var di = new DamageInfo()
@@ -87,6 +94,11 @@ namespace RebuildZoneServer.EntityComponents
 				var bonus = (int)Math.Round(target.Stats.MaxHp * 0.02f);
 				if (bonus < 1)
 					bonus = 1;
+				if (bonus > 5)
+					bonus = 5 + (bonus - 5) / 2;
+				if (bonus > 25)
+					bonus = 25 + (bonus - 25) / 2;
+
 				if ((int) Stats.Atk2 + bonus > short.MaxValue)
 				{
 					Stats.Atk = (short)(short.MaxValue * 0.8f);

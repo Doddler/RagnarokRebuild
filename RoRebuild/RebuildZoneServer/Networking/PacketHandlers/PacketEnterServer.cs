@@ -23,7 +23,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			if (connection.Character != null)
 				return;
 
-			var playerEntity = State.World.CreatePlayer(connection, "prontera", Area.CreateAroundPoint(new Position(155, 57), 5));
+			var playerEntity = State.World.CreatePlayer(connection, "prt_fild08", Area.CreateAroundPoint(new Position(170, 367), 5));
 			connection.Entity = playerEntity;
 			connection.LastKeepAlive = Time.ElapsedTime;
 			connection.Character = playerEntity.Get<Character>();

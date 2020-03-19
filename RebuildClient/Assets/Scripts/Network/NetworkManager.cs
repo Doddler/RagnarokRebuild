@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Assets.Scripts.MapEditor;
 using Assets.Scripts.Sprites;
 using Assets.Scripts.Utility;
@@ -20,7 +21,6 @@ namespace Assets.Scripts.Network
 		public static NetworkManager Instance;
 
 		public CameraFollower CameraFollower;
-		public TextAsset ServerConfig;
 		public GameObject DamagePrefab;
 		public Dictionary<int, ServerControllable> entityList = new Dictionary<int, ServerControllable>();
 		public int PlayerId;
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Network
 			NetOutgoingMessage outMsg = client.CreateMessage();
 			outMsg.Write("A Client");
 
-			var target = ServerConfig.text;
+			var target = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "serverconfig.txt"));
 			var s = target.Split(':');
 
 			client.Connect(s[0], int.Parse(s[1]), outMsg);
@@ -391,12 +391,20 @@ namespace Assets.Scripts.Network
 			var dir = (Direction)msg.ReadByte();
 			var pos = ReadPosition(msg);
 			var dmg = msg.ReadInt16();
-
+			
 			controllable.StopImmediate(pos);
 			controllable.SpriteAnimator.Direction = dir;
 			controllable.SpriteAnimator.State = SpriteState.Idle;
 			controllable.SpriteAnimator.AnimSpeed = 1f;
-			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
+			if (controllable.SpriteAnimator.Type == SpriteType.Player)
+			{
+				if(controllable.IsMale)
+					controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack2, true);
+				else
+					controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack3, true);
+			}
+			else
+				controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
 			
 			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 
@@ -436,7 +444,8 @@ namespace Assets.Scripts.Network
 			if (controllable.SpriteAnimator.Type == SpriteType.Player)
 				controllable.SpriteAnimator.State = SpriteState.Standby;
 
-			controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
+			if(controllable.SpriteAnimator.CurrentMotion != SpriteMotion.Dead && !controllable.SpriteAnimator.IsAttackMotion)
+				controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 		}
 
 		void HandleDataPacket(NetIncomingMessage msg)

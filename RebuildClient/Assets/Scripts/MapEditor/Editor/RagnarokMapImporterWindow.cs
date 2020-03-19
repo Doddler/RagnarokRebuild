@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Assets.Scripts.MapEditor.Editor.ObjectEditors;
 using B83.Image.BMP;
+using RebuildData.Shared.ClientTypes;
 using SFB;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
@@ -70,12 +72,30 @@ namespace Assets.Scripts.MapEditor.Editor
 			var defGroup = settings.DefaultGroup;
 			var mapGroup = settings.FindGroup("Scenes");
 			var entriesAdded = new List<AddressableAssetEntry>();
+			var entriesRemoved = new List<AddressableAssetEntry>();
 
+
+			var monText = AssetDatabase.LoadAssetAtPath(@"Assets/Data/monsterclass.json", typeof(TextAsset)) as TextAsset;
+			var monsters = JsonUtility.FromJson<DatabaseMonsterClassData>(monText.text);
+			
 			//update sprites
 			var guids = AssetDatabase.FindAssets("t:RoSpriteData", new[] { "Assets/Sprites" });
 
 			for (int i = 0; i < guids.Length; i++)
 			{
+				var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+				var fName = Path.GetFileName(path);
+				if (path.Contains("Monsters") && monsters.MonsterClassData.All(m => m.SpriteName != fName))
+				{
+					//Debug.Log("Not found: " + fName);
+					var existing = defGroup.GetAssetEntry(guids[i]);
+					if (existing == null)
+						continue;
+					settings.RemoveAssetEntry(guids[i], true);
+					entriesRemoved.Add(existing);
+					continue;
+				}
+
 				var entry = settings.CreateOrMoveEntry(guids[i], defGroup, readOnly: false, postEvent: false);
 				//Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
 				entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
@@ -84,20 +104,37 @@ namespace Assets.Scripts.MapEditor.Editor
 				entriesAdded.Add(entry);
 			}
 
+			var mapText = AssetDatabase.LoadAssetAtPath(@"Assets/Data/maps.json", typeof(TextAsset)) as TextAsset;
+			var maps = JsonUtility.FromJson<ClientMapList>(mapText.text);
+
 			//update scenes
 			guids = AssetDatabase.FindAssets("t:Scene", new[] { "Assets/Scenes/Maps" });
 
 			for (int i = 0; i < guids.Length; i++)
 			{
+				var path = AssetDatabase.GUIDToAssetPath(guids[i]);
+				var fName = Path.GetFileNameWithoutExtension(path);
+				if (maps.MapEntries.All(m => m.Code != fName))
+				{
+					//Debug.Log("Not found: " + fName);
+					var existing = mapGroup.GetAssetEntry(guids[i]);
+					if (existing == null)
+						continue;
+					settings.RemoveAssetEntry(guids[i], true);
+					entriesRemoved.Add(existing);
+					continue;
+				}
+
 				var entry = settings.CreateOrMoveEntry(guids[i], mapGroup, readOnly: false, postEvent: false);
 				//Debug.Log(AssetDatabase.GUIDToAssetPath(guids[i]));
-				entry.address = AssetDatabase.GUIDToAssetPath(guids[i]);
+				entry.address = path;
 				entry.labels.Add("Maps");
 
 				entriesAdded.Add(entry);
 			}
 
 			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, entriesAdded, true);
+			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryRemoved, entriesRemoved, true);
 		}
 
 		//[MenuItem("Ragnarok/Test Import Model")]

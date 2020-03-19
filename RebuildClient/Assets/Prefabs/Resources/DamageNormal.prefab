@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7f287539d22669d4886a2874cf3e3a99, type: 2}
+  - {fileID: 8046275299014398182, guid: b6183e0bd4599df40b1f674eb3e77990, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,8 +115,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 7f287539d22669d4886a2874cf3e3a99, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b6183e0bd4599df40b1f674eb3e77990, type: 2}
+  m_sharedMaterial: {fileID: 8046275299014398182, guid: b6183e0bd4599df40b1f674eb3e77990,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -324,29 +325,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: 0.007855762
-      outSlope: 0.007855762
+      inSlope: 0.009446392
+      outSlope: 0.009446392
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.6011632
+      time: 0.4999364
       value: 1.0047226
-      inSlope: 0.007855762
-      outSlope: -0.12569171
+      inSlope: 0.009446392
+      outSlope: 0
       tangentMode: 5
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.15014724
     - serializedVersion: 3
       time: 1.0024122
       value: -0.0012597442
-      inSlope: -7.8064246
-      outSlope: -7.8064246
+      inSlope: -6.5817456
+      outSlope: -6.5817456
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.041464586
+      inWeight: 0.035870556
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

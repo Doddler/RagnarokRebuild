@@ -35,7 +35,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			if (connection.Character.Position.SquareDistance(targetCharacter.Position) > ServerConfig.MaxViewDistance)
 				return;
 
-			connection.Player.TargetForAttack(connection.Character, targetCharacter);
+			connection.Player.TargetForAttack(targetCharacter);
 		}
 	}
 }

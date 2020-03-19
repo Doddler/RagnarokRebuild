@@ -235,6 +235,12 @@ namespace RebuildZoneServer.EntityComponents
 						var player = Entity.Get<Player>();
 						player.UpdatePosition(this, nextPos);
 					}
+
+					if (Type == CharacterType.Monster)
+					{
+						var monster = Entity.Get<Monster>();
+						monster.ResetDelay();
+					}
 				}
 			}
 		}

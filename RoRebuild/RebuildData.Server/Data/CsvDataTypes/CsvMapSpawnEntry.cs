@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RebuildData.Server.Data.CsvDataTypes
 {
-	internal class CsvMapSpawnEntry
+	public class CsvMapSpawnEntry
 	{
 		public string Map { get; set; }
 		public int X { get; set; }

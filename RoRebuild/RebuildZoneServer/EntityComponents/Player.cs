@@ -24,7 +24,7 @@ namespace RebuildZoneServer.EntityComponents
 		public byte HeadId;
 		public bool IsMale;
 
-		public EcsEntity Target;
+		public EcsEntity Target { get; set; }
 
 		public bool QueueAttack;
 
@@ -61,10 +61,8 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool ValidateTarget()
 		{
-			if (Target.IsNull())
-				return false;
-			if (!Target.IsAlive())
-			{
+			if (Target.IsNull() || !Target.IsAlive())
+			{ 
 				Target = EcsEntity.Null;
 				return false;
 			}
@@ -76,13 +74,12 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			QueueAttack = false;
 			Target = EcsEntity.Null;
-			
 		}
 
 		public void PerformQueuedAttack()
 		{
 			//QueueAttack = false;
-			if (Target.IsNull() || !Target.IsAlive())
+			if (!ValidateTarget())
 			{
 				QueueAttack = false;
 				return;
@@ -103,7 +100,7 @@ namespace RebuildZoneServer.EntityComponents
 
 			if (Character.Position.SquareDistance(targetCharacter.Position) > CombatEntity.Stats.Range)
 			{
-				QueueAttack = false;
+				TargetForAttack(targetCharacter);
 				return;
 			}
 
@@ -112,6 +109,12 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void PerformAttack(Character targetCharacter)
 		{
+			if (targetCharacter.Type == CharacterType.NPC)
+			{
+				Target = EcsEntity.Null;
+				return;
+			}
+
 			Character.StopMovingImmediately();
 
 			if (Character.AttackCooldown > Time.ElapsedTimeFloat)
@@ -152,15 +155,21 @@ namespace RebuildZoneServer.EntityComponents
 
 			var targetCharacter = Target.Get<Character>();
 
-			if (chara.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
+			if (Character.State == CharacterState.Moving)
 			{
-				PerformAttack(targetCharacter);
+				if (chara.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
+					PerformAttack(targetCharacter);
+			}
+			
+			if(Character.State == CharacterState.Idle)
+			{
+				TargetForAttack(targetCharacter);
 			}
 		}
 
-		public void TargetForAttack(Character chara, Character enemy)
+		public void TargetForAttack(Character enemy)
 		{
-			if (chara.Position.SquareDistance(enemy.Position) <= CombatEntity.Stats.Range)
+			if (Character.Position.SquareDistance(enemy.Position) <= CombatEntity.Stats.Range)
 			{
 				Target = enemy.Entity;
 				var targetCharacter = Target.Get<Character>();
@@ -169,7 +178,7 @@ namespace RebuildZoneServer.EntityComponents
 				return;
 			}
 
-			if (!chara.TryMove(ref Entity, enemy.Position, 0))
+			if (!Character.TryMove(ref Entity, enemy.Position, 0))
 				return;
 
 			Target = enemy.Entity;

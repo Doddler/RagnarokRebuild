@@ -19,7 +19,7 @@ namespace RebuildData.Server.Data
 		{
 			var connectors = new Dictionary<string, List<MapConnector>>();
 
-			using var tr = new StreamReader(@"Data\Connectors.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/Connectors.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var connections = csv.GetRecords<CsvMapConnector>();
@@ -62,7 +62,7 @@ namespace RebuildData.Server.Data
 
 		public List<MapEntry> LoadMaps()
 		{
-			using var tr = new StreamReader(@"Data\Maps.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/Maps.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var maps = csv.GetRecords<MapEntry>().ToList();
@@ -74,7 +74,7 @@ namespace RebuildData.Server.Data
 
 		public List<MonsterDatabaseInfo> LoadMonsterStats()
 		{
-			using var tr = new StreamReader(@"Data\Monsters.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/Monsters.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var monsters = csv.GetRecords<CsvMonsterData>().ToList();
@@ -115,7 +115,7 @@ namespace RebuildData.Server.Data
 		{
 			var config = new Dictionary<string, string>();
 
-			using var tr = new StreamReader(@"Data\ServerSettings.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/ServerSettings.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var entries = csv.GetRecords<CsvServerConfig>().ToList();
@@ -135,7 +135,7 @@ namespace RebuildData.Server.Data
 			for (var i = 0; i < aiTypeCount; i++)
 				entryList.Add(new List<MonsterAiEntry>());
 
-			using var tr = new StreamReader(@"Data\MonsterAI.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/MonsterAI.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var states = csv.GetRecords<CsvMonsterAI>().ToList();
@@ -169,7 +169,7 @@ namespace RebuildData.Server.Data
 			var mapSpawns = new MapSpawnDatabaseInfo();
 			mapSpawns.MapSpawnEntries = new Dictionary<string, List<MapSpawnEntry>>();
 
-			using var tr = new StreamReader(@"Data\MapSpawns.csv") as TextReader;
+			using var tr = new StreamReader(@"Data/MapSpawns.csv") as TextReader;
 			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
 
 			var spawns = csv.GetRecords<CsvMapSpawnEntry>().ToList();

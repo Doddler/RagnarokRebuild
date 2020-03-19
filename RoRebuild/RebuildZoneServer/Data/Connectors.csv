@@ -389,3 +389,5 @@ TRUE,pay_dun04,32,204,2,1,pay_dun03,125,62,1,1
 TRUE,pay_dun04,40,37,2,2,pay_dun03,125,62,1,1
 TRUE,pay_dun04,191,41,1,1,pay_dun03,125,62,1,1
 TRUE,pay_dun04,202,206,1,1,pay_dun03,125,62,1,1
+TRUE,prt_fild08,153,372,2,2,pay_dun00,21,183,1,1
+TRUE,pay_dun00,21,186,2,2,prt_fild08,153,366,1,1

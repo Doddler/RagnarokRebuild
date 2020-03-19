@@ -97,6 +97,9 @@ namespace Assets.Scripts.Sprites
 
 		private Camera mainCamera;
 
+		public bool IsAttackMotion => CurrentMotion == SpriteMotion.Attack1 || CurrentMotion == SpriteMotion.Attack2 ||
+		                              CurrentMotion == SpriteMotion.Attack3;
+
 		public void SetDirty()
 		{
 			isDirty = true;
@@ -585,9 +588,9 @@ namespace Assets.Scripts.Sprites
 				mat.SetFloat("_Rotation", rotate);
 			}
 
-			if (Input.GetKeyDown(KeyCode.F1))
+			if (Input.GetKeyDown(KeyCode.F11))
 			{
-				spinSpeed = UnityEngine.Random.Range(140f, 640f);
+				spinSpeed = Random.Range(140f, 640f);
 
 				var megaSpin = Random.Range(0, 100);
 				if (megaSpin == 10)

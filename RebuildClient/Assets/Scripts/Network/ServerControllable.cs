@@ -22,6 +22,7 @@ namespace Assets.Scripts.Network
 		public Vector3 StartPos;
 		public float ShadowSize;
 		public bool IsAlly;
+		public bool IsMale;
 
 		public ClientSpriteType SpriteMode;
 		public GameObject EntityObject;
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Network
 		private float hitDelay = 0f;
 
 		public bool IsWalking => movePath != null && movePath.Count > 1;
-
+		
 		public void ConfigureEntity(int id, Vector2Int worldPos, Direction direction)
 		{
 			if(walkProvider == null)

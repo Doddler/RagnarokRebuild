@@ -38,6 +38,9 @@ namespace Assets.Scripts
 
 		private Vector2Int lastTile;
 		private bool lastPathValid;
+		private bool noHold = false;
+
+		public bool UseTTFDamage = false;
 
 #if DEBUG
 		private const float MaxClickDistance = 500;
@@ -376,6 +379,8 @@ namespace Assets.Scripts
 						if (Input.GetMouseButtonDown(0))
 						{
 							NetworkManager.Instance.SendAttack(anim.Controllable.Id);
+							isHolding = false;
+							noHold = true;
 						}
 					}
 				}
@@ -389,14 +394,17 @@ namespace Assets.Scripts
 				ClickDelay = 0;
 
 			if (!Input.GetMouseButton(0))
+			{
 				isHolding = false;
+				noHold = false;
+			}
 
 			if (!hasHitMap)
 			{
 				WalkProvider.DisableRenderer();
 				return;
 			}
-
+			
 			//we hit the map! Do map things
 
 			var hasGroundPos = WalkProvider.GetMapPositionForWorldPosition(groundHit.point, out var mapPosition);
@@ -437,6 +445,9 @@ namespace Assets.Scripts
 			if (!hasHitCharacter)
 				TargetUi.text = "";
 
+
+			if (noHold)
+				return;
 
 			if (Input.GetMouseButton(0) && ClickDelay <= 0)
 			{
@@ -546,8 +557,8 @@ namespace Assets.Scripts
 			}
 
 #if !DEBUG
-            if (Height > 70)
-	            Height = 70;
+            if (Height > 80)
+	            Height = 80;
             if (Height < 35)
 	            Height = 35;
 #endif
@@ -573,8 +584,8 @@ namespace Assets.Scripts
 			Distance += Input.GetAxis("Mouse ScrollWheel") * 20 * ctrlKey;
 
 #if !DEBUG
-            if (Distance > 80)
-	            Distance = 80;
+            if (Distance > 90)
+	            Distance = 90;
             if (Distance < 30)
 	            Distance = 30;
 #endif
@@ -598,6 +609,9 @@ namespace Assets.Scripts
 			{
 				AudioListener.volume = 1 - AudioListener.volume;
 			}
+
+			if (Input.GetKeyDown(KeyCode.F3))
+				UseTTFDamage = !UseTTFDamage;
 
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{

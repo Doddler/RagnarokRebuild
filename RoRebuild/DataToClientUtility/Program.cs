@@ -8,7 +8,10 @@ using System.Text.Json.Serialization;
 using CsvHelper;
 using Dahomey.Json;
 using RebuildData.Server.Data.CsvDataTypes;
+using RebuildData.Server.Data.Types;
 using RebuildData.Shared.ClientTypes;
+using RebuildData.Shared.Util;
+using RebuildZoneServer.Data.Management.Types;
 
 namespace DataToClientUtility
 {
@@ -16,11 +19,13 @@ namespace DataToClientUtility
 	{
 		private const string path = @"..\..\..\..\RebuildZoneServer\Data\";
 		private const string outPath = @"..\..\..\..\..\RebuildClient\Assets\Data\";
+		private const string outPathStreaming = @"..\..\..\..\..\RebuildClient\Assets\StreamingAssets\";
 
 		static void Main(string[] args)
 		{
 			WriteMonsterData();
 			WriteServerConfig();
+			WriteMapList();
 		}
 
 
@@ -39,7 +44,7 @@ namespace DataToClientUtility
 				var ip = entries.FirstOrDefault(e => e.Key == "IP").Value;
 				var port = entries.FirstOrDefault(e => e.Key == "Port").Value;
 
-				var configPath = Path.Combine(outPath, "serverconfig.txt");
+				var configPath = Path.Combine(outPathStreaming, "serverconfig.txt");
 
 				File.WriteAllText(configPath, $"{ip}:{port}");
 			}
@@ -47,12 +52,74 @@ namespace DataToClientUtility
 			File.Delete(tempPath);
 		}
 
+		private static void WriteMapList()
+		{
+			using var tempPath = new TempFileCopy(Path.Combine(path, "Maps.csv"));
+			using var tr = new StreamReader(tempPath.Path) as TextReader;
+			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+
+			var entries = csv.GetRecords<MapEntry>().ToList();
+			var mapList = new ClientMapList();
+			mapList.MapEntries = new List<ClientMapEntry>();
+
+			foreach (var e in entries)
+			{
+				mapList.MapEntries.Add(new ClientMapEntry()
+				{
+					Code = e.Code,
+					Name = e.Name,
+					Music = e.Music
+				});
+			}
+
+			JsonSerializerOptions options = new JsonSerializerOptions();
+			options.SetupExtensions();
+			
+			var json = JsonSerializer.Serialize(mapList, options);
+
+			var mapDir = Path.Combine(outPath, "maps.json");
+
+			File.WriteAllText(mapDir, json);
+		}
+
+		private static List<MapEntry> GetMapList()
+		{
+			using var tempPath = new TempFileCopy(Path.Combine(path, "Maps.csv"));
+			using var tr = new StreamReader(tempPath.Path) as TextReader;
+			using var csv = new CsvReader(tr, CultureInfo.CurrentCulture);
+			
+			return csv.GetRecords<MapEntry>().ToList();
+		}
+
+		private static List<CsvMapSpawnEntry> GetSpawnEntries()
+		{
+			var inPath = Path.Combine(path, "MapSpawns.csv");
+			var tempPath = Path.Combine(Path.GetTempPath(), "MapSpawns.csv"); //copy in case file is locked
+			File.Copy(inPath, tempPath, true);
+
+			List<CsvMapSpawnEntry> monsters;
+
+			using (var tr = new StreamReader(tempPath) as TextReader)
+			using (var csv = new CsvReader(tr, CultureInfo.CurrentCulture))
+			{
+				monsters = csv.GetRecords<CsvMapSpawnEntry>().ToList();
+			}
+
+			File.Delete(tempPath);
+
+			return monsters;
+		}
 
 		private static void WriteMonsterData()
 		{
 			var inPath = Path.Combine(path, "Monsters.csv");
 			var tempPath = Path.Combine(Path.GetTempPath(), "Monsters.csv"); //copy in case file is locked
 			File.Copy(inPath, tempPath, true);
+
+			var monSpawns = GetSpawnEntries();
+			var maps = GetMapList();
+
+			monSpawns = monSpawns.Where(m => maps.Any(m2 => m2.Code == m.Map)).ToList();
 
 			using (var tr = new StreamReader(tempPath) as TextReader)
 			using (var csv = new CsvReader(tr, CultureInfo.CurrentCulture))
@@ -62,6 +129,9 @@ namespace DataToClientUtility
 
 				foreach (var monster in monsters)
 				{
+					if (monster.Id >= 4000 && monSpawns.All(m => m.Class != monster.Code))
+						continue;
+
 					var mc = new MonsterClassData()
 					{
 						Id = monster.Id,

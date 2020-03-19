@@ -116,6 +116,7 @@ namespace Assets.Scripts.Sprites
 			control.CharacterType = CharacterType.Player;
 			control.SpriteMode = ClientSpriteType.Sprite;
 			control.IsAlly = true;
+			control.IsMale = param.IsMale;
 
 			bodySprite.Controllable = control;
 			if(param.State == CharacterState.Moving)
@@ -136,6 +137,25 @@ namespace Assets.Scripts.Sprites
 			
 			var bodySpriteName = param.IsMale ? pData.SpriteMale : pData.SpriteFemale;
 			var headSpriteName = param.IsMale ? hData.SpriteMale : hData.SpriteFemale;
+			
+			if (param.ClassId == 0)
+			{
+				var weaponSpriteFile = param.IsMale ? "Assets/Sprites/Weapons/Novice/Male/초보자_남_1207.spr" : "Assets/Sprites/Weapons/Novice/Female/초보자_여_1207.spr";
+
+				var weapon = new GameObject("Weapon");
+				weapon.layer = LayerMask.NameToLayer("Characters");
+				weapon.transform.SetParent(body.transform, false);
+				weapon.transform.localPosition = Vector3.zero;
+
+				var weaponSprite = weapon.AddComponent<RoSpriteAnimator>();
+				
+				weaponSprite.Parent = bodySprite;
+				weaponSprite.SpriteOrder = 2;
+
+				bodySprite.ChildrenSprites.Add(weaponSprite);
+
+				AddressableUtility.LoadRoSpriteData(go, weaponSpriteFile, weaponSprite.OnSpriteDataLoad);
+			}
 
 			control.ConfigureEntity(param.ServerId, param.Position, param.Facing);
 
