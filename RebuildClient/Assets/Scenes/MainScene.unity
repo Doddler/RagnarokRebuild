@@ -526,6 +526,7 @@ MonoBehaviour:
   UiCanvas: {fileID: 2007945106}
   TargetUi: {fileID: 739528562}
   CanvasScaler: {fileID: 2007945105}
+  UseTTFDamage: 1
   Target: {fileID: 0}
   Camera: {fileID: 963194227}
   CurLookAt: {x: 0, y: 0, z: 0}
@@ -673,7 +674,7 @@ GameObject:
   - component: {fileID: 1439684400}
   - component: {fileID: 1439684401}
   m_Layer: 0
-  m_Name: MusicManager
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -706,6 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapInfo: {fileID: 4900000, guid: f7ed8fe56d82dc641835d31fa11b09d6, type: 3}
+  Mixer: {fileID: 24100000, guid: dcbdad0868492884ca1f88609b8808aa, type: 2}
 --- !u!1 &1588122869
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +907,7 @@ MonoBehaviour:
   BlackoutImage: {fileID: 552425784}
   LoadingImage: {fileID: 1047215512}
   MonsterHoverText: {fileID: 739528562}
+  MapList: {fileID: 4900000, guid: f7ed8fe56d82dc641835d31fa11b09d6, type: 3}
 --- !u!1 &2086025547
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
@@ -21,7 +22,21 @@ namespace Assets.Scripts.MapEditor.Editor
             //RenderSettings.ambientIntensity = 0f;
             RenderSettings.ambientMode = AmbientMode.Flat;
 
-            RenderSettings.ambientLight = world.LightSetup.Ambient;
+            var c = world.LightSetup.Ambient;
+            var ambientIntensity = (c.r + c.g + c.b) / 3;
+            ambientIntensity = 1 + (1 - world.LightSetup.Opacity);
+
+            var ng = 1 - world.LightSetup.Opacity;
+            var diff = world.LightSetup.Diffuse;
+
+            var factor = 1 + (1 - world.LightSetup.Opacity);
+
+            Debug.Log(c + " : " + ambientIntensity + " : " + factor);
+            
+            c = new Color(c.r + diff.r * ng, c.g + diff.g * ng, c.b + diff.b * ng, c.a);
+
+            RenderSettings.ambientLight = c;
+            //RenderSettings.ambientIntensity = (1 - world.LightSetup.Opacity) * 2;
 
             //Debug.Log("Light count: " + world.Lights.Count);
 
@@ -50,21 +65,21 @@ namespace Assets.Scripts.MapEditor.Editor
                 targetLight.shadows = LightShadows.Soft;
             }
 
-            var intensity = 1f;
-            if (90 - world.LightSetup.Longitude >= 50)
-                intensity = 0.8f;
-            if (90 - world.LightSetup.Longitude >= 60)
-                intensity = 0.7f;
+            var intensity = world.LightSetup.Opacity;
+            //if (90 - world.LightSetup.Longitude >= 50)
+            //    intensity = 0.8f;
+            //if (90 - world.LightSetup.Longitude >= 60)
+            //    intensity = 0.7f;
 
-            if (data.name == "yuno")
-                intensity = 0.5f;
+            //if (data.name == "yuno")
+            //    intensity = 0.5f;
 
             targetLight.transform.rotation = Quaternion.Euler(90-world.LightSetup.Longitude, world.LightSetup.Latitude, 0);
             targetLight.color = world.LightSetup.Diffuse;
             targetLight.intensity = intensity;
             targetLight.lightmapBakeType = LightmapBakeType.Mixed;
             
-            targetLight.shadowStrength = world.LightSetup.Opacity;
+            targetLight.shadowStrength = 1;
         }
 
         private void PlaceLight(GameObject parent, string name, Vector3 position, Color color, float range, float intensity)
@@ -226,6 +241,9 @@ namespace Assets.Scripts.MapEditor.Editor
             soundContainer.transform.SetParent(baseObject.transform, false);
             //soundContainer.transform.localPosition = new Vector3(data.InitialSize.x, 0f, data.InitialSize.y);
 
+            var mixer = AssetDatabase.LoadAssetAtPath<AudioMixer>("Assets/Resources/AudioMixer.mixer");
+            var envGroup = mixer.FindMatchingGroups("Environment")[0];
+
             var soundFolder = "Assets/sounds";
             if (!Directory.Exists(soundFolder))
                 Directory.CreateDirectory(soundFolder);
@@ -242,14 +260,16 @@ namespace Assets.Scripts.MapEditor.Editor
                 go.transform.localPosition = new Vector3(sound.Position.x / 5, -sound.Position.y / 5, sound.Position.z / 5f);
 
                 var ac = go.AddComponent<AudioSource>();
+                ac.outputAudioMixerGroup = envGroup;
                 ac.clip = soundAsset;
                 ac.priority = 64;
                 ac.minDistance = 3f;
                 ac.maxDistance = sound.Range / 5f;
-                ac.volume = sound.Volume / 30f;
+                ac.volume = Mathf.Clamp(sound.Volume, 0, 1);
                 ac.rolloffMode = AudioRolloffMode.Linear;
                 ac.spatialBlend = 1f;
                 ac.loop = true;
+                ac.dopplerLevel = 0f;
 
                 var loop = go.AddComponent<AudioLooper>();
                 loop.LoopTime = sound.Cycle;

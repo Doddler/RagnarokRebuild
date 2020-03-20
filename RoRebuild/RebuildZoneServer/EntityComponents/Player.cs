@@ -134,18 +134,20 @@ namespace RebuildZoneServer.EntityComponents
 			Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
 		}
 
-		public void UpdatePosition(Character chara, Position nextPos)
+		public void UpdatePosition(Position nextPos)
 		{
-			var connector = DataManager.GetConnector(chara.Map.Name, nextPos);
+			var connector = DataManager.GetConnector(Character.Map.Name, nextPos);
 
 			if (connector != null)
 			{
-				chara.State = CharacterState.Idle;
+				Character.State = CharacterState.Idle;
 
 				if (connector.Map == connector.Target)
-					chara.Map.MoveEntity(ref Entity, chara, connector.DstArea.RandomInArea());
+					Character.Map.MoveEntity(ref Entity, Character, connector.DstArea.RandomInArea());
 				else
-					chara.Map.World.MovePlayerMap(ref Entity, chara, connector.Target, connector.DstArea.RandomInArea());
+					Character.Map.World.MovePlayerMap(ref Entity, Character, connector.Target, connector.DstArea.RandomInArea());
+
+				CombatEntity.ClearDamageQueue();
 
 				return;
 			}
@@ -157,7 +159,7 @@ namespace RebuildZoneServer.EntityComponents
 
 			if (Character.State == CharacterState.Moving)
 			{
-				if (chara.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
+				if (Character.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
 					PerformAttack(targetCharacter);
 			}
 			

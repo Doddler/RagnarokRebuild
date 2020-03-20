@@ -31,7 +31,7 @@ namespace RebuildZoneServer.EntityComponents
 			Stats = null;
 			
 			if(DamageQueue == null)
-				DamageQueue = new List<DamageInfo>(10);
+				DamageQueue = new List<DamageInfo>(16);
 
 			//bad! This will cause gen2 garbage
 			BaseStats = null;
@@ -44,7 +44,52 @@ namespace RebuildZoneServer.EntityComponents
 			if (DamageQueue.Count > 1)
 				DamageQueue.Sort((a, b) => a.Time.CompareTo(b.Time));
 		}
-		
+
+		public void ClearDamageQueue()
+		{
+			DamageQueue.Clear();
+		}
+
+		public void DistributeExperience()
+		{
+			var list = EntityListPool.Get();
+
+			var bonus = (int)Math.Round(Stats.MaxHp * 0.02f);
+			if (bonus < 1)
+				bonus = 1;
+			if (bonus > 5)
+				bonus = 5 + (bonus - 5) / 2;
+			if (bonus > 25)
+				bonus = 25 + (bonus - 25) / 2;
+
+			bonus = bonus * 4 / (list.Count + 3);
+			if (bonus < 1)
+				bonus = 1;
+
+			Character.Map.GatherPlayersInRange(Character, 18, list);
+			foreach (var e in list)
+			{
+				if (e.IsNull() || !e.IsAlive())
+					continue;
+				var ce = e.Get<CombatEntity>();
+				if (ce == null || !ce.Character.IsActive)
+					continue;
+
+				if ((int)ce.Stats.Atk2 + bonus > short.MaxValue)
+				{
+					ce.Stats.Atk = (short)(short.MaxValue * 0.8f);
+					ce.Stats.Atk2 = short.MaxValue;
+				}
+				else
+				{
+					ce.Stats.Atk += (short)bonus;
+					ce.Stats.Atk2 += (short)(bonus * 1.2f);
+				}
+			}
+
+			EntityListPool.Return(list);
+		}
+
 		public void PerformMeleeAttack(CombatEntity target)
 		{
 			if (Character.AttackCooldown + Time.DeltaTimeFloat + 0.005f < Time.ElapsedTimeFloat)
@@ -91,24 +136,6 @@ namespace RebuildZoneServer.EntityComponents
 			{
 				var player = Entity.Get<Player>();
 				player.ClearTarget();
-				var bonus = (int)Math.Round(target.Stats.MaxHp * 0.02f);
-				if (bonus < 1)
-					bonus = 1;
-				if (bonus > 5)
-					bonus = 5 + (bonus - 5) / 2;
-				if (bonus > 25)
-					bonus = 25 + (bonus - 25) / 2;
-
-				if ((int) Stats.Atk2 + bonus > short.MaxValue)
-				{
-					Stats.Atk = (short)(short.MaxValue * 0.8f);
-					Stats.Atk2 = short.MaxValue;
-				}
-				else
-				{
-					Stats.Atk += (short)bonus;
-					Stats.Atk2 += (short)(bonus * 1.2f);
-				}
 			}
 		}
 

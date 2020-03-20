@@ -233,7 +233,7 @@ namespace RebuildZoneServer.EntityComponents
 					if (Type == CharacterType.Player)
 					{
 						var player = Entity.Get<Player>();
-						player.UpdatePosition(this, nextPos);
+						player.UpdatePosition(nextPos);
 					}
 
 					if (Type == CharacterType.Monster)

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  m_GroupName: Music
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 185a24a1a4e2521418929e36ae46a180
+  m_SerializeEntries:
+  - m_GUID: 2aca1e8f1cb646949add8c1065030a90
+    m_Address: Assets/Music/12.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2f07f242c8a76144ab304b6bc86b3a5a
+    m_Address: Assets/Music/08.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 32be85722809a77469097c955006d35b
+    m_Address: Assets/Music/05.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c27c59f5b686174e972ce818260d779
+    m_Address: Assets/Music/47.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ba51756b6adcfd14088df944523c2b83
+    m_Address: Assets/Music/20.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 81b30608ceb7db7499a58465bab53915, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4ad073d9d47012845950b26de91524cb, type: 2}
+    - {fileID: 11400000, guid: 80db256a8177f3c48a6fb97e490a69e4, type: 2}

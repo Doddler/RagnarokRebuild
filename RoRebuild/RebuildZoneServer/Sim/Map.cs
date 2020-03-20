@@ -377,7 +377,6 @@ namespace RebuildZoneServer.Sim
 			}
 		}
 
-
 		public void GatherPlayersInRange(Character character, int distance, EntityList list, bool checkImmunity = false)
 		{
 			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))

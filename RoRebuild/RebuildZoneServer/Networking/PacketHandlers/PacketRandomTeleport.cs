@@ -46,6 +46,9 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			ch.ResetState();
 			ch.SpawnImmunity = 5f;
 			map.TeleportEntity(ref connection.Entity, ch, p);
+
+			var ce = connection.Entity.Get<CombatEntity>();
+			ce.ClearDamageQueue();
 		}
 	}
 }

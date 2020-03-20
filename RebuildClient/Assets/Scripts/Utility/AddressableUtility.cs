@@ -27,5 +27,14 @@ namespace Assets.Scripts.Utility
 					onComplete(handle.Result);
 			};
 		}
+
+		public static void Load<T>(GameObject owner, string fileName, Action<T> onComplete)
+		{
+			Addressables.LoadAssetAsync<T>(fileName).Completed += handle =>
+			{
+				if (owner != null)
+					onComplete(handle.Result);
+			};
+		}
 	}
 }

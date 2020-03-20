@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Network;
+using Assets.Scripts.Objects;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
 using UnityEngine;
@@ -186,13 +187,15 @@ namespace Assets.Scripts.Sprites
 
 			if (AudioSource == null && Parent == null)
 			{
+				var channel = AudioManager.Instance.Mixer.FindMatchingGroups("Sounds")[0];
 				AudioSource = gameObject.AddComponent<AudioSource>();
-				AudioSource.spatialBlend = 1f;
+				AudioSource.spatialBlend = 0.7f;
 				AudioSource.priority = 60;
 				AudioSource.maxDistance = 40;
 				AudioSource.rolloffMode = AudioRolloffMode.Linear;
-				AudioSource.volume = 0.08f;
+				AudioSource.volume = 1f;
 				AudioSource.dopplerLevel = 0;
+				AudioSource.outputAudioMixerGroup = channel;
 			}
 
 			if (Type == SpriteType.Player && State == SpriteState.Idle)
@@ -460,7 +463,7 @@ namespace Assets.Scripts.Sprites
 				var lightPower = (directionalLight.color.r + directionalLight.color.g + directionalLight.color.b) / 3f;
 				lightPower = (lightPower * directionalLight.intensity + 1) / 2f;
 				lightPower *= directionalLight.shadowStrength;
-				ShadeLevel = 1f - (0.5f * lightPower);
+				ShadeLevel = 1f - (0.35f * lightPower);
 
 			}
 

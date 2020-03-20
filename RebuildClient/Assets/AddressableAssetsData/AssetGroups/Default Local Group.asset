@@ -97,10 +97,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: 2aca1e8f1cb646949add8c1065030a90
-    m_Address: Assets/Music/12.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 2c648da71610a5647a1ab14858a2e5dc
     m_Address: Assets/Sprites/Monsters/moonlight.spr
     m_ReadOnly: 0
@@ -116,19 +112,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: 2f07f242c8a76144ab304b6bc86b3a5a
-    m_Address: Assets/Music/08.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 329714ac8d37b604cb231f4d5cd089d8
     m_Address: Assets/Sprites/Monsters/greatest_general.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: 32be85722809a77469097c955006d35b
-    m_Address: Assets/Music/05.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 332cd52d09b00334694ec16875bdd46f
     m_Address: "Assets/Sprites/Characters/HeadMale/11_\uB0A8.spr"
     m_ReadOnly: 0
@@ -321,10 +309,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: 7c27c59f5b686174e972ce818260d779
-    m_Address: Assets/Music/47.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 7f4675cf5ec26d24d9c72f077a5ddb44
     m_Address: "Assets/Sprites/Characters/BodyMale/\uAC80\uC0AC_\uB0A8.spr"
     m_ReadOnly: 0
@@ -371,6 +355,11 @@ MonoBehaviour:
     - Sprite
   - m_GUID: 8bf126e83c8eed24eb0e14faff814146
     m_Address: "Assets/Sprites/Characters/HeadFemale/10_\uC5EC.spr"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 8d57c22da426ba545b0c1c04bd9b18e1
+    m_Address: Assets/Sprites/Monsters/mastering.spr
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
@@ -483,10 +472,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
-  - m_GUID: ba51756b6adcfd14088df944523c2b83
-    m_Address: Assets/Music/20.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: bdc28155fff3bd24baa074cac5b0b45c
     m_Address: "Assets/Sprites/Characters/HeadMale/24_\uB0A8.spr"
     m_ReadOnly: 0

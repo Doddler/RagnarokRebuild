@@ -48,9 +48,13 @@ namespace Assets.Scripts.Network
 			Id = id;
 
 			Position = worldPos;
+
+			var offset = 0f;
+			if(SpriteMode == ClientSpriteType.Prefab)
+				offset = 0.15f; //haaack
 			
 			var start = new Vector3(worldPos.x + 0.5f, 0f, worldPos.y + 0.5f);
-			var position = new Vector3(start.x, walkProvider.GetHeightForPosition(start), start.z);
+			var position = new Vector3(start.x, walkProvider.GetHeightForPosition(start) + offset, start.z);
 
 			transform.localPosition = position;
 

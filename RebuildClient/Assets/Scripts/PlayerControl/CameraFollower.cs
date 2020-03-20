@@ -604,12 +604,7 @@ namespace Assets.Scripts
 
 			if (Input.GetKeyDown(KeyCode.F5))
 				NetworkManager.Instance.RandomTeleport();
-
-			if (Input.GetKeyDown(KeyCode.M))
-			{
-				AudioListener.volume = 1 - AudioListener.volume;
-			}
-
+			
 			if (Input.GetKeyDown(KeyCode.F3))
 				UseTTFDamage = !UseTTFDamage;
 

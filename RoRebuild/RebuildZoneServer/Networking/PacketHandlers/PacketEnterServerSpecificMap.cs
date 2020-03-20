@@ -48,15 +48,15 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 			connection.Entity = playerEntity;
 			connection.LastKeepAlive = Time.ElapsedTime;
 			connection.Character = playerEntity.Get<Character>();
-			//connection.Character.ClassId = 200; //Gamemaster
-			connection.Character.MoveSpeed = 0.12f;
+			connection.Character.ClassId = 200; //Gamemaster
+			connection.Character.MoveSpeed = 0.08f;
 			connection.Character.IsActive = false;
 			var networkPlayer = playerEntity.Get<Player>();
 			networkPlayer.Connection = connection;
 
 			var ce = connection.Entity.Get<CombatEntity>();
-			//ce.Stats.Atk = 9999;
-			//ce.Stats.Atk2 = 9999;
+			ce.Stats.Atk = 9999;
+			ce.Stats.Atk2 = 9999;
 
 			ServerLogger.Debug($"Player assigned entity {playerEntity}, creating entity at location {connection.Character.Position}.");
 

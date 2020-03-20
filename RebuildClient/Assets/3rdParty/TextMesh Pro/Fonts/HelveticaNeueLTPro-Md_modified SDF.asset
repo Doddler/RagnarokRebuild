@@ -5425,12 +5425,12 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.35
+    - _OutlineWidth: 0.3
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
-    - _ScaleRatioB: 0.50625
-    - _ScaleRatioC: 0.50625
+    - _ScaleRatioB: 0.41625
+    - _ScaleRatioC: 0.41625
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

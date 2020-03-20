@@ -110,6 +110,8 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			currentState = MonsterAiState.StateDead;
 
+			CombatEntity.DistributeExperience();
+
 			Character.IsActive = false;
 			Character.Map.RemoveEntity(ref Entity, CharacterRemovalReason.Dead);
 
