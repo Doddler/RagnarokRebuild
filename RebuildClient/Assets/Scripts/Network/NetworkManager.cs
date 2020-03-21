@@ -57,6 +57,8 @@ namespace Assets.Scripts.Network
 			//config.SimulatedLoss = 0.05f;
 #endif
 
+			LeanTween.init(4000);
+
 			client = new NetClient(config);
 			client.Start();
 
@@ -381,13 +383,9 @@ namespace Assets.Scripts.Network
 				Debug.LogWarning("Trying to attack entity " + id1 + ", but it does not exist in scene!");
 				return;
 			}
-			
-			if (!entityList.TryGetValue(id2, out var controllable2))
-			{
-				Debug.LogWarning("Trying to attack entity " + id2 + ", but it does not exist in scene!");
-				return;
-			}
 
+			var hasTarget = entityList.TryGetValue(id2, out var controllable2);
+			
 			var dir = (Direction)msg.ReadByte();
 			var pos = ReadPosition(msg);
 			var dmg = msg.ReadInt16();
@@ -405,19 +403,28 @@ namespace Assets.Scripts.Network
 			}
 			else
 				controllable.SpriteAnimator.ChangeMotion(SpriteMotion.Attack1, true);
-			
+
 			//controllable2.SpriteAnimator.ChangeMotion(SpriteMotion.Hit);
 
-			var damageTiming = controllable.SpriteAnimator.SpriteData.AttackFrameTime / 1000f;
-			if (controllable.SpriteAnimator.Type == SpriteType.Player)
-				damageTiming = 0.5f;
-			StartCoroutine(DamageEvent(dmg, damageTiming, controllable2));
+			if (hasTarget && controllable.SpriteAnimator.IsInitialized)
+			{
+				if (controllable.SpriteAnimator.SpriteData == null)
+				{
+					throw new Exception("AAA? " + controllable.gameObject.name + " " + controllable.gameObject);
+				}
+
+				var damageTiming = controllable.SpriteAnimator.SpriteData.AttackFrameTime / 1000f;
+				if (controllable.SpriteAnimator.Type == SpriteType.Player)
+					damageTiming = 0.5f;
+
+				StartCoroutine(DamageEvent(dmg, damageTiming, controllable2));
+			}
 		}
 
 		private IEnumerator DamageEvent(int damage, float delay, ServerControllable target)
 		{
 			yield return new WaitForSeconds(delay);
-			if (target != null)
+			if (target != null && target.SpriteAnimator.IsInitialized)
 			{
 				var go = GameObject.Instantiate(DamagePrefab, target.transform.localPosition, Quaternion.identity);
 				var di = go.GetComponent<DamageIndicator>();
@@ -434,7 +441,7 @@ namespace Assets.Scripts.Network
 
 			if (!entityList.TryGetValue(id1, out var controllable))
 			{
-				Debug.LogWarning("Trying to do hit entity " + id1 + ", but it does not exist in scene!");
+				//Debug.LogWarning("Trying to do hit entity " + id1 + ", but it does not exist in scene!");
 				return;
 			}
 

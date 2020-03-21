@@ -132,12 +132,12 @@ namespace Assets.Scripts
 
 		private void UpdateCameraSize()
 		{
-			//if (Screen.width == 0)
-			// return; //wut?
-			//var scale = 1f / (1080f / Screen.height);
-			//CanvasScaler.scaleFactor = scale;
-			//lastWidth = Screen.width;
-			//lastHeight = Screen.height;
+			if (Screen.width == 0)
+				return; //wut?
+			var scale = 1f / (1080f / Screen.height);
+			CanvasScaler.scaleFactor = scale;
+			lastWidth = Screen.width;
+			lastHeight = Screen.height;
 		}
 
 

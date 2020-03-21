@@ -168,9 +168,11 @@ namespace RebuildZoneServer.Sim
 			var e = monster.Entity;
 
 			ch.IsActive = true;
+			ch.Map = map;
 			ch.Position = p;
 			ch.AttackCooldown = 0f;
-
+			ch.State = CharacterState.Idle;
+			
 			ce.Init(ref e, ch);
 			monster.Initialize(ref e, ch, ce, monster.MonsterBase, monster.MonsterBase.AiType, spawnEntry, map.Name);
 
@@ -313,7 +315,7 @@ namespace RebuildZoneServer.Sim
 			var player = entity.Get<Player>();
 			var combatant = entity.Get<CombatEntity>();
 			var monster = entity.Get<Monster>();
-
+			
 			var ch = entity.Get<Character>();
 			if (ch != null)
 				entityList.Remove(ch.Id);

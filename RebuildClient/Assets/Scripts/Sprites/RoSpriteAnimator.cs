@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Network;
 using Assets.Scripts.Objects;
@@ -118,6 +119,8 @@ namespace Assets.Scripts.Sprites
 
 		public void OnSpriteDataLoad(RoSpriteData spriteData)
 		{
+			if(spriteData == null)
+				throw new Exception("AAAAAAA");
 			SpriteData = spriteData;
 			Initialize();
 

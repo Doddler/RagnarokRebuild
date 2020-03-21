@@ -71,34 +71,38 @@ namespace RebuildZoneServer.EntityComponents
 
 			return false;
 		}
-
+		
 		private bool InAttackRange()
 		{
 			if (Character.Map.PlayerCount == 0)
 				return false;
 
+			//do we have a target? If we do and it's not valid, remove it.
 			if (!ValidateTarget())
 				target = EcsEntity.Null;
 
-			if (target == EcsEntity.Null)
-			{
-				if (!FindRandomTargetInRange(MonsterBase.Range, out var newTarget))
-					return false;
+			//if we have a character still, check if we're in range.
+			if (target != EcsEntity.Null)
+				return targetCharacter.Position.InRange(Character.Position, MonsterBase.Range);
+			
+			//if we don't have a target, check if we can acquire one quickly
+			if (!FindRandomTargetInRange(MonsterBase.Range, out var newTarget))
+				return false;
 
+			//we have a character. Check if it's in range, and if so, assign it as our current target
+			var targetChar = newTarget.Get<Character>();
+			if (targetChar.Position.SquareDistance(Character.Position) <= MonsterBase.Range)
+			{
 				target = newTarget;
+				return true;
 			}
 
-			if (targetCharacter.Position.SquareDistance(Character.Position) <= MonsterBase.Range)
-				return true;
-
+			//failed. Return false.
 			return false;
 		}
 
 		private bool InAttackDelayEnd()
 		{
-			if (!ValidateTarget())
-				return false;
-
 			if (Character.AttackCooldown > Time.ElapsedTimeFloat)
 				return false;
 
@@ -146,7 +150,13 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool InDeadTimeoutEnd()
 		{
-			return deadTimeout < Time.ElapsedTimeFloat;
+			if (deadTimeout > Time.ElapsedTimeFloat)
+			{
+				nextAiUpdate = deadTimeout + 0.01f;
+				return false;
+			}
+
+			return true;
 		}
 
 		#endregion
@@ -173,6 +183,7 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool OutWaitStart()
 		{
+			target = EcsEntity.Null;
 			nextMoveUpdate = Time.ElapsedTimeFloat + GameRandom.NextFloat(3f, 6f);
 
 			return true;
@@ -261,10 +272,13 @@ namespace RebuildZoneServer.EntityComponents
 
 		private bool OutPerformAttack()
 		{
-			nextAiUpdate += MonsterBase.AttackTime;
-			
 			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
+			if (!targetEntity.IsValidTarget(CombatEntity))
+				return false;
+
 			CombatEntity.PerformMeleeAttack(targetEntity);
+
+			nextAiUpdate += MonsterBase.AttackTime;
 
 			return true;
 		}

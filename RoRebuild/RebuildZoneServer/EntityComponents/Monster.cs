@@ -72,6 +72,9 @@ namespace RebuildZoneServer.EntityComponents
 			aiEntries = DataManager.GetAiStateMachine(aiType);
 			nextAiUpdate = Time.ElapsedTimeFloat + 1f;
 			
+			if(Character.ClassId >= 4000 && SpawnEntry == null)
+				throw new Exception("Monster created without spawn entry"); //remove when arbitrary monster spawning is added
+
 			UpdateStats();
 
 			currentState = MonsterAiState.StateIdle;
@@ -96,27 +99,30 @@ namespace RebuildZoneServer.EntityComponents
 		{
 			if (target.IsNull() || !target.IsAlive())
 				return false;
-			var ch = targetCharacter;
-			if (ch == null)
-				return false;
-			if (ch.Map != Character.Map)
-				return false;
-			if (ch.SpawnImmunity > 0)
+			var ce = target.Get<CombatEntity>();
+			if (!ce.IsValidTarget(CombatEntity))
 				return false;
 			return true;
 		}
 
 		public void Die()
 		{
+			if (currentState == MonsterAiState.StateDead)
+				return;
+
 			currentState = MonsterAiState.StateDead;
+			Character.State = CharacterState.Dead;
 
 			CombatEntity.DistributeExperience();
 
 			Character.IsActive = false;
 			Character.Map.RemoveEntity(ref Entity, CharacterRemovalReason.Dead);
 
-			if(SpawnEntry == null)
+			if (SpawnEntry == null)
+			{
+				ServerLogger.LogWarning("Attempting to remove entity without spawn data! How?? " + Character.ClassId);
 				World.Instance.RemoveEntity(ref Entity);
+			}
 			else
 			{
 				var min = SpawnEntry.SpawnTime;
@@ -162,6 +168,12 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void AiStateMachineUpdate()
 		{
+			if (!Character.IsActive && currentState != MonsterAiState.StateDead)
+			{
+				ServerLogger.LogWarning($"Monster was in incorrect state {currentState}, even though it should be dead (character is not active)");
+				currentState = MonsterAiState.StateDead;
+			}
+
 			for (var i = 0; i < aiEntries.Count; i++)
 			{
 				var entry = aiEntries[i];
@@ -184,6 +196,9 @@ namespace RebuildZoneServer.EntityComponents
 
 			if(nextAiUpdate < Time.ElapsedTimeFloat)
 				nextAiUpdate += aiTickRate;
+
+			if (Character.Map == null)
+				return;
 
 			if (Character.Map.PlayerCount == 0)
 				nextAiUpdate += 2f + GameRandom.NextFloat(0f, 1f);

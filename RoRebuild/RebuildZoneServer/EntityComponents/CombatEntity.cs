@@ -45,6 +45,28 @@ namespace RebuildZoneServer.EntityComponents
 				DamageQueue.Sort((a, b) => a.Time.CompareTo(b.Time));
 		}
 
+		public bool IsValidTarget(CombatEntity source)
+		{
+			if (this == source)
+				return false;
+			if (Entity.IsNull() || !Entity.IsAlive())
+				return false;
+			if (!Character.IsActive || Character.State == CharacterState.Dead)
+				return false;
+			if (Character.Map == null)
+				return false;
+			if (source.Character.Map != Character.Map)
+				return false;
+			if (Character.SpawnImmunity > 0f)
+				return false;
+			if (source.Character.ClassId == Character.ClassId)
+				return false;
+			if (Character.ClassId == 1000)
+				return false; //hack
+
+			return true;
+		}
+
 		public void ClearDamageQueue()
 		{
 			DamageQueue.Clear();
@@ -77,7 +99,7 @@ namespace RebuildZoneServer.EntityComponents
 
 				if ((int)ce.Stats.Atk2 + bonus > short.MaxValue)
 				{
-					ce.Stats.Atk = (short)(short.MaxValue * 0.8f);
+					ce.Stats.Atk = short.MaxValue;
 					ce.Stats.Atk2 = short.MaxValue;
 				}
 				else
@@ -92,6 +114,10 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void PerformMeleeAttack(CombatEntity target)
 		{
+#if DEBUG
+			if(!target.IsValidTarget(this))
+				throw new Exception("Entity attempting to attack an invalid target! This should be checked before calling PerformMeleeAttack.");
+#endif
 			if (Character.AttackCooldown + Time.DeltaTimeFloat + 0.005f < Time.ElapsedTimeFloat)
 				Character.AttackCooldown = Time.ElapsedTimeFloat + Stats.AttackMotionTime; //they are consecutively attacking
 			else
@@ -145,6 +171,7 @@ namespace RebuildZoneServer.EntityComponents
 			Character = ch;
 			BaseStats = new BaseStats();
 			Stats = new CombatStats();
+			DamageQueue.Clear();
 
 			Stats.Range = 2;
 		}
@@ -155,13 +182,21 @@ namespace RebuildZoneServer.EntityComponents
 			{
 				var di = DamageQueue[0];
 				DamageQueue.RemoveAt(0);
-				if (di.Target.IsNull() || !di.Target.IsAlive())
+				if (di.Source.IsNull() || !di.Source.IsAlive())
 					continue;
-				var enemy = di.Target.Get<Character>();
+				var enemy = di.Source.Get<Character>();
 				if (enemy == null)
 					continue;
 				if (!enemy.IsActive || enemy.Map != Character.Map)
 					continue;
+				if (enemy.Position.SquareDistance(Character.Position) > 31)
+					continue;
+				
+				if (Character.State == CharacterState.Dead)
+					break;
+
+				if (Character.State == CharacterState.Sitting)
+					Character.State = CharacterState.Idle;
 
 				if (Character.AddMoveDelay(Stats.HitDelayTime))
 				{
@@ -189,6 +224,8 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void Update()
 		{
+			if (Character == null || !Character.IsActive)
+				return;
 			if (DamageQueue.Count > 0)
 				AttackUpdate();
 		}

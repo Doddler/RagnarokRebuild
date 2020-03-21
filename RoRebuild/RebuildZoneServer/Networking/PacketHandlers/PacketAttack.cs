@@ -4,6 +4,7 @@ using System.Text;
 using Lidgren.Network;
 using RebuildData.Server.Config;
 using RebuildData.Server.Logging;
+using RebuildData.Shared.Enum;
 using RebuildData.Shared.Networking;
 using RebuildZoneServer.EntityComponents;
 
@@ -19,6 +20,10 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 				return;
 
 			var id = msg.ReadInt32();
+
+			if (connection.Character.State == CharacterState.Sitting ||
+			    connection.Character.State == CharacterState.Dead)
+				return;
 			
 			var target = State.World.GetEntityById(id);
 

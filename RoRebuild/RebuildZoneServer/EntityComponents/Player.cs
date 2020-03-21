@@ -67,6 +67,10 @@ namespace RebuildZoneServer.EntityComponents
 				return false;
 			}
 
+			var ce = Target.Get<CombatEntity>();
+			if (ce == null || !ce.IsValidTarget(CombatEntity))
+				return false;
+
 			return true;
 		}
 
@@ -115,6 +119,13 @@ namespace RebuildZoneServer.EntityComponents
 				return;
 			}
 
+			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
+			if (!targetEntity.IsValidTarget(CombatEntity))
+			{
+				ClearTarget();
+				return;
+			}
+
 			Character.StopMovingImmediately();
 
 			if (Character.AttackCooldown > Time.ElapsedTimeFloat)
@@ -126,7 +137,6 @@ namespace RebuildZoneServer.EntityComponents
 
 			Character.SpawnImmunity = -1;
 
-			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
 			CombatEntity.PerformMeleeAttack(targetEntity);
 
 			QueueAttack = true;

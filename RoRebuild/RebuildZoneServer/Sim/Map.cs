@@ -288,21 +288,26 @@ namespace RebuildZoneServer.Sim
 			//if(ch.IsActive)
 			SendRemoveEntityAroundCharacter(ref entity, ch, reason);
 
+			var hasRemoved = false;
+
 			var charChunk = GetChunkForPosition(ch.Position);
 			if (ch.Type == CharacterType.Player)
 			{
-				charChunk.Players.Remove(ref entity);
-				PlayerCount--;
+				if (charChunk.Players.Remove(ref entity))
+				{
+					PlayerCount--;
+					hasRemoved = true;
+				}
 			}
 			else
 			{
-				charChunk.Monsters.Remove(ref entity);
+				if(charChunk.Monsters.Remove(ref entity))
+					hasRemoved = true;
 			}
 
-
 			ch.Map = null;
-
-			entityCount--;
+			if(hasRemoved)
+				entityCount--;
 		}
 
 		public void StartMove(ref EcsEntity entity, Character ch)
@@ -371,8 +376,43 @@ namespace RebuildZoneServer.Sim
 				foreach (var p in c.Players)
 				{
 					var ch = p.Get<Character>();
+					if (!ch.Position.InRange(character.Position, ServerConfig.MaxViewDistance))
+						continue;
 					if (ch.IsActive)
 						CommandBuilder.AddRecipient(p);
+				}
+			}
+		}
+
+		public void GatherEntitiesInRange(Character character, int distance, EntityList list, bool checkImmunity = false)
+		{
+			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))
+			{
+
+				foreach (var m in c.Monsters)
+				{
+					var ch = m.Get<Character>();
+					if (!ch.IsActive)
+						continue;
+
+					if (checkImmunity && ch.SpawnImmunity > 0)
+						continue;
+
+					if (character.Position.InRange(ch.Position, distance))
+						list.Add(m);
+				}
+
+				foreach (var p in c.Players)
+				{
+					var ch = p.Get<Character>();
+					if (!ch.IsActive)
+						continue;
+
+					if (checkImmunity && ch.SpawnImmunity > 0)
+						continue;
+
+					if (character.Position.InRange(ch.Position, distance))
+						list.Add(p);
 				}
 			}
 		}
@@ -390,7 +430,7 @@ namespace RebuildZoneServer.Sim
 					if (checkImmunity && ch.SpawnImmunity > 0)
 						continue;
 					
-					if (character.Position.SquareDistance(ch.Position) <= distance)
+					if (character.Position.InRange(ch.Position, distance))
 						list.Add(p);
 				}
 			}
