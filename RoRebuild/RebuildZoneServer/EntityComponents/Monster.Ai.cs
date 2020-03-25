@@ -202,11 +202,13 @@ namespace RebuildZoneServer.EntityComponents
 
 			var moveArea = Area.CreateAroundPoint(Character.Position, 9).ClipArea(Character.Map.MapBounds);
 			var newPos = Position.RandomPosition(moveArea);
-
+			
 			for (var i = 0; i < 20; i++)
 			{
-				if (Character.TryMove(ref Entity, newPos, 0))
+				if (newPos != Character.Position && Character.TryMove(ref Entity, newPos, 0))
 					return true;
+
+				newPos = Position.RandomPosition(moveArea);
 			}
 			
 			return false;
