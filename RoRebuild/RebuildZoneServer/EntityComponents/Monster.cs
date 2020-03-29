@@ -71,8 +71,8 @@ namespace RebuildZoneServer.EntityComponents
 			SpawnMap = mapName;
 			aiEntries = DataManager.GetAiStateMachine(aiType);
 			nextAiUpdate = Time.ElapsedTimeFloat + 1f;
-			
-			if(Character.ClassId >= 4000 && SpawnEntry == null)
+
+			if (Character.ClassId >= 4000 && SpawnEntry == null)
 				throw new Exception("Monster created without spawn entry"); //remove when arbitrary monster spawning is added
 
 			UpdateStats();
@@ -149,7 +149,7 @@ namespace RebuildZoneServer.EntityComponents
 		private bool FindRandomTargetInRange(int distance, out EcsEntity newTarget)
 		{
 			var list = EntityListPool.Get();
-			
+
 			Character.Map.GatherPlayersInRange(Character, distance, list, true);
 
 			if (list.Count == 0)
@@ -162,17 +162,21 @@ namespace RebuildZoneServer.EntityComponents
 			newTarget = list.Count == 1 ? list[0] : list[GameRandom.Next(0, list.Count - 1)];
 
 			EntityListPool.Return(list);
-			
+
 			return true;
 		}
 
 		public void AiStateMachineUpdate()
 		{
+#if DEBUG
 			if (!Character.IsActive && currentState != MonsterAiState.StateDead)
 			{
 				ServerLogger.LogWarning($"Monster was in incorrect state {currentState}, even though it should be dead (character is not active)");
 				currentState = MonsterAiState.StateDead;
 			}
+#endif
+
+			Profiler.Event(ProfilerEvent.MonsterStateMachineUpdate);
 
 			for (var i = 0; i < aiEntries.Count; i++)
 			{
@@ -189,23 +193,33 @@ namespace RebuildZoneServer.EntityComponents
 
 				//ServerLogger.Log($"Monster from {entry.InputState} to state {entry.OutputState} (via {entry.InputCheck}/{entry.OutputCheck})");
 
+				Profiler.Event(ProfilerEvent.MonsterStateMachineChangeSuccess);
+
 				currentState = entry.OutputState;
 			}
 
 			Character.LastAttacked = EcsEntity.Null;
 
-			if(nextAiUpdate < Time.ElapsedTimeFloat)
-				nextAiUpdate += aiTickRate;
-
-			if (Character.Map == null)
-				return;
-
-			if (Character.Map.PlayerCount == 0)
-				nextAiUpdate += 2f + GameRandom.NextFloat(0f, 1f);
+			if (Character.Map != null && Character.Map.PlayerCount == 0)
+			{
+				nextAiUpdate = Time.ElapsedTimeFloat + 2f + GameRandom.NextFloat(0f, 1f);
+			}
+			else
+			{
+				if (nextAiUpdate < Time.ElapsedTimeFloat)
+				{
+					if (nextAiUpdate + Time.DeltaTimeFloat < Time.ElapsedTimeFloat)
+						nextAiUpdate = Time.ElapsedTimeFloat + aiTickRate;
+					else
+						nextAiUpdate += aiTickRate;
+				}
+			}
 		}
 
 		public void Update()
 		{
+			Profiler.Event(ProfilerEvent.MonsterUpdate);
+
 			if (nextAiUpdate > Time.ElapsedTimeFloat)
 				return;
 

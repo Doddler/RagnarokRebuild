@@ -51,6 +51,8 @@ namespace RebuildZoneServer.Sim
 
 		public void UpdatePlayerAfterMove(ref EcsEntity movingEntity, Character movingCharacter, Position oldPosition, Position newPosition)
 		{
+			Profiler.Event(ProfilerEvent.MapUpdatePlayerAfterMove);
+
 			var movingPlayer = movingEntity.Get<Player>();
 
 			var distance = oldPosition.SquareDistance(newPosition);
@@ -133,6 +135,8 @@ namespace RebuildZoneServer.Sim
 		{
 			//if(ch.Type == CharacterType.Player)
 			//	ServerLogger.Log($"Moving {entity} from {ch.Position} to {newPosition}");
+
+			Profiler.Event(ProfilerEvent.MapMoveEntity);
 
 			var oldPosition = ch.Position;
 			var distance = ch.Position.SquareDistance(newPosition);
@@ -386,6 +390,8 @@ namespace RebuildZoneServer.Sim
 
 		public void GatherEntitiesInRange(Character character, int distance, EntityList list, bool checkImmunity = false)
 		{
+			Profiler.Event(ProfilerEvent.MapGatherEntities);
+
 			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))
 			{
 
@@ -419,6 +425,8 @@ namespace RebuildZoneServer.Sim
 
 		public void GatherPlayersInRange(Character character, int distance, EntityList list, bool checkImmunity = false)
 		{
+			Profiler.Event(ProfilerEvent.MapGatherPlayers);
+
 			foreach (Chunk c in GetChunkEnumeratorAroundPosition(character.Position, ServerConfig.MaxViewDistance))
 			{
 				foreach (var p in c.Players)

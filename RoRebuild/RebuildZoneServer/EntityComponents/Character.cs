@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using RebuildData.Server.Logging;
 using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
@@ -198,6 +199,8 @@ namespace RebuildZoneServer.EntityComponents
 		
 		public void Update()
 		{
+			Profiler.Event(ProfilerEvent.CharacterUpdate);
+
 			SpawnImmunity -= Time.DeltaTimeFloat;
 
 			if (State == CharacterState.Idle)
@@ -207,6 +210,8 @@ namespace RebuildZoneServer.EntityComponents
 			{
 				if (HitDelay > Time.ElapsedTimeFloat)
 					return;
+
+				Profiler.Event(ProfilerEvent.CharacterMoveUpdate);
 
 				if (FacingDirection.IsDiagonal())
 					MoveCooldown -= Time.DeltaTimeFloat * 0.8f;

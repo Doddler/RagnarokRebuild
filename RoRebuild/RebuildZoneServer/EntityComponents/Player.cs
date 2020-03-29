@@ -202,6 +202,8 @@ namespace RebuildZoneServer.EntityComponents
 		
 		public void Update()
 		{
+			Profiler.Event(ProfilerEvent.PlayerUpdate);
+
 			if (QueueAttack)
 			{
 				if(Character.AttackCooldown < Time.ElapsedTimeFloat)

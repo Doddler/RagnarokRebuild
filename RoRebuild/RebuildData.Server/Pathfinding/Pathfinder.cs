@@ -4,10 +4,11 @@ using System.Text;
 using RebuildData.Server.Logging;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
+using Wintellect.PowerCollections;
 
 namespace RebuildData.Server.Pathfinding
 {
-	public class PathNode
+	public class PathNode : IComparable<PathNode>
 	{
 		public PathNode Parent;
 		public Position Position;
@@ -30,7 +31,7 @@ namespace RebuildData.Server.Pathfinding
 			else
 			{
 				Direction = (position - Parent.Position).GetDirectionForOffset();
-				
+
 				Steps = Parent.Steps + 1;
 				Score = Parent.Score + 1;
 
@@ -46,6 +47,11 @@ namespace RebuildData.Server.Pathfinding
 		{
 			Set(parent, position, distance);
 		}
+
+		public int CompareTo(PathNode other)
+		{
+			return F.CompareTo(other.F);
+		}
 	}
 
 	public static class Pathfinder
@@ -55,7 +61,9 @@ namespace RebuildData.Server.Pathfinding
 		private const int MaxDistance = 16;
 		private const int MaxCacheSize = ((MaxDistance + 1) * 2) * ((MaxDistance + 1) * 2);
 
-		private static List<PathNode> openList = new List<PathNode>(MaxCacheSize);
+		//private static List<PathNode> openList = new List<PathNode>(MaxCacheSize);
+
+		private static OrderedBag<PathNode> openBag = new OrderedBag<PathNode>();
 
 		private static HashSet<Position> openListPos = new HashSet<Position>();
 		private static HashSet<Position> closedListPos = new HashSet<Position>();
@@ -91,7 +99,7 @@ namespace RebuildData.Server.Pathfinding
 
 		private static float CalcDistance(Position pos, Position dest)
 		{
-			return Math.Max(0, Math.Abs(pos.X - dest.X)-range) + Math.Max(0, Math.Abs(pos.Y - dest.Y)-range);
+			return Math.Max(0, Math.Abs(pos.X - dest.X) - range) + Math.Max(0, Math.Abs(pos.Y - dest.Y) - range);
 		}
 
 		private static bool HasPosition(List<PathNode> node, Position pos)
@@ -114,7 +122,21 @@ namespace RebuildData.Server.Pathfinding
 		{
 			return nodeLookup[(pos.X << 12) + pos.Y];
 		}
-		
+
+		//private static void InsertOpenNode(PathNode node)
+		//{
+		//	for (var i = 0; i < openList.Count; i++)
+		//	{
+		//		if (node.F < openList[i].F)
+		//		{
+		//			openList.Insert(i, node);
+		//			return;
+		//		}
+		//	}
+
+		//	openList.Add(node);
+		//}
+
 		private static PathNode BuildPath(MapWalkData walkData, Position start, Position target, int maxLength, int range)
 		{
 			if (nodeCache == null)
@@ -123,23 +145,27 @@ namespace RebuildData.Server.Pathfinding
 			cachePos = MaxCacheSize;
 			Pathfinder.range = range;
 
-			openList.Clear();
+			//openList.Clear();
+			openBag.Clear();
 			openListPos.Clear();
 			closedListPos.Clear();
 			nodeLookup.Clear();
 
 			var current = NextPathNode(null, start, CalcDistance(start, target));
 
-			openList.Add(current);
+			openBag.Add(current);
+			//openList.Add(current);
 			AddLookup(start, current);
-			
-			while (openList.Count > 0 && !closedListPos.Contains(target))
+
+			while (openBag.Count > 0 && !closedListPos.Contains(target))
 			{
-				current = openList[0];
-				openList.RemoveAt(0);
+				//current = openList[0];
+				current = openBag[0];
+				openBag.RemoveFirst();
+				//openList.RemoveAt(0);
 				openListPos.Remove(current.Position);
 				closedListPos.Add(current.Position);
-				
+
 				if (current.Steps > maxLength || current.Steps + current.Distance / 2 > maxLength)
 					continue;
 
@@ -198,23 +224,30 @@ namespace RebuildData.Server.Pathfinding
 							if (!walkData.IsCellWalkable(current.Position.X + 1, current.Position.Y) ||
 								!walkData.IsCellWalkable(current.Position.X, current.Position.Y + 1))
 								continue;
-						
+
 						if (np.SquareDistance(target) <= range)
 						{
+							Profiler.Event(ProfilerEvent.PathFoundIndirect);
 							return NextPathNode(current, np, 0);
 						}
 
 						var newNode = NextPathNode(current, np, CalcDistance(np, target));
-						openList.Add(newNode);
-						openListPos.Add(np);
+						//openList.Add(newNode);
+
+						//InsertOpenNode(newNode);
+
+						openBag.Add(newNode);
+						//openListPos.Add(np);
 						AddLookup(np, newNode);
 						closedListPos.Add(np);
 
-						openList.Sort((a, b) => a.F.CompareTo(b.F));
+						//openList.Sort((a, b) => a.F.CompareTo(b.F));
 					}
 				}
 
 			}
+
+			Profiler.Event(ProfilerEvent.PathNotFound);
 
 			return null;
 		}
@@ -243,7 +276,10 @@ namespace RebuildData.Server.Pathfinding
 				i++;
 
 				if (pos.SquareDistance(target) <= range)
+				{
+					Profiler.Event(ProfilerEvent.PathFoundDirect);
 					return i;
+				}
 			}
 
 			return 0;
@@ -258,10 +294,10 @@ namespace RebuildData.Server.Pathfinding
 		{
 			if (!walkData.IsCellWalkable(target))
 				return null;
-			
+
 			var path = BuildPath(walkData, start, target, maxDistance, range);
 
-			openList.Clear();
+			//openList.Clear();
 			openListPos.Clear();
 			closedListPos.Clear();
 
@@ -272,23 +308,25 @@ namespace RebuildData.Server.Pathfinding
 		{
 			//this will break if the tiles are more than one apart
 			for (var i = 0; i < length - 1; i++)
-				(pathOut[i] - pathOut[i + 1]).GetDirectionForOffset(); 
-			
-			if(pathOut[0] != start)
+				(pathOut[i] - pathOut[i + 1]).GetDirectionForOffset();
+
+			if (pathOut[0] != start)
 				throw new Exception("First entry in path should be our starting position!");
 
-			if(pathOut[length-1].SquareDistance(target) > range)
+			if (pathOut[length - 1].SquareDistance(target) > range)
 				throw new Exception("Last entry is not at the expected position!");
 		}
 
 		public static int GetPathWithInitialStep(MapWalkData walkData, Position start, Position initial, Position target, Position[] pathOut, int range)
 		{
+			Profiler.Event(ProfilerEvent.PathfinderCall);
+
 			if (initial == target)
 				return 0;
-			
+
 			if (Math.Abs(start.X - target.X) > MaxDistance || Math.Abs(start.Y - target.Y) > MaxDistance)
 				return 0;
-			
+
 			var direct = CheckDirectPath(walkData, initial, target, MaxDistance - 1, range, 1);
 			if (direct > 0)
 			{
@@ -299,6 +337,7 @@ namespace RebuildData.Server.Pathfinding
 #if DEBUG
 				SanityCheck(pathOut, start, target, direct, range);
 #endif
+
 				return direct;
 			}
 
@@ -331,6 +370,8 @@ namespace RebuildData.Server.Pathfinding
 
 		public static int GetPath(MapWalkData walkData, Position start, Position target, Position[] pathOut, int range)
 		{
+			Profiler.Event(ProfilerEvent.PathfinderCall);
+
 			if (start == target)
 				return 0;
 

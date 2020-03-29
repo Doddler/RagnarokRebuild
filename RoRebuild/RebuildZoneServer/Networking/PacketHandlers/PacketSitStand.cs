@@ -20,7 +20,7 @@ namespace RebuildZoneServer.Networking.PacketHandlers
 
 			if (connection.Character == null)
 				return;
-
+			
 			var player = connection.Entity.Get<Player>();
 			if (player.InActionCooldown())
 			{

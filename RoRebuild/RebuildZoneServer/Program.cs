@@ -25,6 +25,8 @@ namespace RebuildZoneServer
 			var world = new World();
 			NetworkManager.Init(world);
 
+			Profiler.Init(0.005f); //logs events for frames that take longer than 5ms
+
 			Time.Start();
 
 			var stopwatch = new Stopwatch();
@@ -73,6 +75,8 @@ namespace RebuildZoneServer
 				var elapsed = Time.GetExactTime() - startTime;
 				//Console.WriteLine(elapsed);
 				total += elapsed;
+
+				Profiler.FinishFrame((float)elapsed);
 
 				var nt = networkTime - startTime;
 				var et = ecsTime - networkTime;

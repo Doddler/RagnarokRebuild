@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Leopotam.Ecs;
 using RebuildData.Server.Data.Character;
+using RebuildData.Server.Logging;
 using RebuildData.Server.Pathfinding;
 using RebuildData.Shared.Data;
 using RebuildData.Shared.Enum;
@@ -224,6 +225,8 @@ namespace RebuildZoneServer.EntityComponents
 
 		public void Update()
 		{
+			Profiler.Event(ProfilerEvent.CombatEntityUpdate);
+
 			if (Character == null || !Character.IsActive)
 				return;
 			if (DamageQueue.Count > 0)

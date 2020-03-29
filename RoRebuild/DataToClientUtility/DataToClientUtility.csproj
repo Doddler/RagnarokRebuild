@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="15.0.0" />
-    <PackageReference Include="Dahomey.Json" Version="1.6.0" />
+    <PackageReference Include="CsvHelper" Version="15.0.3" />
+    <PackageReference Include="Dahomey.Json" Version="1.6.1" />
+    <PackageReference Include="Elders.PowerCollections" Version="1.0.0" />
     <PackageReference Include="System.Text.Json" Version="4.7.1" />
   </ItemGroup>
 

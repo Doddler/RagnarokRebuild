@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO.Compression;
+using System.Runtime.CompilerServices;
 using RebuildData.Shared.Enum;
 
 namespace RebuildData.Shared.Data
@@ -40,7 +42,8 @@ namespace RebuildData.Shared.Data
 
 			return pos;
 		}
-		
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int SquareDistance(Position dest)
 		{
 			return Math.Max(Math.Abs(X - dest.X), Math.Abs(Y - dest.Y));
@@ -57,9 +60,11 @@ namespace RebuildData.Shared.Data
 			return angle;
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool InRange(Position target, int distance)
 		{
-			return target.X >= X - distance && target.X <= X + distance && target.Y >= Y - distance && target.Y <= Y + distance;
+			return SquareDistance(target) <= distance;
+			//return target.X >= X - distance && target.X <= X + distance && target.Y >= Y - distance && target.Y <= Y + distance;
 		}
 
 		public static Position RandomPosition(Area area)
