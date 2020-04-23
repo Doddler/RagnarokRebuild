@@ -15,7 +15,7 @@ namespace RebuildZoneServer.EntitySystems
 		{
 			foreach (var cId in characterFilter)
 			{
-				var c = characterFilter.Get1[cId];
+				ref var c = ref characterFilter.Get1[cId];
 
 				if (c.IsActive)
 					c.Update();

@@ -107,6 +107,23 @@ namespace Assets.Scripts.Sprites
 			isDirty = true;
 		}
 
+        public void DoSpin()
+        {
+            spinSpeed = Random.Range(240f, 640f);
+
+            var megaSpin = Random.Range(0, 100);
+            if (megaSpin == 10)
+                spinSpeed = Random.Range(640f, 6400f);
+
+            var dir = Random.Range(0, 2);
+            if (dir == 1)
+                spinSpeed *= -1;
+
+            spinSpeed *= 2f;
+
+            doSpin = true;
+		}
+
 		public Vector2 GetAnimationAnchor()
 		{
 			var frame = currentAction.Frames[currentFrame];
@@ -596,17 +613,7 @@ namespace Assets.Scripts.Sprites
 
 			if (Input.GetKeyDown(KeyCode.F11))
 			{
-				spinSpeed = Random.Range(140f, 640f);
-
-				var megaSpin = Random.Range(0, 100);
-				if (megaSpin == 10)
-					spinSpeed = Random.Range(640f, 6400f);
-
-				var dir = Random.Range(0, 2);
-				if (dir == 1)
-					spinSpeed *= -1;
-
-				doSpin = true;
+                DoSpin();
 			}
 
 			if (Attack || Input.GetKeyDown(KeyCode.F))

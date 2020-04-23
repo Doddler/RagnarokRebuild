@@ -25,6 +25,8 @@ namespace RebuildZoneServer.Sim
 		private Dictionary<int, EcsEntity> entityList = new Dictionary<int, EcsEntity>();
 		private Dictionary<string, int> mapIdLookup = new Dictionary<string, int>();
 
+		private List<EcsEntity> removeList = new List<EcsEntity>(30);
+
 		private EcsWorld ecsWorld;
 		private EcsSystems ecsSystems;
 
@@ -127,6 +129,8 @@ namespace RebuildZoneServer.Sim
 		{
 			for (var i = 0; i < mapCount; i++)
 				Maps[i].Update();
+
+			PerformRemovals();
 
 			if (CommandBuilder.HasRecipients())
 				ServerLogger.LogWarning("Command builder has recipients after completing server update loop!");
@@ -308,24 +312,46 @@ namespace RebuildZoneServer.Sim
 
 			return EcsEntity.Null;
 		}
+
+        public void PerformRemovals()
+        {
+            for (var i = 0; i < removeList.Count; i++)
+            {
+                var entity = removeList[i];
+
+                if (entity.IsNull() || !entity.IsAlive())
+                    return;
+
+				ServerLogger.Debug($"Removing entity {entity} from world.");
+                var player = entity.Get<Player>();
+                var combatant = entity.Get<CombatEntity>();
+                var monster = entity.Get<Monster>();
+                var ch = entity.Get<Character>();
+
+				player?.Reset();
+                combatant?.Reset();
+                ch?.Reset();
+                monster?.Reset();
+
+                entity.Destroy();
+			}
+
+			removeList.Clear();
+        }
 		
 		public void RemoveEntity(ref EcsEntity entity)
-		{
-			ServerLogger.Debug($"Removing entity {entity} from world.");
-			var player = entity.Get<Player>();
-			var combatant = entity.Get<CombatEntity>();
-			var monster = entity.Get<Monster>();
-			
-			var ch = entity.Get<Character>();
+        {
+            //remove immediately from world, queue entity destruction to happen after we finish looping everything
+			removeList.Add(entity);
+
+            var ch = entity.Get<Character>();
+
 			if (ch != null)
-				entityList.Remove(ch.Id);
-
-			player?.Reset();
-			combatant?.Reset();
-			ch?.Reset();
-			monster?.Reset();
-
-			entity.Destroy();
+            {
+                entityList.Remove(ch.Id);
+                ch.Map?.RemoveEntity(ref entity, CharacterRemovalReason.OutOfSight);
+                ch.IsActive = false;
+            }
 		}
 
 		public void MovePlayerMap(ref EcsEntity entity, Character character, string mapName, Position newPosition)

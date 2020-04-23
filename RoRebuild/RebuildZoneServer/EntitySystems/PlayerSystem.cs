@@ -18,7 +18,7 @@ namespace RebuildZoneServer.EntitySystems
 		{
 			foreach (var pId in playerFilter)
 			{
-				var p = playerFilter.Get1[pId];
+				ref var p = ref playerFilter.Get1[pId];
 
 				if (!p.Character.IsActive)
 					continue;

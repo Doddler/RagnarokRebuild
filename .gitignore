@@ -32,3 +32,4 @@ RebuildClient/Assets/AddressableAssetsData/Windows/addressables_content_state.bi
 RoRebuild/RebuildZoneServer/Data/GameData.xlsx
 Monsters.csv
 RebuildClient/Assets/Music/
+RoRebuild/RebuildZoneServer/log/profiler.csv

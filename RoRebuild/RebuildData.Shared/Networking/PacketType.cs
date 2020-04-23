@@ -20,6 +20,7 @@
 		StopImmediate,
 		RandomTeleport,
 		UnhandledPacket,
-		HitTarget
+		HitTarget,
+		Skill,
 	}
 }

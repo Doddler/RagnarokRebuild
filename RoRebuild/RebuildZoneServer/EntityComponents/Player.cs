@@ -12,207 +12,239 @@ using RebuildZoneServer.Util;
 
 namespace RebuildZoneServer.EntityComponents
 {
-	public class Player : IStandardEntity
-	{
-		public EcsEntity Entity;
-		public Character Character;
-		public CombatEntity CombatEntity;
-		
-		public NetworkConnection Connection;
-		public float CurrentCooldown;
-		public HeadFacing HeadFacing;
-		public byte HeadId;
-		public bool IsMale;
+    public class Player : IStandardEntity
+    {
+        public EcsEntity Entity;
+        public Character Character;
+        public CombatEntity CombatEntity;
 
-		public EcsEntity Target { get; set; }
+        public NetworkConnection Connection;
+        public float CurrentCooldown;
+        public HeadFacing HeadFacing;
+        public byte HeadId;
+        public bool IsMale;
 
-		public bool QueueAttack;
+        public EcsEntity Target { get; set; }
 
-		public void Reset()
-		{
-			Entity = EcsEntity.Null;
-			Target = EcsEntity.Null;
-			Character = null;
-			CombatEntity = null;
-			Connection = null;
-			CurrentCooldown = 0f;
-			HeadId = 0;
-			HeadFacing = HeadFacing.Center;
-			IsMale = true;
-			QueueAttack = false;
-		}
+        public bool QueueAttack;
 
-		public void Init()
-		{
-			UpdateStats();
-		}
+        public void Reset()
+        {
+            Entity = EcsEntity.Null;
+            Target = EcsEntity.Null;
+            Character = null;
+            CombatEntity = null;
+            Connection = null;
+            CurrentCooldown = 0f;
+            HeadId = 0;
+            HeadFacing = HeadFacing.Center;
+            IsMale = true;
+            QueueAttack = false;
+        }
 
-		private void UpdateStats()
-		{
-			var s = CombatEntity.Stats;
+        public void Init()
+        {
+            UpdateStats();
+        }
 
-			s.AttackMotionTime = 0.9f;
-			s.HitDelayTime = 0.4f;
-			s.SpriteAttackTiming = 0.6f;
-			s.Range = 2;
-			s.Atk = 10;
-			s.Atk2 = 12;
-		}
+        private void UpdateStats()
+        {
+            var s = CombatEntity.Stats;
 
-		private bool ValidateTarget()
-		{
-			if (Target.IsNull() || !Target.IsAlive())
-			{ 
-				Target = EcsEntity.Null;
-				return false;
-			}
+            s.AttackMotionTime = 0.9f;
+            s.HitDelayTime = 0.4f;
+            s.SpriteAttackTiming = 0.6f;
+            s.Range = 2;
+            s.Atk = 10;
+            s.Atk2 = 12;
+        }
 
-			var ce = Target.Get<CombatEntity>();
-			if (ce == null || !ce.IsValidTarget(CombatEntity))
-				return false;
+        private bool ValidateTarget()
+        {
+            if (Target.IsNull() || !Target.IsAlive())
+            {
+                Target = EcsEntity.Null;
+                return false;
+            }
 
-			return true;
-		}
+            var ce = Target.Get<CombatEntity>();
+            if (ce == null || !ce.IsValidTarget(CombatEntity))
+                return false;
 
-		public void ClearTarget()
-		{
-			QueueAttack = false;
-			Target = EcsEntity.Null;
-		}
+            return true;
+        }
 
-		public void PerformQueuedAttack()
-		{
-			//QueueAttack = false;
-			if (!ValidateTarget())
-			{
-				QueueAttack = false;
-				return;
-			}
+        public void ClearTarget()
+        {
+            QueueAttack = false;
+            Target = EcsEntity.Null;
+        }
 
-			var targetCharacter = Target.Get<Character>();
-			if (!targetCharacter.IsActive)
-			{
-				QueueAttack = false;
-				return;
-			}
+        public void PerformQueuedAttack()
+        {
+            //QueueAttack = false;
+            if (!ValidateTarget())
+            {
+                QueueAttack = false;
+                return;
+            }
 
-			if (targetCharacter.Map != Character.Map)
-			{
-				QueueAttack = false;
-				return;
-			}
+            var targetCharacter = Target.Get<Character>();
+            if (!targetCharacter.IsActive)
+            {
+                QueueAttack = false;
+                return;
+            }
 
-			if (Character.Position.SquareDistance(targetCharacter.Position) > CombatEntity.Stats.Range)
-			{
-				TargetForAttack(targetCharacter);
-				return;
-			}
+            if (targetCharacter.Map != Character.Map)
+            {
+                QueueAttack = false;
+                return;
+            }
 
-			PerformAttack(targetCharacter);
-		}
+            if (Character.Position.SquareDistance(targetCharacter.Position) > CombatEntity.Stats.Range)
+            {
+                TargetForAttack(targetCharacter);
+                return;
+            }
 
-		public void PerformAttack(Character targetCharacter)
-		{
-			if (targetCharacter.Type == CharacterType.NPC)
-			{
-				Target = EcsEntity.Null;
-				return;
-			}
+            PerformAttack(targetCharacter);
+        }
 
-			var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
-			if (!targetEntity.IsValidTarget(CombatEntity))
-			{
-				ClearTarget();
-				return;
-			}
+        public void PerformAttack(Character targetCharacter)
+        {
+            if (targetCharacter.Type == CharacterType.NPC)
+            {
+                Target = EcsEntity.Null;
+                return;
+            }
 
-			Character.StopMovingImmediately();
+            var targetEntity = targetCharacter.Entity.Get<CombatEntity>();
+            if (!targetEntity.IsValidTarget(CombatEntity))
+            {
+                ClearTarget();
+                return;
+            }
 
-			if (Character.AttackCooldown > Time.ElapsedTimeFloat)
-			{
-				QueueAttack = true;
-				Target = targetCharacter.Entity;
-				return;
-			}
+            Character.StopMovingImmediately();
 
-			Character.SpawnImmunity = -1;
+            if (Character.AttackCooldown > Time.ElapsedTimeFloat)
+            {
+                QueueAttack = true;
+                Target = targetCharacter.Entity;
+                return;
+            }
 
-			CombatEntity.PerformMeleeAttack(targetEntity);
+            Character.SpawnImmunity = -1;
 
-			QueueAttack = true;
+            CombatEntity.PerformMeleeAttack(targetEntity);
 
-			Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
-		}
+            QueueAttack = true;
 
-		public void UpdatePosition(Position nextPos)
-		{
-			var connector = DataManager.GetConnector(Character.Map.Name, nextPos);
+            Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
+        }
 
-			if (connector != null)
-			{
-				Character.State = CharacterState.Idle;
+        public void PerformSkill()
+        {
+            var pool = EntityListPool.Get();
+            Character.Map.GatherEntitiesInRange(Character, 7, pool);
 
-				if (connector.Map == connector.Target)
-					Character.Map.MoveEntity(ref Entity, Character, connector.DstArea.RandomInArea());
-				else
-					Character.Map.World.MovePlayerMap(ref Entity, Character, connector.Target, connector.DstArea.RandomInArea());
+            if (Character.AttackCooldown > Time.ElapsedTimeFloat)
+                return;
 
-				CombatEntity.ClearDamageQueue();
+            if (pool.Count == 0)
+            {
+                EntityListPool.Return(pool);
+                return;
+            }
 
-				return;
-			}
+            Character.StopMovingImmediately();
+            ClearTarget();
 
-			if (!ValidateTarget())
-				return;
+            for (var i = 0; i < pool.Count; i++)
+            {
+                var e = pool[i];
+                if (e.IsNull() || !e.IsAlive())
+                    continue;
+                var target = e.Get<CombatEntity>();
+                if (target == CombatEntity || target.Character.Type == CharacterType.Player)
+                    continue;
 
-			var targetCharacter = Target.Get<Character>();
+                CombatEntity.PerformMeleeAttack(target);
+            }
 
-			if (Character.State == CharacterState.Moving)
-			{
-				if (Character.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
-					PerformAttack(targetCharacter);
-			}
-			
-			if(Character.State == CharacterState.Idle)
-			{
-				TargetForAttack(targetCharacter);
-			}
-		}
+            Character.AttackCooldown = Time.ElapsedTimeFloat + CombatEntity.Stats.AttackMotionTime;
+        }
 
-		public void TargetForAttack(Character enemy)
-		{
-			if (Character.Position.SquareDistance(enemy.Position) <= CombatEntity.Stats.Range)
-			{
-				Target = enemy.Entity;
-				var targetCharacter = Target.Get<Character>();
+        public void UpdatePosition(Position nextPos)
+        {
+            var connector = DataManager.GetConnector(Character.Map.Name, nextPos);
 
-				PerformAttack(targetCharacter);
-				return;
-			}
+            if (connector != null)
+            {
+                Character.State = CharacterState.Idle;
 
-			if (!Character.TryMove(ref Entity, enemy.Position, 0))
-				return;
+                if (connector.Map == connector.Target)
+                    Character.Map.MoveEntity(ref Entity, Character, connector.DstArea.RandomInArea());
+                else
+                    Character.Map.World.MovePlayerMap(ref Entity, Character, connector.Target, connector.DstArea.RandomInArea());
 
-			Target = enemy.Entity;
-		}
+                CombatEntity.ClearDamageQueue();
 
-		public bool InActionCooldown() => CurrentCooldown > 1f;
-		public void AddActionDelay(CooldownActionType type) => CurrentCooldown += ActionDelay.CooldownTime(type);
-		public void AddActionDelay(float time) => CurrentCooldown += CurrentCooldown;
-		
-		public void Update()
-		{
-			Profiler.Event(ProfilerEvent.PlayerUpdate);
+                return;
+            }
 
-			if (QueueAttack)
-			{
-				if(Character.AttackCooldown < Time.ElapsedTimeFloat)
-					PerformQueuedAttack();
-			}
+            if (!ValidateTarget())
+                return;
 
-			CurrentCooldown -= Time.DeltaTimeFloat;
-			if (CurrentCooldown < 0)
-				CurrentCooldown = 0;
-		}
-	}
+            var targetCharacter = Target.Get<Character>();
+
+            if (Character.State == CharacterState.Moving)
+            {
+                if (Character.Position.SquareDistance(targetCharacter.Position) <= CombatEntity.Stats.Range)
+                    PerformAttack(targetCharacter);
+            }
+
+            if (Character.State == CharacterState.Idle)
+            {
+                TargetForAttack(targetCharacter);
+            }
+        }
+
+        public void TargetForAttack(Character enemy)
+        {
+            if (Character.Position.SquareDistance(enemy.Position) <= CombatEntity.Stats.Range)
+            {
+                Target = enemy.Entity;
+                var targetCharacter = Target.Get<Character>();
+
+                PerformAttack(targetCharacter);
+                return;
+            }
+
+            if (!Character.TryMove(ref Entity, enemy.Position, 0))
+                return;
+
+            Target = enemy.Entity;
+        }
+
+        public bool InActionCooldown() => CurrentCooldown > 1f;
+        public void AddActionDelay(CooldownActionType type) => CurrentCooldown += ActionDelay.CooldownTime(type);
+        public void AddActionDelay(float time) => CurrentCooldown += CurrentCooldown;
+
+        public void Update()
+        {
+            Profiler.Event(ProfilerEvent.PlayerUpdate);
+
+            if (QueueAttack)
+            {
+                if (Character.AttackCooldown < Time.ElapsedTimeFloat)
+                    PerformQueuedAttack();
+            }
+
+            CurrentCooldown -= Time.DeltaTimeFloat;
+            if (CurrentCooldown < 0)
+                CurrentCooldown = 0;
+        }
+    }
 }

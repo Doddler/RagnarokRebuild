@@ -16,7 +16,7 @@ namespace RebuildZoneServer.EntitySystems
 		{
 			foreach (var mId in monsterFilter)
 			{
-				var m = monsterFilter.Get1[mId];
+				ref var m = ref monsterFilter.Get1[mId];
 
 				m.Update();
 				if (m.Character.IsActive)

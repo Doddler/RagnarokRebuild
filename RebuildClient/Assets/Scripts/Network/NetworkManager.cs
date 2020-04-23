@@ -324,9 +324,16 @@ namespace Assets.Scripts.Network
 
 			if (reason == CharacterRemovalReason.Dead)
 			{
-				if(controllable.SpriteAnimator.Type != SpriteType.Player)
+                if (controllable.SpriteAnimator.Type != SpriteType.Player)
+                {
 					controllable.MonsterDie(1);
-				else
+					//               var vDir = -controllable.CounterHitDir;
+					//Debug.Log(vDir);
+					//var newDir = new Vector3(vDir.x, 0, vDir.z).normalized * 8f;
+					//               newDir.y = 8f;
+					//controllable.BlastOff(newDir * 5f);
+				}
+                else
 					controllable.FadeOutAndVanish(0.1f);
 			}
 			else
@@ -389,8 +396,21 @@ namespace Assets.Scripts.Network
 			var dir = (Direction)msg.ReadByte();
 			var pos = ReadPosition(msg);
 			var dmg = msg.ReadInt16();
-			
-			controllable.StopImmediate(pos);
+
+            if (hasTarget)
+            {
+                var cd = controllable.transform.localPosition - controllable2.transform.localPosition;
+                cd.y = 0;
+                controllable2.CounterHitDir = cd.normalized;
+				//Debug.Log("Counter hit: " + cd);
+            }
+            else
+            {
+                var v = dir.GetVectorValue();
+                controllable.CounterHitDir = new Vector3(v.x, 0, v.y);
+            }
+
+            controllable.StopImmediate(pos);
 			controllable.SpriteAnimator.Direction = dir;
 			controllable.SpriteAnimator.State = SpriteState.Idle;
 			controllable.SpriteAnimator.AnimSpeed = 1f;
@@ -417,21 +437,26 @@ namespace Assets.Scripts.Network
 				if (controllable.SpriteAnimator.Type == SpriteType.Player)
 					damageTiming = 0.5f;
 
-				StartCoroutine(DamageEvent(dmg, damageTiming, controllable2));
+				StartCoroutine(DamageEvent(dmg, damageTiming, 1, controllable2));
 			}
 		}
 
-		private IEnumerator DamageEvent(int damage, float delay, ServerControllable target)
+		private IEnumerator DamageEvent(int damage, float delay, int hitCount, ServerControllable target)
 		{
 			yield return new WaitForSeconds(delay);
 			if (target != null && target.SpriteAnimator.IsInitialized)
 			{
-				var go = GameObject.Instantiate(DamagePrefab, target.transform.localPosition, Quaternion.identity);
-				var di = go.GetComponent<DamageIndicator>();
-				var red = target.SpriteAnimator.Type == SpriteType.Player;
-				var height = target.SpriteAnimator.SpriteData.Size / 50f;
-				di.DoDamage(damage, target.gameObject.transform.localPosition, height, target.SpriteAnimator.Direction, red, false);
-			}
+                for (var i = 0; i < hitCount; i++)
+                {
+                    var go = GameObject.Instantiate(DamagePrefab, target.transform.localPosition, Quaternion.identity);
+                    var di = go.GetComponent<DamageIndicator>();
+                    var red = target.SpriteAnimator.Type == SpriteType.Player;
+                    var height = target.SpriteAnimator.SpriteData.Size / 50f;
+                    di.DoDamage(damage, target.gameObject.transform.localPosition, height,
+                        target.SpriteAnimator.Direction, red, false);
+					yield return new WaitForSeconds(0.2f);
+                }
+            }
 		}
 
 		private void OnMessageHit(NetIncomingMessage msg)
@@ -585,6 +610,15 @@ namespace Assets.Scripts.Network
 
 			client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
 		}
+
+        public void SkillAttack()
+        {
+            var msg = client.CreateMessage();
+
+			msg.Write((byte)PacketType.Skill);
+
+            client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
+        }
 
 		public void StopPlayer()
 		{

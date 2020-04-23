@@ -35,6 +35,7 @@ namespace RebuildData.Shared.Data
 
 			var path = Path.Combine(walkPath, name);
 
+			
 			//ServerLogger.Log("Loading path data from " + name);
 
 			try

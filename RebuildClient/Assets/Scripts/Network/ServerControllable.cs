@@ -24,6 +24,8 @@ namespace Assets.Scripts.Network
 		public bool IsAlly;
 		public bool IsMale;
 
+        public Vector3 CounterHitDir;
+
 		public ClientSpriteType SpriteMode;
 		public GameObject EntityObject;
 
@@ -283,11 +285,13 @@ namespace Assets.Scripts.Network
 		private IEnumerator MonsterDeathCoroutine(int hitCount)
 		{
 			if (hitCount > 1)
-			{
-				var hitTiming = SpriteAnimator.GetHitTiming();
+            {
+                var hitTiming = 0.2f; //SpriteAnimator.GetHitTiming();
 				for (var i = 0; i < hitCount; i++)
 				{
 					SpriteAnimator.ChangeMotion(SpriteMotion.Hit, true);
+					if(i == hitCount - 1)
+						hitTiming = SpriteAnimator.GetHitTiming();
 					yield return new WaitForSeconds(hitTiming);
 				}
 			}
@@ -310,6 +314,42 @@ namespace Assets.Scripts.Network
 			StartCoroutine(MonsterDeathCoroutine(hitCount));
 		}
 
+        public void BlastOff(Vector3 direction)
+        {
+            isMoving = false;
+            movePath = null;
+
+            FadeOutAndVanish(2f);
+
+			SpriteAnimator.DoSpin();
+
+            StartCoroutine(BlastOffCoroutine(direction));
+        }
+
+        private IEnumerator BlastOffCoroutine(Vector3 direction)
+        {
+            var time = 0f;
+
+            while (true)
+            {
+                var factor = 1f * Time.deltaTime * 0.8f;
+                transform.localPosition += direction * Time.deltaTime * 0.5f;
+                transform.localScale += new Vector3(factor, factor, factor) * 3f;
+                time += Time.deltaTime;
+                if (time < 0.5f)
+                    yield return null;
+                else
+                {
+                    var go = GameObject.Instantiate(Resources.Load<GameObject>("Explosion"));
+                    go.transform.localPosition = gameObject.transform.localPosition;
+					go.transform.localScale = new Vector3(5f, 5f, 5f);
+                    break;
+                }
+            }
+			if(gameObject != null)
+			    GameObject.Destroy(gameObject);
+
+		}
 		private void Update()
 		{
 			if (SpriteMode == ClientSpriteType.Prefab)

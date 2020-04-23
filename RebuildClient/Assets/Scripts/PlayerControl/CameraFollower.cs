@@ -527,6 +527,11 @@ namespace Assets.Scripts
 				NetworkManager.Instance.StopPlayer();
 			}
 
+            if (Input.GetKeyDown(KeyCode.F4))
+            {
+				NetworkManager.Instance.SkillAttack();
+            }
+
 			if (Input.GetMouseButtonDown(1))
 			{
 				if (Time.timeSinceLevelLoad - LastRightClick < 0.3f)

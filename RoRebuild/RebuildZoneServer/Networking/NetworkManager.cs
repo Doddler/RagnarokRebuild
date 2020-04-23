@@ -81,6 +81,18 @@ namespace RebuildZoneServer.Networking
 			ServerLogger.Log("Server started.");
 		}
 
+        public static void Shutdown()
+        {
+            var players = State.Players;
+			for (var i = 0; i < players.Count; i++)
+			{
+				DisconnectPlayer(players[i]);
+			}
+
+			State.Server.FlushSendQueue();
+			State.Server.Shutdown("Shutting down.");
+        }
+
 		public static void StartPolicyServer()
 		{
 			//policy server is required for web build to connect
