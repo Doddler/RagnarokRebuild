@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using OdinSerializer;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Profiling;
@@ -25,6 +24,43 @@ namespace Assets.Scripts.MapEditor
             return new Cell() {Heights = Heights, Top = Top.Clone(), Front = Front.Clone(), Right = Right.Clone()};
         }
 
+        public void Serialize(BinaryWriter bw)
+        {
+            bw.Write(Heights);
+            bw.Write(Top != null);
+            Top?.Serialize(bw);
+            bw.Write(Front != null);
+            Front?.Serialize(bw);
+            bw.Write(Right != null);
+            Right?.Serialize(bw);
+            bw.Write((byte)Type);
+        }
+
+        public void Deserialize(BinaryReader br)
+        {
+            Heights = br.ReadVector4();
+            Top = null;
+            Front = null;
+            Right = null;
+            if (br.ReadBoolean())
+            {
+                Top = new Tile();
+                Top.Deserialize(br);
+            }
+            if (br.ReadBoolean())
+            {
+                Front = new Tile();
+                Front.Deserialize(br);
+            }
+            if (br.ReadBoolean())
+            {
+                Right = new Tile();
+                Right.Deserialize(br);
+            }
+
+            Type = (CellType)br.ReadByte();
+        }
+
         public override string ToString()
         {
             return $"Cell Heights: {Heights}|Top:{Top.Enabled} {Top.Texture}|Front:{Front.Enabled} {Front.Texture}|Right:{Right.Enabled} {Right.Texture}";
@@ -43,11 +79,63 @@ namespace Assets.Scripts.MapEditor
         {
             return new Tile() {Enabled = Enabled, Texture = Texture, UVs = (Vector2[])UVs.Clone(), Color = Color};
         }
+
+        public void Serialize(BinaryWriter bw)
+        {
+            bw.Write(Enabled);
+            if (Enabled)
+            {
+                bw.Write(Texture);
+                for (var i = 0; i < 4; i++)
+                    bw.Write(UVs[i]);
+                bw.Write(Color);
+            }
+        }
+
+        public void Deserialize(BinaryReader br)
+        {
+            Enabled = br.ReadBoolean();
+            UVs = new Vector2[4];
+
+            if (!Enabled)
+                return;
+            
+            Texture = br.ReadString();
+            for (var i = 0; i < 4; i++)
+                UVs[i] = br.ReadVector2();
+            Color = br.ReadColor();
+        }
     }
 
     public class MapDataContainer : ScriptableObject
     {
         public Cell[] CellData;
+
+        public static MapDataContainer Deserialize(MapDataContainer container, BinaryReader br)
+        {
+            var size = br.ReadInt32();
+            container.CellData = new Cell[size];
+
+            //Debug.LogWarning("Deserializing size " + size);
+
+            for (var i = 0; i < size; i++)
+            {
+                container.CellData[i] = new Cell();
+                container.CellData[i].Deserialize(br);
+            }
+
+            return container;
+        }
+
+        public void Serialize(BinaryWriter bw)
+        {
+            bw.Write(CellData.Length);
+
+            //Debug.LogWarning("Serializing size " + CellData.Length);
+
+            for (var i = 0; i < CellData.Length; i++)
+                CellData[i].Serialize(bw);
+        }
     }
 
     [CreateAssetMenu(menuName = "Custom Assets/Map Data")]
@@ -114,8 +202,14 @@ namespace Assets.Scripts.MapEditor
 
             if (container == null)
                 container = ScriptableObject.CreateInstance<MapDataContainer>();
-            
-            container.CellData = SerializationUtility.DeserializeValue<Cell[]>(bytes, DataFormat.Binary);
+
+            using (var ms = new MemoryStream(bytes))
+            using (var br = new BinaryReader(ms))
+            {
+                MapDataContainer.Deserialize(container, br);
+            }
+
+            //container.CellData = SerializationUtility.DeserializeValue<Cell[]>(bytes, DataFormat.Binary);
         }
 
         public void SaveCellDataToFile(Cell[] cellData, string path)
@@ -129,14 +223,21 @@ namespace Assets.Scripts.MapEditor
                 container.CellData = cellData;
 
             Debug.Log("Saving cell data to : " + path);
-            var bytes = SerializationUtility.SerializeValue(container.CellData, DataFormat.Binary);
-            var b2 = CLZF2.Compress(bytes);
 
-            var basePath = Path.GetDirectoryName(path);
-            if (!Directory.Exists(basePath))
-                Directory.CreateDirectory(basePath);
+            using (var ms = new MemoryStream(2000000))
+            using (var bw = new BinaryWriter(ms))
+            {
+                container.Serialize(bw);
 
-            File.WriteAllBytes(path, b2);
+                var bytes = ms.ToArray();
+                var b2 = CLZF2.Compress(bytes);
+
+                var basePath = Path.GetDirectoryName(path);
+                if (!Directory.Exists(basePath))
+                    Directory.CreateDirectory(basePath);
+
+                File.WriteAllBytes(path, b2);
+            }
         }
 
         public void SaveCellData(Cell[] cellData)
