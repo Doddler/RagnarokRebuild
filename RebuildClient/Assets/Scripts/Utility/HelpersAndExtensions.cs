@@ -38,7 +38,7 @@ namespace Assets.Scripts
 
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
-            
+
             return Path.Combine(path, filename).Replace("\\", "/");
         }
     }
@@ -47,7 +47,7 @@ namespace Assets.Scripts
     {
         public static void ArrayAdd<T>(this List<T> list, T[] array)
         {
-            for(var i = 0; i < array.Length; i++)
+            for (var i = 0; i < array.Length; i++)
                 list.Add(array[i]);
         }
     }
@@ -56,7 +56,7 @@ namespace Assets.Scripts
     {
         public static Vector2[] DefaultQuadUVs()
         {
-            return new[] {new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0)};
+            return new[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) };
         }
 
         public static Vector3 CalcQuadNormal(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4)
@@ -95,6 +95,14 @@ namespace Assets.Scripts
             var euler = q.eulerAngles;
             return Quaternion.Euler(-euler.FlipY());
         }
+
+        public static Vector2 Rotate(Vector2 v, float delta)
+        {
+            return new Vector2(
+                v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+                v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+            );
+        }
     }
 
     public static class RectHelper
@@ -104,10 +112,10 @@ namespace Assets.Scripts
         //    var x = rect.xMin + (rect.xMax - 1 - rect.xMin) / 2f;
         //    var y = rect.yMin + (rect.yMax - 1 - rect.yMin) / 2f;
         //}
-        
+
         public static RectInt AreaRect(int minX, int minY, int maxX, int maxY)
         {
-            return new RectInt(minX, minY, maxX-minX, maxY-minY);
+            return new RectInt(minX, minY, maxX - minX, maxY - minY);
         }
 
         public static RectInt ExpandRect(this RectInt src, int dist)
@@ -184,7 +192,7 @@ namespace Assets.Scripts
 
         public static void ChangeStaticRecursive(this GameObject go, bool isStatic)
         {
-	        go.layer = isStatic ? LayerMask.NameToLayer("Object") : LayerMask.NameToLayer("DynamicObject");
+            go.layer = isStatic ? LayerMask.NameToLayer("Object") : LayerMask.NameToLayer("DynamicObject");
             go.isStatic = isStatic;
             foreach (Transform t in go.transform)
             {
@@ -192,7 +200,7 @@ namespace Assets.Scripts
             }
         }
     }
-    
+
 
     public static class PathHelper
     {

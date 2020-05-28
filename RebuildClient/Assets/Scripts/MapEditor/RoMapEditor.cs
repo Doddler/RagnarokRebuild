@@ -401,6 +401,8 @@ namespace Assets.Scripts.MapEditor
         {
             if (Selection.activeGameObject != gameObject && hasToolStored)
                 LeaveEditMode();
+
+            Shader.SetGlobalColor("_FakeAmbient", Color.white);
         }
 
         private Material highlightMaterial;

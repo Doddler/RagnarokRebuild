@@ -31,6 +31,8 @@ namespace Assets.Scripts.Network
 		private bool isConnected = false;
 		private bool isLoggedIn = false;
 
+		public Color FakeAmbient = Color.white;
+
 		private string currentMap = "";
 
 		private List<Vector2Int> pathData = new List<Vector2Int>(20);
@@ -649,6 +651,8 @@ namespace Assets.Scripts.Network
 
 		private void Update()
 		{
+			Shader.SetGlobalColor("_FakeAmbient", FakeAmbient);
+
 			if (client.Status == NetPeerStatus.Running)
 				DoPacketHandling();
 			

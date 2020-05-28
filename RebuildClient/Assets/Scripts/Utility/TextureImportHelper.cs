@@ -57,8 +57,7 @@ namespace Assets.Scripts
             importer.maxTextureSize = 4096;
 
 	        importer.SaveAndReimport();
-
-
+            
 	        texture = AssetDatabase.LoadAssetAtPath<Texture2D>(outputPath);
 
             return texture;
@@ -68,6 +67,9 @@ namespace Assets.Scripts
         {
 
             var texPath = Path.Combine(importPath, "texture", textureName);
+
+            if (!File.Exists(texPath))
+                texPath = Path.Combine(importPath, textureName);
 
             //Debug.Log(texPath);
 

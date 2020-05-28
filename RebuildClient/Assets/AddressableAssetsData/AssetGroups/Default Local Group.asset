@@ -212,6 +212,10 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Sprite
+  - m_GUID: 5051999a22869ad46a014dc8c8c55a61
+    m_Address: Assets/Scenes/Maps/2009rwc_03.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   - m_GUID: 512f92f6d2f8c3d4f8d0ebae2e1c2236
     m_Address: "Assets/Sprites/Weapons/SuperNovice/Female/\uC288\uD37C\uB178\uBE44\uC2A4_\uC5EC_1207.spr"
     m_ReadOnly: 0

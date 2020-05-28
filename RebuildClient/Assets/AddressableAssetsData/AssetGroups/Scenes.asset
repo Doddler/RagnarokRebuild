@@ -47,11 +47,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Maps
-  - m_GUID: 9fc0d4010bbf28b4594072e72b8655ab
-    m_Address: Assets/Scenes/Maps/prontera.unity
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Maps
   - m_GUID: b818d35a97a84aa43bdd974226a9998a
     m_Address: Assets/Scenes/Maps/2009rwc_03.unity
     m_ReadOnly: 0

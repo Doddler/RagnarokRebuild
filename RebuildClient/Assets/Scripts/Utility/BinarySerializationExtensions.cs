@@ -46,7 +46,7 @@ namespace Assets.Scripts
 
         public static void WriteNullableString(this BinaryWriter bw, string str)
         {
-            if(str == null)
+            if (str == null)
                 bw.Write(false);
         }
 
@@ -131,6 +131,13 @@ namespace Assets.Scripts
             return new Color(br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
         }
 
+
+        public static Color ReadColor2(this BinaryReader br)
+        {
+            return new Color(br.ReadSingle() / 255f, br.ReadSingle() / 255f, br.ReadSingle() / 255f, br.ReadSingle() / 255f);
+        }
+
+
         public static Color ReadColorNoAlpha(this BinaryReader br)
         {
             return new Color(br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), 1f);
@@ -142,6 +149,36 @@ namespace Assets.Scripts
             var arr = new Vector2[count];
             for (var i = 0; i < count; i++)
                 arr[i] = br.ReadVector2();
+            return arr;
+        }
+
+
+        public static Vector2[] ReadVector2Array(this BinaryReader br, int count)
+        {
+            var arr = new Vector2[count];
+            for (var i = 0; i < count; i++)
+                arr[i] = br.ReadVector2();
+            return arr;
+        }
+
+
+        public static float[] ReadFloatArray(this BinaryReader br, int count)
+        {
+            var arr = new float[count];
+            for (var i = 0; i < count; i++)
+                arr[i] = br.ReadSingle();
+            return arr;
+        }
+        
+        public static Vector2[] ReadVector2StaggeredArray(this BinaryReader br, int count)
+        {
+            var val = new float[count*2];
+            for (var i = 0; i < count * 2; i++)
+                val[i] = br.ReadSingle();
+
+            var arr = new Vector2[count];
+            for (var i = 0; i < count; i++)
+                arr[i] = new Vector2(val[i], val[count + i]);
             return arr;
         }
 
@@ -164,10 +201,10 @@ namespace Assets.Scripts
 
         public static Color ReadByteColor(this BinaryReader br)
         {
-	        var b = br.ReadByte() / 255f;
+            var b = br.ReadByte() / 255f;
             var g = br.ReadByte() / 255f;
-	        var r = br.ReadByte() / 255f; 
-	        var a = br.ReadByte() / 255f;
+            var r = br.ReadByte() / 255f;
+            var a = br.ReadByte() / 255f;
             return new Color(r, g, b, a);
         }
     }
